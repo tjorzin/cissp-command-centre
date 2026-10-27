@@ -2,6 +2,16 @@
 
 Each phase adds a section. Commands are run from the repo root with Node 24.22.1 and Playwright 1.64.1 (Chromium), using a Pixel 7 profile at 360 × 780, time zone Africa/Harare.
 
+## Stem rewrite pass (28 October 2026)
+
+**Done:** rewrote the 113 stems at difficulty 4 to 6 that were under 40 words, one domain at a time (14 / 13 / 16 / 13 / 15 / 14 / 15 / 13), linting after each domain. Each stem now sets out a realistic situation (organisation, scale, constraints, what has already been tried) and adds decoy detail that makes the wrong options tempting: for example a CFO pushing a heat map when only a quantitative figure answers the question, or a vendor's 'twice as secure' claim next to two Common Criteria levels. Options, keys, rationales and difficulty are unchanged, so the answer to each question is the same. Several stems now name things an option proposes, so those options are not ruled out by the stem.
+
+The lint warned only below 40 words, but the question standard asks for 50 to 120. The threshold is now **50**, which caught 16 more stems at 40 to 49 words; those were extended the same way. Pronouns in the rewritten scenarios are gender-neutral.
+
+**Result:** the 140 questions at difficulty 4 to 6 that stand alone now have stems of 51 to 90 words (median 68). `npm run validate`: **no errors and no warnings** (previously 113 stem-length warnings). The 27 questions at difficulty 4 to 6 that belong to a case study are exempt, because the case study supplies their context. `npm test` 99 passed; `npm run test:e2e` 40 passed.
+
+**Not validated:** whether each new decoy feels fair to a candidate. That needs a human read or real attempt data; the Error Ledger's patterns will show any question that is missed for the wrong reason.
+
 ## Phase 10: GitHub Pages and release 1.0 (28 October 2026)
 
 **Built:** `.github/workflows/pages.yml` (jobs: test → build → deploy; Node 24; `npm ci`, `npm run validate`, `npm test`, Playwright Chromium, `npm run test:e2e`, then `actions/upload-pages-artifact` and `actions/deploy-pages`; Playwright results kept for 7 days on failure). `tools/build-site.js` (`npm run build`) copies only the app files into `_site`. README: publishing steps, install on the phone, the optional Capacitor wrapper (described, not built). Service worker version `v1.0.0`; package version 1.0.0.
@@ -10,7 +20,7 @@ Each phase adds a section. Commands are run from the repo root with Node 24.22.1
 
 **Not validated:** the workflow has not run on GitHub, because this repository has no remote yet (the YAML uses only GitHub's own Pages actions, but its first real run is the check); installing from a real `github.io` URL on Trust's phone; the Capacitor APK (not built).
 
-**Still open (content quality):** 115 questions at difficulty 4 and above have stems under 40 words, where the question standard wants 50 to 120 words with decoy detail. The lint reports them as warnings, not errors. A rewrite pass on those stems is the main remaining content task.
+**Content quality:** the open stem-length gap is closed; see "Stem rewrite pass" above.
 
 ## Phase 9: car mode (28 October 2026)
 

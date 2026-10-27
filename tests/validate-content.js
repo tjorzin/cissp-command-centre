@@ -98,7 +98,7 @@ export function lintQuestion(q, ctx = {}) {
   if (q.correct.some((i) => !/^correct\b/i.test(q.rationales[i].trim()))) w('correct option rationale should start with "Correct."');
 
   const words = q.stem.split(/\s+/).length;
-  if (q.difficulty >= 4 && !q.scenario && words < 40) w(`difficulty ${q.difficulty} stem has only ${words} words`);
+  if (q.difficulty >= 4 && !q.scenario && words < 50) w(`difficulty ${q.difficulty} stem has only ${words} words`);
 
   return { errors, warnings, absoluteOpts };
 }

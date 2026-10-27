@@ -174,7 +174,7 @@
       "difficulty": 4,
       "type": "multi",
       "scenario": null,
-      "stem": "A regional bank is about to adopt a SaaS loan-origination platform that will hold customer identity documents. The supplier's sales team has offered a discount for signing this month. Which THREE measures BEST reduce the supply chain risk before go-live? (Select THREE.)",
+      "stem": "A regional bank is about to adopt a SaaS loan-origination platform that will hold customer identity documents. The platform must be live before the new financial year in four months. The supplier is a fast-growing company that hosts the service with a third-party cloud provider, and its sales team has offered a discount for signing this month. Which THREE measures BEST reduce the supply chain risk before go-live? (Select THREE.)",
       "options": [
         "An independent SOC 2 Type II report covering the in-scope service for the past year",
         "An ISO/IEC 27001 certificate whose scope excludes the supplier's hosting operations",
@@ -467,7 +467,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A government e-procurement portal must ensure that a supplier cannot later credibly deny having submitted a particular bid. Which mechanism BEST provides this?",
+      "stem": "A government e-procurement portal receives sealed bids from about 400 suppliers. Last year a losing supplier claimed that a bid submitted under its name had been entered by a portal administrator, and the tender was delayed for months. The portal already uses TLS on every connection, stores each bid with a SHA-256 hash, and gives each supplier a key shared with the buyer for automated uploads. The procurement board wants it to be impossible for a supplier to credibly deny having submitted a particular bid. Which mechanism BEST provides this?",
       "options": [
         "A hash of each bid stored alongside it on the procurement server",
         "A message authentication code with a key the supplier shares with the buyer",
@@ -575,7 +575,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A Zimbabwean payments start-up plans to sell services to banks in Europe and the United States within 18 months. Its board wants one framework that will give it an organisation-wide management system the banks will recognise through independent assessment. Which is the BEST choice?",
+      "stem": "A Zimbabwean payments start-up with 35 staff plans to sell services to banks in Europe and the United States within 18 months. It already follows NIST CSF 2.0 informally and processes card payments for two local merchants. Its board wants one framework that will give it an organisation-wide management system the banks will recognise through independent assessment. Which is the BEST choice?",
       "options": [
         "NIST CSF 2.0, with a self-assessed profile shared with each bank",
         "ISO/IEC 27001:2022, with certification by an accredited body",
@@ -611,7 +611,7 @@
       "difficulty": 4,
       "type": "multi",
       "scenario": null,
-      "stem": "Which TWO activities are examples of due DILIGENCE rather than due care? (Select TWO.)",
+      "stem": "The new security manager at a holding company is preparing evidence for the board's annual governance review. The board's legal adviser has asked for last year's security activities to be grouped under due diligence and due care, because the regulator's guidance uses those terms. The list includes supplier contract reviews, an acquisition, routine patching and backups, and two disciplinary cases for policy breaches. Which TWO activities are examples of due DILIGENCE rather than due care? (Select TWO.)",
       "options": [
         "Reviewing a cloud provider's audit reports before signing the contract",
         "Patching servers within the timeframes set in the patch standard",
@@ -719,7 +719,7 @@
       "difficulty": 5,
       "type": "multi",
       "scenario": null,
-      "stem": "A Harare-based telecom plans to replicate subscriber records, including national ID numbers, to a backup site in another country. Which TWO steps are MOST important before replication begins? (Select TWO.)",
+      "stem": "A Harare-based mobile operator plans to replicate its subscriber database, which holds names, national ID numbers and call records, to a backup data centre run by a hosting provider in another country. The network team has already chosen routers that support AES-256 for the link and wants to start next week, because the single existing site failed during a storm in March. The marketing director suggests telling subscribers in the next quarterly newsletter. Which TWO steps are MOST important before replication begins? (Select TWO.)",
       "options": [
         "Confirm the transfer is lawful under the applicable data protection law",
         "Put contractual safeguards in place with the operator of the backup site",
@@ -797,7 +797,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "An employee is dismissed after an internal investigation finds she leaked pricing data to a competitor. She sues for unfair dismissal, and the police separately investigate the leak as a crime. Which statement about the standards of proof is correct?",
+      "stem": "An employee of a fertiliser company is dismissed after an internal investigation finds that the employee leaked pricing data to a competitor. The employee sues for unfair dismissal, claiming the investigation was biased, and the police separately investigate the leak as a crime, using evidence the employer handed over. The company's lawyer briefs the board on what each case must show. Which statement about the standards of proof is correct?",
       "options": [
         "Both cases need proof beyond reasonable doubt because the same facts are involved",
         "The criminal case uses the balance of probabilities because the employer gathered it",
@@ -832,7 +832,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A retailer discovers that its payment terminals stored full card data for two years. The card brands require a forensic investigation by an investigator they have approved. Which type of investigation is this?",
+      "stem": "A national retailer with 140 stores discovers that a faulty update made its payment terminals store full card data for two years. Its acquiring bank tells it that, under the card brands' rules, a forensic investigation must now be carried out by an investigator from the brands' approved list, with the findings shared with the brands. The retailer's lawyers expect some customers to sue, and the data protection authority has not yet been told. Which type of investigation is the forensic investigation?",
       "options": [
         "A regulatory investigation, because a government body has ordered it",
         "An industry-standards investigation, required under card brand rules",
@@ -938,7 +938,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A business unit cannot meet the company's password standard because a legacy claims system supports only 8-character passwords. Replacing the system is planned for next year. What is the BEST way to handle this?",
+      "stem": "A medical aid society's claims unit cannot meet the company password standard, which requires 14-character passwords on all systems. Its legacy claims platform accepts only 8 characters, and the vendor has confirmed that no update will change this. A replacement is budgeted and scheduled to go live in eleven months. The platform handles about 3,000 claims a day, and internal audit has already noted the gap in a draft report due before the audit committee next month. What is the BEST way to handle this?",
       "options": [
         "Document an exception with compensating controls, approved by the risk owner, with an expiry",
         "Rewrite the password standard so that it allows 8-character passwords for every system",
@@ -974,7 +974,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "The board of a medical insurer has approved a business continuity programme and appointed a BC manager. What should the BC manager do FIRST?",
+      "stem": "The board of a medical insurer with 600 staff has approved a business continuity programme after a three-day outage at its main call centre, and has appointed a BC manager with a budget for the year. The IT manager has already proposed a warm site with a 24-hour recovery time, the external auditors have offered a plan template used by other insurers, and several department heads are asking when the first exercise will be. What should the BC manager do FIRST?",
       "options": [
         "Choose recovery sites that meet the IT department's preferred recovery times",
         "Identify critical business processes and how losing them would hurt over time",
@@ -1046,7 +1046,7 @@
       "difficulty": 5,
       "type": "multi",
       "scenario": null,
-      "stem": "A business impact analysis for a hospital's pharmacy dispensing system is under way. Which THREE items belong in its output? (Select THREE.)",
+      "stem": "A provincial hospital is running a business impact analysis for its pharmacy dispensing system, which issues medicines to wards, theatres and outpatients around the clock. The system depends on the hospital network, an electronic prescribing feed and a wholesaler's ordering portal; last winter a two-day power cut forced staff onto paper records. The facilities team wants to replace the ageing standby generator, and the IT team has asked for a hot site. Which THREE items belong in the output of the business impact analysis? (Select THREE.)",
       "options": [
         "The maximum tolerable downtime of each dependent clinical process",
         "The external suppliers and utilities each critical process relies on",
@@ -1158,7 +1158,7 @@
       "difficulty": 5,
       "type": "multi",
       "scenario": null,
-      "stem": "A payments clerk has handled supplier payments alone for six years and has never taken more than two days of leave at a time. Which TWO controls would MOST help detect or prevent fraud in this role? (Select TWO.)",
+      "stem": "A payments clerk at a construction company has handled supplier payments alone for six years. The clerk sets up new suppliers, captures invoices and releases payments, has never taken more than two days of leave at a time, and often logs in on public holidays. Performance reviews are excellent, and the internal auditor's sample checks have found no errors. The CFO wants to reduce the risk of fraud in this role without disrupting payments. Which TWO controls would MOST help detect or prevent fraud in this role? (Select TWO.)",
       "options": [
         "Mandatory consecutive leave, with someone else doing the role",
         "Separating the set-up of new suppliers from approving payments",
@@ -1236,7 +1236,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "After several thefts from a warehouse, a company installs visible CCTV cameras with signs stating that all footage is recorded, and a supervisor reviews the footage each morning. Which control types are these?",
+      "stem": "After several thefts of stock from a distribution warehouse, a company installs visible CCTV cameras over the loading bays, with signs stating that all footage is recorded. A supervisor now reviews the previous night's footage each morning and reports anything suspicious to the security office. The company also plans to fit stronger locks to the cage that holds high-value goods next quarter. Which control types do the signed cameras and the morning footage review provide?",
       "options": [
         "Preventive and corrective",
         "Deterrent and detective",
@@ -1271,7 +1271,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A CFO asks how much the company should be willing to spend each year on a DDoS protection service for its e-commerce site. Which approach to risk analysis BEST answers the question?",
+      "stem": "The CFO of an online retailer that takes about US$2 million a month in sales asks how much the company should be willing to spend each year on a DDoS protection service. The site was knocked offline twice last year, for six hours and then for eleven. The security team already keeps a heat map of its top 20 risks, and the developers recently finished a STRIDE threat model of the checkout. Which approach to risk analysis BEST answers the CFO's question?",
       "options": [
         "Qualitative analysis ranking DDoS against other risks on a heat map",
         "A threat model of the website using the STRIDE categories",
@@ -1306,7 +1306,7 @@
       "difficulty": 6,
       "type": "multi",
       "scenario": null,
-      "stem": "After treatment, the residual risk of a flood at a data centre is still above the company's risk appetite. The facilities manager proposes to accept it and sign the risk register entry himself. Which TWO statements are correct? (Select TWO.)",
+      "stem": "After treatment, the residual risk of a flood at a regional data centre is still above the company's approved risk appetite. Flood barriers and raised floors have been installed, insurance covers the equipment, and moving the site would cost more than the annual IT budget. The facilities manager who runs the site proposes to accept the risk and sign the risk register entry personally. Which TWO statements are correct? (Select TWO.)",
       "options": [
         "Residual risk above appetite needs acceptance by someone with that authority",
         "A manager may accept residual risk for any asset within his own area of work",
@@ -1381,7 +1381,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "In a threat model of a bank's statements API, the team finds that a logged-in customer can change the account_id parameter in a request and receive another customer's statements. Which STRIDE category does this fall under?",
+      "stem": "A bank's development team is threat modelling its new statements API before release. Customers sign in with MFA, all traffic uses TLS 1.3, and every request is logged with the customer's ID and a timestamp. During testing the team finds that a logged-in customer can change the account_id parameter in a request and receive another customer's statements, and the logs show correctly which customer made each request. Which STRIDE category does this finding fall under?",
       "options": [
         "Spoofing identity",
         "Tampering with data",
@@ -1451,7 +1451,7 @@
       "difficulty": 5,
       "type": "single",
       "scenario": null,
-      "stem": "A telecom receives six core routers from a reseller at 30% below list price. The serial numbers check out with the manufacturer, but two units fail firmware signature verification at boot. What should the security manager do FIRST?",
+      "stem": "A telecom buys six core routers from a reseller at 30% below list price, because the manufacturer's own lead time is five months. The serial numbers check out with the manufacturer's online lookup, but during staging two units fail firmware signature verification at boot. The network director is under pressure to install them before a network expansion launches in three weeks, and the reseller has offered to courier replacements. What should the security manager do FIRST?",
       "options": [
         "Reflash the two units with firmware downloaded from the manufacturer's site",
         "Quarantine all six units and engage the manufacturer to verify authenticity",
@@ -1487,7 +1487,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "Which measure gives the BEST evidence that a phishing awareness programme is changing behaviour?",
+      "stem": "A logistics company has run its phishing awareness programme for three years. Course completion is 98%, the security team publishes posters and intranet articles every month, and staff average 87% on the end-of-course quiz. The team also sends simulated phishing emails each quarter and records who clicks and who reports them. The board has asked for a single measure that shows whether the programme is changing how staff behave. Which measure gives the BEST evidence of that?",
       "options": [
         "The share of staff who completed the annual awareness course this year",
         "The number of awareness posters and intranet articles published each month",
@@ -1522,7 +1522,7 @@
       "difficulty": 5,
       "type": "multi",
       "scenario": null,
-      "stem": "Staff in a company's finance team received a deepfake voice call impersonating the CFO and asking for an urgent payment. One payment was nearly made. Which TWO changes to the awareness programme would BEST address this? (Select TWO.)",
+      "stem": "Staff in a mining company's finance team received a phone call that sounded exactly like the CFO, who was travelling, asking for an urgent payment to a new supplier to close a deal. A follow-up video call showed the CFO's face briefly before the line dropped. A payment of US$180,000 was nearly made before a treasury officer queried it. The company's only awareness training is an annual 30-minute course on email phishing for all staff. Which TWO changes to the awareness programme would BEST address this? (Select TWO.)",
       "options": [
         "Teach finance staff to confirm payment requests through a known second channel",
         "Run role-specific simulations of voice and video impersonation for finance",
@@ -1596,7 +1596,7 @@
       "difficulty": 5,
       "type": "multi",
       "scenario": null,
-      "stem": "A hospital is transferring 200 solid-state drives from its patient-records cluster to a research institute that is a separate organisation. The drives are self-encrypting, and their keys are managed by the storage array. Which TWO actions are appropriate to sanitise the drives before release? (Select TWO.)",
+      "stem": "A hospital is transferring 200 solid-state drives from its patient-records cluster to a research institute that is a separate organisation. The drives are self-encrypting, and their keys are managed by the storage array. The research agreement requires the drives to be reusable, and the hospital's disposal contractor normally degausses hard disks. Which TWO actions are appropriate to sanitise the drives before release? (Select TWO.)",
       "options": [
         "Run the drives' built-in sanitise command, then verify a sample of drives.",
         "Perform a cryptographic erase by destroying each drive's media encryption key.",
@@ -1813,7 +1813,7 @@
       "difficulty": 5,
       "type": "multi",
       "scenario": null,
-      "stem": "A government department labels nearly every document SECRET 'to be safe', including canteen menus and published reports. Which TWO problems does this cause? (Select TWO.)",
+      "stem": "A government department labels nearly every document SECRET 'to be safe', including canteen menus, staff newsletters and reports already published on its website. Each SECRET document must be kept in an approved safe, logged when copied and sent only by registered courier. The department's security budget has doubled in two years, and a recent inspection found a genuinely sensitive cabinet paper left on a shared printer. Which TWO problems does this labelling practice cause? (Select TWO.)",
       "options": [
         "Money and effort go into protecting information of little value",
         "Staff learn to ignore labels, so genuinely secret data stands out less",
@@ -1850,7 +1850,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A confidential pricing spreadsheet is regularly emailed to a distributor, who saves and forwards it inside their own company. Which control BEST ensures the recipients can still tell it is confidential?",
+      "stem": "A manufacturer emails a confidential pricing spreadsheet to its regional distributor each month. The distributor's staff save it to their own file servers and forward it to sales teams inside their company. The manufacturer keeps its copy on a share with tight folder permissions, sends all outbound email over TLS, and uses DLP to block uploads to webmail. The commercial director wants anyone who receives a copy, wherever it ends up, to be able to tell that it is confidential. Which control BEST achieves this?",
       "options": [
         "Folder permissions on the share where the original copy is kept",
         "A DLP rule that blocks the file if it is sent to a webmail domain",
@@ -1885,7 +1885,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "Each week a bank sends backup tapes holding customer data to an offsite vault by courier. A tape went missing last year and was never found. What MOST reduces the impact of a tape being lost in transit?",
+      "stem": "Each week a bank sends backup tapes holding customer account data to an offsite vault by courier. Last year a tape went missing between the bank and the vault and was never found; the courier's tracking showed the van had made an unscheduled stop. The vault operator is ISO 27001 certified, and the operations manager now proposes switching to a bonded courier with vetted drivers and sealed bags. What MOST reduces the impact of a tape being lost in transit?",
       "options": [
         "Using a bonded courier with tracked vehicles and vetted drivers",
         "Encrypting the tapes, with the keys managed separately at the bank",
@@ -1921,7 +1921,7 @@
       "difficulty": 4,
       "type": "multi",
       "scenario": null,
-      "stem": "A company is writing handling requirements for paper documents classified RESTRICTED. Which TWO belong in those requirements? (Select TWO.)",
+      "stem": "A company is introducing a RESTRICTED classification for paper documents such as board papers, salary reviews and draft contracts. The data owners have already agreed which documents fall into the class, and the board approved the classification scheme last month. The security manager must now write the handling requirements for RESTRICTED paper documents, to be followed by staff in three offices and by an outsourced print room. Which TWO belong in those handling requirements? (Select TWO.)",
       "options": [
         "Storage in locked cabinets when the documents are not in use",
         "Destruction with a cross-cut shredder at the end of their life",
@@ -1993,7 +1993,7 @@
       "difficulty": 5,
       "type": "single",
       "scenario": null,
-      "stem": "A marketing team has paid for a SaaS CRM on a corporate credit card for a year. It holds 40,000 customer records, and IT has just found out about it through expense reports. What should happen FIRST?",
+      "stem": "A marketing team has paid for a SaaS CRM on a corporate credit card for a year. It now holds 40,000 customer records, including phone numbers and purchase history, and twelve staff use it daily to run campaigns. IT found out about it this week through expense reports. The CIO wants the service's domain blocked today, and the corporate CRM team says it could import the records within a month. What should happen FIRST?",
       "options": [
         "Add it to the asset inventory and assign an owner accountable for it",
         "Block the service's domain at the web proxy until a review is done",
@@ -2066,7 +2066,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "Law requires a bank to keep transaction records for seven years. The marketing team wants to keep customers' app-browsing data indefinitely 'in case it is useful for analytics'. What is the BEST approach?",
+      "stem": "Law requires a bank to keep transaction records for seven years. The marketing team wants to keep customers' app-browsing data indefinitely 'in case it is useful for analytics', pointing out that storage costs keep falling. The IT team suggests keeping all data for seven years so that one rule covers everything, and at present each department decides for itself how long to keep what it collects. What is the BEST approach to retention?",
       "options": [
         "Keep everything indefinitely, since storage is cheap and data may prove useful",
         "Keep everything for seven years to match the longest legal requirement",
@@ -2101,7 +2101,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A retailer's loyalty app records each customer's exact GPS location every minute. The only business use is to show offers for the customer's city. What should the retailer change?",
+      "stem": "A retailer's loyalty app records each customer's exact GPS location every minute while the app is installed. The only business use is to show offers for the customer's city, and the data team confirms it has no other plans for the location history. The records are encrypted at rest, the app's terms of use mention location data, and the history is kept for three years. What should the retailer change?",
       "options": [
         "Encrypt the GPS records at rest and carry on collecting them",
         "Collect only the customer's city, as that is all the purpose needs",
@@ -2136,7 +2136,7 @@
       "difficulty": 6,
       "type": "multi",
       "scenario": null,
-      "stem": "A company is ending its IaaS contract and moving to another provider. It has no access to the provider's physical disks, which are shared with other tenants. Which TWO measures BEST address data remanence? (Select TWO.)",
+      "stem": "A company is ending its IaaS contract and moving its workloads to another provider. Its virtual machines and storage volumes held customer financial records on disks shared with other tenants, and it has no access to the provider's data centres or physical media. The migration team plans to delete everything in the final week, and an engineer suggests a three-pass overwrite of each volume first. Which TWO measures BEST address data remanence, now and with the new provider? (Select TWO.)",
       "options": [
         "Encrypt data with company-held keys from the start, then destroy the keys at exit",
         "Obtain contractual commitments and evidence of the provider's media sanitisation",
@@ -2175,7 +2175,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A vendor announces end of life for a firewall model the company relies on. It will stop selling the model this year but will issue security updates for three more years. What does this mean for the company?",
+      "stem": "A vendor announces end of life for the firewall model that a logistics company uses at all 22 of its branches. The notice says the vendor will stop selling the model at the end of this year but will issue security updates for three more years. A board member who read the announcement wants every firewall replaced this quarter, and the network team suggests buying spare units while they are still available. What does the announcement mean for the company?",
       "options": [
         "It must replace the firewalls now, since they are no longer secure",
         "Security updates stop immediately, so the firewalls must be isolated",
@@ -2210,7 +2210,7 @@
       "difficulty": 5,
       "type": "single",
       "scenario": null,
-      "stem": "An email server is scheduled for disposal under the retention schedule this month. Legal has placed a litigation hold on the mailboxes of three former directors that are stored on it. What should happen?",
+      "stem": "An email server is due for disposal this month under the approved retention schedule, and IT has already booked a certified sanitisation contractor. The server's disks are encrypted. Last week the legal department placed a litigation hold on the mailboxes of three former directors, stored on this server, because of a dispute with a former supplier. The IT manager points out that missing the disposal date would breach policy. What should happen?",
       "options": [
         "Preserve the held mailboxes as legal directs; dispose of the server once they are secured or released",
         "Sanitise the server on schedule, since the disposal date is set in approved policy",
@@ -2318,7 +2318,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A company adopts the NIST SP 800-53 moderate baseline. It first removes the wireless controls because it runs no wireless networks. It then changes the account lockout threshold in the baseline to fit its help desk process. What are these two steps?",
+      "stem": "A company adopting the NIST SP 800-53 moderate baseline for its new cloud platform works through the controls with its auditors. It first removes the wireless controls because the platform has no wireless networks. It then changes the baseline's account lockout threshold from three attempts to five to fit its help desk process, and adds an alert as a compensating measure. What are these two steps?",
       "options": [
         "Tailoring, then scoping",
         "Scoping, then tailoring",
@@ -2354,7 +2354,7 @@
       "difficulty": 5,
       "type": "multi",
       "scenario": null,
-      "stem": "Staff at a consultancy upload client lists to personal cloud storage accounts. Separately, sensitive client reports are being forwarded to competitors by staff who have since left. Which TWO controls address these problems MOST directly? (Select TWO.)",
+      "stem": "Staff at a consultancy have been uploading client lists to personal cloud storage accounts so that they can work from home. Separately, sensitive client reports have turned up at competitors, forwarded by consultants who later left the firm with copies. The managing partner's first ideas are full-disk encryption on laptops, a web application firewall for the client portal, and longer passwords. Which TWO controls address these problems MOST directly? (Select TWO.)",
       "options": [
         "A CASB that controls uploads to unsanctioned cloud services",
         "DRM so protected reports cannot be opened once access is revoked",
@@ -2393,7 +2393,7 @@
       "difficulty": 5,
       "type": "single",
       "scenario": null,
-      "stem": "An online travel agent must meet PCI DSS for card payments and GDPR for its European customers, and it runs an ISO/IEC 27001 management system. Its small team is overwhelmed by separate compliance efforts. What is the BEST approach?",
+      "stem": "An online travel agent must meet PCI DSS for card payments and the GDPR for its European customers, and it runs an ISO/IEC 27001 management system that is certified every year. Its four-person security team keeps three separate risk registers and answers near-identical auditor questions three times. The PCI assessor visits in two months, and the finance director suggests concentrating on that until it is over. What is the BEST approach?",
       "options": [
         "Run three separate compliance programmes, each with its own owner",
         "Implement PCI DSS only, as it is the most prescriptive of the three",
@@ -2428,7 +2428,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A merchant wants to take card numbers out of most of its systems to reduce PCI DSS scope, while still being able to process refunds and repeat purchases. Which method BEST achieves this?",
+      "stem": "A merchant wants to take card numbers out of most of its 30 systems to reduce its PCI DSS scope. The order, loyalty and customer service systems all store card numbers today, and the business must still be able to process refunds and repeat purchases. The IT team has proposed encrypting each database in place, and the call centre already masks all but the last four digits on screen. Which method BEST achieves the merchant's aim?",
       "options": [
         "Tokenisation, with card numbers held in a separate secured vault",
         "Encrypting card numbers in each system, with keys kept on those systems",
@@ -2463,7 +2463,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A defence contractor's system must stop a process running at Secret from writing data to an Unclassified file, yet it allows the same process to append entries to a Top Secret audit log. Which rule is being enforced?",
+      "stem": "A defence contractor's multilevel system processes Unclassified, Secret and Top Secret project data. Testers observe that a process running at Secret is blocked when it tries to write data to an Unclassified file, yet it can append entries to a Top Secret audit log. The same process can read Unclassified reference tables but cannot read Top Secret design files. Which rule explains the blocked write and the permitted append?",
       "options": [
         "The Biba integrity star property",
         "The Bell-LaPadula star property",
@@ -2498,7 +2498,7 @@
       "difficulty": 5,
       "type": "single",
       "scenario": null,
-      "stem": "A foreign ministry must keep diplomatic cables confidential for at least 25 years. Traffic between embassies runs over TLS 1.3 using ECDHE key exchange and AES-256-GCM. An adversary is known to record the ministry's internet traffic in bulk. Which threat to these cables is MOST significant over that period?",
+      "stem": "A foreign ministry must keep diplomatic cables confidential for at least 25 years. Traffic between embassies runs over TLS 1.3 using ECDHE key exchange and AES-256-GCM, systems are patched promptly, and certificates renew automatically. An adversary is known to record the ministry's internet traffic in bulk and store it. Which threat to these cables is MOST significant over that period?",
       "options": [
         "Grover's algorithm reducing AES-256 to an insecure effective key length",
         "Certificate expiry causing outages between embassy and ministry systems",
@@ -2643,7 +2643,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A payments API sends every request to a central authorisation service to check the caller's permissions. During a network fault, the API cannot reach that service for several minutes. How should the API behave?",
+      "stem": "A bank's payments API sends every request to a central authorisation service, which checks the caller's permissions against current policy. During a network fault last month the API could not reach that service for twelve minutes, at the busiest time of the merchants' trading day. The product manager wants customers unaffected by any repeat, and the API already caches each caller's last permission check for an hour. How should the API behave when the authorisation service cannot be reached?",
       "options": [
         "Allow requests from callers whose permissions it has checked in the last hour",
         "Deny the requests and raise an alert until the service is back",
@@ -2678,7 +2678,7 @@
       "difficulty": 4,
       "type": "multi",
       "scenario": null,
-      "stem": "A design review of a new mobile banking back end proposes several changes. Which THREE apply recognised secure design principles? (Select THREE.)",
+      "stem": "A design review of a new mobile banking back end lists changes proposed by the development, security and operations teams. The project is three weeks behind schedule, the operations team is small, and support staff have complained that error messages give them too little to go on when customers call. Which THREE of the proposed changes apply recognised secure design principles? (Select THREE.)",
       "options": [
         "Give each service account just the permissions its service needs",
         "Validate input in the application as well as at the web application firewall",
@@ -2720,7 +2720,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A company says it is moving to a zero trust architecture. Staff currently get broad access to internal applications once they connect to the corporate VPN. Which change BEST reflects zero trust?",
+      "stem": "A logistics company says it is moving to a zero trust architecture. Today staff get broad access to all internal applications once they connect to the corporate VPN, and devices on the office LAN are trusted without further checks. The VPN concentrator is near capacity, and last month an attacker used a contractor's stolen VPN credentials to browse the HR and finance systems for a week. Which change BEST reflects zero trust?",
       "options": [
         "Buy a larger VPN concentrator so that more staff can connect at once",
         "Trust devices on the office LAN fully and require MFA only for remote access",
@@ -2790,7 +2790,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "At an audit firm, an analyst who has opened files for one mobile network operator is automatically blocked from opening files for that operator's direct competitor, though she may still open files for a bank. Which model does this implement?",
+      "stem": "At an audit and consulting firm, an analyst who has opened files for one mobile network operator is automatically blocked from opening files for that operator's direct competitor, although the analyst may still open files for a bank or a retailer. The partners asked for the rule after a client raised concerns about conflicts of interest, and it applies to all 300 staff. Which model does this implement?",
       "options": [
         "Clark-Wilson model",
         "Biba model",
@@ -2825,7 +2825,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A retailer's public price list website holds no confidential data, but a wrong price displayed for even an hour costs it money and causes complaints. The site must also stay available during sales. Where should control effort focus FIRST?",
+      "stem": "A retailer's public price list website holds no confidential data: every price is meant to be seen by anyone. But a wrong price displayed for even an hour costs it money and brings complaints, and last month a mistyped promotion sold televisions at a tenth of their price. The site must also stay up during sales. The IT team has proposed encrypting the price database and adding DLP to the web servers. Where should control effort focus FIRST?",
       "options": [
         "Encrypting the price database at rest with keys in a separate HSM",
         "Change control and integrity monitoring for the published prices",
@@ -2861,7 +2861,7 @@
       "difficulty": 4,
       "type": "multi",
       "scenario": null,
-      "stem": "A government department is choosing between two firewalls that both hold Common Criteria certificates, one at EAL2 and one at EAL4. Which TWO statements about Common Criteria are correct? (Select TWO.)",
+      "stem": "A government department is choosing between two firewalls that both hold Common Criteria certificates, one at EAL2 and one at EAL4. The EAL4 product costs 40% more, and its vendor's sales material describes it as 'twice as secure'. The procurement officer also notices that the EAL4 certificate names an earlier software version than the one being offered. Which TWO statements about Common Criteria are correct? (Select TWO.)",
       "options": [
         "The EAL shows how thoroughly the product was evaluated, not how strong its security is",
         "Products are evaluated against a security target, often based on a protection profile",
@@ -2935,7 +2935,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "An attacker exploits a buffer overflow in a legacy service to place shellcode on the stack and jump to it. Which operating system feature is designed to stop that injected code from running?",
+      "stem": "An attacker exploits a buffer overflow in a legacy file-transfer service on a Windows server. The service runs under its own low-privilege account, and the server uses measured boot with a TPM. The exploit places shellcode on the stack and then jumps to it. The security team wants to know which operating system feature is designed to stop that injected code from running, as opposed to making it harder to locate. Which feature is it?",
       "options": [
         "Data execution prevention marking the stack non-executable",
         "Address space layout randomisation of the service's memory",
@@ -3007,7 +3007,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A SaaS provider plans to run containers for many customers on shared hosts instead of giving each customer its own virtual machine. What is the MAIN additional security risk of this design?",
+      "stem": "A SaaS provider plans to run containers for many customers on shared hosts, instead of giving each customer its own virtual machine, to cut hosting costs by about 40%. The containers will be built from signed images, each customer will get its own namespace, and traffic between customers will pass through network policies. What is the MAIN additional security risk of this design, compared with one virtual machine per customer?",
       "options": [
         "Container images are larger than VM images and take longer to copy",
         "Containers start more slowly than virtual machines during scaling",
@@ -3043,7 +3043,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A hotel installs 300 smart thermostats. They have hard-coded administrator credentials, and the vendor has said it will not release firmware updates. What is the BEST way to reduce the risk?",
+      "stem": "A hotel installs 300 smart thermostats across its rooms, managed from the vendor's cloud dashboard. A penetration test finds that they have hard-coded administrator credentials, and the vendor has said it will not release any more firmware updates. The thermostats currently share a network with the guest Wi-Fi, and the hotel has a modern perimeter firewall at its internet connection. What is the BEST way to reduce the risk?",
       "options": [
         "Install antivirus software on each thermostat before it goes live",
         "Place the thermostats on an isolated network with tightly limited flows",
@@ -3114,7 +3114,7 @@
       "difficulty": 5,
       "type": "multi",
       "scenario": null,
-      "stem": "HR analysts may only query average salaries by department. In departments with two or three staff, they have worked out individuals' salaries by comparing averages before and after a new hire. Which TWO controls address this? (Select TWO.)",
+      "stem": "HR analysts at a large company may only query average salaries by department; they cannot see individual records. In departments with two or three staff, they have worked out individuals' salaries by comparing averages before and after a new hire joined. The HR director wants the analysts to keep their access to department figures, and the IT team suggests encrypting the database and logging every query. Which TWO controls address this problem? (Select TWO.)",
       "options": [
         "Refuse queries whose result would cover fewer than a set number of people",
         "Add small random noise to aggregate results so they cannot be differenced",
@@ -3189,7 +3189,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "An audit finds that the encryption key for a customer database is stored in a configuration file on the same server as the database. Developers propose fixes. Which BEST addresses the weakness?",
+      "stem": "An audit of an insurer's customer portal finds that the AES-128 key used to encrypt the customer database is stored in a configuration file on the same server as the database. Only the application's service account and two administrators can read the file. Developers have proposed four fixes, and the CISO wants the one that deals with the weakness the audit actually found. Which fix BEST addresses it?",
       "options": [
         "Rotate the key monthly and keep the new key in the same configuration file",
         "Switch to a longer key length, such as AES-256 instead of AES-128",
@@ -3259,7 +3259,7 @@
       "difficulty": 4,
       "type": "multi",
       "scenario": null,
-      "stem": "A supplier sends a digitally signed contract PDF. The signature verifies against the supplier's certificate, which chains to a trusted CA. Which TWO things does this show? (Select TWO.)",
+      "stem": "A supplier emails a digitally signed contract PDF to a mining company. The signature verifies against the supplier's certificate, which chains to a trusted certificate authority and has not been revoked. The email was sent without encryption, the PDF's metadata shows a creation date of 3 March, and the signature was applied by the supplier's company secretary. Which TWO things does the valid signature show? (Select TWO.)",
       "options": [
         "The document has not been altered since it was signed",
         "It was signed with the private key matching the supplier's certificate",
@@ -3366,7 +3366,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "After compromising a workstation, an attacker extracts NTLM password hashes from memory and uses them directly to authenticate to file servers, without cracking any of them. What is this technique?",
+      "stem": "During an incident at an engineering firm, responders find that an attacker who compromised a finance workstation extracted NTLM password hashes from memory. Within minutes the attacker used those hashes directly to authenticate to three file servers, without cracking any of them. Several of the accounts have long, complex passwords, and there is no sign of forged Kerberos tickets. What is this technique?",
       "options": [
         "Golden ticket",
         "Pass the hash",
@@ -3436,7 +3436,7 @@
       "difficulty": 4,
       "type": "multi",
       "scenario": null,
-      "stem": "A bank is choosing a site for a new data centre. Which TWO factors matter MOST from a security and resilience point of view? (Select TWO.)",
+      "stem": "A bank is choosing a site for a new data centre. The shortlist includes a low-cost industrial unit near a river that flooded two years ago, a business park ten minutes from head office, and a site on the edge of the city served by two power substations and three telecom carriers. The facilities director prefers the cheapest site, and the executives want one close to head office. Which TWO factors matter MOST from a security and resilience point of view? (Select TWO.)",
       "options": [
         "Exposure to floods and other natural hazards",
         "Access to diverse power and telecom routes",
@@ -3474,7 +3474,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "Magnetic locks secure the exit doors of a staffed data hall. The design team must decide how the locks behave when the fire alarm sounds. What should happen?",
+      "stem": "Magnetic locks secure the exit doors of a staffed data hall that holds a bank's core payment servers. Last year an intruder tried to tailgate into the hall, and the head of physical security worries that a false fire alarm could be used to get in or out. The design team must decide how the locks on these exit doors behave when the fire alarm sounds. What should happen?",
       "options": [
         "Stay locked until a guard confirms that there really is a fire",
         "Stay locked, because the servers inside must be protected",
@@ -3544,7 +3544,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "An internal HR system was approved for use two years ago, when it was reachable only from the office network. The business now wants staff to use it from home over the internet. What should happen BEFORE the change goes live?",
+      "stem": "An internal HR system was approved for use two years ago, when it was reachable only from the office network. It holds salaries, bank details and medical notes for 900 staff. The business now wants staff to use it from home over the internet, and the vendor says the system 'is ready for the internet'. What should happen BEFORE the change goes live?",
       "options": [
         "Nothing, since the system was already approved and is running well",
         "Run a full penetration test first, then make the change at once",
@@ -3579,7 +3579,7 @@
       "difficulty": 4,
       "type": "multi",
       "scenario": null,
-      "stem": "A company is decommissioning an old customer portal after moving its users to a new platform. Which TWO steps belong in the decommissioning plan? (Select TWO.)",
+      "stem": "A company is decommissioning an old customer portal after moving its 80,000 users to a new platform. The portal still holds account histories covered by a seven-year retention requirement, uses service accounts that connect to the billing system, and has a public certificate that is valid for another year. The project manager wants it finished by the end of the month. Which TWO steps belong in the decommissioning plan? (Select TWO.)",
       "options": [
         "Archive data the retention schedule requires, then sanitise the remaining storage",
         "Revoke the portal's service accounts, certificates and firewall rules",
@@ -3866,7 +3866,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "Two offices connect their networks through firewalls over the internet. The traffic between them must be confidential, and internal IP addresses should not be visible to anyone watching the internet link. Which IPsec configuration fits?",
+      "stem": "A construction company is connecting its Harare and Bulawayo offices over the internet, using the firewall at each site. The traffic between the offices includes payroll files and tender documents, so it must be kept confidential, and the company does not want its internal IP addressing visible to anyone watching the internet link. The network engineer would prefer not to configure every host individually. Which IPsec configuration fits these requirements?",
       "options": [
         "AH in transport mode between the two firewalls",
         "ESP in tunnel mode between the two firewalls",
@@ -3901,7 +3901,7 @@
       "difficulty": 4,
       "type": "multi",
       "scenario": null,
-      "stem": "A bank is deciding whether to disable TLS 1.2 on its customer portal and allow TLS 1.3 only. Which TWO are genuine security benefits of TLS 1.3? (Select TWO.)",
+      "stem": "A bank is deciding whether to disable TLS 1.2 on its customer portal and allow TLS 1.3 only. About 3% of visitors still use browsers that support only TLS 1.2, and the support team wants to know whether DNS privacy or client certificates come with the change. Before deciding, the CISO asks for the genuine security benefits. Which TWO are genuine security benefits of TLS 1.3? (Select TWO.)",
       "options": [
         "Every handshake uses ephemeral key exchange, giving forward secrecy",
         "Legacy options such as static RSA key exchange and CBC ciphers are removed",
@@ -3939,7 +3939,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A hospital's virtual servers use iSCSI to reach a storage array. The iSCSI traffic currently shares the same VLAN as user PCs. What is the BEST improvement?",
+      "stem": "A hospital's virtual servers use iSCSI to reach the storage array that holds patient records and imaging. The iSCSI traffic currently shares a VLAN with 400 user PCs, and no authentication is configured between the servers and the array. Storage performance has been poor during the working day, and the infrastructure team has suggested raising the MTU or switching to SMB shares. What is the BEST improvement?",
       "options": [
         "Move iSCSI to a dedicated storage network and require CHAP authentication",
         "Raise the MTU on the user VLAN so storage traffic runs more efficiently",
@@ -3974,7 +3974,7 @@
       "difficulty": 5,
       "type": "multi",
       "scenario": null,
-      "stem": "A penetration tester reached the finance VLAN from a user access port by negotiating a trunk with the switch. Which TWO switch changes BEST prevent VLAN hopping? (Select TWO.)",
+      "stem": "During an internal penetration test at an insurer, the tester plugged a laptop into a meeting-room network port and negotiated a trunk with the access switch, which let them reach the finance VLAN. The switches use VLAN 1 as the native VLAN on every trunk, PortFast is off on the uplinks, and DHCP snooping is not enabled anywhere. Which TWO switch changes BEST prevent VLAN hopping? (Select TWO.)",
       "options": [
         "Disable automatic trunk negotiation and set user ports to access mode",
         "Set the native VLAN on trunks to an unused VLAN that carries no traffic",
@@ -4047,7 +4047,7 @@
       "difficulty": 5,
       "type": "single",
       "scenario": null,
-      "stem": "Staff at an airport lounge connect to an access point broadcasting the company's network name. It is an attacker's evil twin, and several laptops send their credentials to it. The company uses 802.1X with PEAP. What MOST likely made this possible?",
+      "stem": "Staff waiting in an airport lounge connect to an access point broadcasting the company's network name. It is an attacker's evil twin, and several laptops send their credentials to it. The company uses 802.1X with PEAP, broadcasts its network name openly, and some staff have short passwords. What MOST likely made this possible?",
       "options": [
         "The company's access points broadcast their network name openly",
         "The laptops were not set to require patches before connecting",
@@ -4117,7 +4117,7 @@
       "difficulty": 5,
       "type": "single",
       "scenario": null,
-      "stem": "A security manager is briefing executives who travel to regions where fake mobile base stations ('IMSI catchers') are used to track people. Which statement about 5G compared with 4G is correct?",
+      "stem": "A security manager at a mining group is briefing executives who travel to regions where fake mobile base stations, known as IMSI catchers, are used to track people. Several executives have new 5G phones and have heard that 5G is 'secure by design'. They want to know what 5G actually changes, and whether they still need the encrypted messaging app the company provides. Which statement about 5G compared with 4G is correct?",
       "options": [
         "5G encrypts the subscriber's permanent ID before it goes over the air",
         "5G encrypts every call end to end so the operator cannot listen to it",
@@ -4152,7 +4152,7 @@
       "difficulty": 4,
       "type": "multi",
       "scenario": null,
-      "stem": "An online retailer puts its website behind a CDN with DDoS protection. A week later, attackers flood the origin server directly and take the site down. Which TWO measures would have made the CDN protection effective? (Select TWO.)",
+      "stem": "An online retailer puts its website behind a CDN with DDoS protection after an attack during last year's biggest sale. A week later, attackers flood the origin server directly and take the site down again. The CDN caches pages for 24 hours, its web application firewall is enabled, and the retailer's DNS records were updated to point the main domain at the CDN. Which TWO measures would have made the CDN protection effective? (Select TWO.)",
       "options": [
         "Allow traffic to the origin from the CDN's address ranges and block the rest",
         "Move the origin to an address that is not published in DNS or elsewhere",
@@ -4190,7 +4190,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A data centre moves to software-defined networking, with a central controller programming all switches through APIs. Which component becomes the MOST critical to protect?",
+      "stem": "A data centre operator moves to software-defined networking: a central controller now programs all 120 switches through APIs, and the orchestration platform calls the controller's northbound API to create networks for customers. The switches still have console ports for out-of-hours access, and the cabling has not changed. Which component becomes the MOST critical to protect?",
       "options": [
         "The individual top-of-rack switches in each row",
         "The patch cables between the servers and switches",
@@ -4224,7 +4224,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "In its cloud VPC, a team allows inbound HTTPS to web servers through a security group, and is surprised that responses reach clients without an outbound rule. A network ACL on the subnet needed explicit rules both ways. Why the difference?",
+      "stem": "A team at an e-commerce company moves its web tier into a cloud VPC. It allows inbound HTTPS to the web servers through a security group, and is surprised that responses reach clients without any outbound rule. Later, a network ACL added to the subnet needed explicit rules in both directions before the site worked again. A junior engineer thinks one of the two must be misconfigured. Why the difference?",
       "options": [
         "Network ACLs are applied to individual instances",
         "Security groups are stateful; network ACLs are stateless",
@@ -4260,7 +4260,7 @@
       "difficulty": 4,
       "type": "multi",
       "scenario": null,
-      "stem": "After a breach that moved between servers unnoticed, a company wants visibility of east-west traffic inside its data centre. Which TWO sources give that visibility? (Select TWO.)",
+      "stem": "An attacker at a financial services firm moved from a compromised web server to the database servers over three weeks without being detected. The firm's network monitoring consists of an IDS on the internet link outside the perimeter firewall, a web application firewall in front of the public website, and syslog from the edge router. The CISO now wants visibility of east-west traffic inside the data centre. Which TWO sources give that visibility? (Select TWO.)",
       "options": [
         "Flow records (NetFlow or IPFIX) exported from the internal switches",
         "A network tap or SPAN feed from the core into a detection sensor",
@@ -4511,7 +4511,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A company wants to block an unapproved file-sharing application that runs over TCP port 443, while allowing ordinary HTTPS browsing on the same port. Which firewall capability is needed?",
+      "stem": "Staff at an accounting firm have started using an unapproved file-sharing application to send client files. The application runs over TCP port 443, and its servers sit in a large cloud provider's shared IP ranges, which also host many legitimate websites. The firm wants to block the application while still allowing ordinary HTTPS browsing on the same port. Which firewall capability is needed?",
       "options": [
         "Application awareness in a next-generation firewall",
         "A stateful firewall rule that blocks TCP port 443",
@@ -4546,7 +4546,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "Remote staff use a VPN with split tunnelling: corporate traffic goes through the tunnel, while everything else goes straight to the internet from their homes. What is the MAIN security risk of this design?",
+      "stem": "A company's 300 remote staff use a VPN with split tunnelling: corporate traffic goes through the tunnel, while everything else goes straight to the internet from their homes. It was introduced because the VPN concentrator struggled when all traffic was tunnelled, and staff say video calls have been much better since. The company's web filtering and TLS inspection run at the head office internet gateway. What is the MAIN security risk of this design?",
       "options": [
         "The VPN concentrator must handle every user's internet traffic",
         "Internet traffic bypasses the company's web filtering and inspection",
@@ -4581,7 +4581,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A payroll software vendor needs to support its application on a company server a few times a year. The vendor asks for a standing VPN account. What is the BEST way to provide access?",
+      "stem": "A payroll software vendor needs to support its application on a company server a few times a year, usually at month end when a payroll run fails. The vendor asks for a standing VPN account so that its engineers can connect quickly without waiting for approval. The company's IT team is small and does not work nights, and payroll must not be delayed. What is the BEST way to provide the vendor's access?",
       "options": [
         "Give the vendor a standing VPN account with access to the server subnet",
         "Share a company administrator's account with the vendor when it calls",
@@ -4650,7 +4650,7 @@
       "difficulty": 4,
       "type": "multi",
       "scenario": null,
-      "stem": "A company is making remote working permanent for 600 staff who use company laptops at home. Which TWO controls BEST protect access to corporate applications? (Select TWO.)",
+      "stem": "A company is making remote working permanent for 600 staff who use company laptops at home. Many staff have consumer routers supplied by their internet providers, some several years old, and a few have asked whether they can use their own faster laptops instead. The company's applications are a mix of on-premises systems and SaaS. Which TWO controls BEST protect access to corporate applications? (Select TWO.)",
       "options": [
         "Always-on VPN or zero trust network access with device posture checks",
         "Multi-factor authentication for access to corporate applications",
@@ -4689,7 +4689,7 @@
       "difficulty": 5,
       "type": "single",
       "scenario": null,
-      "stem": "A telecom provider manages a bank's branch routers and insists on a permanent management connection into the bank's network. The bank cannot change provider before the contract ends in two years. What should the bank do?",
+      "stem": "A telecom provider manages a bank's 45 branch routers and insists on a permanent management connection into the bank's network, as written into the service contract. The bank cannot change provider before the contract ends in two years. The provider has offered a recent penetration test report on its own network as reassurance, and the bank's network team would rather manage the routers themselves. What should the bank do?",
       "options": [
         "Refuse the connection and manage the branch routers internally instead",
         "Accept the connection as requested, since the provider is under contract",
@@ -4724,7 +4724,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A hospital wants nurses to see patient records only for patients on the ward they are rostered to, only during their shift, and only from hospital-managed devices. The IAM team already maintains 40 roles and says adding per-ward, per-shift roles is unmanageable. Which access control model fits BEST?",
+      "stem": "A hospital wants nurses to see patient records only for patients on the ward they are rostered to, only during their shift, and only from hospital-managed devices. Nurses often cover other wards at short notice. The IAM team already maintains 40 roles and says adding per-ward, per-shift roles would be unmanageable. Which access control model fits BEST?",
       "options": [
         "Role-based access control with a role for each ward and shift combination",
         "Mandatory access control with labels assigned to each patient record",
@@ -4798,7 +4798,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "Staff at a telecom operator have approved fraudulent push notifications after attackers bombarded them with login prompts. Separately, a phishing kit relayed users' passwords and one-time codes to the real portal in real time. Which authentication approach BEST resists both attacks?",
+      "stem": "Staff at a telecom operator have approved fraudulent push notifications after attackers bombarded them with login prompts. Separately, a phishing kit relayed users' passwords and one-time codes to the real portal in real time. The operator's 4,000 staff use a mix of laptops and phones, and some contractors still receive SMS codes. Which authentication approach BEST resists both attacks?",
       "options": [
         "Push notifications that require users to type a number shown on screen",
         "FIDO2 security keys or passkeys bound to the legitimate site's origin",
@@ -4979,7 +4979,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A warehouse uses shared rugged tablets to record stock movements. Workers currently all use one generic login, so nobody can tell who recorded a disputed shipment. What is the BEST approach?",
+      "stem": "A distribution warehouse uses 20 shared rugged tablets to record stock movements across two shifts. All 70 workers sign in with one generic login, so when a customer disputed a shipment last month, nobody could tell who had recorded it. Workers wear gloves, carry photo ID badges for building entry, and complain about anything that slows loading. Supervisors have suggested cameras above the tablet stations. What is the BEST approach?",
       "options": [
         "Keep the generic login but put a CCTV camera above each tablet station",
         "Have workers tap their badge and enter a short PIN to sign in to a tablet",
@@ -5083,7 +5083,7 @@
       "difficulty": 4,
       "type": "multi",
       "scenario": null,
-      "stem": "A company is updating its password policy to current NIST guidance for staff who also use MFA. Which TWO rules belong in it? (Select TWO.)",
+      "stem": "A company is updating its password policy to follow current NIST guidance. All staff also use MFA for remote access and email. The existing policy forces a change every 60 days, requires a symbol and a capital letter, and allows password hints; most help desk calls are password resets, and staff write passwords on sticky notes. Which TWO rules belong in the new policy? (Select TWO.)",
       "options": [
         "Check new passwords against lists of known breached passwords",
         "Allow long passphrases and drop rules on mixed character types",
@@ -5121,7 +5121,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A penetration test shows that a cross-site scripting flaw lets attackers read users' session cookies with JavaScript and hijack their sessions. While the flaw is fixed, which cookie setting MOST directly blocks the theft?",
+      "stem": "A penetration test of an insurer's customer portal shows that a cross-site scripting flaw lets attackers read users' session cookies with JavaScript and hijack their sessions. The developers say a proper fix to the input handling will take three weeks. The portal already uses TLS on every page, and sessions expire after 30 minutes of inactivity. While the flaw is being fixed, which cookie setting MOST directly blocks the cookie theft?",
       "options": [
         "Extending the session lifetime so users sign in less often",
         "Placing the session identifier in the URL instead of a cookie",
@@ -5156,7 +5156,7 @@
       "difficulty": 5,
       "type": "multi",
       "scenario": null,
-      "stem": "A digital bank opens accounts remotely and has been hit by fraudsters using stolen identities. Which TWO measures BEST strengthen its remote identity proofing? (Select TWO.)",
+      "stem": "A digital bank opens accounts entirely through its app and has been hit by fraudsters using stolen identities, including scans of ID documents bought online. Applicants currently confirm an email address and a phone number with one-time codes, and answer questions based on their credit history. Losses reached US$400,000 last quarter, and the bank wants sign-up to stay under ten minutes. Which TWO measures BEST strengthen its remote identity proofing? (Select TWO.)",
       "options": [
         "Verify the ID document and match it to a live selfie with liveness detection",
         "Check the applicant's details against the issuing or authoritative source",
@@ -5194,7 +5194,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A company keeps one emergency 'break-glass' administrator account for its cloud tenant. The password is in a sealed envelope in the CIO's safe, and it has not been changed in three years. What is the BEST improvement?",
+      "stem": "A company keeps one emergency 'break-glass' global administrator account for its cloud tenant, excluded from MFA so that it still works if the identity provider fails. The password is in a sealed envelope in the CIO's safe and has not been changed in three years. Last month, during a night-time outage, the on-call engineer could not reach the CIO to open the safe. What is the BEST improvement?",
       "options": [
         "Give the password to every IT administrator so it is always available",
         "Disable the account permanently, since it is rarely used",
@@ -5229,7 +5229,7 @@
       "difficulty": 5,
       "type": "single",
       "scenario": null,
-      "stem": "A bank wants the highest authenticator assurance it can get for its 20 cloud administrators, and is choosing among options that all resist push-fatigue attacks. Which BEST meets the goal?",
+      "stem": "A bank wants the highest authenticator assurance it can get for its 20 cloud administrators, after an attacker at another bank tricked an administrator into approving repeated push prompts. The administrators work from managed laptops and company phones, and several travel often. The bank is choosing among options that all resist push-fatigue attacks. Which option BEST meets the goal of the highest assurance?",
       "options": [
         "Hardware security keys whose private keys cannot leave the device",
         "Passkeys that synchronise across the administrators' phones and laptops",
@@ -5300,7 +5300,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A mobile app built on REST and JSON needs to sign users in through the company's identity provider and learn who the user is. Which standard is designed for this?",
+      "stem": "A retailer is building a mobile app on REST and JSON. The app must sign customers in through the company's cloud identity provider and learn who each customer is, so that it can show their name and loyalty points. Later the app will also call the company's order API on the customer's behalf, and the back office still runs on Active Directory. Which standard is designed for signing users in and identifying them?",
       "options": [
         "OAuth 2.0 access tokens on their own",
         "OpenID Connect with its ID tokens",
@@ -5336,7 +5336,7 @@
       "difficulty": 5,
       "type": "single",
       "scenario": null,
-      "stem": "A company synchronises its on-premises Active Directory to a cloud identity provider that controls access to email and 40 SaaS applications. What is the MAIN security implication of this design?",
+      "stem": "A manufacturer synchronises its on-premises Active Directory to a cloud identity provider that now controls access to email and 40 SaaS applications. Password hashes are synchronised so that staff use one password everywhere, and MFA is enforced for cloud sign-ins. The directory sync server sits in the on-premises server room and is managed by the same team as the domain controllers. What is the MAIN security implication of this design?",
       "options": [
         "Cloud applications can no longer use multi-factor authentication",
         "On-premises users lose single sign-on to internal applications",
@@ -5441,7 +5441,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A user signs in from Harare at 09:00 and, 25 minutes later, from Singapore using the same account. The identity provider blocks the second attempt and asks for stronger authentication. Which kind of access control is at work?",
+      "stem": "A user at a consulting firm signs in to the firm's cloud services from Harare at 09:00. Twenty-five minutes later, a sign-in for the same account arrives from Singapore with the correct password. The identity provider blocks the second attempt and asks for stronger authentication. The user holds the Finance role, and the firm labels client files by sensitivity. Which kind of access control is at work?",
       "options": [
         "Risk-adaptive access control using real-time signals",
         "Discretionary access control set by the account owner",
@@ -5476,7 +5476,7 @@
       "difficulty": 4,
       "type": "multi",
       "scenario": null,
-      "stem": "A company is building attribute-based access control for its internal APIs, following a zero trust architecture. Which TWO statements about its components are correct? (Select TWO.)",
+      "stem": "A company is building attribute-based access control for its 60 internal APIs as part of a move to a zero trust architecture. Each request will be judged on the caller's department, the device's patch status, the data's classification and the time of day. The architects are documenting what each component does, and the developers want to avoid writing authorisation logic separately into every API. Which TWO statements about its components are correct? (Select TWO.)",
       "options": [
         "The policy enforcement point allows or blocks each request at the resource",
         "The policy decision point evaluates policy using attributes and context",
@@ -5514,7 +5514,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "An ERP audit finds that six users hold both the 'create supplier' role and the 'approve payment' role, which together let one person pay a fake supplier. What is the BEST control?",
+      "stem": "An audit of a manufacturer's ERP system finds that six users hold both the 'create supplier' role and the 'approve payment' role, which together let one person set up a fake supplier and pay it. Four of them are senior finance staff who cover for each other during leave, and the finance director says removing roles would slow down month-end. What is the BEST control?",
       "options": [
         "Review the six users' transactions once a year for suspicious payments",
         "Raise the payment approval limit so fewer payments need approval",
@@ -5583,7 +5583,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A senior administrator is leaving next week. He is the recorded owner of 12 service accounts and the only person who knows their passwords. What must happen before he leaves?",
+      "stem": "A senior administrator at an energy company is leaving next week after nine years. They are the recorded owner of 12 service accounts that run billing, backups and the SCADA historian, and the only person who knows their passwords. The systems have run without problems for years, and the HR offboarding checklist says to disable the leaver's accounts on the last day. What must happen before the administrator leaves?",
       "options": [
         "Disable the 12 service accounts on his last day as part of offboarding",
         "Assign new owners and rotate every credential he knew, then offboard",
@@ -5653,7 +5653,7 @@
       "difficulty": 4,
       "type": "multi",
       "scenario": null,
-      "stem": "A company is cleaning up 300 service accounts in Active Directory. Which TWO practices should its new standard require? (Select TWO.)",
+      "stem": "A company is cleaning up 300 service accounts in Active Directory. Many have passwords set never to expire, several applications share one account, and eleven accounts are in Domain Admins because 'the install failed without it'. Last year an attacker used a service account to sign in to a server by remote desktop. The new standard must cut risk without breaking services. Which TWO practices should the new standard require? (Select TWO.)",
       "options": [
         "Use managed service accounts whose passwords the platform rotates",
         "Deny interactive and remote desktop sign-in for service accounts",
@@ -5760,7 +5760,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A telecom wants central authentication for engineers who log in to routers and switches, with approval of individual commands and full encryption of the AAA traffic. Which protocol fits BEST?",
+      "stem": "A telecom wants central authentication for the 80 engineers who log in to its routers and switches. It already runs RADIUS for staff Wi-Fi and VPN access, and Active Directory for user accounts. For network devices, the security team wants each command an engineer runs to be authorised individually and logged, and all authentication traffic to be fully encrypted. Which protocol fits BEST?",
       "options": [
         "TACACS+ over TCP",
         "RADIUS over UDP",
@@ -5796,7 +5796,7 @@
       "difficulty": 5,
       "type": "multi",
       "scenario": null,
-      "stem": "A security review of a company's Active Directory finds weak authentication settings. Which TWO changes BEST protect directory authentication? (Select TWO.)",
+      "stem": "A security review of a company's Active Directory finds weak authentication settings. Applications bind to the directory over plain LDAP, older file servers still accept LM and NTLMv1, and the help desk has asked for reversible password storage so it can read passwords back to users. Staff also complain about frequent sign-in prompts. Which TWO changes BEST protect directory authentication? (Select TWO.)",
       "options": [
         "Require LDAP signing and channel binding, or LDAPS, for directory binds",
         "Disable LM and NTLMv1 authentication across the domain",
@@ -6052,7 +6052,7 @@
       "difficulty": 4,
       "type": "multi",
       "scenario": null,
-      "stem": "A company plans a penetration test of its applications running on a public cloud platform. Which TWO conditions must the test plan meet? (Select TWO.)",
+      "stem": "A company plans a penetration test of the web applications and databases it runs on a public cloud platform. The CISO wants the test to be as realistic as possible, and the testing firm has offered to add a large denial-of-service exercise and an attempt to break out of the platform's virtual machine isolation 'to prove the cloud is safe'. The test window is next month. Which TWO conditions must the test plan meet? (Select TWO.)",
       "options": [
         "Follow the cloud provider's published testing policy and permission rules",
         "Limit the scope to the company's own tenant resources and applications",
@@ -6126,7 +6126,7 @@
       "difficulty": 4,
       "type": "multi",
       "scenario": null,
-      "stem": "A retailer is agreeing rules of engagement with an external penetration testing firm. Which TWO items MUST the document contain? (Select TWO.)",
+      "stem": "A retailer is agreeing rules of engagement with an external penetration testing firm for a two-week test of its e-commerce site, store payment network and head-office systems. Part of the test will run at night, and the retailer's lawyers want the document to protect both sides. The testing firm has offered to attach its exploit code and to give assurances about impact. Which TWO items MUST the document contain? (Select TWO.)",
       "options": [
         "The targets in scope and those explicitly out of scope",
         "Named contacts, stop conditions and sign-off by someone with authority",
@@ -6267,7 +6267,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "After several red team exercises, the SOC still misses the same attack techniques because findings arrive weeks later in a report. Which approach would MOST improve detection?",
+      "stem": "A bank has run four red team exercises in two years. Each time the red team succeeds with largely the same techniques and the SOC misses them, because findings arrive weeks later as a long report that the SOC reads once. The SOC uses a modern monitoring platform that its analysts rate highly, and the board has asked why results are not improving. Which approach would MOST improve detection?",
       "options": [
         "Run red team exercises twice as often as before",
         "Replace the SOC's monitoring platform with a new product",
@@ -6337,7 +6337,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "The test plan for a new expenses application checks that staff can submit and managers can approve claims. A security reviewer asks for tests showing a user cannot approve their own claim. What kind of testing is this?",
+      "stem": "The test plan for a new expenses application checks that staff can submit claims, that managers can approve them, and that the system copes with 2,000 users at month-end. A security reviewer asks for extra tests showing that a user cannot approve their own claim or raise a claim in another employee's name. The project manager wants to label the work correctly before adding it to the plan. Which kind of testing has the reviewer asked for?",
       "options": [
         "Load testing under peak usage",
         "Regression testing after changes",
@@ -6372,7 +6372,7 @@
       "difficulty": 4,
       "type": "multi",
       "scenario": null,
-      "stem": "A fintech is testing a new REST API that partners will use to initiate payments. Which TWO tests are MOST important for its security? (Select TWO.)",
+      "stem": "A fintech is testing a new REST API that 30 partner companies will use to initiate payments for their customers. Each partner authenticates with its own client certificate. The product team's test plan already covers response times, JSON and XML output, and the formatting of the API documentation, and the launch date is fixed. Which TWO tests are MOST important for the API's security? (Select TWO.)",
       "options": [
         "Check authorisation on every endpoint, including access to other partners' data",
         "Send malformed, oversized and unexpected input to each parameter",
@@ -6410,7 +6410,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A development team reports that all of its automated security tests pass. A reviewer finds that the tests run only 40% of the code's paths. Which activity revealed this?",
+      "stem": "A development team tells the change board that all 1,200 of its automated security tests pass, and asks for approval to release a new claims module. A reviewer finds that, taken together, the tests run only 40% of the code's paths, leaving the error handling and admin functions untested. Load tests and fuzzing were also run last month. Which activity revealed the 40% figure?",
       "options": [
         "Load and stress testing",
         "Code coverage analysis",
@@ -6445,7 +6445,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A company's annual penetration test finds its controls working, but over the following months configuration changes quietly weaken several of them. What would BEST catch such drift between tests?",
+      "stem": "A company's annual penetration test, held each March, finds its key controls working. Over the following months, routine configuration changes quietly weaken several of them: an egress filter is relaxed for a project, and an endpoint protection policy is left in audit mode after troubleshooting. Nobody notices until the next March test. What would BEST catch such drift between tests?",
       "options": [
         "A second annual penetration test six months after the first",
         "A larger, more detailed annual penetration test report",
@@ -6515,7 +6515,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "An auditor wants to know whether a company's change approval process actually works, not just whether it exists on paper. Which evidence is BEST?",
+      "stem": "An external auditor reviewing a bank's change management wants to know whether the change approval process actually works, not just whether it exists on paper. The bank offers the change policy approved by the board last year, the change advisory board's minutes, statistics on the 1,400 change requests raised this year, and read access to the change system. Which evidence is BEST for the auditor's purpose?",
       "options": [
         "A sample of changes traced to their approved change records",
         "The change management policy, approved by the board last year",
@@ -6550,7 +6550,7 @@
       "difficulty": 5,
       "type": "multi",
       "scenario": null,
-      "stem": "A CISO is choosing key risk indicators to warn the board early when exposure rises. Which TWO are key risk indicators rather than performance measures? (Select TWO.)",
+      "stem": "A CISO at an insurer is choosing key risk indicators to give the board early warning when exposure rises. The current monthly dashboard shows tickets closed per service desk analyst, average call answer times and the share of staff who completed this year's awareness course, and the board says it learns nothing from it. Which TWO measures are key risk indicators rather than performance measures? (Select TWO.)",
       "options": [
         "Internet-facing systems with critical vulnerabilities older than 30 days",
         "The share of privileged accounts that are not protected by MFA",
@@ -6623,7 +6623,7 @@
       "difficulty": 5,
       "type": "single",
       "scenario": null,
-      "stem": "A scan of a company's estate produces 300 findings. One medium-severity flaw on an internet-facing payment server is listed in CISA's Known Exploited Vulnerabilities catalogue. A critical-severity flaw sits on an isolated test server. Which should be fixed FIRST?",
+      "stem": "A quarterly scan of a retailer's estate produces 300 findings, and the team can fix about 20 a week. One medium-severity flaw on the internet-facing payment server is listed in CISA's Known Exploited Vulnerabilities catalogue. A critical-severity flaw sits on an isolated test server with no sensitive data. The vulnerability standard says every finding must be fixed within 30 days. Which should be fixed FIRST?",
       "options": [
         "The critical flaw on the test server, because its CVSS score is higher",
         "The exploited flaw on the payment server, given its exposure and value",
@@ -6659,7 +6659,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "An independent researcher emails a company's general inbox to report a vulnerability in its customer portal and asks how to share details safely. The company has no disclosure policy. What should the company do?",
+      "stem": "An independent researcher emails a company's general inbox to report a vulnerability in its customer portal that may expose account details, and asks how to share the technical details safely. The company has no disclosure policy, and its lawyer points out that the researcher was not authorised to test. The researcher mentions plans to present the research at a conference in three months. What should the company do?",
       "options": [
         "Ignore the email, since the researcher was not authorised to test",
         "Threaten legal action so the researcher does not publish anything",
@@ -6731,7 +6731,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "Internal audit helped design a new privileged access review process last year. The head of audit now proposes that the same auditor audit how well the process operates. What is the BEST response?",
+      "stem": "Internal audit at a pension fund helped design a new privileged access review process last year, after a finding about excessive administrator rights. The audit team has five staff, and the auditor who led the design knows the process better than anyone. The head of audit now proposes that the same auditor audit how well the process operates this year. What is the BEST response?",
       "options": [
         "Assign a different auditor, or an external party, to perform the audit",
         "Allow it, since the auditor understands the process better than anyone",
@@ -6801,7 +6801,7 @@
       "difficulty": 4,
       "type": "multi",
       "scenario": null,
-      "stem": "A hospital outsources its patient-records hosting to a provider outside its control. Which TWO give the hospital the BEST basis for auditing the provider's security? (Select TWO.)",
+      "stem": "A hospital outsources hosting of its patient-records system to a provider that also hosts hundreds of other customers. The hospital's IT team has asked whether it can run an unannounced penetration test of the provider, and the provider's sales team has offered to complete a security questionnaire. The contract comes up for renewal in three months. Which TWO give the hospital the BEST basis for auditing the provider's security? (Select TWO.)",
       "options": [
         "A right-to-audit clause in the hosting contract",
         "The provider's independent SOC 2 Type II report",
@@ -6839,7 +6839,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "An internal audit finds that quarterly access reviews for the HR system were skipped twice this year. Who should decide how the finding is addressed?",
+      "stem": "An internal audit at a manufacturer finds that quarterly access reviews for the HR system were skipped twice this year, during a busy restructure. The auditor who found it knows the HR system well and has offered to fix the process. The security team says it could run the reviews instead, and the external auditors visit in four months. Who should decide how the finding is addressed?",
       "options": [
         "The internal auditor, who should then fix the review process directly",
         "Management responsible for the HR system, with audit tracking the action",
@@ -6952,7 +6952,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "At 23:00 on a Monday, a vendor releases a patch for a remote-access VPN vulnerability that is being actively exploited. The VPN serves 1,200 remote staff, and the vendor rates the patch as low risk to stability. The change advisory board next meets on Thursday. What should happen?",
+      "stem": "At 23:00 on a Monday, a vendor releases a patch for a remote-access VPN vulnerability that is being actively exploited. The VPN serves 1,200 remote staff, including the network operations centre's on-call engineers, and the vendor rates the patch as low risk to stability. The change advisory board next meets on Thursday, and the CIO is on leave but reachable by phone. What should happen?",
       "options": [
         "Schedule the patch for Thursday's board, since the VPN is critical to the business.",
         "Use the emergency change process: authorised approval now, board review afterwards.",
@@ -7130,7 +7130,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "An investigator imaged a suspect's laptop drive, then left the drive in an unlocked office overnight without recording who could access it. What is the MAIN consequence?",
+      "stem": "An investigator at a mining company imaged a suspect employee's laptop drive through a write blocker, recorded the hashes of the drive and the image, and stored the image on the forensic server. The investigator then left the original drive in an unlocked office overnight without recording who had access to the room. The case may go to court as a fraud prosecution, and the image's hash still matches the drive. What is the MAIN consequence of the overnight lapse?",
       "options": [
         "Gaps in the chain of custody let the evidence be challenged in court",
         "The drive's data is now encrypted and needs a recovery key to read",
@@ -7200,7 +7200,7 @@
       "difficulty": 5,
       "type": "multi",
       "scenario": null,
-      "stem": "A company suspects data is being exfiltrated slowly through DNS queries and encrypted uploads to personal cloud storage. Which TWO monitoring measures address this MOST directly? (Select TWO.)",
+      "stem": "A design firm suspects an insider is slowly exfiltrating drawings. Analysts have noticed unusually long DNS queries to a recently registered domain, and large encrypted uploads to personal cloud storage accounts during lunch breaks. The firm's monitoring focuses on inbound email and malware, firewall logs are kept for 90 days, and patching is up to date. Which TWO monitoring measures address this MOST directly? (Select TWO.)",
       "options": [
         "Analyse outbound DNS for unusual query lengths, volumes and domains",
         "Apply DLP and cloud access controls to outbound web uploads",
@@ -7239,7 +7239,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "Servers built to a hardened baseline are found, a year later, to have many settings changed by hand to solve one-off problems. What BEST prevents this happening again?",
+      "stem": "A bank built its 200 Linux servers to a hardened baseline two years ago. An audit now finds that many settings have been changed by hand to solve one-off problems, and nobody can say which servers still match the baseline. Administrators say they need flexibility during incidents, and rebuilding every server would take three months. What BEST prevents this happening again?",
       "options": [
         "Rebuild every server from scratch once a year",
         "Use configuration management that detects and corrects drift",
@@ -7274,7 +7274,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "Engineers build new cloud servers by hand from a checklist, and audits keep finding missed hardening steps. Which approach BEST makes builds consistent and secure?",
+      "stem": "Engineers at a SaaS company build new cloud servers by hand from a 60-step checklist, often late at night when capacity runs short. Audits keep finding missed hardening steps, such as default accounts left enabled and logging switched off, mostly on servers that are not internet-facing. The security team has two people. Which approach BEST makes builds consistent and secure?",
       "options": [
         "Add more steps to the build checklist and require a second signature",
         "Have the security team rebuild each server after engineers finish",
@@ -7309,7 +7309,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "Help desk staff can reset the password of any account, including executives and domain administrators, after a phone call. What is the BEST change?",
+      "stem": "Help desk staff at an insurer can reset the password of any account, including executives and domain administrators, after a phone call in which the caller gives an employee number and date of birth, both printed on staff ID badges. The help desk handles 150 resets a week, mostly for ordinary staff who forgot their passwords after leave. What is the BEST change?",
       "options": [
         "Record all calls to the help desk for later review",
         "Make the help desk staff domain administrators so they are trusted",
@@ -7344,7 +7344,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A company outsources its 24/7 security monitoring to a managed security service provider under a detailed SLA. Which responsibility stays with the company?",
+      "stem": "A retailer outsources its 24/7 security monitoring to a managed security service provider under a detailed SLA. The provider runs its own SIEM platform, staffs analysts overnight, maintains its detection rules, and must escalate high-severity alerts within 15 minutes. The retailer's board asks what the company is still responsible for now that monitoring is outsourced. Which responsibility stays with the company?",
       "options": [
         "Accountability for incidents and for risk decisions",
         "Running the provider's SIEM platform and its infrastructure",
@@ -7414,7 +7414,7 @@
       "difficulty": 5,
       "type": "single",
       "scenario": null,
-      "stem": "A pension fund must keep encrypted backups for ten years. Its key management system will be replaced in three years by a different product. What must the migration plan make sure of?",
+      "stem": "A pension fund must keep encrypted backups of member records for ten years. Its key management system, which holds the keys for every archive, will be replaced in three years by another vendor's product that cannot import keys directly from the old one. The project team is planning a quick cut-over to save licence costs. What must the migration plan make sure of?",
       "options": [
         "That the old archives are deleted once the new system goes live",
         "That new backups use a longer key length than the old ones",
@@ -7449,7 +7449,7 @@
       "difficulty": 4,
       "type": "multi",
       "scenario": null,
-      "stem": "A company has suffered the same kind of phishing-led account compromise three times in a year. Each time, the affected account was reset and work carried on. Which TWO steps would MOST reduce recurrence? (Select TWO.)",
+      "stem": "A logistics company has suffered the same kind of phishing-led account compromise three times in a year. Each time, the affected account was reset, the incident ticket was closed within a day, and a reminder email went to all staff. The IT manager is proud of how quickly incidents are closed and proposes monthly password resets for everyone. Which TWO steps would MOST reduce recurrence? (Select TWO.)",
       "options": [
         "Run a root cause analysis after each incident to find why it was possible",
         "Turn lessons-learned findings into owned actions tracked to completion",
@@ -7487,7 +7487,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A company sets up a honeypot server named 'payroll-backup' on its internal network to detect intruders. Legal asks whether this is acceptable. Which statement is correct?",
+      "stem": "A company sets up a honeypot server named 'payroll-backup' on its internal network to detect intruders who are already inside. The server holds realistic-looking fake files, logs every connection and raises an alert to the SOC. Before it goes live, the company's lawyer asks whether the name, chosen to look attractive to an intruder, makes the honeypot a legal problem. Which statement is correct?",
       "options": [
         "It is entrapment, because the name is designed to attract attackers",
         "It is unlawful, because honeypots always break privacy laws",
@@ -7557,7 +7557,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A bank is placing a new intrusion prevention system inline in front of its core banking servers. How should it be introduced?",
+      "stem": "A bank is placing a new intrusion prevention system inline in front of its core banking servers, which process about 40 transactions a second during the day. The vendor ships 30,000 signatures, many written for systems the bank does not run. The CISO wants protection as soon as possible, and the operations team fears any outage. How should the IPS be introduced?",
       "options": [
         "Enable blocking for every signature on day one for maximum protection",
         "Install it out of band, so that traffic is unaffected",
@@ -7625,7 +7625,7 @@
       "difficulty": 4,
       "type": "multi",
       "scenario": null,
-      "stem": "A company's vulnerability management keeps missing systems and fixing issues in no clear order. Which TWO changes would MOST improve the programme? (Select TWO.)",
+      "stem": "A university's vulnerability management programme scans the systems listed in an old spreadsheet every month. A recent breach came through a research server that had never been scanned, and system administrators fix findings in whatever order suits them, so some critical issues stay open for months. The full monthly scan results run to 200 pages. Which TWO changes would MOST improve the programme? (Select TWO.)",
       "options": [
         "Base scanning on a complete, maintained asset inventory",
         "Set remediation SLAs by risk, with owners for each system",
@@ -7663,7 +7663,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "Configuration monitoring shows that a new rule allowing inbound RDP from the internet was added to a firewall at 02:00. There is no change ticket. What should happen?",
+      "stem": "Configuration monitoring at a hospital shows that a new rule allowing inbound RDP from the internet was added to the perimeter firewall at 02:00 on Sunday. There is no change ticket, and no emergency change was reported. Three administrators have rights on the firewall, and one of them was on call that weekend for a problem with the radiology system. What should happen?",
       "options": [
         "Raise a retrospective change ticket so the records are complete",
         "Treat it as a possible incident: find who added it and assess exposure",
@@ -7768,7 +7768,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "After a data centre fire, a company is restoring 40 systems at its recovery site. Engineers propose starting with the easiest systems to build momentum. What should decide the restoration order?",
+      "stem": "After a fire in its main data centre, a company is restoring 40 systems at its recovery site. Engineers propose starting with the smallest and easiest systems to build momentum and show anxious executives some progress, and the CIO wants email first because the CEO keeps asking about it. The business impact analysis was updated six months ago. What should decide the restoration order?",
       "options": [
         "The order in which the systems were originally installed",
         "The size of each system, smallest first to finish quickly",
@@ -7875,7 +7875,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A company's annual business continuity exercise is run entirely by the IT department, which fails over its systems and declares success. What is the MAIN weakness?",
+      "stem": "A building society's annual business continuity exercise is run entirely by the IT department. Each year IT fails over its systems to the recovery site over a weekend, confirms that they start, and declares success. The board receives a one-page report, and the branches, call centre and mortgage teams are told the exercise has passed. What is the MAIN weakness of this exercise?",
       "options": [
         "Business process owners have not tested how their work continues",
         "The exercise should have been run by an outside consultancy",
@@ -8018,7 +8018,7 @@
       "difficulty": 4,
       "type": "multi",
       "scenario": null,
-      "stem": "A CFO is travelling to a country where border officials are known to copy devices and hotel networks are monitored. Which TWO measures BEST protect company data on this trip? (Select TWO.)",
+      "stem": "A CFO is travelling for a week of negotiations to a country where border officials are known to copy devices and hotel networks are monitored. The CFO's usual laptop holds three years of board papers and deal files, and the CFO wants those files to hand. Company laptops use full-disk encryption, and the hotel provides a room safe. Which TWO measures BEST protect company data on this trip? (Select TWO.)",
       "options": [
         "Issue a clean loaner laptop and phone with minimal data, wiped on return",
         "Connect only through the corporate VPN, avoiding direct hotel network use",
@@ -8091,7 +8091,7 @@
       "difficulty": 4,
       "type": "multi",
       "scenario": null,
-      "stem": "A team builds a Node.js customer app. Its CI pipeline already runs static analysis (SAST) on the team's own code at every commit. Most of the shipped code comes from open-source npm packages. Which TWO additions close the LARGEST remaining testing gaps? (Select TWO.)",
+      "stem": "A team builds a Node.js customer app and releases it weekly. Its CI pipeline already runs static analysis (SAST) on the team's own code at every commit, but most of the shipped code comes from open-source npm packages. The security team has a small tooling budget for this year. Which TWO additions close the LARGEST remaining testing gaps? (Select TWO.)",
       "options": [
         "Software composition analysis of all dependencies in each build",
         "A second static analysis tool from another vendor to cross-check",
@@ -8310,7 +8310,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A bank's development division wants to assess how well its teams handle security across governance, design, implementation, verification and operations, then plan staged improvements. Which is designed for this?",
+      "stem": "A bank's development division has 14 teams building customer-facing and internal software. The CISO wants to assess how well the teams handle security across governance, design, implementation, verification and operations, compare the teams, and plan staged improvements over three years. The bank already reports against NIST CSF 2.0 to its board, and its developers train on the OWASP Top 10. Which model is designed for this assessment?",
       "options": [
         "The NIST Cybersecurity Framework 2.0",
         "OWASP Software Assurance Maturity Model (SAMM)",
@@ -8345,7 +8345,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A developer fixed a production bug by editing code directly on the live server late at night. The fix worked, but nobody else reviewed it. What control would BEST prevent this?",
+      "stem": "A developer at an online insurer fixed a production bug late at night by editing code directly on the live server, because the claims portal was down and the pipeline takes 40 minutes. The fix worked and the portal came back, but nobody else reviewed the change, and the next release overwrote it and brought the bug back. What control would BEST prevent this?",
       "options": [
         "Require developers to email the team after any direct production change",
         "Remove the developer's access to the production server after the event",
@@ -8415,7 +8415,7 @@
       "difficulty": 5,
       "type": "multi",
       "scenario": null,
-      "stem": "After a well-publicised supply chain attack through a vendor's build server, a company wants to protect its own CI/CD pipeline. Which TWO controls BEST protect the integrity of what it ships? (Select TWO.)",
+      "stem": "After a well-publicised supply chain attack in which malicious code was inserted through a vendor's build server, a software company wants to protect its own CI/CD pipeline. Its build runners run with administrator rights, deployment credentials are stored as pipeline variables, and senior developers can push to the release branch in emergencies. Which TWO controls BEST protect the integrity of what it ships? (Select TWO.)",
       "options": [
         "Protected branches that accept only reviewed changes that pass checks",
         "Signing build artefacts and verifying signatures before deployment",
@@ -8454,7 +8454,7 @@
       "difficulty": 5,
       "type": "single",
       "scenario": null,
-      "stem": "A company's builds use internal packages from a private registry. An attacker publishes a public package with the same name as an internal one and a higher version number, and some builds pull it in. Which control BEST prevents this?",
+      "stem": "A company's builds use internal packages from a private registry. The builds run in a CI service with internet access, and developers often add packages late in a sprint. An attacker publishes a public package with the same name as an internal one and a higher version number, and some builds pull it in. Which control BEST prevents this?",
       "options": [
         "Scan the public registry weekly for packages with suspicious names",
         "Tell developers not to install packages they do not recognise",
@@ -8524,7 +8524,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "Auditors investigating a fraud need to know exactly who changed the interest calculation code in a lending system, and whether anyone reviewed the change. What BEST supports this?",
+      "stem": "Auditors investigating a lending fraud need to know exactly who changed the interest calculation code in a bank's lending system last year, and whether anyone reviewed the change before release. Developers share a build server, the team lead keeps a spreadsheet of major changes, and the source code is backed up daily. The bank is deciding what to put in place for future changes. What BEST supports this kind of investigation?",
       "options": [
         "Version control with signed commits and recorded code reviews",
         "Comments in the source code that describe each change made",
@@ -8559,7 +8559,7 @@
       "difficulty": 5,
       "type": "single",
       "scenario": null,
-      "stem": "The board asks whether two years of investment in secure development has made the company's software safer. Which measure answers this BEST?",
+      "stem": "The board of an insurer asks whether two years of investment in secure development has made the company's software safer. Over that time the development teams adopted six security tools, 180 developers attended secure coding training, and static analysis now scans about two million lines of code a month. The CISO must choose one measure for the board report. Which measure answers the board's question BEST?",
       "options": [
         "The number of security tools the development teams now use",
         "The number of developers who attended secure coding training",
@@ -8594,7 +8594,7 @@
       "difficulty": 4,
       "type": "multi",
       "scenario": null,
-      "stem": "A SAST tool reports 2,400 findings across a company's applications, and the developers cannot fix them all this quarter. Which TWO steps BEST decide what to fix first? (Select TWO.)",
+      "stem": "A static analysis tool reports 2,400 findings across a retailer's 30 applications, and the developers cannot fix them all this quarter. Many findings are in internal tools, some are in old code that is no longer called, and about 300 are in the payment and customer account services. A team lead suggests starting with the easiest ones to bring the count down quickly. Which TWO steps BEST decide what to fix first? (Select TWO.)",
       "options": [
         "Confirm findings are real and reachable, removing false positives",
         "Rank by the risk to the business: exposure and data handled",
@@ -8667,7 +8667,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A company plans to sell a closed-source product. An SCA scan shows it includes a library under a strong copyleft licence (GPL). What should happen before release?",
+      "stem": "A software company plans to sell a closed-source analytics product to banks. A software composition analysis scan before release shows that the product includes a charting library under a strong copyleft licence (GPL), linked into the main application. The release date has already been announced, and a developer points out that the library was downloaded free from a public repository. What should happen before release?",
       "options": [
         "Nothing, since open-source code is free for any use",
         "Legal review of the licence obligations, and replacement if needed",
@@ -8741,7 +8741,7 @@
       "difficulty": 5,
       "type": "single",
       "scenario": null,
-      "stem": "A widely used IT monitoring product shipped a signed update containing a backdoor inserted at the vendor's build server. Which practice would MOST limit the impact on a customer?",
+      "stem": "A widely used IT monitoring product shipped a signed update containing a backdoor inserted at the vendor's build server. Thousands of customers installed it automatically, and the backdoor contacted attacker infrastructure over HTTPS. The product's agents ran with high privileges and could reach the internet freely from customers' networks. Which practice would MOST limit the impact of such an update on a customer?",
       "options": [
         "Installing every vendor update on all systems the day it is released",
         "Checking that each update carries a valid vendor signature",
@@ -8811,7 +8811,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "A support portal shows customers' ticket comments to agents. An attacker puts JavaScript in a comment, and it runs in agents' browsers. What is the PRIMARY fix?",
+      "stem": "A support portal shows customers' ticket comments to agents in a web dashboard. An attacker puts JavaScript in a comment, and it runs in agents' browsers, sending their session tokens to an external server. The portal already sits behind a web application firewall, comments may be up to 2,000 characters long, and agents use a mix of browsers. What is the PRIMARY fix?",
       "options": [
         "Encode the comment data for its output context",
         "Add a web application firewall in front of the support portal",
@@ -8846,7 +8846,7 @@
       "difficulty": 4,
       "type": "multi",
       "scenario": null,
-      "stem": "Customers who are logged in to an online shop and visit a malicious site find that their delivery address has changed. The malicious page silently submitted a form to the shop. Which TWO fixes address this? (Select TWO.)",
+      "stem": "Customers of an online shop report that their delivery address changed without their knowledge. Each had been logged in to the shop and, in another tab, visited a forum page that silently submitted a form to the shop's address-change URL. The shop's database encrypts addresses, the postcode field is validated, and sessions last two hours. Which TWO fixes address this? (Select TWO.)",
       "options": [
         "Encrypt the delivery address in the shop's database",
         "Require an anti-CSRF token on state-changing requests",
@@ -8884,7 +8884,7 @@
       "difficulty": 4,
       "type": "single",
       "scenario": null,
-      "stem": "In a mobile banking API, changing the accountId in a request returns another customer's balance. The user is properly authenticated. What is the root cause?",
+      "stem": "During testing of a bank's mobile banking API, a tester changes the accountId value in a balance request and receives another customer's balance. The tester is properly authenticated with their own credentials, the app uses TLS without certificate pinning, and session tokens sit in the phone's standard storage. The API returns JSON. What is the root cause of the finding?",
       "options": [
         "The API uses JSON instead of XML for its responses",
         "The mobile app stores the session token insecurely",
@@ -8920,7 +8920,7 @@
       "difficulty": 4,
       "type": "multi",
       "scenario": null,
-      "stem": "A team is writing secure coding standards for a new web application. Which TWO rules belong in them? (Select TWO.)",
+      "stem": "A development team is writing secure coding standards for a new web application that will handle customer loan applications. The front-end developers want to rely on browser-side checks to keep the server simple, and support staff have asked for detailed error messages so that customers can report problems more precisely. The architect would also prefer to keep the design confidential. Which TWO rules belong in the standards? (Select TWO.)",
       "options": [
         "Validate input on the server against allow-lists of expected values",
         "Show users generic error messages and log the details internally",
@@ -8958,7 +8958,7 @@
       "difficulty": 5,
       "type": "single",
       "scenario": null,
-      "stem": "A wallet app checks that a user's balance covers a withdrawal, then deducts it in a separate step. By sending many requests at the same moment, an attacker withdraws far more than the balance. What fixes this?",
+      "stem": "A wallet app checks that a user's balance covers a withdrawal, then deducts the amount in a separate database step. By sending 50 withdrawal requests at the same moment from a script, an attacker withdraws far more than the balance. Finance spotted the loss in its daily review, and the product team proposes a CAPTCHA and a limit of one withdrawal per hour. What fixes this flaw?",
       "options": [
         "Add a CAPTCHA before each withdrawal request",
         "Log every withdrawal for daily review by finance",
