@@ -94,6 +94,15 @@ Sources: vendor and trade summaries of NIST announcements; confirm on csrc.nist.
 
 Domain 4 content relies on long-stable standards: TLS 1.3 (RFC 8446, 2018), IPsec (RFC 4301 family), IEEE 802.1X, WPA3 (Wi-Fi Alliance, 2018) and 5G's concealed subscriber identifier (SUCI, 3GPP Release 15). No change affecting tested facts was identified; content avoids version-sensitive vendor claims.
 
+## Framework currency check: Domain 5 batch (28 October 2026)
+
+| Item | Finding | Source quality |
+|---|---|---|
+| NIST SP 800-63-4 | Final, July 2025, superseding 800-63-3. Adds syncable authenticators (synced passkeys); vendor summaries say these can meet AAL2, while AAL3 still needs hardware-bound, non-exportable keys | NIST pages (publication); secondary (AAL detail) |
+| Password guidance | No forced periodic changes, no composition rules, screen against compromised-password lists, allow long passphrases (in place since 800-63B-3 and kept in Rev. 4) | NIST |
+
+Content tests the principles (device-bound keys give the highest assurance; modern password rules), not Rev. 4's exact numeric thresholds.
+
 ## Experience and the Associate route (verified)
 
 - Five years cumulative, full-time, paid experience in **two or more** of the eight domains.

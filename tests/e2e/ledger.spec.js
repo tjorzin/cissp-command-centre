@@ -25,16 +25,20 @@ test('forced misses fill the ledger; misconceptions lead the Patterns panel; one
   await page.goto('/#/ledger');
   await expect(page.getByText('Nothing recorded yet')).toBeVisible();
 
-  await practiseDomain(page, 5); // three questions
+  await practiseDomain(page, 5);
   const q1 = await answer(page, { right: false, confidence: 'sure' });
   await page.locator('.class-picker [data-class="tech-vs-mgmt"]').click();
   await expect(page.locator('.class-picker [data-class="tech-vs-mgmt"]')).toHaveAttribute('aria-pressed', 'true');
   await page.locator('#next-btn').click();
   await answer(page, { right: true, confidence: 'guess' });
   await page.locator('#next-btn').click();
-  await answer(page, { right: false, confidence: 'unsure' });
+  const q3 = await answer(page, { right: false, confidence: 'unsure' });
   await page.locator('#next-btn').click();
-  await expect(page).toHaveURL(/#\/results\//);
+  // Answer the rest of the set correctly and confidently: they add nothing to the ledger.
+  while (!/#\/results\//.test(page.url())) {
+    await answer(page, { right: true, confidence: 'sure' });
+    await page.locator('#next-btn').click();
+  }
 
   await page.getByRole('link', { name: 'Ledger' }).click();
   await expect(page.locator('#ledger-total')).toHaveText('3');
@@ -66,7 +70,7 @@ test('forced misses fill the ledger; misconceptions lead the Patterns panel; one
   // Weakness drill launched from the Patterns panel starts on a missed question.
   await page.locator('#drill-weak').click();
   const first = byStem(await page.locator('#stem').textContent());
-  expect(['5.4', '5.5', '5.2']).toContain(first.objective);
+  expect([q1.objective, q3.objective]).toContain(first.objective);
 });
 
 test('three misses on one objective trigger a reteach card before more questions on it', async ({ page }) => {

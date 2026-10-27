@@ -3,6 +3,66 @@
   "notice": "Comparison drills: sets of terms CISSP likes to blur, each with short scenarios where you pick the term that fits. Original content.",
   "drills": [
     {
+      "id": "dr-access-models",
+      "domain": 5,
+      "objective": "5.4",
+      "title": "DAC, MAC, RBAC, ABAC, rule-based",
+      "items": [
+        {
+          "name": "DAC",
+          "meaning": "The owner grants access at their discretion."
+        },
+        {
+          "name": "MAC",
+          "meaning": "The system enforces labels and clearances; users cannot override."
+        },
+        {
+          "name": "RBAC",
+          "meaning": "Access follows job roles."
+        },
+        {
+          "name": "ABAC",
+          "meaning": "Policies evaluate attributes of user, resource and context."
+        },
+        {
+          "name": "Rule-based",
+          "meaning": "Global rules apply to every user, such as time or location limits."
+        }
+      ],
+      "prompts": [
+        {
+          "text": "A document's creator shares it with two colleagues by editing its permissions.",
+          "answer": "DAC",
+          "why": "The owner decided who gets access."
+        },
+        {
+          "text": "A Confidential-cleared user cannot open a Secret file, and cannot change that.",
+          "answer": "MAC",
+          "why": "System-enforced labels and clearances."
+        },
+        {
+          "text": "All new tellers get the Teller role, which includes cash and account-lookup rights.",
+          "answer": "RBAC",
+          "why": "Access follows the job role."
+        },
+        {
+          "text": "Nurses see records only for their rostered ward, during their shift, on managed devices.",
+          "answer": "ABAC",
+          "why": "Attributes of the user, resource and context drive the decision."
+        },
+        {
+          "text": "Nobody may sign in to payroll outside 06:00 to 19:00 on weekdays.",
+          "answer": "Rule-based",
+          "why": "A global rule applies regardless of who the user is."
+        },
+        {
+          "text": "Contractors' access depends on contract end date, project tag and device compliance.",
+          "answer": "ABAC",
+          "why": "Several attributes are combined in policy."
+        }
+      ]
+    },
+    {
       "id": "dr-bcp-drp-ir",
       "domain": 1,
       "objective": "1.7",
@@ -384,6 +444,62 @@
           "text": "A cloud network ACL needs matching inbound and outbound rules.",
           "answer": "Packet filter",
           "why": "Stateless filtering needs rules in both directions."
+        }
+      ]
+    },
+    {
+      "id": "dr-iaaa",
+      "domain": 5,
+      "objective": "5.2",
+      "title": "Identification, authentication, authorisation, accountability",
+      "items": [
+        {
+          "name": "Identification",
+          "meaning": "Claiming an identity, such as entering a username."
+        },
+        {
+          "name": "Authentication",
+          "meaning": "Proving the claim, such as a password plus passkey."
+        },
+        {
+          "name": "Authorisation",
+          "meaning": "Deciding what the authenticated identity may do."
+        },
+        {
+          "name": "Accountability",
+          "meaning": "Tracing actions back to an identity through logs and audit."
+        }
+      ],
+      "prompts": [
+        {
+          "text": "A user types 'tnhemachena' into the sign-in box.",
+          "answer": "Identification",
+          "why": "Entering a username claims an identity without proving it."
+        },
+        {
+          "text": "The user touches a security key to confirm the sign-in.",
+          "answer": "Authentication",
+          "why": "The key proves possession of a credential."
+        },
+        {
+          "text": "The ERP lets the user view invoices but not approve them.",
+          "answer": "Authorisation",
+          "why": "Permissions decide what an authenticated user can do."
+        },
+        {
+          "text": "An auditor traces a deleted record to the account that deleted it.",
+          "answer": "Accountability",
+          "why": "Logs tie actions to identities."
+        },
+        {
+          "text": "A badge is scanned at a door reader before the PIN is typed.",
+          "answer": "Identification",
+          "why": "The badge asserts who is there; the PIN proves it."
+        },
+        {
+          "text": "Shared accounts are banned so every action can be tied to one person.",
+          "answer": "Accountability",
+          "why": "Unique IDs make actions attributable."
         }
       ]
     },

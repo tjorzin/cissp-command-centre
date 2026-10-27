@@ -295,6 +295,77 @@
         "Screenshots of the DNS query, the SNI field and the cleartext HTTP request.",
         "Your three-sentence note."
       ]
+    },
+    {
+      "id": "lab-d5-access-review",
+      "day": 10,
+      "domain": 5,
+      "objective": "5.5",
+      "minutes": 40,
+      "title": "Run an access review in the test domain",
+      "environment": "LAB / TEST ENVIRONMENT: the lab.test domain from day 9 only. Do not run discovery or review scripts against a real directory without authorisation.",
+      "goal": "Find privileged and dormant accounts with PowerShell, and practise the review decisions an owner would make.",
+      "prerequisites": [
+        "The lab.test domain from day 9",
+        "Card: joiners, movers, leavers"
+      ],
+      "steps": [
+        "Create five extra test users, and leave two of them never signed in.",
+        "List privileged group members: `Get-ADGroupMember 'Domain Admins'` and `Get-ADGroupMember 'Enterprise Admins'`",
+        "Add one test user to Domain Admins 'temporarily', as many real environments do, then run the listing again.",
+        "Find accounts that have never been used or are inactive: `Search-ADAccount -AccountInactive -TimeSpan 90.00:00:00 -UsersOnly`, and `Get-ADUser -Filter * -Properties LastLogonDate | Select-Object Name, LastLogonDate`",
+        "Find accounts whose passwords never expire: `Search-ADAccount -PasswordNeverExpires -UsersOnly`",
+        "For each finding, record a decision as the owner would: keep, remove, disable, or investigate, with a one-line reason.",
+        "Apply your decisions: remove the extra Domain Admin and disable the unused accounts with `Disable-ADAccount`."
+      ],
+      "validation": [
+        "Domain Admins contains only the built-in Administrator after clean-up.",
+        "Unused test accounts are disabled, not deleted, pending a decision.",
+        "Every finding has a recorded decision and reason."
+      ],
+      "rollback": [
+        "Re-enable any account with `Enable-ADAccount`, or revert the VM snapshot."
+      ],
+      "evidence": [
+        "The command outputs before and after clean-up.",
+        "Your decision table."
+      ]
+    },
+    {
+      "id": "lab-d5-test-ad",
+      "day": 9,
+      "domain": 5,
+      "objective": "5.4",
+      "minutes": 60,
+      "title": "Role-based access with groups in a test Active Directory",
+      "environment": "LAB / TEST ENVIRONMENT: a standalone Windows Server evaluation VM on an isolated network, with a domain named lab.test. Never run these commands on a production domain controller or a machine joined to a work domain.",
+      "goal": "Build role-based access with groups, see least privilege at work, and practise the joiner and mover steps.",
+      "prerequisites": [
+        "A Windows Server evaluation VM with no network route to your work environment",
+        "An elevated PowerShell window on that VM",
+        "Drill: DAC, MAC, RBAC, ABAC, rule-based"
+      ],
+      "steps": [
+        "Install the role: `Install-WindowsFeature AD-Domain-Services -IncludeManagementTools`",
+        "Create a test forest (the VM restarts): `Install-ADDSForest -DomainName lab.test -InstallDns`",
+        "Create an OU and two role groups: `New-ADOrganizationalUnit -Name LabUsers`, then `New-ADGroup -Name Role-Claims -GroupScope Global` and `New-ADGroup -Name Role-Finance -GroupScope Global`",
+        "Create two users with `New-ADUser` in the LabUsers OU (for example amai and tendai), and add amai to Role-Claims and tendai to Role-Finance with `Add-ADGroupMember`.",
+        "Create C:\\LabShares\\Claims and C:\\LabShares\\Finance, share them, and grant each role group Modify on its own folder only.",
+        "Sign in as each user (or use `runas`) and confirm each can open only their own folder.",
+        "Simulate a mover: move amai from Role-Claims to Role-Finance, then confirm she lost Claims access and gained Finance access after signing in again."
+      ],
+      "validation": [
+        "Each user reaches only the folder for their role group.",
+        "After the move, amai has no access to Claims.",
+        "No permission was granted to an individual user; every grant goes to a group."
+      ],
+      "rollback": [
+        "Delete the VM or revert it to the snapshot taken before the lab."
+      ],
+      "evidence": [
+        "Screenshots of the two groups' members and the folder permissions.",
+        "A note of what changed for amai when she moved roles."
+      ]
     }
   ]
 }

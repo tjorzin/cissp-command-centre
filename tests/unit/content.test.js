@@ -91,7 +91,7 @@ test('lint catches a skewed answer key across the bank', () => {
 });
 
 // Domains whose content batch is done. Add each domain here as its batch lands.
-const BATCHED = [1, 2, 3, 4];
+const BATCHED = [1, 2, 3, 4, 5];
 const weights = read('data/outlines.json').outlines.find((o) => o.id === '2024').domains;
 
 test('lessons, drills and labs pass validation', () => {

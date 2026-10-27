@@ -993,6 +993,198 @@
         "ask": "What should the company agree to?",
         "answer": "Access only when requested and approved, through a jump host with MFA and session recording, limited to the routers concerned, with contract terms covering security and notification. A permanent, broad tunnel is an open door."
       }
+    },
+    "5.1": {
+      "summary": [
+        "Access control covers information, systems, devices, facilities, applications and services.",
+        "Grant access by need to know and least privilege, not just by clearance or seniority.",
+        "Physical and logical access should share one source of truth, usually HR-driven identity.",
+        "Shared devices still need individual authentication so actions are attributable.",
+        "Access has a lifecycle: provision, control, review, revoke."
+      ],
+      "keyTerms": [
+        {
+          "term": "Need to know",
+          "meaning": "Access only to the information a person's duties require, even if their clearance is higher."
+        },
+        {
+          "term": "Least privilege",
+          "meaning": "The minimum permissions needed to do the job, for the minimum time."
+        },
+        {
+          "term": "Subject / object",
+          "meaning": "The active entity requesting access, and the resource being accessed."
+        },
+        {
+          "term": "Converged access",
+          "meaning": "Physical badges and logical accounts managed from the same identity lifecycle."
+        }
+      ],
+      "scenario": {
+        "situation": "A Secret-cleared analyst on one project asks to read a Secret report from a different project.",
+        "ask": "Should access be granted?",
+        "answer": "Not on clearance alone. Clearance says what level she may see; need to know says whether her duties require this report. Without a project need, the request is refused."
+      }
+    },
+    "5.2": {
+      "summary": [
+        "Factors: something you know, have, are; two of the same type is still single-factor.",
+        "Phishing-resistant authenticators (FIDO2, passkeys, smart cards) beat OTP and push; hardware-bound keys give the highest assurance.",
+        "Modern password rules: length over complexity, no forced rotation, block known-breached passwords.",
+        "Identity proofing establishes who someone is before credentials are issued.",
+        "Sessions need protection too: secure cookies, timeouts and re-authentication for sensitive actions."
+      ],
+      "keyTerms": [
+        {
+          "term": "AAL",
+          "meaning": "Authenticator assurance level (NIST SP 800-63B): AAL1 to AAL3, rising strength."
+        },
+        {
+          "term": "FAR / FRR / CER",
+          "meaning": "False acceptance rate, false rejection rate, and the crossover error rate where they meet."
+        },
+        {
+          "term": "Identity proofing",
+          "meaning": "Verifying evidence of a real-world identity before enrolment (NIST IAL levels)."
+        },
+        {
+          "term": "Just-in-time access",
+          "meaning": "Privileges granted only when needed and removed automatically afterwards."
+        }
+      ],
+      "scenario": {
+        "situation": "A login page asks for a password and then the answer to a security question.",
+        "ask": "Is this multi-factor authentication?",
+        "answer": "No. Both are something you know, so it is single-factor, however many steps it has. Adding something you have, such as a passkey, makes it multi-factor."
+      }
+    },
+    "5.3": {
+      "summary": [
+        "Federation lets users authenticate with their home identity provider and use another organisation's services.",
+        "The identity provider (IdP) authenticates and issues assertions; the service provider (SP) trusts them and authorises.",
+        "SAML is common for enterprise web SSO; OAuth 2.0 delegates authorisation; OpenID Connect adds authentication on top of OAuth.",
+        "Hybrid identity synchronises on-premises directories with cloud IdPs; protect the sync path and on-premises tier.",
+        "Deprovisioning at the home IdP removes federated access everywhere; that is a major benefit."
+      ],
+      "keyTerms": [
+        {
+          "term": "Identity provider (IdP)",
+          "meaning": "Authenticates users and issues signed assertions or tokens about them."
+        },
+        {
+          "term": "Service provider (SP)",
+          "meaning": "The application that relies on the IdP's assertion (also 'relying party')."
+        },
+        {
+          "term": "OAuth 2.0",
+          "meaning": "A framework for delegated authorisation using access tokens, not for authentication on its own."
+        },
+        {
+          "term": "OpenID Connect",
+          "meaning": "An identity layer on OAuth 2.0 that adds an ID token saying who the user is."
+        }
+      ],
+      "scenario": {
+        "situation": "A partner firm's 200 staff need access to your claims portal.",
+        "ask": "Local accounts or federation?",
+        "answer": "Federation: the partner's IdP authenticates its own staff, your portal authorises from the assertion, and leavers lose access when the partner disables them, with no local passwords for you to manage."
+      }
+    },
+    "5.4": {
+      "summary": [
+        "DAC: owners decide. MAC: system-enforced labels. RBAC: job roles. ABAC: attributes and context. Rule-based: global rules.",
+        "Risk-based (adaptive) access adjusts in real time: step-up authentication or denial when risk rises.",
+        "Policy decision points (PDP) decide; policy enforcement points (PEP) enforce at the resource.",
+        "Separation of duties can be built into RBAC by forbidding conflicting role combinations.",
+        "Choose the model that expresses the business rule with the least administration."
+      ],
+      "keyTerms": [
+        {
+          "term": "Rule-based access control",
+          "meaning": "Global rules apply to all subjects, such as time-of-day or source-network limits."
+        },
+        {
+          "term": "Risk-adaptive access control",
+          "meaning": "Decisions weigh real-time risk signals such as location, device and behaviour."
+        },
+        {
+          "term": "PDP / PEP",
+          "meaning": "The component that evaluates policy, and the one that enforces its decision."
+        },
+        {
+          "term": "Toxic combination",
+          "meaning": "Two permissions that together let one person commit fraud, such as create vendor and approve payment."
+        }
+      ],
+      "scenario": {
+        "situation": "A user signs in from Harare and, 20 minutes later, from Singapore.",
+        "ask": "What should a risk-based system do?",
+        "answer": "Treat it as impossible travel: block or require step-up authentication, alert, and investigate whether the credentials are compromised."
+      }
+    },
+    "5.5": {
+      "summary": [
+        "Joiners, movers and leavers should be driven from HR as the authoritative source.",
+        "Access reviews are certified by managers and data owners, not by IT alone.",
+        "Privileged access is time-bound (just in time), approved, recorded and reviewed.",
+        "Service accounts need owners, least privilege, managed credentials and no interactive logon.",
+        "Dormant accounts are disabled on a schedule; they are attackers' favourite targets."
+      ],
+      "keyTerms": [
+        {
+          "term": "Privilege creep",
+          "meaning": "Access accumulating as people move roles without old rights being removed."
+        },
+        {
+          "term": "Access certification",
+          "meaning": "Periodic confirmation by owners or managers that access is still needed."
+        },
+        {
+          "term": "PAM",
+          "meaning": "Privileged access management: vaulting, just-in-time elevation and session recording."
+        },
+        {
+          "term": "Managed service account",
+          "meaning": "A service identity whose credentials the platform rotates automatically (for example gMSA)."
+        }
+      ],
+      "scenario": {
+        "situation": "An administrator who leaves next week owns 12 service accounts whose passwords only he knows.",
+        "ask": "What must happen before he leaves?",
+        "answer": "Assign each account a new owner, rotate every credential he knew (ideally moving them to managed or vaulted credentials), and remove his own access on his last day."
+      }
+    },
+    "5.6": {
+      "summary": [
+        "Kerberos: the KDC's authentication service issues a TGT; the ticket-granting service issues service tickets.",
+        "Kerberos depends on time: clocks out of sync by more than the allowed skew break authentication.",
+        "RADIUS combines authentication and authorisation and encrypts only the password; TACACS+ separates AAA and encrypts the whole payload.",
+        "Protect directories: LDAPS or LDAP signing, no legacy LM or NTLMv1, protected admin tiers.",
+        "Authorisation systems must enforce decisions consistently at every entry point."
+      ],
+      "keyTerms": [
+        {
+          "term": "KDC",
+          "meaning": "Key Distribution Center: the Kerberos authentication service and ticket-granting service."
+        },
+        {
+          "term": "TGT",
+          "meaning": "Ticket-granting ticket: proof of authentication used to request service tickets."
+        },
+        {
+          "term": "TACACS+",
+          "meaning": "Cisco-originated AAA protocol over TCP that encrypts the whole payload and separates authorisation."
+        },
+        {
+          "term": "LDAPS",
+          "meaning": "LDAP over TLS, protecting directory queries and binds in transit."
+        }
+      ],
+      "scenario": {
+        "situation": "After a virtualisation change, users at one branch cannot log in; the branch server's clock is 9 minutes fast.",
+        "ask": "Why, and what is the fix?",
+        "answer": "Kerberos rejects tickets outside the allowed clock skew (5 minutes by default). Fix time synchronisation so the server follows the domain's time source."
+      }
     }
   }
 }

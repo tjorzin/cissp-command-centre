@@ -2,6 +2,21 @@
 
 Each phase adds a section. Commands are run from the repo root with Node 24.22.1 and Playwright 1.64.1 (Chromium), using a Pixel 7 profile at 360 × 780, time zone Africa/Harare.
 
+## Phase 8, batch 5: Domain 5 content (28 October 2026)
+
+Framework check (`data/SOURCES.md`): **NIST SP 800-63-4 is final (July 2025)** and adds syncable authenticators (synced passkeys). Content tests the principles (hardware-bound keys give the highest assurance; modern password rules), not Rev. 4's exact thresholds.
+
+**Content added:** 28 Domain 5 questions (31 in total, about 13% of a 240-question bank) and a sixth case study (identity overhaul at an insurer: standing admin rights, partner federation, badges); lessons for all 6 objectives; 8 cards (every Domain 5 objective has one); 2 drills (access control models; identification, authentication, authorisation, accountability); 2 labs (day 9: role-based access with groups in a test Active Directory; day 10: an access review with PowerShell in the same test domain).
+
+`npm run validate`: **no errors.** The give-away lint first rejected 4 questions for tells (absolutes in two options in d5-025; a length tell among short protocol names in d5-030; the key alone echoing stem words in d5-028 and d5-031) and two thin rationales; all fixed, and seven keys trimmed so the correct option is the single longest in 35 of 123 single-answer questions (28%).
+
+**Bank after batch 5:** 166 questions.
+
+`npm test`: **89 passed, 0 failed.** `npx playwright test`: **36 passed, 0 failed** (3 consecutive runs). The ledger test assumed Domain 5 had exactly three questions; it now answers the rest of the set correctly and derives the expected objectives.
+
+### Not validated
+- The Active Directory lab commands were not run in this session.
+
 ## Phase 8, batch 4: Domain 4 content (28 October 2026)
 
 Framework check: Domain 4 relies on stable standards (TLS 1.3, IPsec, 802.1X, WPA3, 5G SUCI); no change affecting tested facts (`data/SOURCES.md`).

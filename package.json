@@ -1,6 +1,6 @@
 {
   "name": "cissp-command-centre",
-  "version": "0.8.4",
+  "version": "0.8.5",
   "private": true,
   "description": "Personal CISSP study PWA. Dev dependencies are for tests only; the app ships with no runtime dependencies.",
   "type": "module",

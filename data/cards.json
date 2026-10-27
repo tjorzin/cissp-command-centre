@@ -677,6 +677,105 @@
       ]
     },
     {
+      "id": "c5-004",
+      "domain": 5,
+      "objective": "5.1",
+      "term": "Clearance vs need to know",
+      "meaning": "Clearance says the highest level of information a person may be trusted with. Need to know says whether their current duties require a particular item. Access needs both.",
+      "trap": "Granting access because the clearance level matches.",
+      "hook": "Cleared to see it is not the same as needing to see it.",
+      "tags": [
+        "comparison"
+      ]
+    },
+    {
+      "id": "c5-005",
+      "domain": 5,
+      "objective": "5.2",
+      "term": "FAR, FRR and CER",
+      "meaning": "False acceptance rate: impostors let in (security failure). False rejection rate: genuine users refused (usability cost). Crossover error rate: where they are equal; lower CER means a more accurate system.",
+      "trap": "Comparing biometric systems on FRR alone, which can be tuned down by raising FAR.",
+      "hook": "FAR lets the wrong one in; FRR keeps the right one out.",
+      "tags": [
+        "biometrics"
+      ]
+    },
+    {
+      "id": "c5-006",
+      "domain": 5,
+      "objective": "5.3",
+      "term": "SAML vs OAuth 2.0 vs OpenID Connect",
+      "meaning": "SAML: XML assertions for enterprise web single sign-on. OAuth 2.0: delegated authorisation with access tokens. OpenID Connect: authentication on top of OAuth, with an ID token saying who the user is.",
+      "trap": "Using OAuth access tokens as proof of who the user is.",
+      "hook": "SAML signs you in, OAuth lets an app act for you, OIDC tells the app who you are.",
+      "tags": [
+        "comparison",
+        "federation"
+      ]
+    },
+    {
+      "id": "c5-007",
+      "domain": 5,
+      "objective": "5.3",
+      "term": "IdP vs SP",
+      "meaning": "The identity provider authenticates the user and issues signed assertions. The service provider (relying party) trusts the assertion and makes its own authorisation decision.",
+      "trap": "Thinking the service provider checks the user's password.",
+      "hook": "The IdP vouches; the SP decides.",
+      "tags": [
+        "federation"
+      ]
+    },
+    {
+      "id": "c5-008",
+      "domain": 5,
+      "objective": "5.4",
+      "term": "Rule-based vs risk-adaptive access",
+      "meaning": "Rule-based: fixed global rules for everyone, such as office hours only. Risk-adaptive: decisions change with real-time signals such as impossible travel or an unknown device.",
+      "trap": "Confusing rule-based with role-based access control.",
+      "hook": "Rules are fixed; risk moves.",
+      "tags": [
+        "comparison",
+        "access-control"
+      ]
+    },
+    {
+      "id": "c5-009",
+      "domain": 5,
+      "objective": "5.5",
+      "term": "Joiners, movers, leavers",
+      "meaning": "HR events drive the identity lifecycle: joiners get role-based access, movers lose old access as they gain new, leavers lose everything on their last day, including credentials they knew.",
+      "trap": "Adding new rights for movers without removing old ones (privilege creep).",
+      "hook": "HR starts it, IAM follows, nothing lingers.",
+      "tags": [
+        "provisioning"
+      ]
+    },
+    {
+      "id": "c5-010",
+      "domain": 5,
+      "objective": "5.6",
+      "term": "Kerberos flow",
+      "meaning": "Sign-in: the authentication service issues a ticket-granting ticket (TGT). Access: the ticket-granting service exchanges the TGT for a service ticket. The service validates it. Clocks must agree within the skew limit.",
+      "trap": "Thinking the service checks the user's password each time.",
+      "hook": "Log in once for a TGT, swap it for each service.",
+      "tags": [
+        "kerberos"
+      ]
+    },
+    {
+      "id": "c5-011",
+      "domain": 5,
+      "objective": "5.6",
+      "term": "RADIUS vs TACACS+",
+      "meaning": "RADIUS: UDP, combines authentication and authorisation, encrypts only the password; common for Wi-Fi and VPN. TACACS+: TCP, separates AAA, encrypts the whole payload, supports per-command authorisation for device admin.",
+      "trap": "Choosing RADIUS for per-command control of router administration.",
+      "hook": "RADIUS lets users on; TACACS+ watches admins type.",
+      "tags": [
+        "comparison",
+        "aaa"
+      ]
+    },
+    {
       "id": "c6-001",
       "domain": 6,
       "objective": "6.2",

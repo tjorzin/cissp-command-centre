@@ -51,6 +51,16 @@
         "d4-005"
       ],
       "text": "Mosi Fibre is a regional internet service provider with 400 staff across a head office in Harare and eight branches. Branches connect over leased MPLS circuits, which the board wants to replace with SD-WAN running over ordinary business internet links to cut costs. In the offices, staff PCs, printers and IP desk phones share one flat network, and calls are unencrypted. Any device plugged into a wall port, including visitors' laptops, receives an internal address. The company is also about to start selling managed Wi-Fi to hotels."
+    },
+    {
+      "id": "sc-06",
+      "title": "Identity overhaul at an insurer",
+      "questionIds": [
+        "d5-004",
+        "d5-005",
+        "d5-006"
+      ],
+      "text": "Chengetedzo Insurance has 1,100 staff and uses Active Directory synchronised to a cloud identity provider for email and 30 SaaS applications. Fifteen IT staff hold permanent Domain Admin rights 'for convenience'. A partner brokerage with 200 staff needs access to the claims portal, and today each broker has a local account whose password the insurer resets on request. Building access badges are issued by facilities from a spreadsheet, and an audit found 60 badges still active for people whose network accounts were disabled months ago."
     }
   ],
   "questions": [
@@ -4784,6 +4794,1007 @@
         "mfa",
         "phishing-resistant",
         "passkeys"
+      ]
+    },
+    {
+      "id": "d5-004",
+      "domain": 5,
+      "objective": "5.5",
+      "subtopic": "Standing privileged access",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": "sc-06",
+      "stem": "Chengetedzo's new CISO wants to reduce the risk from the 15 permanent Domain Admin accounts without slowing urgent IT work. Which approach is BEST?",
+      "options": [
+        "Grant admin rights just in time through PAM, approved and recorded",
+        "Keep the permanent rights but require the 15 admins to change passwords monthly",
+        "Remove admin rights from all but the CIO, who approves every change personally",
+        "Rename the Domain Admins group so attackers cannot easily find its members"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. Just-in-time elevation through privileged access management removes standing privilege, keeps a record of who did what, and still lets admins work when needed.",
+        "Password rotation does nothing about the 15 always-on targets an attacker can use.",
+        "Concentrating approval on one person creates a bottleneck and a single point of failure.",
+        "Renaming a group is obscurity; attackers find privileged groups by their identifiers, not names."
+      ],
+      "concept": "Replace standing privilege with just-in-time, approved, recorded elevation.",
+      "trap": "Tightening the wrong control (passwords) or overcorrecting into a bottleneck.",
+      "managerLens": "Reduce privileged exposure without stopping the business; measure standing admin accounts.",
+      "practicalNote": "Tiered administration plus PAM is the usual path to near-zero standing Domain Admins.",
+      "gap": "Managing privileged access.",
+      "followUpId": "d5-005",
+      "tags": [
+        "pam",
+        "jit",
+        "privileged-access"
+      ]
+    },
+    {
+      "id": "d5-005",
+      "domain": 5,
+      "objective": "5.3",
+      "subtopic": "Federating partner access",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": "sc-06",
+      "stem": "Chengetedzo wants to replace the brokers' local accounts with federation to the brokerage's own identity provider. Which TWO statements describe how this should work? (Select TWO.)",
+      "options": [
+        "The brokerage's identity provider authenticates its own staff",
+        "The claims portal authorises users from attributes in the assertion",
+        "Chengetedzo keeps a local password for every broker as a fallback",
+        "The brokerage sends its users' password hashes to Chengetedzo nightly",
+        "Chengetedzo's help desk resets brokers' passwords at their request"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. In federation the home organisation's IdP authenticates its own users.",
+        "Correct. The portal, as service provider, makes authorisation decisions from the signed assertion's attributes, such as role or broker ID.",
+        "Keeping local passwords keeps the old risks and management burden.",
+        "Password hashes are never shared in federation; only signed assertions cross the boundary.",
+        "Password resets belong to the brokerage's IdP once federation is in place."
+      ],
+      "concept": "Federation: home IdP authenticates; service provider authorises from the assertion.",
+      "trap": "Keeping local credentials alongside federation.",
+      "managerLens": "Put deprovisioning duties for partner staff in the federation agreement.",
+      "practicalNote": "SAML or OpenID Connect are the usual protocols; the agreement covers attributes, assurance and notification of leavers.",
+      "gap": "Understanding federation roles.",
+      "followUpId": "d5-006",
+      "tags": [
+        "federation",
+        "saml",
+        "third-party"
+      ]
+    },
+    {
+      "id": "d5-006",
+      "domain": 5,
+      "objective": "5.1",
+      "subtopic": "Physical and logical access together",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": "sc-06",
+      "stem": "An audit at Chengetedzo found 60 building badges still active for people whose network accounts were disabled months ago. What is the BEST fix?",
+      "options": [
+        "Ask facilities to review the badge spreadsheet once each quarter",
+        "Install CCTV at entrances to spot former staff who still enter",
+        "Drive badge and account changes from one HR-led identity lifecycle",
+        "Make the badges expire automatically after twelve months of use"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "Quarterly reviews still leave people with access for up to three months and depend on manual checks.",
+        "Cameras might detect misuse after the fact; they do not remove access.",
+        "Correct. When HR events drive both physical and logical access, a leaver loses both at the same time.",
+        "Annual expiry still leaves leavers with access for most of a year."
+      ],
+      "concept": "Converge physical and logical access on one identity lifecycle.",
+      "trap": "Adding reviews or detection instead of fixing the process.",
+      "managerLens": "One source of truth for identity means one place to remove access.",
+      "practicalNote": "Physical access control systems can integrate with HR or identity governance tools to automate badge changes.",
+      "gap": "Linking physical and logical access management.",
+      "followUpId": null,
+      "tags": [
+        "physical-access",
+        "provisioning"
+      ]
+    },
+    {
+      "id": "d5-007",
+      "domain": 5,
+      "objective": "5.1",
+      "subtopic": "Need to know",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "An analyst cleared to Secret, working on a border-security project, asks for a Secret report from an unrelated mining-policy project. Her manager says she is trustworthy and senior. Should she get access?",
+      "options": [
+        "Yes, because her clearance matches the report's classification",
+        "Yes, because her manager vouches that she is trustworthy",
+        "Yes, if she signs a confidentiality agreement for the report",
+        "No, unless her current duties require the information"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "Clearance is necessary but not enough; it does not establish a need for this report.",
+        "Trustworthiness and seniority do not create a need to know.",
+        "An agreement adds an obligation but does not justify access.",
+        "Correct. Access needs both clearance and need to know; without a duty that requires the report, access is refused."
+      ],
+      "concept": "Need to know limits access even when clearance is sufficient.",
+      "trap": "Treating clearance as enough on its own.",
+      "managerLens": "Grant access for a purpose, not for a person's standing.",
+      "practicalNote": "Compartments and project groups implement need to know in classified environments.",
+      "gap": "Distinguishing clearance from need to know.",
+      "followUpId": null,
+      "tags": [
+        "need-to-know",
+        "least-privilege"
+      ]
+    },
+    {
+      "id": "d5-008",
+      "domain": 5,
+      "objective": "5.1",
+      "subtopic": "Access to shared devices",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A warehouse uses shared rugged tablets to record stock movements. Workers currently all use one generic login, so nobody can tell who recorded a disputed shipment. What is the BEST approach?",
+      "options": [
+        "Keep the generic login but put a CCTV camera above each tablet station",
+        "Have workers tap their badge and enter a short PIN to sign in to a tablet",
+        "Give each worker their own tablet so that no device is ever shared",
+        "Change the generic password weekly and give it to supervisors only"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "Cameras may help reconstruct events but do not create reliable individual accountability in the system.",
+        "Correct. Quick individual sign-in (badge plus PIN) keeps shared devices practical while tying every action to a person.",
+        "One device per worker solves attribution at large cost and is unnecessary.",
+        "A shared password, however often changed, still gives no individual accountability."
+      ],
+      "concept": "Shared devices still need individual authentication for accountability.",
+      "trap": "Accepting shared accounts because devices are shared.",
+      "managerLens": "Make the secure option fast enough that workers use it.",
+      "practicalNote": "Fast user switching with badge tap is common on shared clinical and warehouse devices.",
+      "gap": "Achieving accountability on shared devices.",
+      "followUpId": null,
+      "tags": [
+        "accountability",
+        "shared-devices"
+      ]
+    },
+    {
+      "id": "d5-009",
+      "domain": 5,
+      "objective": "5.2",
+      "subtopic": "Authentication factors",
+      "difficulty": 2,
+      "type": "single",
+      "scenario": null,
+      "stem": "An online banking login asks for a password and then for the answer to a security question about the customer's first school. How many authentication factors does it use?",
+      "options": [
+        "Two factors of different types",
+        "Three factors of different types",
+        "One factor, used twice",
+        "Two factors, both biometric"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "Both items are something the user knows, so they are the same factor type.",
+        "There are only two items, and both are knowledge.",
+        "Correct. A password and a security answer are both 'something you know': single-factor, however many steps.",
+        "None of these items is a biometric; both are things the user knows."
+      ],
+      "concept": "Multi-factor means different factor types: know, have, are.",
+      "trap": "Counting steps instead of factor types.",
+      "managerLens": "Ask what an attacker needs to steal: two secrets can be phished together.",
+      "practicalNote": "Security questions are also weak because answers are often guessable or public.",
+      "gap": "Counting authentication factors correctly.",
+      "followUpId": null,
+      "tags": [
+        "mfa",
+        "factors"
+      ]
+    },
+    {
+      "id": "d5-010",
+      "domain": 5,
+      "objective": "5.2",
+      "subtopic": "Biometric accuracy",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A data centre is choosing between two fingerprint readers. Each vendor quotes one accuracy figure. Which single metric is MOST useful for comparing their overall accuracy?",
+      "options": [
+        "The crossover error rate, where false accepts equal false rejects",
+        "The false rejection rate at the vendor's default sensitivity",
+        "The time each reader takes to scan and match a fingerprint",
+        "The number of fingerprints each reader can store at once"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. The crossover (equal) error rate summarises the trade-off between false accepts and false rejects; lower is more accurate.",
+        "FRR alone ignores false acceptances, which can be tuned against it.",
+        "Speed is a usability measure, not accuracy.",
+        "Capacity says nothing about how accurately the reader matches."
+      ],
+      "concept": "CER (EER) compares biometric accuracy; FAR and FRR trade off against each other.",
+      "trap": "Comparing one error rate that the vendor can tune.",
+      "managerLens": "For high-security entry, tune toward low false acceptance and accept some false rejects.",
+      "practicalNote": "False acceptance is a security failure; false rejection is a usability cost.",
+      "gap": "Interpreting biometric metrics.",
+      "followUpId": null,
+      "tags": [
+        "biometrics"
+      ]
+    },
+    {
+      "id": "d5-011",
+      "domain": 5,
+      "objective": "5.2",
+      "subtopic": "Password policy",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A company is updating its password policy to current NIST guidance for staff who also use MFA. Which TWO rules belong in it? (Select TWO.)",
+      "options": [
+        "Check new passwords against lists of known breached passwords",
+        "Allow long passphrases and drop rules on mixed character types",
+        "Force every user to change their password every 60 days",
+        "Require at least one symbol and one capital letter in each password",
+        "Let users store password hints that the help desk can read"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Screening against breached and common passwords blocks the passwords attackers try first.",
+        "Correct. Length matters more than complexity, and composition rules push users to predictable patterns.",
+        "Forced periodic changes lead to weak, predictable passwords; change only on evidence of compromise.",
+        "Composition rules are no longer recommended; they add little strength.",
+        "Readable hints give attackers clues and should not be stored."
+      ],
+      "concept": "Modern password guidance: length, breached-password screening, no forced rotation or composition rules.",
+      "trap": "Following old habits such as 60-day rotation.",
+      "managerLens": "Spend effort on MFA and breached-password checks, not on rules that annoy users.",
+      "practicalNote": "NIST SP 800-63B (now Revision 4, 2025) carries this guidance.",
+      "gap": "Knowing current password guidance.",
+      "followUpId": null,
+      "tags": [
+        "passwords",
+        "nist"
+      ]
+    },
+    {
+      "id": "d5-012",
+      "domain": 5,
+      "objective": "5.2",
+      "subtopic": "Session management",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A penetration test shows that a cross-site scripting flaw lets attackers read users' session cookies with JavaScript and hijack their sessions. While the flaw is fixed, which cookie setting MOST directly blocks the theft?",
+      "options": [
+        "Extending the session lifetime so users sign in less often",
+        "Placing the session identifier in the URL instead of a cookie",
+        "Disabling TLS session resumption on the web servers",
+        "Setting the HttpOnly flag on the session cookie"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "Longer sessions give stolen cookies more time to be useful.",
+        "Session IDs in URLs leak through logs, history and referrer headers.",
+        "TLS session resumption is unrelated to cookie theft by scripts.",
+        "Correct. HttpOnly cookies cannot be read by JavaScript, so a script injected through XSS cannot steal them."
+      ],
+      "concept": "HttpOnly stops scripts reading session cookies; Secure keeps them on HTTPS.",
+      "trap": "Choosing a setting that weakens session security.",
+      "managerLens": "Layer defences: fix the XSS and harden the session.",
+      "practicalNote": "Secure, HttpOnly and SameSite flags together form the usual session cookie baseline.",
+      "gap": "Protecting sessions.",
+      "followUpId": null,
+      "tags": [
+        "session-management",
+        "xss"
+      ]
+    },
+    {
+      "id": "d5-013",
+      "domain": 5,
+      "objective": "5.2",
+      "subtopic": "Identity proofing",
+      "difficulty": 5,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A digital bank opens accounts remotely and has been hit by fraudsters using stolen identities. Which TWO measures BEST strengthen its remote identity proofing? (Select TWO.)",
+      "options": [
+        "Verify the ID document and match it to a live selfie with liveness detection",
+        "Check the applicant's details against the issuing or authoritative source",
+        "Confirm the applicant can receive an email at the address they give",
+        "Ask questions drawn from the applicant's public credit history",
+        "Send an SMS code to the phone number the applicant provides"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Document checks plus a liveness-tested biometric match show the person presenting is the person on the document.",
+        "Correct. Validating against the issuing authority confirms the identity evidence is genuine and current.",
+        "An email address proves only control of that address, which fraudsters create freely.",
+        "Knowledge-based questions from credit data are easily answered by fraudsters with stolen data.",
+        "An SMS code proves control of a phone number, not identity."
+      ],
+      "concept": "Strong proofing verifies evidence, validates it at source and binds it to the person present.",
+      "trap": "Confusing proof of contact details with proof of identity.",
+      "managerLens": "Match proofing strength to the harm a fake account can do.",
+      "practicalNote": "NIST SP 800-63A defines identity assurance levels (IAL) for proofing strength.",
+      "gap": "Knowing what makes identity proofing strong.",
+      "followUpId": null,
+      "tags": [
+        "identity-proofing",
+        "fraud"
+      ]
+    },
+    {
+      "id": "d5-014",
+      "domain": 5,
+      "objective": "5.2",
+      "subtopic": "Credential management",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A company keeps one emergency 'break-glass' administrator account for its cloud tenant. The password is in a sealed envelope in the CIO's safe, and it has not been changed in three years. What is the BEST improvement?",
+      "options": [
+        "Give the password to every IT administrator so it is always available",
+        "Disable the account permanently, since it is rarely used",
+        "Vault it with logged checkout, alerts on use and rotation after use",
+        "Write the password into the IT runbook so the on-call engineer can find it"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "Wide sharing destroys control over a highly privileged account.",
+        "Without a break-glass account, an identity outage could lock everyone out of the tenant.",
+        "Correct. A vault controls and records access, alerts make any use visible, and rotation after use keeps the credential fresh.",
+        "Runbooks are widely read; the password would leak."
+      ],
+      "concept": "Emergency accounts are kept, vaulted, monitored and rotated after use.",
+      "trap": "Either over-sharing or removing the account.",
+      "managerLens": "Plan for identity failure without creating an unmonitored back door.",
+      "practicalNote": "Break-glass accounts are usually excluded from conditional access, so monitoring their use is essential.",
+      "gap": "Managing emergency credentials.",
+      "followUpId": null,
+      "tags": [
+        "credential-management",
+        "break-glass"
+      ]
+    },
+    {
+      "id": "d5-015",
+      "domain": 5,
+      "objective": "5.2",
+      "subtopic": "Authenticator assurance",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": null,
+      "stem": "A bank wants the highest authenticator assurance it can get for its 20 cloud administrators, and is choosing among options that all resist push-fatigue attacks. Which BEST meets the goal?",
+      "options": [
+        "Hardware security keys whose private keys cannot leave the device",
+        "Passkeys that synchronise across the administrators' phones and laptops",
+        "Authenticator app codes that change every 30 seconds",
+        "Push notifications that require typing a number shown on screen"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. Hardware-bound, non-exportable keys are phishing-resistant and meet the highest assurance level, because the secret can never leave the device.",
+        "Synced passkeys are phishing-resistant and convenient, but because keys are copied between devices they do not reach the highest level.",
+        "One-time codes can be phished and relayed in real time.",
+        "Number matching stops push fatigue but not relay through a phishing proxy."
+      ],
+      "concept": "Highest assurance needs phishing-resistant, hardware-bound authenticators.",
+      "trap": "Assuming all passkeys give the same assurance.",
+      "managerLens": "Spend the highest assurance where compromise does the most damage: administrators.",
+      "practicalNote": "NIST SP 800-63B Revision 4 (2025) allows syncable authenticators at AAL2; AAL3 needs non-exportable keys.",
+      "gap": "Distinguishing authenticator assurance levels.",
+      "followUpId": null,
+      "tags": [
+        "mfa",
+        "passkeys",
+        "aal"
+      ]
+    },
+    {
+      "id": "d5-016",
+      "domain": 5,
+      "objective": "5.3",
+      "subtopic": "SAML roles",
+      "difficulty": 2,
+      "type": "single",
+      "scenario": null,
+      "stem": "In a SAML single sign-on flow between a company's directory and a SaaS expense application, which party issues the signed assertion about the user?",
+      "options": [
+        "The service provider",
+        "The user's browser",
+        "A directory replica",
+        "The identity provider"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "The service provider (the expense app) consumes and trusts the assertion.",
+        "The browser carries the assertion between parties but does not create it.",
+        "A directory replica stores identities; it is not the SAML issuer.",
+        "Correct. The identity provider authenticates the user and issues the signed assertion."
+      ],
+      "concept": "IdP issues assertions; SP consumes them.",
+      "trap": "Confusing the party that carries the assertion with the one that issues it.",
+      "managerLens": "Protect the IdP's signing keys: whoever holds them can impersonate anyone.",
+      "practicalNote": "Stolen SAML signing certificates enable forged assertions ('golden SAML').",
+      "gap": "Knowing federation roles.",
+      "followUpId": null,
+      "tags": [
+        "saml",
+        "federation"
+      ]
+    },
+    {
+      "id": "d5-017",
+      "domain": 5,
+      "objective": "5.3",
+      "subtopic": "OAuth and OpenID Connect",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A mobile app built on REST and JSON needs to sign users in through the company's identity provider and learn who the user is. Which standard is designed for this?",
+      "options": [
+        "OAuth 2.0 access tokens on their own",
+        "OpenID Connect with its ID tokens",
+        "Kerberos tickets from the domain",
+        "LDAP simple bind to the directory"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "OAuth 2.0 delegates authorisation to APIs; an access token on its own is not meant to say who the user is.",
+        "Correct. OpenID Connect adds authentication to OAuth 2.0: the ID token tells the app who signed in, in a mobile-friendly JSON format.",
+        "Kerberos suits internal Windows networks, not mobile apps over the internet.",
+        "LDAP simple bind would send credentials to the app and expose the directory; it is not a federation protocol."
+      ],
+      "concept": "OAuth for delegated authorisation; OpenID Connect for authentication on top of it.",
+      "trap": "Using OAuth access tokens as proof of identity.",
+      "managerLens": "Standardise on the protocol that fits each app type to avoid home-grown login code.",
+      "practicalNote": "Mobile apps should use the authorisation code flow with PKCE.",
+      "gap": "Distinguishing OAuth from OpenID Connect.",
+      "followUpId": null,
+      "tags": [
+        "oauth",
+        "oidc",
+        "federation"
+      ]
+    },
+    {
+      "id": "d5-018",
+      "domain": 5,
+      "objective": "5.3",
+      "subtopic": "Hybrid identity",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": null,
+      "stem": "A company synchronises its on-premises Active Directory to a cloud identity provider that controls access to email and 40 SaaS applications. What is the MAIN security implication of this design?",
+      "options": [
+        "Cloud applications can no longer use multi-factor authentication",
+        "On-premises users lose single sign-on to internal applications",
+        "A compromise of on-premises AD or the sync server reaches the cloud",
+        "Password changes must be made separately in each SaaS application"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "Hybrid identity does not prevent MFA in the cloud.",
+        "Internal SSO continues; synchronisation does not remove it.",
+        "Correct. Identities flow from on-premises to the cloud, so an attacker controlling AD or the sync server can create or alter cloud identities. The sync server is a tier-zero asset.",
+        "Synchronisation is what lets one password or identity work across services."
+      ],
+      "concept": "In hybrid identity, the on-premises directory and sync path are part of the cloud's trust chain.",
+      "trap": "Thinking the cloud IdP is isolated from on-premises compromise.",
+      "managerLens": "Protect sync servers and on-premises identity at the highest tier.",
+      "practicalNote": "Cloud-only break-glass and admin accounts reduce the blast radius of an on-premises compromise.",
+      "gap": "Seeing risk in hybrid identity.",
+      "followUpId": null,
+      "tags": [
+        "hybrid-identity",
+        "federation"
+      ]
+    },
+    {
+      "id": "d5-019",
+      "domain": 5,
+      "objective": "5.4",
+      "subtopic": "Discretionary access control",
+      "difficulty": 2,
+      "type": "single",
+      "scenario": null,
+      "stem": "On a team file share, the person who creates a document decides who else may read or edit it, and can grant access to colleagues directly. Which access control model is this?",
+      "options": [
+        "Mandatory access control",
+        "Role-based access control",
+        "Rule-based access control",
+        "Discretionary access control"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "In MAC the system enforces labels; owners cannot grant access at their discretion.",
+        "In RBAC access follows job roles, not individual owners' choices.",
+        "Rule-based control applies global rules to everyone.",
+        "Correct. Owners deciding who gets access is discretionary access control."
+      ],
+      "concept": "DAC: the owner decides.",
+      "trap": "Confusing discretion with role-based assignment.",
+      "managerLens": "DAC is flexible but hard to govern; review owner-granted access regularly.",
+      "practicalNote": "File system ACLs on Windows and Linux are classic DAC.",
+      "gap": "Identifying access control models.",
+      "followUpId": null,
+      "tags": [
+        "access-control",
+        "dac"
+      ]
+    },
+    {
+      "id": "d5-020",
+      "domain": 5,
+      "objective": "5.4",
+      "subtopic": "Rule-based access control",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A payroll system allows logins only between 06:00 and 19:00 on weekdays and only from the head office network, for every user regardless of role. Which access control model does this describe?",
+      "options": [
+        "Discretionary access control",
+        "Rule-based access control",
+        "Role-based access control",
+        "Mandatory access control"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "No owner is deciding access at their discretion.",
+        "Correct. Global rules applied to all subjects, such as time and location limits, are rule-based access control.",
+        "The rule applies regardless of role, so it is not role-based.",
+        "There are no classification labels or clearances."
+      ],
+      "concept": "Rule-based: global rules for everyone.",
+      "trap": "Confusing rule-based with role-based because of the similar name.",
+      "managerLens": "Combine models: RBAC for what, rules for when and where.",
+      "practicalNote": "Conditional access policies often implement rule-based limits such as location.",
+      "gap": "Recognising rule-based access control.",
+      "followUpId": null,
+      "tags": [
+        "access-control",
+        "rule-based"
+      ]
+    },
+    {
+      "id": "d5-021",
+      "domain": 5,
+      "objective": "5.4",
+      "subtopic": "Risk-based access control",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A user signs in from Harare at 09:00 and, 25 minutes later, from Singapore using the same account. The identity provider blocks the second attempt and asks for stronger authentication. Which kind of access control is at work?",
+      "options": [
+        "Risk-adaptive access control using real-time signals",
+        "Discretionary access control set by the account owner",
+        "Mandatory access control based on clearance labels",
+        "Role-based access control assigned by job function"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. The decision changes with risk signals such as impossible travel: risk-adaptive (risk-based) access control.",
+        "The account owner did not set this decision.",
+        "No classification labels or clearances play any part in this decision.",
+        "The user's role did not change; the context did."
+      ],
+      "concept": "Risk-adaptive access control adjusts decisions to real-time risk.",
+      "trap": "Thinking access control is fixed once roles are set.",
+      "managerLens": "Use risk signals to add friction only when risk rises.",
+      "practicalNote": "Impossible travel, unfamiliar devices and leaked-credential alerts are common risk signals.",
+      "gap": "Recognising adaptive access control.",
+      "followUpId": null,
+      "tags": [
+        "access-control",
+        "risk-based"
+      ]
+    },
+    {
+      "id": "d5-022",
+      "domain": 5,
+      "objective": "5.4",
+      "subtopic": "Policy decision and enforcement points",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A company is building attribute-based access control for its internal APIs, following a zero trust architecture. Which TWO statements about its components are correct? (Select TWO.)",
+      "options": [
+        "The policy enforcement point allows or blocks each request at the resource",
+        "The policy decision point evaluates policy using attributes and context",
+        "The policy enforcement point is where administrators write the policies",
+        "The policy decision point must be built separately into each API's code",
+        "Only attributes of the user, never of the device, may be considered"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. The PEP sits in front of the resource and enforces the decision it receives.",
+        "Correct. The PDP evaluates the request against policy, using attributes of subject, resource and environment.",
+        "Policies are authored and administered elsewhere (a policy administration point), not at the PEP.",
+        "A central PDP serves many APIs; building one into each API defeats consistency.",
+        "ABAC can use device, resource and environment attributes as well as user attributes."
+      ],
+      "concept": "PDP decides; PEP enforces; policies are administered centrally.",
+      "trap": "Mixing up decision and enforcement.",
+      "managerLens": "Centralise decisions so policy is consistent; distribute enforcement close to resources.",
+      "practicalNote": "API gateways often act as PEPs, calling a policy engine as the PDP.",
+      "gap": "Understanding ABAC architecture.",
+      "followUpId": null,
+      "tags": [
+        "abac",
+        "zero-trust"
+      ]
+    },
+    {
+      "id": "d5-023",
+      "domain": 5,
+      "objective": "5.4",
+      "subtopic": "Separation of duties in RBAC",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "An ERP audit finds that six users hold both the 'create supplier' role and the 'approve payment' role, which together let one person pay a fake supplier. What is the BEST control?",
+      "options": [
+        "Review the six users' transactions once a year for suspicious payments",
+        "Raise the payment approval limit so fewer payments need approval",
+        "Define a rule in the role model that forbids holding both roles at once",
+        "Ask the six users to sign a declaration that they will not misuse access"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "Annual review might detect fraud long after it happens; it does not prevent it.",
+        "Changing limits does nothing about the conflicting roles.",
+        "Correct. A separation-of-duties rule in the role model prevents the toxic combination from being assigned at all.",
+        "A declaration is a weak deterrent, not a control on the conflict."
+      ],
+      "concept": "Enforce separation of duties by preventing conflicting role combinations.",
+      "trap": "Choosing detection or declarations over prevention.",
+      "managerLens": "Define toxic combinations with the business, then enforce them in the IAM system.",
+      "practicalNote": "Identity governance tools flag and block SoD conflicts at request time.",
+      "gap": "Implementing SoD in access control.",
+      "followUpId": null,
+      "tags": [
+        "rbac",
+        "separation-of-duties"
+      ]
+    },
+    {
+      "id": "d5-024",
+      "domain": 5,
+      "objective": "5.5",
+      "subtopic": "Access certification",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A company runs a quarterly review of who can access its customer database. Who should confirm whether each person's access is still needed?",
+      "options": [
+        "The database administrators, who manage the accounts",
+        "The service desk, which created the accounts originally",
+        "The security team, which owns the access review process",
+        "Managers and the data owner, who know the business need"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "DBAs know the technical accounts but not whether each person still needs access.",
+        "The service desk executes requests; it cannot judge business need.",
+        "Security runs the process and checks quality, but should not certify the need itself.",
+        "Correct. People who know the work and own the data are best placed to confirm or remove access."
+      ],
+      "concept": "Access reviews are certified by managers and data owners.",
+      "trap": "Leaving certification to IT or security.",
+      "managerLens": "Make the business accountable for who can see its data.",
+      "practicalNote": "Rubber-stamping is common; sample certifications and challenge reviewers who approve everything.",
+      "gap": "Knowing who certifies access.",
+      "followUpId": null,
+      "tags": [
+        "access-review"
+      ]
+    },
+    {
+      "id": "d5-025",
+      "domain": 5,
+      "objective": "5.5",
+      "subtopic": "Leavers and service accounts",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A senior administrator is leaving next week. He is the recorded owner of 12 service accounts and the only person who knows their passwords. What must happen before he leaves?",
+      "options": [
+        "Disable the 12 service accounts on his last day as part of offboarding",
+        "Assign new owners and rotate every credential he knew, then offboard",
+        "Ask him to write the passwords down and hand them to his manager",
+        "Leave the accounts unchanged, since they run systems that are stable"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "Disabling running service accounts would break the systems that depend on them.",
+        "Correct. Accounts need accountable owners, and any credential a leaver knew must be changed. Ideally they move to managed or vaulted credentials.",
+        "Writing passwords down spreads knowledge of them and leaves them unchanged after he goes.",
+        "Unchanged credentials known to a former employee remain a standing risk."
+      ],
+      "concept": "Leavers' knowledge of shared or service credentials must be neutralised by rotation.",
+      "trap": "Thinking that removing the leaver's own account is enough.",
+      "managerLens": "Make service account ownership and rotation part of the leaver checklist.",
+      "practicalNote": "Group managed service accounts rotate passwords automatically, so nobody needs to know them.",
+      "gap": "Handling leavers with privileged knowledge.",
+      "followUpId": null,
+      "tags": [
+        "leavers",
+        "service-accounts"
+      ]
+    },
+    {
+      "id": "d5-026",
+      "domain": 5,
+      "objective": "5.5",
+      "subtopic": "Dormant accounts",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A directory review finds 40 user accounts that nobody has signed in to for over 120 days. Policy says inactive accounts should be disabled after 90 days. What should happen?",
+      "options": [
+        "Disable them, confirm with managers, and delete those not needed",
+        "Delete them all straight away, since the policy has been breached",
+        "Leave them, since inactive accounts cannot be used by anyone",
+        "Reset their passwords to a random value and keep them enabled"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. Disabling removes the risk at once while managers confirm whether any are still needed, such as staff on long leave.",
+        "Immediate deletion can destroy data and break legitimate cases such as extended leave.",
+        "Dormant accounts are prime targets: their misuse goes unnoticed.",
+        "Enabled accounts remain usable if the new password is reset by an attacker or a help desk mistake."
+      ],
+      "concept": "Dormant accounts are disabled first, then reviewed and removed.",
+      "trap": "Either ignoring them or deleting without checking.",
+      "managerLens": "Automate inactivity disabling; investigate any sign-in to a dormant account.",
+      "practicalNote": "In AD, Search-ADAccount -AccountInactive finds them; schedule it and alert.",
+      "gap": "Managing dormant accounts.",
+      "followUpId": null,
+      "tags": [
+        "access-review",
+        "dormant-accounts"
+      ]
+    },
+    {
+      "id": "d5-027",
+      "domain": 5,
+      "objective": "5.5",
+      "subtopic": "Service account management",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A company is cleaning up 300 service accounts in Active Directory. Which TWO practices should its new standard require? (Select TWO.)",
+      "options": [
+        "Use managed service accounts whose passwords the platform rotates",
+        "Deny interactive and remote desktop sign-in for service accounts",
+        "Share one service account across applications to reduce the count",
+        "Give service accounts Domain Admin rights to avoid permission errors",
+        "Set service account passwords to never expire so services keep running"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Managed service accounts rotate long random passwords automatically, so no person knows them.",
+        "Correct. Service accounts should run services, not be used by people; blocking interactive logon limits misuse.",
+        "Sharing accounts widens the blast radius and destroys accountability.",
+        "Excessive rights turn any service compromise into a domain compromise.",
+        "Non-expiring, manually set passwords tend to be weak, widely known and never changed."
+      ],
+      "concept": "Service accounts: owned, least privilege, managed credentials, no interactive use.",
+      "trap": "Optimising for fewer outages at the cost of privilege.",
+      "managerLens": "Treat service accounts as identities with owners and reviews, not as plumbing.",
+      "practicalNote": "Kerberoasting targets service accounts with weak passwords and SPNs; managed accounts defeat it.",
+      "gap": "Managing service identities.",
+      "followUpId": null,
+      "tags": [
+        "service-accounts",
+        "active-directory"
+      ]
+    },
+    {
+      "id": "d5-028",
+      "domain": 5,
+      "objective": "5.6",
+      "subtopic": "Kerberos components",
+      "difficulty": 2,
+      "type": "single",
+      "scenario": null,
+      "stem": "A user signed in to a Windows domain this morning and received a TGT. She now opens a file share. Which Kerberos component issues the ticket she needs for the file share?",
+      "options": [
+        "The file server itself",
+        "The authentication service",
+        "The ticket-granting service",
+        "The user's workstation"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "The file server validates the service ticket but does not issue it.",
+        "The authentication service issued the TGT at sign-in.",
+        "Correct. The ticket-granting service accepts the TGT and issues a service ticket for the file share.",
+        "The workstation requests tickets; it does not issue them."
+      ],
+      "concept": "Kerberos: AS issues the TGT; TGS issues service tickets.",
+      "trap": "Mixing up the two KDC services.",
+      "managerLens": "The KDC is tier-zero: protect domain controllers above everything else.",
+      "practicalNote": "In Active Directory, both services run on every domain controller.",
+      "gap": "Knowing the Kerberos flow.",
+      "followUpId": "d5-029",
+      "tags": [
+        "kerberos"
+      ]
+    },
+    {
+      "id": "d5-029",
+      "domain": 5,
+      "objective": "5.6",
+      "subtopic": "Kerberos time dependence",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "After a virtual machine migration, users at one branch can no longer sign in to the domain. The branch server's clock is nine minutes ahead of the domain controllers. What is the MOST likely cause?",
+      "options": [
+        "The branch firewall is blocking LDAP queries",
+        "Kerberos rejects tickets outside the clock skew",
+        "The users' passwords expired during the migration",
+        "DNS records for the branch server were deleted"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "Blocked LDAP would cause other errors and does not match the clock evidence.",
+        "Correct. Kerberos relies on timestamps; by default clocks may differ by no more than five minutes, so authentication fails.",
+        "Password expiry would not depend on the server's clock in this way.",
+        "Deleted DNS records cause name resolution errors, not this pattern."
+      ],
+      "concept": "Kerberos needs synchronised time.",
+      "trap": "Chasing network causes when the evidence points to time.",
+      "managerLens": "Time synchronisation is a security dependency; monitor it.",
+      "practicalNote": "Domain members should sync from the domain hierarchy, with the root DC syncing from a reliable source.",
+      "gap": "Knowing Kerberos dependencies.",
+      "followUpId": null,
+      "tags": [
+        "kerberos",
+        "time"
+      ]
+    },
+    {
+      "id": "d5-030",
+      "domain": 5,
+      "objective": "5.6",
+      "subtopic": "RADIUS and TACACS+",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A telecom wants central authentication for engineers who log in to routers and switches, with approval of individual commands and full encryption of the AAA traffic. Which protocol fits BEST?",
+      "options": [
+        "TACACS+ over TCP",
+        "RADIUS over UDP",
+        "LDAP simple bind",
+        "Kerberos tickets"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. TACACS+ separates authentication, authorisation and accounting, supports per-command authorisation and encrypts the whole payload.",
+        "RADIUS combines authentication and authorisation and encrypts only the password field.",
+        "LDAP simple bind is a directory operation, not a device AAA protocol, and sends credentials in clear without TLS.",
+        "Kerberos is not used for per-command authorisation on network devices."
+      ],
+      "concept": "TACACS+ for device administration; RADIUS for network access.",
+      "trap": "Choosing RADIUS because it is the more familiar AAA protocol.",
+      "managerLens": "Record every privileged command on core devices.",
+      "practicalNote": "Many networks use TACACS+ for device admin and RADIUS for Wi-Fi and VPN user access.",
+      "gap": "Choosing AAA protocols.",
+      "followUpId": null,
+      "tags": [
+        "tacacs",
+        "radius",
+        "aaa"
+      ]
+    },
+    {
+      "id": "d5-031",
+      "domain": 5,
+      "objective": "5.6",
+      "subtopic": "Directory hardening",
+      "difficulty": 5,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A security review of a company's Active Directory finds weak authentication settings. Which TWO changes BEST protect directory authentication? (Select TWO.)",
+      "options": [
+        "Require LDAP signing and channel binding, or LDAPS, for directory binds",
+        "Disable LM and NTLMv1 authentication across the domain",
+        "Allow anonymous directory binds so applications can query users",
+        "Store user passwords with reversible encryption for help desk recovery",
+        "Extend Kerberos ticket lifetimes to 30 days to cut authentication prompts"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Signing, channel binding or TLS protect binds from interception and relay attacks.",
+        "Correct. LM and NTLMv1 are weak and easily cracked or relayed; removing them closes known attacks.",
+        "Anonymous binds expose directory data to anyone on the network.",
+        "Reversible encryption is close to storing passwords in clear text.",
+        "Long ticket lifetimes extend the value of stolen tickets."
+      ],
+      "concept": "Harden directory authentication: protected binds, no legacy protocols.",
+      "trap": "Trading security for convenience in directory settings.",
+      "managerLens": "Treat Active Directory as tier-zero with a hardening baseline and regular assessment.",
+      "practicalNote": "Free AD assessment tools report these settings and many more.",
+      "gap": "Hardening directory services.",
+      "followUpId": null,
+      "tags": [
+        "active-directory",
+        "ldap",
+        "ntlm"
       ]
     },
     {
