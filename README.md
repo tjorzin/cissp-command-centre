@@ -2,6 +2,8 @@
 
 A personal CISSP study app: an offline, installable PWA that tells you what to study next. Built in vanilla HTML, CSS and JavaScript, with no build step, no backend and no accounts. Progress stays on the device; use **More → Export progress** to back it up or move it to another device.
 
+**Open the app:** https://tjorzin.github.io/cissp-command-centre/ (on a phone, choose Add to Home screen to install it).
+
 > Status: version 1.0, all ten phases complete: all eight domains (248 questions, 62 lessons, 99 cards, 21 drills, 16 labs), car mode (9 audio tracks, about 45 min) and a GitHub Pages workflow. See `VALIDATION.md`.
 
 Content is added one domain at a time: write a batch file, merge it with `node tools/merge-batch.js <file>`, then `npm run validate` (schema, give-away lint, lessons, drills and labs) before committing.
