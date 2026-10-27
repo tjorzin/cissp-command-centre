@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "source": "data/SOURCES.md (ISC2 outline PDFs retrieved 27 October 2026)",
+  "outlines": [
+    {
+      "id": "2024",
+      "label": "CISSP outline effective 15 April 2024",
+      "effectiveFrom": "2024-04-15",
+      "effectiveTo": "2027-04-14",
+      "domains": [
+        { "n": 1, "name": "Security and Risk Management", "weight": 16 },
+        { "n": 2, "name": "Asset Security", "weight": 10 },
+        { "n": 3, "name": "Security Architecture and Engineering", "weight": 13 },
+        { "n": 4, "name": "Communication and Network Security", "weight": 13 },
+        { "n": 5, "name": "Identity and Access Management (IAM)", "weight": 13 },
+        { "n": 6, "name": "Security Assessment and Testing", "weight": 12 },
+        { "n": 7, "name": "Security Operations", "weight": 13 },
+        { "n": 8, "name": "Software Development Security", "weight": 10 }
+      ]
+    },
+    {
+      "id": "2027",
+      "label": "CISSP outline effective 15 April 2027",
+      "effectiveFrom": "2027-04-15",
+      "effectiveTo": null,
+      "domains": [
+        { "n": 1, "name": "Security Governance and Risk Management", "weight": 13.6 },
+        { "n": 2, "name": "Asset Security", "weight": 12 },
+        { "n": 3, "name": "Security Architecture and Engineering", "weight": 12.8 },
+        { "n": 4, "name": "Communication and Network Security", "weight": 12.8 },
+        { "n": 5, "name": "Identity and Access Management (IAM)", "weight": 13.6 },
+        { "n": 6, "name": "Security Assessment and Testing", "weight": 11.2 },
+        { "n": 7, "name": "Security Operations", "weight": 12.8 },
+        { "n": 8, "name": "Software Development Security", "weight": 11.2 }
+      ]
+    }
+  ],
+  "format": {
+    "delivery": "Computerised Adaptive Testing (CAT)",
+    "items": { "min": 100, "max": 150 },
+    "minutes": 180,
+    "passing": "700 out of 1000 (scaled)"
+  }
+}

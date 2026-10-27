@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "cissp-command-centre/question.schema.json",
+  "title": "CISSP Command Centre question",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "domain", "objective", "subtopic", "difficulty", "type", "scenario",
+    "stem", "options", "correct", "rationales", "concept", "trap",
+    "managerLens", "practicalNote", "gap", "followUpId", "tags"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^d[1-8]-[0-9]{3}$" },
+    "domain": { "type": "integer", "minimum": 1, "maximum": 8 },
+    "objective": {
+      "description": "Outline objective number, e.g. \"1.9\". Links the question to a domain sub-topic page.",
+      "type": "string", "pattern": "^[1-8]\\.[0-9]{1,2}$"
+    },
+    "subtopic": { "type": "string", "minLength": 3 },
+    "difficulty": {
+      "description": "1 terminology, 2 concept, 3 application, 4 troubleshooting/analysis, 5 complex scenario, 6 hard with several plausible answers",
+      "type": "integer", "minimum": 1, "maximum": 6
+    },
+    "type": { "enum": ["single", "multi"] },
+    "scenario": {
+      "description": "Null, or the id of a shared case study in scenarios (e.g. \"sc-d7-02\") for multi-question scenario sets",
+      "type": ["string", "null"]
+    },
+    "stem": { "type": "string", "minLength": 20 },
+    "options": { "type": "array", "minItems": 4, "maxItems": 6, "items": { "type": "string", "minLength": 1 } },
+    "correct": {
+      "description": "Zero-based option indices. Exactly one for single; two or more for multi.",
+      "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "integer", "minimum": 0 }
+    },
+    "rationales": {
+      "description": "One per option, same order as options: why each is right or wrong.",
+      "type": "array", "items": { "type": "string", "minLength": 10 }
+    },
+    "concept": { "type": "string" },
+    "trap": { "type": "string" },
+    "managerLens": { "type": "string" },
+    "practicalNote": { "type": "string" },
+    "gap": { "type": "string" },
+    "followUpId": { "type": ["string", "null"], "pattern": "^d[1-8]-[0-9]{3}$" },
+    "tags": {
+      "description": "Free tags plus controlled ones: first-step, best-step, management, technical, outline2027",
+      "type": "array", "items": { "type": "string" }
+    }
+  },
+  "$comment": "Cross-field rules enforced by tests/validate-content.js, not expressible here: rationales.length === options.length; every correct index < options.length; single => correct.length === 1; multi => correct.length >= 2; id prefix matches domain; objective prefix matches domain; followUpId exists in the bank."
+}
