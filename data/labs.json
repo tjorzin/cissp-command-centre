@@ -3,7 +3,47 @@
   "notice": "Hands-on labs, defined day by day. Every lab is LAB / TEST ENVIRONMENT only: fictional data or isolated test systems, never production.",
   "labs": [
     {
-      "id": "lab-d1-risk-register", "day": 1, "domain": 1, "objective": "1.9", "minutes": 45,
+      "id": "lab-d1-mini-bia",
+      "day": 2,
+      "domain": 1,
+      "objective": "1.7",
+      "minutes": 40,
+      "title": "Run a mini business impact analysis on a test service",
+      "environment": "LAB / TEST ENVIRONMENT: a fictional service or one you run in an isolated home or test lab. Do not interview colleagues or use production systems.",
+      "goal": "Practise turning business impact into MTD, RTO and RPO, and surface dependencies, before any recovery design.",
+      "prerequisites": [
+        "A spreadsheet or notebook",
+        "Pick one fictional business process, for example 'agent cash-in for a mobile money service'",
+        "Cards: RTO, RPO, WRT, MTD; drill: RTO, RPO, MTD and WRT"
+      ],
+      "steps": [
+        "Describe the process in two sentences and name its owner.",
+        "List what it depends on: systems, data, people, suppliers, utilities, telecom links.",
+        "Estimate the impact of an outage at 1 hour, 4 hours, 1 day and 3 days: money, regulatory, reputation, safety.",
+        "Mark the point where impact becomes unacceptable: that is the MTD.",
+        "Estimate the work recovery time after a restore (checks, reconciliation) and set RTO = MTD − WRT or lower.",
+        "Set the RPO from how much data the process can lose and still be reconstructed.",
+        "Mark every single point of failure in the dependency list."
+      ],
+      "validation": [
+        "RTO + WRT does not exceed MTD.",
+        "At least one external dependency is listed.",
+        "No recovery solution or vendor appears in the output: the BIA states requirements only."
+      ],
+      "rollback": [
+        "Nothing to roll back: this is a paper exercise."
+      ],
+      "evidence": [
+        "The completed impact table and the MTD, RTO, RPO line.",
+        "The list of single points of failure, ranked."
+      ]
+    },
+    {
+      "id": "lab-d1-risk-register",
+      "day": 1,
+      "domain": 1,
+      "objective": "1.9",
+      "minutes": 45,
       "title": "Build a risk register for a fictional bank",
       "environment": "LAB / TEST ENVIRONMENT: a new spreadsheet with fictional data only. Do not use real company risks, systems or names.",
       "goal": "Turn a scenario into a working risk register with owners, ratings, treatments and an acceptance decision, and do one quantitative calculation.",
@@ -36,35 +76,78 @@
       ]
     },
     {
-      "id": "lab-d1-mini-bia", "day": 2, "domain": 1, "objective": "1.7", "minutes": 40,
-      "title": "Run a mini business impact analysis on a test service",
-      "environment": "LAB / TEST ENVIRONMENT: a fictional service or one you run in an isolated home or test lab. Do not interview colleagues or use production systems.",
-      "goal": "Practise turning business impact into MTD, RTO and RPO, and surface dependencies, before any recovery design.",
+      "id": "lab-d2-classify-share",
+      "day": 3,
+      "domain": 2,
+      "objective": "2.1",
+      "minutes": 40,
+      "title": "Classify and mark a test file share",
+      "environment": "LAB / TEST ENVIRONMENT: a new folder of dummy files you create yourself. Do not use real company documents or shares.",
+      "goal": "Practise applying a classification scheme by impact, marking files so the label travels with them, and spotting over-classification.",
       "prerequisites": [
-        "A spreadsheet or notebook",
-        "Pick one fictional business process, for example 'agent cash-in for a mobile money service'",
-        "Cards: RTO, RPO, WRT, MTD; drill: RTO, RPO, MTD and WRT"
+        "A computer with a word processor and a spreadsheet app",
+        "Cards: who classifies, marking vs labelling",
+        "Lesson 2.1 and 2.2"
       ],
       "steps": [
-        "Describe the process in two sentences and name its owner.",
-        "List what it depends on: systems, data, people, suppliers, utilities, telecom links.",
-        "Estimate the impact of an outage at 1 hour, 4 hours, 1 day and 3 days: money, regulatory, reputation, safety.",
-        "Mark the point where impact becomes unacceptable: that is the MTD.",
-        "Estimate the work recovery time after a restore (checks, reconciliation) and set RTO = MTD − WRT or lower.",
-        "Set the RPO from how much data the process can lose and still be reconstructed.",
-        "Mark every single point of failure in the dependency list."
+        "Create a folder called LAB-share and 12 dummy files: for example a canteen menu, a press release, a staff phone list, a salary sheet, a board paper, a customer export, a draft contract, a published annual report, a password list (fake), a supplier price list, a patient list (fake names) and a project plan.",
+        "Write a four-level scheme with one line each: Public, Internal, Confidential, Restricted, defined by the harm if disclosed.",
+        "For each file, write who the data owner would be in a real company and choose its level, with one sentence of reasoning.",
+        "Add a visible marking (header and footer) to every Confidential and Restricted file.",
+        "Add the level to each file's properties or metadata (for example the Tags or Keywords field).",
+        "Review your choices: move anything you rated higher than its real harm down a level, and note why.",
+        "Write one handling rule per level for storage, sending and destruction."
       ],
       "validation": [
-        "RTO + WRT does not exceed MTD.",
-        "At least one external dependency is listed.",
-        "No recovery solution or vendor appears in the output: the BIA states requirements only."
+        "Every file has an owner role and a level with a reason.",
+        "No more than a third of the files are at the top level; if more, you are over-classifying.",
+        "Confidential and Restricted files show the marking when printed or opened on another device.",
+        "Each level has storage, sending and destruction rules."
       ],
       "rollback": [
-        "Nothing to roll back: this is a paper exercise."
+        "Delete the LAB-share folder. Nothing else is changed."
       ],
       "evidence": [
-        "The completed impact table and the MTD, RTO, RPO line.",
-        "The list of single points of failure, ranked."
+        "A table of file, owner role, level and reason.",
+        "A screenshot of one marked file and its metadata.",
+        "The one-page handling rules."
+      ]
+    },
+    {
+      "id": "lab-d2-remanence",
+      "day": 4,
+      "domain": 2,
+      "objective": "2.4",
+      "minutes": 45,
+      "title": "See data remanence, then defeat it",
+      "environment": "LAB / TEST ENVIRONMENT: a spare USB stick or a virtual disk in a test VM that holds nothing you need. Never run recovery or wiping tools on a work device or a drive with real data.",
+      "goal": "Show that deleting and quick-formatting leave data recoverable, then sanitise the test media and show recovery fails.",
+      "prerequisites": [
+        "A spare USB stick (8 GB or less is quickest) or a test VM with a second virtual disk",
+        "PhotoRec, the free open-source recovery tool from CGSecurity, downloaded from its official site",
+        "Card: clear, purge, destroy; drill: clear, purge, destroy"
+      ],
+      "steps": [
+        "Copy ten dummy files to the test media: a few photos you took yourself and some text files with a unique word such as LABMARKER in them.",
+        "Delete the files, empty the recycle bin and quick-format the media.",
+        "Run PhotoRec against the test media only, saving recovered files to a separate folder on your computer.",
+        "Count how many of the ten files came back, and search the recovered text files for LABMARKER.",
+        "Wipe the test media with a full overwrite (for example the operating system's full format, or a disk utility's zero-fill option).",
+        "Run PhotoRec again on the wiped media and count the recovered files.",
+        "Write two sentences on why this overwrite would not be enough for an SSD that held sensitive data."
+      ],
+      "validation": [
+        "After the quick format, at least some files were recovered.",
+        "After the full overwrite, no LABMARKER files were recovered from the test media.",
+        "Your note mentions wear levelling or spare blocks, and names purge methods for SSDs (sanitise command or cryptographic erase)."
+      ],
+      "rollback": [
+        "Delete the recovered-files folder from your computer.",
+        "Reformat the test media for normal use, or delete the test VM's extra disk."
+      ],
+      "evidence": [
+        "Screenshots of the PhotoRec results before and after the wipe.",
+        "Your counts and the two-sentence SSD note."
       ]
     }
   ]

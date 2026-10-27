@@ -21,6 +21,16 @@
         "d1-007"
       ],
       "text": "Mukuvisi Bank is a regional bank with 1,800 staff in Zimbabwe and Zambia. Its new CEO has moved the CISO from reporting to the CIO to reporting to her directly. The bank's information security policy was approved in 2019; it names specific firewall models and requires 8-character passwords. Internal audit has found that 40% of business units have never classified their data, and that the security budget is set each year as a fixed percentage of the IT budget. A ransomware attack on a peer bank last month has made the board anxious. The board's risk committee meets quarterly, but security has never presented to it."
+    },
+    {
+      "id": "sc-03",
+      "title": "Patient data at a clinic group",
+      "questionIds": [
+        "d2-003",
+        "d2-004",
+        "d2-005"
+      ],
+      "text": "Kopje Community Clinics runs 12 clinics in and around Harare. It is moving from paper files and an old patient-records system to a cloud electronic health record. Nobody has classified the clinics' information, and no one is named as owner of the patient data. Clinicians share lab results with each other on personal WhatsApp groups, and receptionists carry patient lists between sites on USB drives. The vendor of the old patient-records system will stop issuing security updates next month, but the migration will take another six months. A university research partner has asked for two years of patient data to study treatment outcomes, and the clinics may need to contact patients again if the research finds a safety problem with a medicine."
     }
   ],
   "questions": [
@@ -1539,8 +1549,8 @@
         1
       ],
       "rationales": [
-        "Correct. Firmware sanitise commands (block erase or crypto erase) reach areas the operating system cannot, including over-provisioned blocks. Verification is part of the process in NIST SP 800-88.",
-        "Correct. Destroying the media encryption key makes the data unrecoverable, provided the encryption was implemented correctly and no copy of the key exists. NIST SP 800-88 recognises cryptographic erase as a purge method.",
+        "Correct. Firmware sanitise commands (block erase or crypto erase) reach areas the operating system cannot, including over-provisioned blocks. Verifying a sample confirms the sanitisation worked.",
+        "Correct. Destroying the media encryption key makes the data unrecoverable, provided the encryption was implemented correctly and no copy of the key exists. NIST SP 800-88 Rev. 2 and IEEE 2883 both recognise cryptographic erase as a purge method.",
         "SSDs store data in flash cells, not magnetic domains, so degaussing does not remove it.",
         "Wear levelling and spare blocks mean host overwrites do not reliably reach every cell on an SSD. Multi-pass overwriting is a magnetic-disk technique.",
         "Formatting removes file system structures, not the data. The records stay recoverable."
@@ -1555,6 +1565,834 @@
         "remanence",
         "sanitisation",
         "ssd"
+      ]
+    },
+    {
+      "id": "d2-003",
+      "domain": 2,
+      "objective": "2.1",
+      "subtopic": "Data classification and ownership",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": "sc-03",
+      "stem": "Kopje's new security lead wants to bring order to how patient information is protected across the clinics. What should happen FIRST?",
+      "options": [
+        "Encrypt the laptops and USB drives used by the clinic staff",
+        "Ban WhatsApp and issue a secure messaging app to clinicians",
+        "Appoint data owners and classify information by sensitivity",
+        "Buy a DLP tool to monitor what staff send outside the clinics"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "Encryption will probably be needed, but without classification the clinics cannot know which data needs which protection, or where it lives.",
+        "Fixing one channel helps, but it is a control chosen before anyone has decided what the data is worth and who is accountable for it.",
+        "Correct. Ownership and classification come first: they decide what protection each kind of information needs, so every later control is chosen for a reason.",
+        "DLP enforces rules based on classification. Without a classification scheme, it has nothing reliable to enforce."
+      ],
+      "concept": "Classification and ownership come before controls.",
+      "trap": "Fixing the most visible problem first.",
+      "managerLens": "Make the business accountable for its data, then let classification drive the controls.",
+      "practicalNote": "Health data is normally the highest class in a clinic's scheme because of the harm disclosure causes and the legal duties attached to it.",
+      "gap": "Not seeing classification as the foundation of asset security.",
+      "followUpId": "d2-004",
+      "tags": [
+        "classification",
+        "ownership",
+        "first-step"
+      ]
+    },
+    {
+      "id": "d2-004",
+      "domain": 2,
+      "objective": "2.5",
+      "subtopic": "End of support",
+      "difficulty": 5,
+      "type": "multi",
+      "scenario": "sc-03",
+      "stem": "Kopje's old patient-records system loses vendor security updates next month, but it must keep running for six more months until the migration ends. Which TWO actions are MOST appropriate? (Select TWO.)",
+      "options": [
+        "Agree a dated retirement plan for the old system with its business owner",
+        "Apply compensating controls such as network isolation until it is retired",
+        "Keep it running unchanged, since vendor updates add little security value",
+        "Delete the old system's records once vendor support ends next month",
+        "Move the old system onto the cloud provider's network to share its controls"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. The owner must accept the risk of running unsupported software for a fixed period, with a date by which it ends.",
+        "Correct. Without patches, isolation, tight access and extra monitoring reduce the chance that new vulnerabilities are exploited.",
+        "Unpatched vulnerabilities accumulate after end of support; leaving it unchanged ignores a growing risk.",
+        "Patient records must be retained; deleting them would breach retention duties and lose data still needed for care.",
+        "Connecting an unsupported system to a new environment spreads its risk rather than containing it."
+      ],
+      "concept": "End-of-support assets need an owner's dated decision and compensating controls.",
+      "trap": "Either ignoring end of support or reacting by destroying data that must be kept.",
+      "managerLens": "Time-limit the exposure and make the owner accountable for it.",
+      "practicalNote": "Typical compensating controls: a dedicated VLAN, access only from named workstations, no internet access and extra logging.",
+      "gap": "Managing assets past end of support.",
+      "followUpId": "d2-005",
+      "tags": [
+        "eos",
+        "compensating-control"
+      ]
+    },
+    {
+      "id": "d2-005",
+      "domain": 2,
+      "objective": "2.6",
+      "subtopic": "De-identification",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": "sc-03",
+      "stem": "The university wants two years of Kopje patient data for research. Kopje must be able to contact affected patients if a safety problem is found, but the researchers must not be able to identify anyone. Which approach BEST meets both needs?",
+      "options": [
+        "Anonymise the records so that no one can ever link them back to patients",
+        "Pseudonymise the records and keep the re-linking key only at the clinics",
+        "Let the researchers tokenise the records with a token vault of their own",
+        "Mask patients' surnames and keep the other identifying fields unchanged"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "True anonymisation protects patients but makes it impossible for Kopje to find the people affected by a safety problem.",
+        "Correct. Researchers see only codes, while Kopje keeps the key separately and can re-link records to contact patients when needed.",
+        "If the researchers hold the token vault, they can recover identities, which defeats the purpose.",
+        "Masking one field leaves other identifiers such as date of birth and address that can easily re-identify patients."
+      ],
+      "concept": "Pseudonymisation allows controlled re-identification; anonymisation does not.",
+      "trap": "Choosing the strongest privacy option without checking the business need.",
+      "managerLens": "Match the method to the purpose, and keep the means of re-identification under the data owner's control.",
+      "practicalNote": "Pseudonymised data is usually still personal data in law, so a data sharing agreement is still needed.",
+      "gap": "Distinguishing pseudonymisation, anonymisation, tokenisation and masking.",
+      "followUpId": null,
+      "tags": [
+        "privacy",
+        "pseudonymisation"
+      ]
+    },
+    {
+      "id": "d2-006",
+      "domain": 2,
+      "objective": "2.1",
+      "subtopic": "Who classifies data",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A company is rolling out a classification scheme. The HR salary database is run by the database team, backed up by the infrastructure team and used daily by payroll clerks. Who should decide its classification?",
+      "options": [
+        "The database administrator who manages the database day to day",
+        "The CISO, who owns the company's classification scheme",
+        "The payroll clerks, who work with the data every day",
+        "The HR director, as the owner of the salary data"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "The DBA is a custodian: they protect the data as the classification requires, but do not set it.",
+        "The CISO designs and maintains the scheme and advises, but each data set's owner applies it.",
+        "Users handle the data under the owner's rules; they do not decide its classification.",
+        "Correct. The data owner, a senior business manager accountable for the data, decides its classification."
+      ],
+      "concept": "The data owner classifies; custodians protect; users follow the rules.",
+      "trap": "Assuming whoever runs or secures the system decides.",
+      "managerLens": "Put classification decisions with the business people accountable for the data.",
+      "practicalNote": "Owners often delegate day-to-day classification to data stewards while staying accountable.",
+      "gap": "Knowing which role classifies data.",
+      "followUpId": null,
+      "tags": [
+        "classification",
+        "data-roles"
+      ]
+    },
+    {
+      "id": "d2-007",
+      "domain": 2,
+      "objective": "2.1",
+      "subtopic": "Classification criteria",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A logistics company is setting the criteria for its new classification scheme. Which criterion should carry the MOST weight when deciding a data set's classification?",
+      "options": [
+        "The harm to the company if it were disclosed, altered or lost",
+        "The cost of the storage platform that the data is kept on",
+        "The number of employees who need access to it for their work",
+        "How old the data is and when it was last changed by someone"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. Classification reflects the value and sensitivity of the information: the impact of its compromise.",
+        "Storage cost says nothing about how sensitive the information is.",
+        "Wide access may follow from a lower classification, but it does not determine it.",
+        "Age can be a reason to review or declassify, but impact is the main criterion."
+      ],
+      "concept": "Classify by impact of compromise: value and sensitivity.",
+      "trap": "Choosing an operational attribute instead of impact.",
+      "managerLens": "Define classes in business-impact language so owners can apply them consistently.",
+      "practicalNote": "Many schemes define each class by example impacts, such as regulatory fines or harm to customers.",
+      "gap": "Knowing what drives classification.",
+      "followUpId": null,
+      "tags": [
+        "classification"
+      ]
+    },
+    {
+      "id": "d2-008",
+      "domain": 2,
+      "objective": "2.1",
+      "subtopic": "Over-classification",
+      "difficulty": 5,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A government department labels nearly every document SECRET 'to be safe', including canteen menus and published reports. Which TWO problems does this cause? (Select TWO.)",
+      "options": [
+        "Money and effort go into protecting information of little value",
+        "Staff learn to ignore labels, so genuinely secret data stands out less",
+        "Information becomes easier to share with partner departments",
+        "Classification no longer needs to be reviewed at regular intervals",
+        "The integrity of the department's records drops as labels change"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Each SECRET item needs costly handling, storage and destruction, so low-value data consumes protection budget.",
+        "Correct. When everything carries the top label, it stops meaning anything and real secrets lose their signal.",
+        "Over-classification makes sharing harder, not easier, because each item needs clearance and approval.",
+        "Over-classification makes review more necessary, not less.",
+        "Labelling choices affect protection and cost, not the accuracy of the records."
+      ],
+      "concept": "Over-classification wastes resources and weakens the meaning of labels.",
+      "trap": "Thinking more protection is always safer.",
+      "managerLens": "Classify accurately; protection should follow real impact.",
+      "practicalNote": "Many governments run declassification reviews and train staff to classify at the lowest level that fits.",
+      "gap": "Seeing the costs of over-classification.",
+      "followUpId": null,
+      "tags": [
+        "classification"
+      ]
+    },
+    {
+      "id": "d2-009",
+      "domain": 2,
+      "objective": "2.2",
+      "subtopic": "Marking and labelling",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A confidential pricing spreadsheet is regularly emailed to a distributor, who saves and forwards it inside their own company. Which control BEST ensures the recipients can still tell it is confidential?",
+      "options": [
+        "Folder permissions on the share where the original copy is kept",
+        "A DLP rule that blocks the file if it is sent to a webmail domain",
+        "A visible confidential marking in the header and footer of the file",
+        "TLS encryption of the email connection used to send the file"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "Folder permissions protect the original copy only; they mean nothing once the file has been sent.",
+        "DLP controls the sender's outbound mail; it does not tell recipients how to treat the file.",
+        "Correct. A marking on the document itself travels with every copy and tells each reader how to handle it.",
+        "TLS protects the file in transit only; after delivery it carries no indication of sensitivity."
+      ],
+      "concept": "Marking travels with the information; system controls stay behind.",
+      "trap": "Choosing a technical control that only works inside your own systems.",
+      "managerLens": "When data leaves your control, make sure its classification leaves with it.",
+      "practicalNote": "Labelling tools can add both a visible marking and embedded metadata at the same time.",
+      "gap": "Knowing what marking and labelling achieve.",
+      "followUpId": null,
+      "tags": [
+        "handling",
+        "marking"
+      ]
+    },
+    {
+      "id": "d2-010",
+      "domain": 2,
+      "objective": "2.2",
+      "subtopic": "Media in transit",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "Each week a bank sends backup tapes holding customer data to an offsite vault by courier. A tape went missing last year and was never found. What MOST reduces the impact of a tape being lost in transit?",
+      "options": [
+        "Using a bonded courier with tracked vehicles and vetted drivers",
+        "Encrypting the tapes, with the keys managed separately at the bank",
+        "Sealing the tapes in tamper-evident bags before collection",
+        "Logging a chain-of-custody signature at every handover point"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "A better courier lowers the chance of loss but does nothing for the data on a tape that still goes missing.",
+        "Correct. Encryption with separately held keys means a lost tape exposes nothing, which reduces impact rather than just likelihood.",
+        "Tamper-evident bags show whether a tape was opened; they do not protect the data on a lost tape.",
+        "Chain of custody shows where a tape was lost; it does not protect its contents."
+      ],
+      "concept": "Encrypt media in transit; other controls reduce likelihood or aid detection.",
+      "trap": "Picking the control that sounds most like transport security.",
+      "managerLens": "Ask what happens when the control fails; encryption still protects the data when the tape is lost.",
+      "practicalNote": "LTO tape drives support hardware encryption, with keys held in a key manager rather than on the tape.",
+      "gap": "Distinguishing impact reduction from likelihood reduction.",
+      "followUpId": null,
+      "tags": [
+        "handling",
+        "encryption",
+        "backup"
+      ]
+    },
+    {
+      "id": "d2-011",
+      "domain": 2,
+      "objective": "2.2",
+      "subtopic": "Handling requirements",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A company is writing handling requirements for paper documents classified RESTRICTED. Which TWO belong in those requirements? (Select TWO.)",
+      "options": [
+        "Storage in locked cabinets when the documents are not in use",
+        "Destruction with a cross-cut shredder at the end of their life",
+        "The data owner's choice of which documents are RESTRICTED",
+        "Board approval of the company's classification scheme",
+        "The asset tag of each printer used to print the documents"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. How documents must be stored is a core handling requirement.",
+        "Correct. How documents must be destroyed is a core handling requirement.",
+        "Deciding the classification happens before handling; handling rules apply once it is set.",
+        "Approving the scheme is governance of the scheme, not a handling rule.",
+        "Printer asset tags are inventory detail, not handling rules for documents."
+      ],
+      "concept": "Handling requirements cover storage, transmission, sharing and destruction for each class.",
+      "trap": "Mixing classification decisions or governance into handling rules.",
+      "managerLens": "Write handling rules per class so staff know exactly what to do with each label.",
+      "practicalNote": "A one-page handling matrix per classification level is easier for staff than a long policy.",
+      "gap": "Knowing what handling requirements contain.",
+      "followUpId": null,
+      "tags": [
+        "handling"
+      ]
+    },
+    {
+      "id": "d2-012",
+      "domain": 2,
+      "objective": "2.3",
+      "subtopic": "Asset inventory",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A newly appointed security manager at a manufacturing firm wants to build an asset protection programme. What must the firm have BEFORE it can protect its assets well?",
+      "options": [
+        "A classification label on each document it produces",
+        "Encryption on each laptop and server in the company",
+        "A configuration baseline for each type of server it runs",
+        "An accurate inventory of its hardware, software and data"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "Labelling documents needs a classification scheme and knowledge of what data exists first.",
+        "Encryption is one control; deciding where it is needed depends on knowing what assets exist.",
+        "Baselines apply to known systems; unknown systems will be missed.",
+        "Correct. You cannot protect, classify or monitor what you do not know you have. The inventory comes first."
+      ],
+      "concept": "An asset inventory is the foundation of asset security.",
+      "trap": "Jumping to a control before knowing what exists.",
+      "managerLens": "Fund the inventory and keep it current; every other control depends on it.",
+      "practicalNote": "Inventories are usually built from discovery scans, CMDB records, procurement data and cloud account listings.",
+      "gap": "Seeing the inventory as the starting point.",
+      "followUpId": null,
+      "tags": [
+        "inventory",
+        "first-step"
+      ]
+    },
+    {
+      "id": "d2-013",
+      "domain": 2,
+      "objective": "2.3",
+      "subtopic": "Shadow IT discovery",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": null,
+      "stem": "A marketing team has paid for a SaaS CRM on a corporate credit card for a year. It holds 40,000 customer records, and IT has just found out about it through expense reports. What should happen FIRST?",
+      "options": [
+        "Add it to the asset inventory and assign an owner accountable for it",
+        "Block the service's domain at the web proxy until a review is done",
+        "Migrate its records into the corporate CRM and close the account",
+        "Run a penetration test of the SaaS application to check its security"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. First make the asset known and owned. Only then can its data, contract and risks be assessed and a decision made.",
+        "Blocking straight away disrupts a working business process and may cut off access to customer data without knowing the risk.",
+        "Migration may be the end state, but deciding it before understanding the data and contract is premature.",
+        "Testing a provider's system without its permission is likely to breach its terms and may be illegal."
+      ],
+      "concept": "Bring shadow IT under management: inventory and ownership first.",
+      "trap": "Reacting with a technical block or test before understanding the asset.",
+      "managerLens": "Make the business accountable, then assess, then decide.",
+      "practicalNote": "CASB discovery and expense reviews are common ways to find unsanctioned SaaS.",
+      "gap": "Handling discovered shadow IT.",
+      "followUpId": null,
+      "tags": [
+        "inventory",
+        "shadow-it",
+        "first-step"
+      ]
+    },
+    {
+      "id": "d2-014",
+      "domain": 2,
+      "objective": "2.3",
+      "subtopic": "Intangible assets",
+      "difficulty": 3,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A company is extending its asset inventory beyond hardware. Which TWO of the following are intangible assets the inventory should include? (Select TWO.)",
+      "options": [
+        "Software licences the company has bought",
+        "Internet domain names the company has registered",
+        "Laptops issued to the sales team",
+        "Racks in the company's server room",
+        "Backup tapes stored at the offsite vault"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Licences are intangible assets with value and compliance obligations.",
+        "Correct. Domain names are intangible assets; losing one can take services offline and enable impersonation.",
+        "Laptops are physical hardware, so they are tangible assets.",
+        "Server racks are physical equipment, so they are tangible assets.",
+        "Tapes are tangible media, although the data on them is an intangible asset."
+      ],
+      "concept": "Inventories include intangible assets: data, software, licences, domain names, intellectual property.",
+      "trap": "Thinking of assets as hardware only.",
+      "managerLens": "Track the assets whose loss would hurt, whatever their form.",
+      "practicalNote": "Expired domain registrations have caused outages and phishing risk; give domains an owner and renewal alerts.",
+      "gap": "Recognising intangible assets.",
+      "followUpId": null,
+      "tags": [
+        "inventory"
+      ]
+    },
+    {
+      "id": "d2-015",
+      "domain": 2,
+      "objective": "2.4",
+      "subtopic": "Data retention",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "Law requires a bank to keep transaction records for seven years. The marketing team wants to keep customers' app-browsing data indefinitely 'in case it is useful for analytics'. What is the BEST approach?",
+      "options": [
+        "Keep everything indefinitely, since storage is cheap and data may prove useful",
+        "Keep everything for seven years to match the longest legal requirement",
+        "Set retention for each record type from its legal and business need, then delete on schedule",
+        "Let each department decide how long to keep the data it collects"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "Indefinite retention increases breach impact and conflicts with privacy rules that limit keeping personal data longer than needed.",
+        "Applying the longest period to everything keeps browsing data far longer than any need justifies.",
+        "Correct. Retention should be set per type of record from the legal requirement and the genuine business purpose, then enforced by deletion.",
+        "Department-by-department decisions lead to inconsistency and over-retention; retention needs a governed schedule."
+      ],
+      "concept": "Retention schedules are set per record type and enforced by deletion.",
+      "trap": "Treating retention as one number for everything, or as 'keep it just in case'.",
+      "managerLens": "Data you keep is data you must protect; keep only what you need for as long as you need it.",
+      "practicalNote": "Retention schedules usually sit with records management and legal, and are enforced through automated deletion.",
+      "gap": "Setting and enforcing retention.",
+      "followUpId": null,
+      "tags": [
+        "retention",
+        "privacy"
+      ]
+    },
+    {
+      "id": "d2-016",
+      "domain": 2,
+      "objective": "2.4",
+      "subtopic": "Data collection and minimisation",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A retailer's loyalty app records each customer's exact GPS location every minute. The only business use is to show offers for the customer's city. What should the retailer change?",
+      "options": [
+        "Encrypt the GPS records at rest and carry on collecting them",
+        "Collect only the customer's city, as that is all the purpose needs",
+        "Ask customers to consent to continuous location tracking in the app",
+        "Delete the GPS records after twelve months instead of keeping them"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "Encryption protects the data but does not justify collecting far more than the purpose needs.",
+        "Correct. Data minimisation: collect only what the purpose requires. City-level location meets the need with far less risk.",
+        "Consent does not make excessive collection necessary, and many laws still require minimisation.",
+        "Shorter retention helps, but collecting precise location every minute is still unnecessary."
+      ],
+      "concept": "Data minimisation: collect only what the purpose needs.",
+      "trap": "Adding a control or consent to data that should not be collected at all.",
+      "managerLens": "The cheapest data to protect is data you never collected.",
+      "practicalNote": "Privacy laws including GDPR and Zimbabwe's data protection act include minimisation and purpose limitation principles.",
+      "gap": "Applying minimisation at collection.",
+      "followUpId": null,
+      "tags": [
+        "privacy",
+        "minimisation"
+      ]
+    },
+    {
+      "id": "d2-017",
+      "domain": 2,
+      "objective": "2.4",
+      "subtopic": "Remanence in the cloud",
+      "difficulty": 6,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A company is ending its IaaS contract and moving to another provider. It has no access to the provider's physical disks, which are shared with other tenants. Which TWO measures BEST address data remanence? (Select TWO.)",
+      "options": [
+        "Encrypt data with company-held keys from the start, then destroy the keys at exit",
+        "Obtain contractual commitments and evidence of the provider's media sanitisation",
+        "Overwrite the volumes three times with random data before closing the account",
+        "Ask the provider to hand over the physical disks used by the company's account",
+        "Delete the virtual machines and storage accounts before the contract ends"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. If the data was encrypted with keys only the company controls, destroying the keys makes any remnants unreadable: cryptographic erase.",
+        "Correct. The provider sanitises the physical media; contract terms and evidence such as audit reports are how the customer gets assurance.",
+        "Overwriting virtual volumes may not touch the physical blocks that held the data, because storage is virtualised and spread.",
+        "Disks are shared between tenants and providers will not hand them over; it is not a practical measure.",
+        "Deleting resources removes access, but data can remain on the underlying media."
+      ],
+      "concept": "In the cloud, remanence is handled by customer-held encryption keys and the provider's assured sanitisation.",
+      "trap": "Applying on-premises techniques that do not reach the physical media.",
+      "managerLens": "Plan exit at entry: customer-managed keys and sanitisation terms belong in the original contract.",
+      "practicalNote": "Major providers describe their media sanitisation in their SOC 2 reports and security documentation.",
+      "gap": "Handling remanence where you do not control the hardware.",
+      "followUpId": null,
+      "tags": [
+        "remanence",
+        "cloud",
+        "crypto-erase"
+      ]
+    },
+    {
+      "id": "d2-018",
+      "domain": 2,
+      "objective": "2.5",
+      "subtopic": "End of life and end of support",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A vendor announces end of life for a firewall model the company relies on. It will stop selling the model this year but will issue security updates for three more years. What does this mean for the company?",
+      "options": [
+        "It must replace the firewalls now, since they are no longer secure",
+        "Security updates stop immediately, so the firewalls must be isolated",
+        "It should buy spare units now and plan to run them for as long as possible",
+        "It can keep using them securely but should plan replacement before support ends"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "End of sale does not make the product insecure while updates continue.",
+        "Updates continue for three years; this confuses end of life with end of support.",
+        "Stockpiling to run past end of support leaves the company on unpatched firewalls later.",
+        "Correct. End of life is a planning signal: the firewalls stay supportable for three years, and replacement should be budgeted and scheduled before updates stop."
+      ],
+      "concept": "End of life (no longer sold) is not end of support (no more updates).",
+      "trap": "Treating end of life as immediate insecurity, or planning to run past end of support.",
+      "managerLens": "Use the support window to budget and plan an orderly replacement.",
+      "practicalNote": "Track EOL and EOS dates in the asset inventory so replacements reach the budget cycle in time.",
+      "gap": "Distinguishing EOL from EOS.",
+      "followUpId": null,
+      "tags": [
+        "eol",
+        "eos"
+      ]
+    },
+    {
+      "id": "d2-019",
+      "domain": 2,
+      "objective": "2.5",
+      "subtopic": "Legal hold and disposal",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": null,
+      "stem": "An email server is scheduled for disposal under the retention schedule this month. Legal has placed a litigation hold on the mailboxes of three former directors that are stored on it. What should happen?",
+      "options": [
+        "Preserve the held mailboxes as legal directs; dispose of the server once they are secured or released",
+        "Sanitise the server on schedule, since the disposal date is set in approved policy",
+        "Copy the three mailboxes to a USB drive and give it to the legal department",
+        "Go ahead with disposal if the server's disks are encrypted, since the data is safe"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. A legal hold overrides normal retention and disposal. The data must be preserved in a forensically sound way agreed with legal before the hardware is disposed of.",
+        "Destroying data under a legal hold can be spoliation of evidence, with serious legal consequences, whatever the schedule says.",
+        "An ad hoc copy on a USB drive may not preserve integrity or metadata and creates a new unprotected copy.",
+        "Encryption protects confidentiality; it does not preserve the evidence the hold requires."
+      ],
+      "concept": "Legal holds override retention and disposal schedules.",
+      "trap": "Following the schedule mechanically, or preserving data in an unsound way.",
+      "managerLens": "Make legal hold checks a mandatory step before any disposal.",
+      "practicalNote": "e-Discovery tools can place mailboxes on hold and export them with metadata intact.",
+      "gap": "Knowing how legal holds interact with retention and disposal.",
+      "followUpId": null,
+      "tags": [
+        "retention",
+        "legal-hold",
+        "disposal"
+      ]
+    },
+    {
+      "id": "d2-020",
+      "domain": 2,
+      "objective": "2.5",
+      "subtopic": "Asset retirement",
+      "difficulty": 3,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A finance officer's laptop is being retired after five years. Which TWO steps belong in its retirement? (Select TWO.)",
+      "options": [
+        "Sanitise its storage to a level that fits the data it held",
+        "Record its disposal in the asset inventory with the date",
+        "Remove its asset tag so that it can no longer be traced",
+        "Note the user's password in the file for future audits",
+        "Hand it to a new joiner straight away without changes"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. The storage must be sanitised according to its classification before the device leaves.",
+        "Correct. The inventory must show the asset's disposal, keeping the record accurate for audits.",
+        "Traceability should be kept through disposal, not removed.",
+        "Recording passwords is a security failure, not an audit control.",
+        "Reissuing a device with a previous user's data on it exposes that data."
+      ],
+      "concept": "Retirement: sanitise, record and dispose of assets in a controlled way.",
+      "trap": "Thinking retirement is just switching the device off.",
+      "managerLens": "Make disposal a recorded process with evidence, not an ad hoc task.",
+      "practicalNote": "Disposal vendors should issue certificates of sanitisation per serial number.",
+      "gap": "Knowing the steps of asset retirement.",
+      "followUpId": null,
+      "tags": [
+        "disposal",
+        "inventory"
+      ]
+    },
+    {
+      "id": "d2-021",
+      "domain": 2,
+      "objective": "2.6",
+      "subtopic": "Data states",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A payment application encrypts its database and uses TLS for every connection. An attacker who gains access to the application server's memory can still read card numbers. Which data state is unprotected?",
+      "options": [
+        "Data at rest",
+        "Data in transit",
+        "Data in use",
+        "Data in archive"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "The database is encrypted, so stored data is protected.",
+        "TLS protects data moving across the network.",
+        "Correct. Data being processed sits decrypted in memory; protecting it needs controls such as access restriction, secure enclaves or tokenisation.",
+        "Archive is a form of storage at rest, which is encrypted here."
+      ],
+      "concept": "Data has three states; data in use is the hardest to protect.",
+      "trap": "Assuming encryption at rest and in transit covers everything.",
+      "managerLens": "Ask how data is protected in every state, including while it is processed.",
+      "practicalNote": "Confidential computing (hardware enclaves) and memory scraping defences address data in use.",
+      "gap": "Recognising the three data states.",
+      "followUpId": null,
+      "tags": [
+        "data-states"
+      ]
+    },
+    {
+      "id": "d2-022",
+      "domain": 2,
+      "objective": "2.6",
+      "subtopic": "Scoping and tailoring",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A company adopts the NIST SP 800-53 moderate baseline. It first removes the wireless controls because it runs no wireless networks. It then changes the account lockout threshold in the baseline to fit its help desk process. What are these two steps?",
+      "options": [
+        "Tailoring, then scoping",
+        "Scoping, then tailoring",
+        "Scoping both times",
+        "Tailoring both times"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "The order is reversed: removing controls that do not apply comes first.",
+        "Correct. Removing controls that do not apply is scoping; adjusting a remaining control's parameters is tailoring.",
+        "Changing a parameter of a control that still applies is not scoping.",
+        "Dropping controls for technology that is not present is scoping, not tailoring."
+      ],
+      "concept": "Scoping chooses which controls apply; tailoring adjusts them.",
+      "trap": "Using the two terms interchangeably.",
+      "managerLens": "Document both decisions and their reasons so auditors can follow them.",
+      "practicalNote": "SP 800-53B baselines are designed to be tailored; overlays package common tailoring decisions.",
+      "gap": "Distinguishing scoping from tailoring.",
+      "followUpId": null,
+      "tags": [
+        "scoping",
+        "tailoring",
+        "baselines"
+      ]
+    },
+    {
+      "id": "d2-023",
+      "domain": 2,
+      "objective": "2.6",
+      "subtopic": "DLP, CASB and DRM",
+      "difficulty": 5,
+      "type": "multi",
+      "scenario": null,
+      "stem": "Staff at a consultancy upload client lists to personal cloud storage accounts. Separately, sensitive client reports are being forwarded to competitors by staff who have since left. Which TWO controls address these problems MOST directly? (Select TWO.)",
+      "options": [
+        "A CASB that controls uploads to unsanctioned cloud services",
+        "DRM so protected reports cannot be opened once access is revoked",
+        "Full-disk encryption on all the consultancy's staff laptops",
+        "A web application firewall in front of the client portal",
+        "Longer and more complex passwords for staff accounts"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. A CASB gives visibility of cloud use and can block uploads to unsanctioned services.",
+        "Correct. DRM keeps control with the file itself, so access can be withdrawn even after a copy has left.",
+        "Disk encryption protects lost laptops, not deliberate uploads or forwarding.",
+        "A WAF protects a web application from attacks, not data being taken by insiders.",
+        "Password strength does not stop authorised users moving data."
+      ],
+      "concept": "CASB governs cloud use; DRM controls use of files after they leave.",
+      "trap": "Choosing a strong general control that does not address data movement.",
+      "managerLens": "Match each data protection tool to the path the data takes out.",
+      "practicalNote": "Rights management in office suites can revoke access to sensitive files when someone leaves.",
+      "gap": "Knowing what DLP, CASB and DRM each do.",
+      "followUpId": null,
+      "tags": [
+        "dlp",
+        "casb",
+        "drm"
+      ]
+    },
+    {
+      "id": "d2-024",
+      "domain": 2,
+      "objective": "2.6",
+      "subtopic": "Standards selection",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": null,
+      "stem": "An online travel agent must meet PCI DSS for card payments and GDPR for its European customers, and it runs an ISO/IEC 27001 management system. Its small team is overwhelmed by separate compliance efforts. What is the BEST approach?",
+      "options": [
+        "Run three separate compliance programmes, each with its own owner",
+        "Implement PCI DSS only, as it is the most prescriptive of the three",
+        "Focus on whichever standard the next external audit will test",
+        "Build one control set mapped to each requirement and evidence it once"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "Separate programmes duplicate effort and produce inconsistent controls.",
+        "PCI DSS covers card data only; it does not meet GDPR or the wider ISMS.",
+        "Chasing the next audit leaves the other obligations unmet and creates last-minute work.",
+        "Correct. A unified control framework mapped to each obligation lets one control satisfy several requirements, with one set of evidence."
+      ],
+      "concept": "Select and map standards so one control set meets every applicable requirement.",
+      "trap": "Treating each obligation as a separate project, or picking one and ignoring the rest.",
+      "managerLens": "Design once, comply many times: map controls to every obligation.",
+      "practicalNote": "ISO 27001's Statement of Applicability is a natural place to map controls to PCI DSS and GDPR requirements.",
+      "gap": "Selecting and combining standards efficiently.",
+      "followUpId": null,
+      "tags": [
+        "compliance",
+        "standards"
+      ]
+    },
+    {
+      "id": "d2-025",
+      "domain": 2,
+      "objective": "2.6",
+      "subtopic": "Tokenisation",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A merchant wants to take card numbers out of most of its systems to reduce PCI DSS scope, while still being able to process refunds and repeat purchases. Which method BEST achieves this?",
+      "options": [
+        "Tokenisation, with card numbers held in a separate secured vault",
+        "Encrypting card numbers in each system, with keys kept on those systems",
+        "Hashing card numbers so that they cannot be read in the databases",
+        "Masking all but the last four digits wherever card numbers are shown"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. Systems hold tokens with no exploitable value; card numbers live only in the vault, and refunds use the token. This is what reduces scope.",
+        "Systems that hold encrypted card numbers and can reach the keys stay in scope.",
+        "A hash cannot be turned back into a card number, so refunds and repeat charges would fail.",
+        "Masking changes what is displayed, but the full number is still stored, so systems stay in scope."
+      ],
+      "concept": "Tokenisation removes sensitive values from systems; encryption protects them in place.",
+      "trap": "Choosing encryption because it sounds strongest.",
+      "managerLens": "Reducing where sensitive data lives is often cheaper than protecting it everywhere.",
+      "practicalNote": "Many payment gateways offer tokenisation so merchants never store card numbers at all.",
+      "gap": "Distinguishing tokenisation, encryption, hashing and masking.",
+      "followUpId": null,
+      "tags": [
+        "tokenisation",
+        "pci"
       ]
     },
     {

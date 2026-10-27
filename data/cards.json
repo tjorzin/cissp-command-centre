@@ -232,7 +232,7 @@
       "domain": 2,
       "objective": "2.4",
       "term": "Clear, purge, destroy",
-      "meaning": "Clear: overwrite so normal tools cannot recover data. Purge: defeat laboratory recovery (firmware sanitise, crypto erase, degauss for magnetic media). Destroy: shred, disintegrate or incinerate.",
+      "meaning": "Clear: logical overwrite, defeats simple recovery. Purge: defeats laboratory recovery and allows reuse (sanitise commands, crypto erase, degaussing magnetic media). Destroy: physical destruction; IEEE 2883 calls it Destruct.",
       "trap": "Degaussing or multi-pass overwriting SSDs. Flash needs sanitise commands, crypto erase or destruction.",
       "hook": "Match the method to the media, then verify.",
       "tags": [
@@ -249,6 +249,108 @@
       "hook": "Scope picks which; tailor shapes how.",
       "tags": [
         "comparison"
+      ]
+    },
+    {
+      "id": "c2-004",
+      "domain": 2,
+      "objective": "2.1",
+      "term": "Who classifies, who protects",
+      "meaning": "The data owner (a senior business manager) decides classification. Custodians apply the protection it requires. Users follow the handling rules. The CISO runs the scheme.",
+      "trap": "Letting the DBA or IT decide classification because they run the system.",
+      "hook": "Owners decide, custodians guard, users follow.",
+      "tags": [
+        "data-roles",
+        "classification"
+      ]
+    },
+    {
+      "id": "c2-005",
+      "domain": 2,
+      "objective": "2.2",
+      "term": "Marking vs labelling",
+      "meaning": "Marking is visible to people: headers, footers, stamps. Labelling attaches classification as metadata that tools such as DLP and rights management can read and enforce.",
+      "trap": "Relying on folder permissions to signal sensitivity after a file has been shared.",
+      "hook": "Marking is for eyes; labelling is for machines.",
+      "tags": [
+        "comparison",
+        "handling"
+      ]
+    },
+    {
+      "id": "c2-006",
+      "domain": 2,
+      "objective": "2.3",
+      "term": "Tangible vs intangible assets",
+      "meaning": "Tangible assets have physical form: laptops, servers, media. Intangible assets do not: data, software, licences, domain names, intellectual property. Inventories need both.",
+      "trap": "Building an inventory of hardware only.",
+      "hook": "If losing it hurts, list it.",
+      "tags": [
+        "comparison",
+        "inventory"
+      ]
+    },
+    {
+      "id": "c2-007",
+      "domain": 2,
+      "objective": "2.5",
+      "term": "End of life vs end of support",
+      "meaning": "End of life: the vendor stops selling the product. End of support: the vendor stops issuing fixes and security updates. EOL is a planning signal; EOS is when the risk climbs.",
+      "trap": "Replacing in a panic at end of life, or running past end of support with no plan.",
+      "hook": "No longer sold is not no longer safe.",
+      "tags": [
+        "comparison"
+      ]
+    },
+    {
+      "id": "c2-008",
+      "domain": 2,
+      "objective": "2.6",
+      "term": "Data at rest, in transit, in use",
+      "meaning": "At rest: stored, protected by storage encryption. In transit: moving, protected by TLS or VPN. In use: being processed in memory, protected by access control, enclaves or tokenisation.",
+      "trap": "Assuming encryption at rest and in transit covers data while it is processed.",
+      "hook": "Stored, moving, working.",
+      "tags": [
+        "comparison",
+        "data-states"
+      ]
+    },
+    {
+      "id": "c2-009",
+      "domain": 2,
+      "objective": "2.6",
+      "term": "DLP vs CASB vs DRM",
+      "meaning": "DLP detects and blocks sensitive data leaving through email, web or devices. CASB gives visibility and control over cloud service use. DRM keeps usage control attached to a file after it leaves.",
+      "trap": "Expecting DLP to protect a file that has already left your control. That is DRM's job.",
+      "hook": "Stop it leaving, watch the cloud, control it afterwards.",
+      "tags": [
+        "comparison"
+      ]
+    },
+    {
+      "id": "c2-010",
+      "domain": 2,
+      "objective": "2.6",
+      "term": "Tokenisation vs encryption vs masking",
+      "meaning": "Tokenisation swaps the value for a token and keeps the real value in a vault. Encryption transforms the value and reverses with a key. Masking hides part of the value when displayed.",
+      "trap": "Thinking masked or encrypted card numbers take systems out of PCI DSS scope.",
+      "hook": "Swap it, scramble it, or just hide it from view.",
+      "tags": [
+        "comparison",
+        "pci"
+      ]
+    },
+    {
+      "id": "c2-011",
+      "domain": 2,
+      "objective": "2.4",
+      "term": "Anonymisation vs pseudonymisation",
+      "meaning": "Anonymisation removes the link to individuals for good. Pseudonymisation replaces identifiers with codes that can be re-linked using a key kept separately; it is usually still personal data in law.",
+      "trap": "Choosing anonymisation when the business may need to contact the people later.",
+      "hook": "Anonymous is one-way; pseudonymous keeps a key.",
+      "tags": [
+        "comparison",
+        "privacy"
       ]
     },
     {

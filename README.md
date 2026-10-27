@@ -2,7 +2,7 @@
 
 A personal CISSP study app: an offline, installable PWA that tells you what to study next. Built in vanilla HTML, CSS and JavaScript, with no build step, no backend and no accounts. Progress stays on the device; use **More → Export progress** to back it up or move it to another device.
 
-> Status: phase 8 of 10, content batch 1 of 8 (Domain 1: 40 questions, 12 lessons, drills, labs). See `VALIDATION.md`.
+> Status: phase 8 of 10, content batch 2 of 8 (Domains 1 and 2: 65 of the planned 240 questions, plus lessons, cards, drills and labs). See `VALIDATION.md`.
 
 Content is added one domain at a time: write a batch file, merge it with `node tools/merge-batch.js <file>`, then `npm run validate` (schema, give-away lint, lessons, drills and labs) before committing.
 

@@ -70,16 +70,13 @@ test('forced misses fill the ledger; misconceptions lead the Patterns panel; one
 });
 
 test('three misses on one objective trigger a reteach card before more questions on it', async ({ page }) => {
-  // Domain 2 has two questions, both on objective 2.4.
-  await practiseDomain(page, 2);
-  await answer(page, { right: false, confidence: 'sure' });
-  await page.locator('#next-btn').click();
-  await answer(page, { right: false, confidence: 'unsure' });
-  await page.locator('#next-btn').click();
-
-  await practiseDomain(page, 2);
-  await answer(page, { right: false, confidence: 'sure' });
-  await page.locator('#next-btn').click();
+  // Practise objective 2.4 only (it has more than three questions) and miss three in a row.
+  await page.goto('/#/study/2');
+  await page.locator('[data-practise="2.4"]').click();
+  for (const confidence of ['sure', 'unsure', 'sure']) {
+    await answer(page, { right: false, confidence });
+    await page.locator('#next-btn').click();
+  }
 
   // Third miss reached: the next 2.4 question is held behind the reteach card.
   const card = page.locator('[data-reteach="2.4"]');

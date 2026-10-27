@@ -90,22 +90,33 @@ test('lint catches a skewed answer key across the bank', () => {
   assert.match(r.errors.join(), /answer key: position 2/);
 });
 
-test('lessons, drills and labs pass validation; Domain 1 has a lesson for all 12 objectives', () => {
-  const lessons = read('data/lessons.json');
-  assert.deepEqual(lintLessons(lessons, domains).errors, []);
+// Domains whose content batch is done. Add each domain here as its batch lands.
+const BATCHED = [1, 2];
+const weights = read('data/outlines.json').outlines.find((o) => o.id === '2024').domains;
+
+test('lessons, drills and labs pass validation', () => {
+  assert.deepEqual(lintLessons(read('data/lessons.json'), domains).errors, []);
   assert.deepEqual(lintDrills(read('data/drills.json'), domains).errors, []);
   assert.deepEqual(lintLabs(read('data/labs.json'), domains).errors, []);
-  const d1 = domains.domains[0].objectives.map((o) => o.id);
-  assert.deepEqual(d1.filter((id) => !lessons.lessons[id]), []);
 });
 
-test('Domain 1 batch: about 16% of a 240 bank, every objective covered by at least two questions', () => {
-  const d1 = bank.questions.filter((q) => q.domain === 1);
-  assert.ok(d1.length >= 38, `${d1.length}`);
-  for (const o of domains.domains[0].objectives) {
-    assert.ok(d1.filter((q) => q.objective === o.id).length >= 2, o.id);
-  }
-});
+for (const n of BATCHED) {
+  test(`Domain ${n} batch: lessons, questions, cards, drills and labs cover every objective`, () => {
+    const lessons = read('data/lessons.json').lessons;
+    const cards = read('data/cards.json').cards;
+    const objectives = domains.domains[n - 1].objectives.map((o) => o.id);
+    const qs = bank.questions.filter((q) => q.domain === n);
+    const share = weights.find((w) => w.n === n).weight / 100;
+    assert.ok(qs.length >= Math.floor(240 * share * 0.95), `${qs.length} questions`);
+    for (const id of objectives) {
+      assert.ok(lessons[id], `lesson ${id}`);
+      assert.ok(qs.filter((q) => q.objective === id).length >= 2, `questions ${id}`);
+      assert.ok(cards.some((c) => c.objective === id), `card ${id}`);
+    }
+    assert.ok(read('data/drills.json').drills.some((d) => d.domain === n), 'drill');
+    assert.ok(read('data/labs.json').labs.some((l) => l.domain === n), 'lab');
+  });
+}
 
 test('content linters catch structural faults', () => {
   const lesson = { summary: ['a', 'b', 'c', 'd'], keyTerms: [], scenario: {} };

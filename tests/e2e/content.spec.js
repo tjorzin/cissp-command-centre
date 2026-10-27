@@ -60,3 +60,13 @@ test('lab: test-environment warning, steps persist, completion needs every step'
   await expect(page.locator('[data-lab="lab-d1-risk-register"] .weight')).toHaveText('Done');
   await noOverflow(page);
 });
+
+test('Domain 2 page has a lesson for every objective; labs list in day order', async ({ page }) => {
+  await page.goto('/#/study/2');
+  await expect(page.locator('.objective')).toHaveCount(6);
+  await expect(page.locator('.objective .lesson-block')).toHaveCount(6);
+  await page.goto('/#/labs');
+  const titles = await page.locator('[data-lab] h3').allTextContents();
+  expect(titles.map((t) => Number(t.match(/^Day (\d+)/)[1]))).toEqual([1, 2, 3, 4]);
+  await noOverflow(page);
+});

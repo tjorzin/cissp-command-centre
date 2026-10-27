@@ -70,6 +70,15 @@ What this means for a sitting before 15 April 2027: study the 2024 topics. The 2
 | ISC2 Code of Ethics | Four canons unchanged. ISC2 launched a separate Code of Professional Conduct in February 2026 that builds on the Code of Ethics. | isc2.org pages |
 | Zimbabwe data protection | Cyber and Data Protection Act (2021) with regulations SI 155 of 2024: breach reports to POTRAZ reportedly within 24 hours of awareness, and to data subjects within 72 hours where the risk is high. POTRAZ inspections reported from 1 September 2026. | **Secondary sources only** (law firm and news summaries); used in practical notes, never as a tested fact |
 
+## Framework currency check: Domain 2 batch (28 October 2026)
+
+| Item | Finding | Source quality |
+|---|---|---|
+| NIST SP 800-88 | **Revision 2 published September 2025**, superseding Rev. 1 (2014). It shifts from technique-by-technique guidance to running a sanitisation programme, and refers to IEEE 2883, NSA specifications or an approved standard for techniques; cryptographic erase is still covered. | csrc.nist.gov |
+| IEEE 2883-2022 | Defines Clear, Purge and Destruct (Rev. 1 of SP 800-88 said "Destroy"). Purge makes recovery infeasible while allowing reuse; Destruct physically destroys the media. | Secondary summaries |
+
+Content follows Rev. 2 and IEEE 2883 and still accepts "destroy" as the common name for the top level.
+
 ## Experience and the Associate route (verified)
 
 - Five years cumulative, full-time, paid experience in **two or more** of the eight domains.

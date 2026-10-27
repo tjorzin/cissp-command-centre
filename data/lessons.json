@@ -11,10 +11,22 @@
         "Organisational codes of ethics sit alongside the ISC2 Code; know who enforces each."
       ],
       "keyTerms": [
-        { "term": "Canon", "meaning": "One of the four mandatory principles of the ISC2 Code of Ethics, applied in priority order." },
-        { "term": "Principal", "meaning": "The employer or client you serve; diligent service to them is the third canon." },
-        { "term": "Code of Professional Conduct", "meaning": "ISC2's 2026 companion guidance that builds on the Code of Ethics for all cybersecurity practitioners." },
-        { "term": "Coordinated disclosure", "meaning": "Reporting a vulnerability to the maker (and an authority if needed) before publishing, so a fix can land first." }
+        {
+          "term": "Canon",
+          "meaning": "One of the four mandatory principles of the ISC2 Code of Ethics, applied in priority order."
+        },
+        {
+          "term": "Principal",
+          "meaning": "The employer or client you serve; diligent service to them is the third canon."
+        },
+        {
+          "term": "Code of Professional Conduct",
+          "meaning": "ISC2's 2026 companion guidance that builds on the Code of Ethics for all cybersecurity practitioners."
+        },
+        {
+          "term": "Coordinated disclosure",
+          "meaning": "Reporting a vulnerability to the maker (and an authority if needed) before publishing, so a fix can land first."
+        }
       ],
       "scenario": {
         "situation": "Your manager asks you to backdate an access review so an audit finding can be closed before the board meets.",
@@ -31,10 +43,22 @@
         "The 'right' property depends on the business: a hospital record's integrity can be life-critical."
       ],
       "keyTerms": [
-        { "term": "Integrity", "meaning": "Data and systems are accurate and changed only in authorised ways." },
-        { "term": "Authenticity", "meaning": "Data or a party is genuinely what it claims to be." },
-        { "term": "Non-repudiation", "meaning": "A party cannot credibly deny an action, because the evidence binds it to them alone." },
-        { "term": "DAD triad", "meaning": "Disclosure, alteration, destruction: the opposites of C, I and A." }
+        {
+          "term": "Integrity",
+          "meaning": "Data and systems are accurate and changed only in authorised ways."
+        },
+        {
+          "term": "Authenticity",
+          "meaning": "Data or a party is genuinely what it claims to be."
+        },
+        {
+          "term": "Non-repudiation",
+          "meaning": "A party cannot credibly deny an action, because the evidence binds it to them alone."
+        },
+        {
+          "term": "DAD triad",
+          "meaning": "Disclosure, alteration, destruction: the opposites of C, I and A."
+        }
       ],
       "scenario": {
         "situation": "A payment instruction was approved with a shared HMAC key known to five treasury staff. One of them now denies approving it.",
@@ -51,10 +75,22 @@
         "Due diligence is finding out; due care is acting as a reasonable organisation would."
       ],
       "keyTerms": [
-        { "term": "Governance", "meaning": "How leadership sets direction, accountability and oversight for security." },
-        { "term": "Security steering committee", "meaning": "A cross-business group that prioritises and approves security decisions." },
-        { "term": "NIST CSF 2.0", "meaning": "Six functions: Govern, Identify, Protect, Detect, Respond, Recover; Govern was added in 2024." },
-        { "term": "Due care / due diligence", "meaning": "Doing what a prudent organisation would (care) after investigating the risks (diligence)." }
+        {
+          "term": "Governance",
+          "meaning": "How leadership sets direction, accountability and oversight for security."
+        },
+        {
+          "term": "Security steering committee",
+          "meaning": "A cross-business group that prioritises and approves security decisions."
+        },
+        {
+          "term": "NIST CSF 2.0",
+          "meaning": "Six functions: Govern, Identify, Protect, Detect, Respond, Recover; Govern was added in 2024."
+        },
+        {
+          "term": "Due care / due diligence",
+          "meaning": "Doing what a prudent organisation would (care) after investigating the risks (diligence)."
+        }
       ],
       "scenario": {
         "situation": "Your company is acquiring a smaller fintech. Signing is in three weeks, and the deal team has not involved security.",
@@ -71,10 +107,22 @@
         "Contracts and industry standards (PCI DSS) bind you even where no law applies."
       ],
       "keyTerms": [
-        { "term": "Transborder data flow", "meaning": "Moving personal data across national borders, often allowed only with safeguards." },
-        { "term": "Trade secret", "meaning": "Confidential business information protected by keeping it secret, not by registration." },
-        { "term": "Data sovereignty", "meaning": "Data is subject to the laws of the country where it is stored or processed." },
-        { "term": "Wassenaar Arrangement", "meaning": "A multilateral export-control regime that covers some cryptography and intrusion software." }
+        {
+          "term": "Transborder data flow",
+          "meaning": "Moving personal data across national borders, often allowed only with safeguards."
+        },
+        {
+          "term": "Trade secret",
+          "meaning": "Confidential business information protected by keeping it secret, not by registration."
+        },
+        {
+          "term": "Data sovereignty",
+          "meaning": "Data is subject to the laws of the country where it is stored or processed."
+        },
+        {
+          "term": "Wassenaar Arrangement",
+          "meaning": "A multilateral export-control regime that covers some cryptography and intrusion software."
+        }
       ],
       "scenario": {
         "situation": "A Harare insurer wants to move claims processing, including medical details, to a cloud region in Europe to cut costs.",
@@ -91,10 +139,22 @@
         "Regulatory: a regulator examines compliance; cooperation and accurate records matter most."
       ],
       "keyTerms": [
-        { "term": "Burden of proof", "meaning": "How sure a decision-maker must be: beyond reasonable doubt (criminal) or balance of probabilities (civil)." },
-        { "term": "Chain of custody", "meaning": "A record of who handled evidence, when and why, from collection to court." },
-        { "term": "Administrative investigation", "meaning": "An internal inquiry into policy breaches, such as misuse of systems." },
-        { "term": "Regulatory investigation", "meaning": "An examination by a regulator into whether rules were followed." }
+        {
+          "term": "Burden of proof",
+          "meaning": "How sure a decision-maker must be: beyond reasonable doubt (criminal) or balance of probabilities (civil)."
+        },
+        {
+          "term": "Chain of custody",
+          "meaning": "A record of who handled evidence, when and why, from collection to court."
+        },
+        {
+          "term": "Administrative investigation",
+          "meaning": "An internal inquiry into policy breaches, such as misuse of systems."
+        },
+        {
+          "term": "Regulatory investigation",
+          "meaning": "An examination by a regulator into whether rules were followed."
+        }
       ],
       "scenario": {
         "situation": "An internal review of an employee's misuse of the CRM finds evidence that they sold customer data to a competitor.",
@@ -111,10 +171,22 @@
         "Review on a schedule and after major change; unenforced policy undermines due care."
       ],
       "keyTerms": [
-        { "term": "Policy", "meaning": "Management's mandatory statement of intent, for example 'all data is classified'." },
-        { "term": "Standard", "meaning": "A mandatory, specific requirement, for example 'AES-256 for data at rest'." },
-        { "term": "Baseline", "meaning": "The minimum security configuration for a system type." },
-        { "term": "Guideline", "meaning": "Recommended practice that allows judgement; not mandatory." }
+        {
+          "term": "Policy",
+          "meaning": "Management's mandatory statement of intent, for example 'all data is classified'."
+        },
+        {
+          "term": "Standard",
+          "meaning": "A mandatory, specific requirement, for example 'AES-256 for data at rest'."
+        },
+        {
+          "term": "Baseline",
+          "meaning": "The minimum security configuration for a system type."
+        },
+        {
+          "term": "Guideline",
+          "meaning": "Recommended practice that allows judgement; not mandatory."
+        }
       ],
       "scenario": {
         "situation": "Engineers ignore a policy because it names a VPN product the company no longer uses.",
@@ -131,10 +203,22 @@
         "External dependencies (suppliers, utilities, telecoms) are part of the analysis."
       ],
       "keyTerms": [
-        { "term": "BIA", "meaning": "Business impact analysis: what a disruption costs each process over time." },
-        { "term": "MTD", "meaning": "Maximum tolerable downtime: beyond it, the business suffers unacceptable harm." },
-        { "term": "RTO / RPO", "meaning": "Time allowed to restore a system / amount of data loss tolerable, as time." },
-        { "term": "Critical process", "meaning": "A business activity whose loss quickly causes unacceptable impact." }
+        {
+          "term": "BIA",
+          "meaning": "Business impact analysis: what a disruption costs each process over time."
+        },
+        {
+          "term": "MTD",
+          "meaning": "Maximum tolerable downtime: beyond it, the business suffers unacceptable harm."
+        },
+        {
+          "term": "RTO / RPO",
+          "meaning": "Time allowed to restore a system / amount of data loss tolerable, as time."
+        },
+        {
+          "term": "Critical process",
+          "meaning": "A business activity whose loss quickly causes unacceptable impact."
+        }
       ],
       "scenario": {
         "situation": "The IT team has bought a hot site and wants to write the continuity plan around it.",
@@ -151,10 +235,22 @@
         "Contractors and vendors need the same controls through contract terms."
       ],
       "keyTerms": [
-        { "term": "Background check", "meaning": "Verifying identity, history and references, scaled to the role's risk." },
-        { "term": "Separation of duties", "meaning": "Splitting critical tasks so no one person can complete a fraud alone." },
-        { "term": "Mandatory vacation", "meaning": "Required leave that lets hidden fraud surface while someone else does the job." },
-        { "term": "Exit process", "meaning": "Revoking access, recovering assets and reminding of obligations when someone leaves." }
+        {
+          "term": "Background check",
+          "meaning": "Verifying identity, history and references, scaled to the role's risk."
+        },
+        {
+          "term": "Separation of duties",
+          "meaning": "Splitting critical tasks so no one person can complete a fraud alone."
+        },
+        {
+          "term": "Mandatory vacation",
+          "meaning": "Required leave that lets hidden fraud surface while someone else does the job."
+        },
+        {
+          "term": "Exit process",
+          "meaning": "Revoking access, recovering assets and reminding of obligations when someone leaves."
+        }
       ],
       "scenario": {
         "situation": "A systems administrator is being dismissed for misconduct this afternoon.",
@@ -171,10 +267,22 @@
         "Risk management is continuous: monitor, report, improve; frameworks include NIST SP 800-37 and ISO 31000."
       ],
       "keyTerms": [
-        { "term": "Residual risk", "meaning": "Risk left after controls; it must be formally accepted by the owner." },
-        { "term": "ALE", "meaning": "Annualised loss expectancy = SLE × ARO; compare with a control's annual cost." },
-        { "term": "Risk appetite", "meaning": "How much risk the organisation is willing to take to meet its objectives." },
-        { "term": "Compensating control", "meaning": "An alternative control used when the preferred one is not feasible." }
+        {
+          "term": "Residual risk",
+          "meaning": "Risk left after controls; it must be formally accepted by the owner."
+        },
+        {
+          "term": "ALE",
+          "meaning": "Annualised loss expectancy = SLE × ARO; compare with a control's annual cost."
+        },
+        {
+          "term": "Risk appetite",
+          "meaning": "How much risk the organisation is willing to take to meet its objectives."
+        },
+        {
+          "term": "Compensating control",
+          "meaning": "An alternative control used when the preferred one is not feasible."
+        }
       ],
       "scenario": {
         "situation": "A server worth US$200,000 faces a flood risk: a flood would destroy 40% of its value, and one is expected every 5 years. A barrier costs US$30,000 a year.",
@@ -191,10 +299,22 @@
         "Revisit the model when the design or the threat landscape changes."
       ],
       "keyTerms": [
-        { "term": "STRIDE", "meaning": "Microsoft's threat categories, each the opposite of a security property." },
-        { "term": "PASTA", "meaning": "Process for Attack Simulation and Threat Analysis: seven risk-centric stages." },
-        { "term": "Trust boundary", "meaning": "Where data crosses between levels of trust, a common place for threats." },
-        { "term": "Attack tree", "meaning": "A diagram with the attacker's goal at the root and ways to reach it as branches." }
+        {
+          "term": "STRIDE",
+          "meaning": "Microsoft's threat categories, each the opposite of a security property."
+        },
+        {
+          "term": "PASTA",
+          "meaning": "Process for Attack Simulation and Threat Analysis: seven risk-centric stages."
+        },
+        {
+          "term": "Trust boundary",
+          "meaning": "Where data crosses between levels of trust, a common place for threats."
+        },
+        {
+          "term": "Attack tree",
+          "meaning": "A diagram with the attacker's goal at the root and ways to reach it as branches."
+        }
       ],
       "scenario": {
         "situation": "A team wants to threat-model its new mobile banking app after launch, because the release date is fixed.",
@@ -211,10 +331,22 @@
         "Software risks are managed with SBOMs, provenance and timely patching."
       ],
       "keyTerms": [
-        { "term": "SCRM", "meaning": "Supply chain risk management: identifying and managing risks from suppliers and their suppliers." },
-        { "term": "Right to audit", "meaning": "A contract clause letting the customer verify the supplier's controls." },
-        { "term": "Silicon root of trust", "meaning": "An immutable hardware anchor that verifies firmware at boot." },
-        { "term": "PUF", "meaning": "Physically unclonable function: a unique hardware fingerprint that resists cloning." }
+        {
+          "term": "SCRM",
+          "meaning": "Supply chain risk management: identifying and managing risks from suppliers and their suppliers."
+        },
+        {
+          "term": "Right to audit",
+          "meaning": "A contract clause letting the customer verify the supplier's controls."
+        },
+        {
+          "term": "Silicon root of trust",
+          "meaning": "An immutable hardware anchor that verifies firmware at boot."
+        },
+        {
+          "term": "PUF",
+          "meaning": "Physically unclonable function: a unique hardware fingerprint that resists cloning."
+        }
       ],
       "scenario": {
         "situation": "A key outsourced payroll provider announces it has been breached; your contract has no notification clause.",
@@ -231,15 +363,219 @@
         "Management sponsorship and regular review keep the programme alive."
       ],
       "keyTerms": [
-        { "term": "Awareness", "meaning": "Short, frequent messages that keep security in mind for everyone." },
-        { "term": "Training", "meaning": "Teaching specific skills for a role, such as secure coding." },
-        { "term": "Security champion", "meaning": "A volunteer in a business team who promotes security locally." },
-        { "term": "Phishing report rate", "meaning": "Share of staff who report a simulated phish: a behaviour measure." }
+        {
+          "term": "Awareness",
+          "meaning": "Short, frequent messages that keep security in mind for everyone."
+        },
+        {
+          "term": "Training",
+          "meaning": "Teaching specific skills for a role, such as secure coding."
+        },
+        {
+          "term": "Security champion",
+          "meaning": "A volunteer in a business team who promotes security locally."
+        },
+        {
+          "term": "Phishing report rate",
+          "meaning": "Share of staff who report a simulated phish: a behaviour measure."
+        }
       ],
       "scenario": {
         "situation": "The board is told 98% of staff completed awareness training, yet phishing incidents keep rising.",
         "ask": "What should the security manager change?",
         "answer": "Measure behaviour, not completion: track report rates and click rates over time, target the roles most attacked, refresh content for current lures, and report outcomes to the board."
+      }
+    },
+    "2.1": {
+      "summary": [
+        "Classify information by the harm its loss, change or disclosure would cause, not by who made it.",
+        "The data owner decides the classification; custodians apply the protection it calls for.",
+        "Government schemes (Top Secret, Secret, Confidential) and commercial ones (Confidential, Private, Public) both exist.",
+        "Over-classifying wastes money and teaches staff to ignore labels; under-classifying leaves data exposed.",
+        "Classify assets too, by the most sensitive data they hold, and review classifications over time."
+      ],
+      "keyTerms": [
+        {
+          "term": "Classification",
+          "meaning": "Assigning a sensitivity level that decides how information must be protected."
+        },
+        {
+          "term": "Categorisation",
+          "meaning": "Grouping systems by impact (for example low, moderate, high) to select baseline controls."
+        },
+        {
+          "term": "Declassification",
+          "meaning": "Lowering or removing a classification when the data is no longer as sensitive."
+        },
+        {
+          "term": "Data owner",
+          "meaning": "The senior business person accountable for a data set and its classification."
+        }
+      ],
+      "scenario": {
+        "situation": "A department marks almost every document Confidential 'to be safe'.",
+        "ask": "What goes wrong, and what should the owner do?",
+        "answer": "Protection money is spent on low-value data and staff stop taking the label seriously, so truly sensitive data loses its signal. The owner should classify by impact, use the lower levels where they fit, and review regularly."
+      }
+    },
+    "2.2": {
+      "summary": [
+        "Handling requirements say how each classification is stored, transmitted, shared and destroyed.",
+        "Marking is human-readable (headers, stamps); labelling can be machine-readable (metadata) so tools can enforce it.",
+        "Media in transit needs encryption and chain of custody; physical media needs locked storage.",
+        "Destruction must match the media and the classification, with a record that it was done.",
+        "Handling rules apply wherever the data goes: printed, emailed, copied or stored in the cloud."
+      ],
+      "keyTerms": [
+        {
+          "term": "Marking",
+          "meaning": "A visible indication of classification on the information itself."
+        },
+        {
+          "term": "Labelling",
+          "meaning": "Classification attached as metadata, often read by DLP or rights-management tools."
+        },
+        {
+          "term": "Chain of custody",
+          "meaning": "A record of who held media or evidence, and when."
+        },
+        {
+          "term": "Handling standard",
+          "meaning": "Rules per classification for storage, transmission, sharing and disposal."
+        }
+      ],
+      "scenario": {
+        "situation": "Backup tapes holding customer data go to an offsite store by courier each week.",
+        "ask": "Which handling controls matter most?",
+        "answer": "Encrypt the tapes so a lost tape exposes nothing, keep a chain-of-custody record at each handover, use a vetted courier and tamper-evident containers, and reconcile tape counts at both ends."
+      }
+    },
+    "2.3": {
+      "summary": [
+        "You cannot protect what you do not know you have: the inventory comes first.",
+        "Inventories cover tangible assets (hardware, media) and intangible ones (data, software, licences, domain names).",
+        "Every asset needs a named owner accountable for it.",
+        "Shadow IT bypasses provisioning; bring it into the inventory and give it an owner before deciding its fate.",
+        "Provision securely: standard builds, least privilege and only approved assets on the network."
+      ],
+      "keyTerms": [
+        {
+          "term": "Asset inventory",
+          "meaning": "An up-to-date record of assets, their owners, locations and classification."
+        },
+        {
+          "term": "Intangible asset",
+          "meaning": "An asset without physical form, such as data, software, brand or intellectual property."
+        },
+        {
+          "term": "Shadow IT",
+          "meaning": "Systems or services used without the organisation's approval or knowledge."
+        },
+        {
+          "term": "Asset owner",
+          "meaning": "The person accountable for an asset's protection and appropriate use."
+        }
+      ],
+      "scenario": {
+        "situation": "Finance pays for a SaaS budgeting tool on a corporate card. IT learns of it from expense reports.",
+        "ask": "What comes first?",
+        "answer": "Record it in the inventory and assign an owner, so its data and risks are known. Then assess it and decide whether to approve, replace or retire it; blocking first would disrupt work without understanding the risk."
+      }
+    },
+    "2.4": {
+      "summary": [
+        "Data passes through a lifecycle: collect, store, use, share, retain, archive, destroy.",
+        "Know the data roles: owner or controller, processor, custodian, steward, and the data subject.",
+        "Collect only what the purpose needs (minimisation) and keep it only as long as required (retention).",
+        "Data location matters: residency and sovereignty rules follow the data across borders.",
+        "Remanence is data left behind after deletion; sanitise to a level that matches the media and classification."
+      ],
+      "keyTerms": [
+        {
+          "term": "Data minimisation",
+          "meaning": "Collecting and keeping only the personal data the purpose needs."
+        },
+        {
+          "term": "Pseudonymisation",
+          "meaning": "Replacing identifiers with codes that can be re-linked using separately held information."
+        },
+        {
+          "term": "Anonymisation",
+          "meaning": "Irreversibly removing the link to individuals; no re-identification is possible."
+        },
+        {
+          "term": "Data remanence",
+          "meaning": "Residual data that remains on media after deletion or formatting."
+        }
+      ],
+      "scenario": {
+        "situation": "A loyalty app records customers' exact GPS location every minute, but the business only needs their city.",
+        "ask": "What should change?",
+        "answer": "Apply data minimisation: collect only the city. Securing or consenting to the extra collection does not fix collecting data the purpose does not need; delete what has already been gathered beyond the need."
+      }
+    },
+    "2.5": {
+      "summary": [
+        "End of life (EOL) means the vendor stops selling a product; end of support (EOS) means updates stop.",
+        "Plan replacement before support ends; after it, risks rise with every new vulnerability.",
+        "If an unsupported asset must stay, use compensating controls and a dated retirement decision by its owner.",
+        "Retention schedules and legal holds decide how long data and the assets holding it are kept.",
+        "Retirement includes sanitising the media, updating the inventory and keeping disposal records."
+      ],
+      "keyTerms": [
+        {
+          "term": "End of life (EOL)",
+          "meaning": "The vendor no longer sells the product; support may continue for a time."
+        },
+        {
+          "term": "End of support (EOS)",
+          "meaning": "The vendor no longer issues fixes or security updates."
+        },
+        {
+          "term": "Legal hold",
+          "meaning": "An instruction to preserve data relevant to litigation, overriding normal deletion."
+        },
+        {
+          "term": "Retention schedule",
+          "meaning": "How long each type of record must be kept, and when to dispose of it."
+        }
+      ],
+      "scenario": {
+        "situation": "A server due for disposal holds mailboxes subject to a legal hold.",
+        "ask": "Can disposal go ahead on schedule?",
+        "answer": "No. Preserve the held data first, under the legal team's direction. Dispose of the server only once the hold is released or the data has been preserved elsewhere in a way legal accepts."
+      }
+    },
+    "2.6": {
+      "summary": [
+        "Protect data in each state: at rest (storage encryption), in transit (TLS, VPN), in use (access control, enclaves).",
+        "Scoping picks which baseline controls apply; tailoring adjusts them to fit.",
+        "Select standards from what applies: law, contracts (PCI DSS), and the organisation's own framework.",
+        "DLP stops data leaving, CASB governs cloud use, DRM keeps control after the file has left.",
+        "Tokenisation removes sensitive values from systems; encryption protects them where they stay."
+      ],
+      "keyTerms": [
+        {
+          "term": "Data in use",
+          "meaning": "Data being processed in memory, the hardest state to protect."
+        },
+        {
+          "term": "Tokenisation",
+          "meaning": "Replacing a sensitive value with a token, with the real value held in a separate vault."
+        },
+        {
+          "term": "CASB",
+          "meaning": "Cloud access security broker: visibility and control over cloud service use."
+        },
+        {
+          "term": "DRM",
+          "meaning": "Digital rights management: usage controls that travel with the file."
+        }
+      ],
+      "scenario": {
+        "situation": "A merchant wants most of its systems out of PCI DSS scope but must still process refunds.",
+        "ask": "Which method fits?",
+        "answer": "Tokenisation: systems hold tokens, the card numbers sit in a separate vault, and refunds use the token. Encrypting card numbers in place keeps those systems in scope if they can reach the keys."
       }
     }
   }

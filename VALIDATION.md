@@ -2,6 +2,26 @@
 
 Each phase adds a section. Commands are run from the repo root with Node 24.22.1 and Playwright 1.64.1 (Chromium), using a Pixel 7 profile at 360 × 780, time zone Africa/Harare.
 
+## Phase 8, batch 2: Domain 2 content (28 October 2026)
+
+Framework check before writing (recorded in `data/SOURCES.md`): **NIST SP 800-88 Revision 2 (September 2025)** supersedes Rev. 1 and defers techniques to **IEEE 2883-2022** (Clear, Purge, Destruct). The existing sanitisation card and question d2-002 were updated so they no longer imply Rev. 1 is current.
+
+**Content added:** 23 Domain 2 questions (25 in total, about 10% of a 240-question bank; every objective has at least 3) and a third case study (patient data at a clinic group); lessons for all 6 objectives; 8 cards (every Domain 2 objective now has a card); 3 drills (data states, data roles, clear/purge/destroy); 2 labs (day 3: classify and mark a test file share; day 4: show data remanence on test media with PhotoRec, then defeat it).
+
+`npm run validate`: **no errors.** The give-away lint raised nothing on the new questions this time; it flagged a too-short sub-topic and two thin rationales, which were rewritten.
+
+**Bank after batch 2:** 79 questions; 22 multi-select (28%); single-answer keys in positions 0/1/2/3: 13/15/15/14; correct option is the single longest in 15 of 57 (26%); difficulty 2: 2, 3: 18, 4: 31, 5: 23, 6: 5 (75% at 4 to 6).
+
+`npm test`: **86 passed, 0 failed.** The per-domain test now checks every finished domain: each objective has a lesson, at least two questions and a card, the domain has at least 95% of its share of a 240-question bank, and it has a drill and a lab. Domains 1 and 2 pass.
+
+`npx playwright test`: **34 passed, 0 failed** (3 consecutive runs). New: the Domain 2 page shows a lesson for all 6 objectives and the labs list runs in day order. The reteach test assumed Domain 2 had only two questions; it now practises objective 2.4 directly.
+
+Manual review: the day 4 lab at 360 px, light theme.
+
+### Not validated
+- The day 4 lab names PhotoRec (open source, CGSecurity); its download was not checked in this session. The lab says to use the official site and test media only.
+- No question has been checked against ISC2's real exam; difficulty is judged.
+
 ## Phase 8, batch 1: Domain 1 content (28 October 2026)
 
 Framework versions re-checked before writing (recorded in `data/SOURCES.md`): NIST CSF 2.0, PCI DSS v4.0.1 and the ISC2 canons are current; ISC2 added a Code of Professional Conduct in February 2026; Zimbabwe's 2024 breach-reporting rule is from secondary sources only and is used in practical notes, not tested.
