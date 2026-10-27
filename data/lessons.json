@@ -1825,6 +1825,166 @@
         "ask": "What should the security team provide?",
         "answer": "A clean loaner laptop and phone with only the data needed, access through the corporate VPN, and a wipe and inspection of the devices on return."
       }
+    },
+    "8.1": {
+      "summary": [
+        "Build security into every SDLC phase; requirements are the cheapest place to add it.",
+        "Methodologies differ (Waterfall, Agile, DevOps, DevSecOps); security adapts to each, never waits for the end.",
+        "Shift left: automated checks in the pipeline catch issues while they are cheap to fix.",
+        "Maturity models such as OWASP SAMM measure and improve software security practice.",
+        "Change management and separation of duties stop untested code reaching production."
+      ],
+      "keyTerms": [
+        {
+          "term": "DevSecOps",
+          "meaning": "Security integrated into DevOps as a shared responsibility, with automated checks throughout."
+        },
+        {
+          "term": "Shift left",
+          "meaning": "Moving security activities earlier in the lifecycle."
+        },
+        {
+          "term": "OWASP SAMM",
+          "meaning": "Software Assurance Maturity Model: assesses and improves software security practices."
+        },
+        {
+          "term": "Integrated product team",
+          "meaning": "A cross-functional team, including security, that owns a product end to end."
+        }
+      ],
+      "scenario": {
+        "situation": "Security reviews happen only a week before release, and findings regularly delay launches.",
+        "ask": "What should change?",
+        "answer": "Shift left: add security requirements and threat modelling at design, and automated tests in the pipeline, so issues surface while they are small and cheap to fix."
+      }
+    },
+    "8.2": {
+      "summary": [
+        "The development ecosystem is part of the attack surface: languages, libraries, IDEs, runtimes, CI/CD, repositories.",
+        "Protect the pipeline: protected branches, reviewed changes, least-privilege runners, signed artefacts.",
+        "Keep secrets out of code; use a secrets manager and scan repositories for leaks.",
+        "Use SAST, DAST, IAST and SCA together; each covers what the others miss.",
+        "Memory-safe languages remove whole classes of flaws such as buffer overflows."
+      ],
+      "keyTerms": [
+        {
+          "term": "Secrets manager",
+          "meaning": "A service that stores and issues credentials so they never sit in code."
+        },
+        {
+          "term": "Dependency confusion",
+          "meaning": "Tricking a build into pulling a malicious public package with an internal package's name."
+        },
+        {
+          "term": "Artefact signing",
+          "meaning": "Signing build outputs so deployments can verify where they came from."
+        },
+        {
+          "term": "Protected branch",
+          "meaning": "A branch that only accepts reviewed, passing changes."
+        }
+      ],
+      "scenario": {
+        "situation": "A developer finds a cloud access key committed to the repository two months ago.",
+        "ask": "What must happen?",
+        "answer": "Revoke and rotate the key at once (deleting the commit is not enough, because history and clones keep it), check its use in the logs, move secrets to a manager, and add secret scanning to the pipeline."
+      }
+    },
+    "8.3": {
+      "summary": [
+        "Measure whether software security works: defects found before release versus after, time to fix, coverage.",
+        "Audit and log changes to code so every change is attributable and reviewable.",
+        "Software configuration management lets you rebuild and roll back to known-good versions.",
+        "Risk-based analysis decides which findings to fix first.",
+        "Effectiveness is shown by outcomes, not by the number of tools bought."
+      ],
+      "keyTerms": [
+        {
+          "term": "Defect escape rate",
+          "meaning": "Share of vulnerabilities found after release rather than before."
+        },
+        {
+          "term": "Commit signing",
+          "meaning": "Cryptographically signing commits so their author can be verified."
+        },
+        {
+          "term": "Release tagging",
+          "meaning": "Marking exact versions in source control so they can be rebuilt or restored."
+        },
+        {
+          "term": "Mean time to remediate",
+          "meaning": "Average time from finding a vulnerability to fixing it."
+        }
+      ],
+      "scenario": {
+        "situation": "Leadership asks whether its investment in secure development is paying off.",
+        "ask": "What evidence answers that?",
+        "answer": "Trends in outcomes: fewer vulnerabilities escaping to production, faster time to remediate, and higher coverage of code by reviews and tests, compared with before."
+      }
+    },
+    "8.4": {
+      "summary": [
+        "Acquired software brings risks you did not write: COTS, open source, third-party, managed and cloud services.",
+        "Get assurance through independent reports, SBOMs and contract terms when you cannot see the code.",
+        "Open source needs SCA for vulnerabilities and for licence obligations.",
+        "Supply chain attacks hit trusted update channels; verify signatures and stage updates.",
+        "SaaS still leaves you responsible for data, identities and configuration."
+      ],
+      "keyTerms": [
+        {
+          "term": "COTS",
+          "meaning": "Commercial off-the-shelf software bought from a vendor."
+        },
+        {
+          "term": "Copyleft licence",
+          "meaning": "An open-source licence (such as GPL) requiring derived works to share source under the same terms."
+        },
+        {
+          "term": "Software supply chain attack",
+          "meaning": "Compromising software through its suppliers, dependencies, build or update systems."
+        },
+        {
+          "term": "Code escrow",
+          "meaning": "Source code held by a third party, released if the vendor fails."
+        }
+      ],
+      "scenario": {
+        "situation": "A vendor's routine software update turns out to contain a backdoor inserted at the vendor's build server.",
+        "ask": "What controls limit the damage next time?",
+        "answer": "Staged rollout of vendor updates, monitoring the behaviour of updated systems, least-privilege network access for vendor software, and vendor assurance about its build security."
+      }
+    },
+    "8.5": {
+      "summary": [
+        "Know the major weakness classes and their fixes: injection, XSS, CSRF, broken access control, race conditions.",
+        "Fix the class, not the instance: parameterised queries, output encoding, anti-CSRF tokens, server-side authorisation.",
+        "Validate input on the server with allow-lists; client-side checks are for usability only.",
+        "Fail securely with generic error messages; log details internally.",
+        "The OWASP Top 10 (2025 edition) and ASVS guide secure coding; broken access control still tops the list."
+      ],
+      "keyTerms": [
+        {
+          "term": "Parameterised query",
+          "meaning": "A query where input is passed as data, never as part of the SQL command."
+        },
+        {
+          "term": "Output encoding",
+          "meaning": "Converting data so browsers display it as text instead of running it."
+        },
+        {
+          "term": "CSRF",
+          "meaning": "Cross-site request forgery: tricking a logged-in user's browser into sending an unwanted request."
+        },
+        {
+          "term": "TOCTOU",
+          "meaning": "Time of check to time of use: a race between checking a condition and acting on it."
+        }
+      ],
+      "scenario": {
+        "situation": "Developers fix an SQL injection by blocking the single-quote character in one form field.",
+        "ask": "What is wrong with the fix?",
+        "answer": "It treats one symptom. Attackers use other encodings and fields. Use parameterised queries everywhere, so input can never change the query's structure."
+      }
     }
   }
 }

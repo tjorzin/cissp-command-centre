@@ -507,6 +507,78 @@
         "The wbadmin output for backup, versions and recovery.",
         "Your measured recovery time against the RTO, and a note on the lost file."
       ]
+    },
+    {
+      "id": "lab-d8-juice-shop",
+      "day": 15,
+      "domain": 8,
+      "objective": "8.5",
+      "minutes": 45,
+      "title": "Exploit and explain SQL injection in a local test app",
+      "environment": "LAB / TEST ENVIRONMENT: OWASP Juice Shop, a deliberately vulnerable app, running in Docker on your own machine and bound to localhost only. Never test these techniques against any site you do not own.",
+      "goal": "See SQL injection work against a deliberately vulnerable app, then write down the structural fix.",
+      "prerequisites": [
+        "Docker Desktop or Docker Engine on a personal machine",
+        "Drill: which fix stops this attack?",
+        "Card: attack and fix pairs"
+      ],
+      "steps": [
+        "Start Juice Shop on localhost only: `docker run --rm -p 127.0.0.1:3000:3000 bkimminich/juice-shop`",
+        "Open `http://localhost:3000` in your browser and go to the login page.",
+        "Enter `' OR 1=1--` as the email and any password; note which account you are logged in as.",
+        "Explain in two sentences why that input changed the query's logic.",
+        "Write the vulnerable pattern (string concatenation) and the fixed pattern (a parameterised query) in pseudo-code side by side.",
+        "Try one more Juice Shop challenge from its scoreboard, such as a reflected XSS, and name its structural fix.",
+        "Stop the container with Ctrl+C."
+      ],
+      "validation": [
+        "You logged in without a valid password using injection.",
+        "Your fixed pseudo-code passes the email as a parameter, not as part of the SQL string.",
+        "You named output encoding as the fix for the XSS challenge."
+      ],
+      "rollback": [
+        "Stop the container; the --rm flag removes it. Optionally remove the image with `docker rmi bkimminich/juice-shop`."
+      ],
+      "evidence": [
+        "A screenshot of the logged-in session.",
+        "Your vulnerable and fixed pseudo-code and explanations."
+      ]
+    },
+    {
+      "id": "lab-d8-sbom",
+      "day": 16,
+      "domain": 8,
+      "objective": "8.4",
+      "minutes": 35,
+      "title": "Generate an SBOM and audit dependencies",
+      "environment": "LAB / TEST ENVIRONMENT: a throwaway Node.js project in a lab folder. Do not run these tools against company repositories without approval.",
+      "goal": "See how an SBOM lists components and how dependency auditing finds known vulnerabilities, including old versions you pinned on purpose.",
+      "prerequisites": [
+        "Node.js and npm installed",
+        "An empty folder called LAB-sbom",
+        "Card: open-source risk; card: software bill of materials"
+      ],
+      "steps": [
+        "Create a project: `npm init -y`",
+        "Install an old library version on purpose: `npm install lodash@4.17.15`",
+        "Audit dependencies: `npm audit` and note the severity and advisory for lodash.",
+        "Generate a CycloneDX SBOM: `npx @cyclonedx/cyclonedx-npm --output-file sbom.json`",
+        "Open sbom.json and find the lodash entry, its version and its package URL.",
+        "Upgrade: `npm install lodash@latest`, then run `npm audit` again and compare.",
+        "Write two sentences on how an SBOM would help if a new lodash flaw were announced tomorrow."
+      ],
+      "validation": [
+        "The first audit reports at least one lodash advisory; the second does not.",
+        "sbom.json lists lodash with its version.",
+        "Your note explains finding affected products quickly from the SBOM."
+      ],
+      "rollback": [
+        "Delete the LAB-sbom folder."
+      ],
+      "evidence": [
+        "Both npm audit outputs.",
+        "The lodash entry from sbom.json and your note."
+      ]
     }
   ]
 }

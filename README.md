@@ -2,7 +2,7 @@
 
 A personal CISSP study app: an offline, installable PWA that tells you what to study next. Built in vanilla HTML, CSS and JavaScript, with no build step, no backend and no accounts. Progress stays on the device; use **More → Export progress** to back it up or move it to another device.
 
-> Status: phase 8 of 10, content batch 7 of 8 (Domains 1 to 7: 222 of the planned 240 questions, plus lessons, cards, drills and labs). See `VALIDATION.md`.
+> Status: phase 8 of 10 complete: all eight domains (248 questions, 62 lessons, 99 cards, 21 drills, 16 labs). Next: car mode (phase 9). See `VALIDATION.md`.
 
 Content is added one domain at a time: write a batch file, merge it with `node tools/merge-batch.js <file>`, then `npm run validate` (schema, give-away lint, lessons, drills and labs) before committing.
 
@@ -46,7 +46,7 @@ Every miss, and every right answer marked as a guess, is recorded with why your 
 
 ## Question modes
 
-Practice set, Scenario set, Mini exam (25 × 90 s), Adaptive mock (100 to 150 questions, 3 hours; a staircase simulation, not ISC2's algorithm; unlocks at 150 questions), Weakness drill and Hard mode (levels 5 to 6). Confidence (guess / unsure / sure) is captured before every answer is revealed.
+Practice set, Scenario set, Mini exam (25 × 90 s), Adaptive mock (100 to 150 questions, 3 hours; a staircase simulation, not ISC2's algorithm), Weakness drill and Hard mode (levels 5 to 6). Confidence (guess / unsure / sure) is captured before every answer is revealed.
 
 ## Exam facts
 

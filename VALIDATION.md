@@ -2,6 +2,34 @@
 
 Each phase adds a section. Commands are run from the repo root with Node 24.22.1 and Playwright 1.64.1 (Chromium), using a Pixel 7 profile at 360 × 780, time zone Africa/Harare.
 
+## Phase 8, batch 8: Domain 8 content, phase 8 complete (28 October 2026)
+
+Framework check (`data/SOURCES.md`): the **OWASP Top 10:2025** (November 2025) keeps Broken Access Control first and adds Software Supply Chain Failures; only those stable points are tested.
+
+**Content added:** 24 Domain 8 questions (26 in total) and a ninth case study (building a fintech app: leaked secret, outsourced mobile development, shift-left testing); lessons for all 5 objectives; 7 cards; 2 drills (the brief's SAST/DAST/IAST/SCA comparison; which fix stops each web attack); 2 labs (day 15: SQL injection against OWASP Juice Shop on localhost; day 16: SBOM and dependency audit of a throwaway Node.js project).
+
+**The full bank (phase 8 complete):**
+
+| Measure | Result | Target |
+|---|---|---|
+| Questions | 248 | at least 240 |
+| By domain | 40 / 25 / 32 / 31 / 31 / 29 / 34 / 26 | at least 95% of each domain's weighted share of 240 |
+| Multi-select | 62 (25%) | 25 to 30% |
+| Single-answer key positions | 44 / 45 / 50 / 48 (max 27%) | none above 35% |
+| Correct option is the single longest | 55 of 186 (29.6%) | at most 30% |
+| Difficulty 1-2 / 3 / 4-6 | 5% / 28% / 67% | at most 15% / about 25% / at least 60% |
+| Case studies | 9 | |
+| Lessons / cards / drills / labs | 62 / 99 / 21 / 16 | every objective has a lesson, at least two questions and a card |
+
+`npm run validate`: **no errors.** The lint first rejected 4 Domain 8 questions for tells (length tells in d8-006 and d8-026; the key alone echoing stem words in d8-006 and d8-007) and two thin rationales; all fixed. Seven keys were trimmed and d8-022 became a Select TWO question (anti-CSRF tokens and SameSite cookies) to bring the bank inside both targets.
+
+**The adaptive mock is now unlocked** (it needs 150 questions with enough in every domain). `npm test`: **93 passed, 0 failed**, including 300 simulated mocks per skill level on the real bank: 100 to 150 items every run, domain counts within one item of the weighting at every step. 300 mini papers from the real bank: 300 of 300 distinct, every question seen in at least 11 option orders. `npx playwright test`: **36 passed, 0 failed** (3 consecutive runs); the old "mock is locked" test now starts a real mock, answers with no feedback, ends early and checks the band and the "not ISC2" disclaimer.
+
+### Not validated, or below standard
+- **Stem length: 115 questions at difficulty 4 to 6 have stems under 40 words**, below the standard's "typically 50 to 120 words" for those levels. The validator warned on every batch and this was not addressed. They are concise application questions, but many lack the deliberate decoy detail the standard asks for. A rewrite pass is the main open content task.
+- No question has been checked against ISC2's real exam; difficulty levels are judged, not measured.
+- Labs in Domains 3 to 8 were written but not run in this session.
+
 ## Phase 8, batch 7: Domain 7 content (28 October 2026)
 
 Framework check (`data/SOURCES.md`): **NIST SP 800-61 Revision 3 is final (April 2025)**, recast around CSF 2.0. Questions use the 2024 outline's incident steps and the stable principle that containment precedes recovery; the incident-response card was updated so it no longer presents Rev. 2's phases as current NIST guidance.

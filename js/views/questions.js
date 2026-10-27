@@ -115,7 +115,7 @@ export function renderQuestions(ctx) {
           class: 'btn primary', type: 'button',
           onclick: () => launch(store, { mode: 'mock', seed, weights, limitSec: MOCK.minutes * 60 })
         }, 'Start adaptive mock'))
-        : h('p', { class: 'small locked' }, `Unlocks when the bank holds ${readiness.needed} questions with enough in every domain (now ${readiness.total}). The full bank arrives in phase 8.`)),
+        : h('p', { class: 'small locked' }, `Unlocks when the bank holds ${readiness.needed} questions with enough in every domain (now ${readiness.total}).`)),
 
     modeCard('weakness', 'Weakness drill', 'Every question you missed or guessed, plus the others on the same objectives, so you drill the idea and not the wording.',
       weakCount

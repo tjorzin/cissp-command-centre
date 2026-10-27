@@ -1140,6 +1140,95 @@
       "trap": "Thinking DevSecOps means adding one security scan at the end of the pipeline.",
       "hook": "Security rides the whole pipeline, not the last carriage.",
       "tags": []
+    },
+    {
+      "id": "c8-004",
+      "domain": 8,
+      "objective": "8.1",
+      "term": "Waterfall, Agile, DevOps, DevSecOps",
+      "meaning": "Waterfall: sequential phases. Agile: short iterations with changing requirements. DevOps: development and operations together with automated delivery. DevSecOps: security built into that automation and shared by everyone.",
+      "trap": "Bolting one security review onto the end of an Agile or DevOps process.",
+      "hook": "Phases, sprints, pipelines, pipelines with guardrails.",
+      "tags": [
+        "comparison",
+        "sdlc"
+      ]
+    },
+    {
+      "id": "c8-005",
+      "domain": 8,
+      "objective": "8.1",
+      "term": "SAMM vs CMM",
+      "meaning": "OWASP SAMM assesses software security practices (governance, design, implementation, verification, operations). CMM rates general process maturity in five levels, from initial to optimising.",
+      "trap": "Using a general process maturity model to judge software security practice.",
+      "hook": "SAMM for software security, CMM for process maturity.",
+      "tags": [
+        "comparison",
+        "maturity"
+      ]
+    },
+    {
+      "id": "c8-006",
+      "domain": 8,
+      "objective": "8.2",
+      "term": "Securing the CI/CD pipeline",
+      "meaning": "Protected branches with reviews, secrets in a secrets manager, least-privilege runners, controlled package sources, and signed artefacts verified before deployment.",
+      "trap": "Deleting a leaked secret from code without rotating it.",
+      "hook": "Guard what goes in, sign what comes out.",
+      "tags": [
+        "ci-cd"
+      ]
+    },
+    {
+      "id": "c8-007",
+      "domain": 8,
+      "objective": "8.3",
+      "term": "Measuring software security",
+      "meaning": "Outcome measures: vulnerabilities found after release versus before (escape rate), time to remediate, review and test coverage. Activity counts such as tools bought say little.",
+      "trap": "Reporting training attendance as proof of safer software.",
+      "hook": "Count what escapes, not what you bought.",
+      "tags": [
+        "metrics"
+      ]
+    },
+    {
+      "id": "c8-008",
+      "domain": 8,
+      "objective": "8.4",
+      "term": "Open-source risk",
+      "meaning": "Open source brings known vulnerabilities and licence obligations. SCA finds both; copyleft licences such as GPL can require releasing source code of derived works.",
+      "trap": "Assuming open-source code comes without conditions.",
+      "hook": "Free to use is not free of rules.",
+      "tags": [
+        "open-source",
+        "sca"
+      ]
+    },
+    {
+      "id": "c8-009",
+      "domain": 8,
+      "objective": "8.5",
+      "term": "Attack and fix pairs",
+      "meaning": "SQL injection: parameterised queries. XSS: context-aware output encoding (plus CSP). CSRF: anti-CSRF tokens and SameSite cookies. Broken object access: server-side ownership checks. Race conditions: atomic operations.",
+      "trap": "Fixing with blocklists, WAFs or client-side checks instead of the structural fix.",
+      "hook": "Parameterise, encode, token, check, lock.",
+      "tags": [
+        "comparison",
+        "secure-coding"
+      ]
+    },
+    {
+      "id": "c8-010",
+      "domain": 8,
+      "objective": "8.5",
+      "term": "OWASP Top 10 (2025)",
+      "meaning": "Released November 2025. Broken access control stays first (now including SSRF). New categories include software supply chain failures and mishandling of exceptional conditions.",
+      "trap": "Answering from the 2021 list.",
+      "hook": "Access control still first; the supply chain joins the list.",
+      "tags": [
+        "owasp",
+        "current"
+      ]
     }
   ]
 }

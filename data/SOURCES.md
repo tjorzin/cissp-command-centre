@@ -121,6 +121,14 @@ Content tests prioritisation principles (severity alone is not risk; add exploit
 
 Content uses the 2024 CISSP outline's incident steps (7.6) and the stable principle that containment precedes eradication and recovery; it does not test Rev. 2's phase names as current NIST guidance.
 
+## Framework currency check: Domain 8 batch (28 October 2026)
+
+| Item | Finding | Source quality |
+|---|---|---|
+| OWASP Top 10 | **2025 edition released November 2025**, first full update since 2021. A01 Broken Access Control stays first and absorbs SSRF; new categories Software Supply Chain Failures and Mishandling of Exceptional Conditions. Sources disagree on some lower ranks | Secondary (several) |
+
+Content tests only the stable points (Broken Access Control first; supply chain failures now a category), not exact lower rankings.
+
 ## Experience and the Associate route (verified)
 
 - Five years cumulative, full-time, paid experience in **two or more** of the eight domains.

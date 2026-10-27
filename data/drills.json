@@ -63,6 +63,62 @@
       ]
     },
     {
+      "id": "dr-app-testing",
+      "domain": 8,
+      "objective": "8.2",
+      "title": "SAST, DAST, IAST or SCA?",
+      "items": [
+        {
+          "name": "SAST",
+          "meaning": "Analyses your source code without running it."
+        },
+        {
+          "name": "DAST",
+          "meaning": "Attacks the running application from outside."
+        },
+        {
+          "name": "IAST",
+          "meaning": "Instruments the running application from inside during tests."
+        },
+        {
+          "name": "SCA",
+          "meaning": "Inventories third-party components and their known flaws and licences."
+        }
+      ],
+      "prompts": [
+        {
+          "text": "A tool flags a hard-coded password in a Java class during the commit.",
+          "answer": "SAST",
+          "why": "Reading source code without running it is static analysis."
+        },
+        {
+          "text": "A scanner crawls the staging site and finds a reflected XSS in a search box.",
+          "answer": "DAST",
+          "why": "Probing the running app from outside is dynamic testing."
+        },
+        {
+          "text": "An agent inside the app sees untrusted input reach a SQL call during QA tests.",
+          "answer": "IAST",
+          "why": "Instrumentation inside the running app during testing is interactive testing."
+        },
+        {
+          "text": "The build fails because a logging library has a known critical CVE.",
+          "answer": "SCA",
+          "why": "Known flaws in third-party components are SCA's job."
+        },
+        {
+          "text": "A report lists every open-source licence in the product.",
+          "answer": "SCA",
+          "why": "Licence inventory comes from composition analysis."
+        },
+        {
+          "text": "A test finds that the production cookie lacks the Secure flag.",
+          "answer": "DAST",
+          "why": "Inspecting the running app's responses is dynamic testing."
+        }
+      ]
+    },
+    {
       "id": "dr-assessment-types",
       "domain": 6,
       "objective": "6.2",
@@ -1051,6 +1107,62 @@
           "text": "Auditors of a retailer's accounts rely on its outsourced billing provider's controls.",
           "answer": "SOC 1",
           "why": "Controls affecting financial reporting call for SOC 1."
+        }
+      ]
+    },
+    {
+      "id": "dr-web-fixes",
+      "domain": 8,
+      "objective": "8.5",
+      "title": "Which fix stops this attack?",
+      "items": [
+        {
+          "name": "Parameterised queries",
+          "meaning": "Input passed as data, never as part of the SQL command."
+        },
+        {
+          "name": "Output encoding",
+          "meaning": "Data rendered as text so browsers do not run it."
+        },
+        {
+          "name": "Anti-CSRF token",
+          "meaning": "A secret per-session value that forged requests cannot include."
+        },
+        {
+          "name": "Server-side authorisation",
+          "meaning": "The server checks the user may access each object and function."
+        }
+      ],
+      "prompts": [
+        {
+          "text": "Typing ' OR 1=1 -- into the login form logs the attacker in.",
+          "answer": "Parameterised queries",
+          "why": "This is SQL injection."
+        },
+        {
+          "text": "A forum post containing a script steals other readers' session cookies.",
+          "answer": "Output encoding",
+          "why": "This is stored cross-site scripting."
+        },
+        {
+          "text": "Visiting a malicious page changes a logged-in user's email address on another site.",
+          "answer": "Anti-CSRF token",
+          "why": "This is cross-site request forgery."
+        },
+        {
+          "text": "Changing invoiceId=1001 to 1002 shows another company's invoice.",
+          "answer": "Server-side authorisation",
+          "why": "This is broken object-level authorisation."
+        },
+        {
+          "text": "A normal user calls the /admin/deleteUser endpoint directly and it works.",
+          "answer": "Server-side authorisation",
+          "why": "Function-level access must be checked on the server."
+        },
+        {
+          "text": "A search parameter is concatenated into a database query string.",
+          "answer": "Parameterised queries",
+          "why": "Concatenating input into SQL causes injection."
         }
       ]
     }

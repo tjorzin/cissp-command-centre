@@ -107,9 +107,21 @@ test('an unfinished session survives a reload and can be resumed', async ({ page
   await expect(page.locator('#next-btn')).toBeVisible();
 });
 
-test('adaptive mock is locked until the bank is large enough, and says why', async ({ page }) => {
+test('adaptive mock runs on the full bank: 3-hour timer, no feedback, band at the end', async ({ page }) => {
   await page.goto('/#/questions');
-  await expect(page.locator('#mode-mock .locked')).toContainText('150');
-  await expect(page.locator('#mode-mock button')).toHaveCount(0);
+  await expect(page.locator('#mode-mock .locked')).toHaveCount(0);
+  await page.locator('#mode-mock button').click();
+  await expect(page.locator('#timer')).toHaveText(/^(179|180):\d\d$/);
+  await expect(page.locator('.session-head')).toContainText('Adaptive mock (simulation)');
+  for (let i = 0; i < 3; i++) {
+    await answer(page, { right: i !== 1 });
+    await expect(page.locator('.session .verdict')).toHaveCount(0); // exam conditions: no feedback
+  }
+  page.once('dialog', (d) => d.accept());
+  await page.locator('#end-btn').click();
+  await expect(page).toHaveURL(/#\/results\//);
+  await expect(page.locator('#score')).toHaveText('2/3');
+  await expect(page.locator('#mock-band')).toContainText('not ISC2');
+  await expect(page.getByText(/score out of 1000 or pass probability/)).toBeVisible();
   await noOverflow(page);
 });

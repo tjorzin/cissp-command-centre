@@ -81,6 +81,16 @@
         "d7-006"
       ],
       "text": "Parirenyatwa Private Hospitals runs four hospitals in Harare and Mutare. Its three-person SOC uses a SIEM that raises about 4,000 alerts a day, of which analysts look at fewer than 200; most turn out to be false positives. EDR is installed on 60% of workstations and on none of the servers. This morning, a nurse's workstation began uploading large volumes of data to an unknown cloud storage site, and the legal team says the police may need to be involved if patient records were taken."
+    },
+    {
+      "id": "sc-09",
+      "title": "Building a fintech app",
+      "questionIds": [
+        "d8-003",
+        "d8-004",
+        "d8-005"
+      ],
+      "text": "Ruzivo Pay is a Harare fintech building a mobile wallet. Its developers push code to a hosted Git repository, and a CI/CD pipeline builds and deploys to production several times a week. A security review found a production database password committed in a configuration file eight months ago. The app depends on about 900 open-source packages. An outside agency is building the Android app under a contract that says nothing about security. Security testing happens once, a week before each quarterly release."
     }
   ],
   "questions": [
@@ -8147,6 +8157,868 @@
         "cots",
         "procurement",
         "sbom"
+      ]
+    },
+    {
+      "id": "d8-003",
+      "domain": 8,
+      "objective": "8.2",
+      "subtopic": "Secrets in source code",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": "sc-09",
+      "stem": "Ruzivo Pay's review found a production database password committed to the repository eight months ago. What should happen FIRST?",
+      "options": [
+        "Delete the configuration file in a new commit so the password disappears",
+        "Make the repository private so that outsiders cannot see the history",
+        "Change the database password at once and check the logs for misuse",
+        "Add the configuration file to the list of files that Git ignores"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "Deleting the file leaves the password in history and in every clone; it remains valid.",
+        "The repository may already be private, and anyone who saw the history or cloned it still has the password.",
+        "Correct. The password must be treated as compromised: rotate it now and investigate whether it was used, then move secrets to a secrets manager.",
+        "Ignoring the file stops future commits but does nothing about the exposed password."
+      ],
+      "concept": "Exposed secrets are compromised: revoke or rotate first, then clean up and prevent recurrence.",
+      "trap": "Cleaning the code instead of invalidating the secret.",
+      "managerLens": "Treat any secret in code as already stolen.",
+      "practicalNote": "Secret scanning in the pipeline and pre-commit hooks stop new secrets reaching the repository.",
+      "gap": "Responding to leaked secrets.",
+      "followUpId": "d8-004",
+      "tags": [
+        "secrets",
+        "ci-cd"
+      ]
+    },
+    {
+      "id": "d8-004",
+      "domain": 8,
+      "objective": "8.4",
+      "subtopic": "Outsourced development",
+      "difficulty": 5,
+      "type": "multi",
+      "scenario": "sc-09",
+      "stem": "Ruzivo Pay's contract with the agency building its Android app says nothing about security. Which TWO additions to the contract matter MOST? (Select TWO.)",
+      "options": [
+        "Security requirements, with acceptance testing against them before payment",
+        "Rights to review the code and test results, and ownership of the source code",
+        "A clause requiring the agency to use the same IDE as Ruzivo's developers",
+        "A bonus for delivering the app before the agreed launch date",
+        "A requirement that the agency's developers hold a CISSP certification"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Stated security requirements, tested before acceptance, make security a deliverable rather than a hope.",
+        "Correct. Code review rights and source ownership let Ruzivo verify the work and maintain it if the agency leaves.",
+        "IDE choice has no meaningful effect on security.",
+        "Speed bonuses encourage cutting corners, including on security.",
+        "Individual certifications do not guarantee secure code; requirements and testing do."
+      ],
+      "concept": "Outsourced development is secured through contract requirements, testing and rights.",
+      "trap": "Relying on people's credentials instead of verifiable requirements.",
+      "managerLens": "If it is not in the contract and not tested at acceptance, do not expect it.",
+      "practicalNote": "OWASP MASVS gives testable security requirements for mobile apps.",
+      "gap": "Managing security in outsourced development.",
+      "followUpId": "d8-005",
+      "tags": [
+        "outsourcing",
+        "contracts"
+      ]
+    },
+    {
+      "id": "d8-005",
+      "domain": 8,
+      "objective": "8.1",
+      "subtopic": "Shifting security left",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": "sc-09",
+      "stem": "Ruzivo Pay deploys several times a week, but security testing happens once, a week before each quarterly release. What is the BEST change?",
+      "options": [
+        "Add automated security tests to the pipeline, gating serious findings",
+        "Test more thoroughly in the week before each quarterly release",
+        "Release only once a quarter so that security testing can keep pace",
+        "Hire a penetration tester to review each deployment by hand"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. Automated checks in the pipeline test every change as it is made, and gates stop serious issues reaching production.",
+        "Deeper testing once a quarter still misses the weekly changes in between.",
+        "Slowing releases to fit the testing model gives up the business benefit of frequent delivery.",
+        "Manual review of every deployment does not scale to several a week."
+      ],
+      "concept": "Shift left: automate security testing in the pipeline.",
+      "trap": "Slowing delivery or adding manual effort instead of automating.",
+      "managerLens": "Make security move at the speed of delivery.",
+      "practicalNote": "Typical pipeline checks: SAST, SCA, secret scanning and container image scanning, with DAST against staging.",
+      "gap": "Fitting security into DevOps.",
+      "followUpId": null,
+      "tags": [
+        "devsecops",
+        "shift-left"
+      ]
+    },
+    {
+      "id": "d8-006",
+      "domain": 8,
+      "objective": "8.1",
+      "subtopic": "Security requirements in the SDLC",
+      "difficulty": 2,
+      "type": "single",
+      "scenario": null,
+      "stem": "A project team is starting a new customer portal. In which SDLC phase is it MOST cost-effective to define what security the portal must provide?",
+      "options": [
+        "In the testing phase",
+        "In the deployment phase",
+        "In the maintenance phase",
+        "In the requirements phase"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "By testing, the design is built; adding requirements then means rework.",
+        "At deployment, changes are expensive and risky.",
+        "In maintenance, security is being retrofitted at the highest cost.",
+        "Correct. Defining security requirements alongside functional ones is cheapest and shapes the design from the start."
+      ],
+      "concept": "Security requirements belong at the start of the SDLC.",
+      "trap": "Thinking security is something to test for later.",
+      "managerLens": "Make security requirements part of project initiation sign-off.",
+      "practicalNote": "OWASP ASVS gives ready-made security requirements by assurance level.",
+      "gap": "Placing security in the lifecycle.",
+      "followUpId": null,
+      "tags": [
+        "sdlc",
+        "requirements"
+      ]
+    },
+    {
+      "id": "d8-007",
+      "domain": 8,
+      "objective": "8.1",
+      "subtopic": "Software assurance maturity",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A bank's development division wants to assess how well its teams handle security across governance, design, implementation, verification and operations, then plan staged improvements. Which is designed for this?",
+      "options": [
+        "The NIST Cybersecurity Framework 2.0",
+        "OWASP Software Assurance Maturity Model (SAMM)",
+        "The OWASP Top 10 web application risks",
+        "Common Criteria evaluation assurance levels"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "CSF 2.0 is an organisation-wide cybersecurity framework, not a software assurance maturity model.",
+        "Correct. OWASP SAMM assesses software security practices across those business functions and guides improvement.",
+        "The Top 10 is an awareness list of risks, not a maturity model.",
+        "Common Criteria evaluates products, not an organisation's development practices."
+      ],
+      "concept": "SAMM measures and improves software security practices.",
+      "trap": "Choosing a broader framework or a risk list.",
+      "managerLens": "Use maturity models to set realistic, staged improvement targets.",
+      "practicalNote": "SAMM assessments can be repeated yearly to show progress.",
+      "gap": "Knowing software assurance models.",
+      "followUpId": null,
+      "tags": [
+        "samm",
+        "maturity"
+      ]
+    },
+    {
+      "id": "d8-008",
+      "domain": 8,
+      "objective": "8.1",
+      "subtopic": "Change control in development",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A developer fixed a production bug by editing code directly on the live server late at night. The fix worked, but nobody else reviewed it. What control would BEST prevent this?",
+      "options": [
+        "Require developers to email the team after any direct production change",
+        "Remove the developer's access to the production server after the event",
+        "Allow production changes only via the pipeline, with review",
+        "Ask developers to keep a personal log of changes they make on live servers"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "Emailing after the fact does not prevent unreviewed changes.",
+        "Removing one person's access treats the instance, not the process.",
+        "Correct. Routing every change through the pipeline enforces review, testing and separation of duties, with an emergency path for urgent fixes.",
+        "Personal logs are unreliable and do not stop unreviewed changes."
+      ],
+      "concept": "Separation of duties and change control: code reaches production only through a controlled path.",
+      "trap": "Relying on after-the-fact notification.",
+      "managerLens": "Make the controlled path fast enough that nobody needs to bypass it.",
+      "practicalNote": "Developers typically have no write access to production; the pipeline deploys.",
+      "gap": "Controlling changes in software delivery.",
+      "followUpId": null,
+      "tags": [
+        "change-management",
+        "separation-of-duties"
+      ]
+    },
+    {
+      "id": "d8-009",
+      "domain": 8,
+      "objective": "8.1",
+      "subtopic": "Integrated product teams",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A company is forming a team to build a new lending platform end to end. Security findings on past projects arrived late and caused friction. How should security be involved?",
+      "options": [
+        "As a member of the integrated product team from the start",
+        "As an external reviewer who signs off the finished system",
+        "As a separate audit after the platform has gone live",
+        "Only when the team asks for help with a specific issue"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. An integrated product team includes security from the start, so it shapes decisions instead of blocking them late.",
+        "Sign-off at the end repeats the late-finding problem.",
+        "A post-live audit finds problems at the most expensive point.",
+        "On-request help depends on the team spotting issues it may not recognise."
+      ],
+      "concept": "Integrated product teams include security from the outset.",
+      "trap": "Keeping security as a gate rather than a participant.",
+      "managerLens": "Security as a team member costs less than security as a late veto.",
+      "practicalNote": "Security champions within product teams scale this approach.",
+      "gap": "Organising security in development.",
+      "followUpId": null,
+      "tags": [
+        "ipt",
+        "devsecops"
+      ]
+    },
+    {
+      "id": "d8-010",
+      "domain": 8,
+      "objective": "8.2",
+      "subtopic": "Pipeline integrity",
+      "difficulty": 5,
+      "type": "multi",
+      "scenario": null,
+      "stem": "After a well-publicised supply chain attack through a vendor's build server, a company wants to protect its own CI/CD pipeline. Which TWO controls BEST protect the integrity of what it ships? (Select TWO.)",
+      "options": [
+        "Protected branches that accept only reviewed changes that pass checks",
+        "Signing build artefacts and verifying signatures before deployment",
+        "Giving build runners broad administrator rights to avoid failures",
+        "Letting developers push straight to the release branch when urgent",
+        "Storing deployment credentials as plain variables in the pipeline"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Protected branches stop unreviewed code entering the build.",
+        "Correct. Signed artefacts let deployments reject anything not produced by the trusted pipeline.",
+        "Over-privileged runners turn a build compromise into a wider compromise.",
+        "Bypassing review on the release branch removes the integrity control when it matters most.",
+        "Plain-text credentials in pipeline variables are easy to steal."
+      ],
+      "concept": "Pipeline integrity: control what goes in and verify what comes out.",
+      "trap": "Trading integrity controls for build convenience.",
+      "managerLens": "Treat the build system as a crown-jewel asset.",
+      "practicalNote": "The SLSA framework describes levels of build integrity and provenance.",
+      "gap": "Securing CI/CD.",
+      "followUpId": null,
+      "tags": [
+        "ci-cd",
+        "supply-chain",
+        "signing"
+      ]
+    },
+    {
+      "id": "d8-011",
+      "domain": 8,
+      "objective": "8.2",
+      "subtopic": "Dependency confusion",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": null,
+      "stem": "A company's builds use internal packages from a private registry. An attacker publishes a public package with the same name as an internal one and a higher version number, and some builds pull it in. Which control BEST prevents this?",
+      "options": [
+        "Scan the public registry weekly for packages with suspicious names",
+        "Tell developers not to install packages they do not recognise",
+        "Increase the version numbers of the internal packages regularly",
+        "Make builds resolve internal names only from the private registry"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "Scanning may spot some impostors but does not stop builds pulling them.",
+        "The build tool chose the package automatically; developer caution does not help.",
+        "Attackers can always publish a higher version number.",
+        "Correct. Scoping internal names to the private registry (and pinning versions) means builds never look for them publicly."
+      ],
+      "concept": "Dependency confusion is prevented by controlling where packages resolve from.",
+      "trap": "Relying on people for an automated resolution problem.",
+      "managerLens": "Control the package sources your builds trust.",
+      "practicalNote": "Lockfiles with integrity hashes stop unexpected package changes at build time.",
+      "gap": "Managing dependency risk.",
+      "followUpId": null,
+      "tags": [
+        "supply-chain",
+        "dependencies"
+      ]
+    },
+    {
+      "id": "d8-012",
+      "domain": 8,
+      "objective": "8.2",
+      "subtopic": "Programming language choice",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A company writing new network-facing services wants to eliminate buffer overflows and use-after-free bugs as a class, not fix them one by one. Which decision does that MOST directly?",
+      "options": [
+        "Running static analysis on every C commit",
+        "Writing the services in a memory-safe language",
+        "Compiling with the strongest optimisation settings",
+        "Running the services as a non-administrator user"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "Static analysis finds many such bugs but cannot guarantee their absence in C.",
+        "Correct. Memory-safe languages such as Rust, Go, Java or C# prevent these memory errors by design.",
+        "Optimisation settings do not remove memory-safety bugs.",
+        "Least privilege limits damage after exploitation but does not prevent the bugs."
+      ],
+      "concept": "Memory-safe languages remove whole classes of vulnerabilities.",
+      "trap": "Choosing detection or damage limitation over elimination.",
+      "managerLens": "For new code, prefer choices that remove risk classes outright.",
+      "practicalNote": "Governments and major vendors now recommend memory-safe languages for new development.",
+      "gap": "Seeing language choice as a security control.",
+      "followUpId": null,
+      "tags": [
+        "memory-safety",
+        "languages"
+      ]
+    },
+    {
+      "id": "d8-013",
+      "domain": 8,
+      "objective": "8.3",
+      "subtopic": "Auditing code changes",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "Auditors investigating a fraud need to know exactly who changed the interest calculation code in a lending system, and whether anyone reviewed the change. What BEST supports this?",
+      "options": [
+        "Version control with signed commits and recorded code reviews",
+        "Comments in the source code that describe each change made",
+        "A spreadsheet kept by the team lead listing major changes",
+        "Daily backups of the source code directory on the build server"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. Version control shows every change; signed commits verify the author, and recorded reviews show who approved it.",
+        "Comments can be written or edited by anyone and are not reliable attribution.",
+        "A manual spreadsheet is incomplete and easy to alter.",
+        "Backups show the code's state at points in time, not who changed it or who reviewed it."
+      ],
+      "concept": "Auditable change history: version control, verified authorship and recorded reviews.",
+      "trap": "Accepting informal records as audit evidence.",
+      "managerLens": "Make every production change attributable and reviewed.",
+      "practicalNote": "Branch protection can require signed commits and approving reviews before merge.",
+      "gap": "Auditing software changes.",
+      "followUpId": null,
+      "tags": [
+        "audit",
+        "version-control"
+      ]
+    },
+    {
+      "id": "d8-014",
+      "domain": 8,
+      "objective": "8.3",
+      "subtopic": "Measuring software security",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": null,
+      "stem": "The board asks whether two years of investment in secure development has made the company's software safer. Which measure answers this BEST?",
+      "options": [
+        "The number of security tools the development teams now use",
+        "The number of developers who attended secure coding training",
+        "The trend in vulnerabilities found after release versus before",
+        "The number of lines of code scanned by static analysis each month"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "Tool counts measure spending, not outcomes.",
+        "Training attendance is activity, not evidence of safer software.",
+        "Correct. If fewer vulnerabilities escape to production while more are caught earlier, the programme is working.",
+        "Volume scanned shows activity, not whether software is safer."
+      ],
+      "concept": "Measure software security by outcomes such as defect escape rate.",
+      "trap": "Reporting activity as effectiveness.",
+      "managerLens": "Show the board outcome trends, not effort.",
+      "practicalNote": "Pair escape rate with mean time to remediate production vulnerabilities.",
+      "gap": "Measuring software security effectiveness.",
+      "followUpId": null,
+      "tags": [
+        "metrics",
+        "effectiveness"
+      ]
+    },
+    {
+      "id": "d8-015",
+      "domain": 8,
+      "objective": "8.3",
+      "subtopic": "Risk analysis of code findings",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A SAST tool reports 2,400 findings across a company's applications, and the developers cannot fix them all this quarter. Which TWO steps BEST decide what to fix first? (Select TWO.)",
+      "options": [
+        "Confirm findings are real and reachable, removing false positives",
+        "Rank by the risk to the business: exposure and data handled",
+        "Fix findings in alphabetical order of the affected file name",
+        "Fix the easiest findings first to reduce the total count fastest",
+        "Suppress all findings older than one year to shorten the list"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Triage removes false positives and unreachable code paths, so effort goes to real issues.",
+        "Correct. Exposure and data sensitivity determine which real issues matter most.",
+        "The order of file names has nothing to do with how dangerous a finding is.",
+        "Easy fixes reduce the count but may leave the most dangerous issues open.",
+        "Age does not make a vulnerability safe; suppressing it hides real risk."
+      ],
+      "concept": "Triage then prioritise code findings by business risk.",
+      "trap": "Optimising the count instead of the risk.",
+      "managerLens": "A smaller number of the right fixes beats a large number of easy ones.",
+      "practicalNote": "Tuning SAST rules to the codebase cuts false positives over time.",
+      "gap": "Analysing and prioritising code findings.",
+      "followUpId": null,
+      "tags": [
+        "sast",
+        "risk"
+      ]
+    },
+    {
+      "id": "d8-016",
+      "domain": 8,
+      "objective": "8.3",
+      "subtopic": "Software configuration management",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A release introduced a serious vulnerability, and the team needs to restore the exact previous version of the application within an hour. What makes this possible?",
+      "options": [
+        "A copy of the source code on each developer's laptop",
+        "Detailed release notes written for each deployment",
+        "Daily database backups taken by the operations team",
+        "Tagged releases in version control, with reproducible builds"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "Laptop copies may differ from what was released and are not controlled.",
+        "Release notes describe changes; they cannot rebuild the software.",
+        "Database backups protect data, not the application version.",
+        "Correct. Software configuration management, with tagged releases and repeatable builds, lets the team rebuild and redeploy the exact known-good version."
+      ],
+      "concept": "Software configuration management enables reliable rollback.",
+      "trap": "Confusing data backups with application version control.",
+      "managerLens": "Rollback is a security capability; test it.",
+      "practicalNote": "Keeping previous release artefacts in a registry makes rollback faster still.",
+      "gap": "Using configuration management in development.",
+      "followUpId": null,
+      "tags": [
+        "configuration-management",
+        "rollback"
+      ]
+    },
+    {
+      "id": "d8-017",
+      "domain": 8,
+      "objective": "8.4",
+      "subtopic": "Open-source licensing",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A company plans to sell a closed-source product. An SCA scan shows it includes a library under a strong copyleft licence (GPL). What should happen before release?",
+      "options": [
+        "Nothing, since open-source code is free for any use",
+        "Legal review of the licence obligations, and replacement if needed",
+        "Remove the licence file from the library so the scan stops flagging it",
+        "Rename the library so customers cannot identify it"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "Open-source licences carry conditions; copyleft can require releasing source code of derived works.",
+        "Correct. Legal must assess whether distribution triggers obligations, and the component may need replacing.",
+        "Removing the licence file breaches the licence and hides the problem.",
+        "Renaming is concealment and does not remove the obligation."
+      ],
+      "concept": "Open-source use carries licence obligations; SCA surfaces them.",
+      "trap": "Thinking open source has no conditions.",
+      "managerLens": "Set an approved licence policy and enforce it in the pipeline.",
+      "practicalNote": "SCA tools can block builds that include licences outside policy.",
+      "gap": "Managing open-source licence risk.",
+      "followUpId": null,
+      "tags": [
+        "open-source",
+        "licensing",
+        "sca"
+      ]
+    },
+    {
+      "id": "d8-018",
+      "domain": 8,
+      "objective": "8.4",
+      "subtopic": "Assessing SaaS",
+      "difficulty": 3,
+      "type": "multi",
+      "scenario": null,
+      "stem": "An HR team wants to adopt a SaaS recruitment platform that will hold applicants' personal data. Which TWO steps should the security assessment include? (Select TWO.)",
+      "options": [
+        "Review the provider's independent security report, such as SOC 2 Type II",
+        "Agree which security settings the company itself must configure",
+        "Run a penetration test against the provider's platform without notice",
+        "Rely on the provider's marketing claims about bank-grade security",
+        "Skip the assessment, since SaaS providers are responsible for security"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Independent reports give evidence about the provider's controls.",
+        "Correct. In SaaS the customer still owns identities, access and configuration such as sharing and retention settings.",
+        "Testing a provider's platform without permission may be illegal and breaches its terms.",
+        "Marketing claims are statements by an interested party, not evidence of controls.",
+        "Shared responsibility leaves the customer with real duties in SaaS."
+      ],
+      "concept": "SaaS assessment: provider assurance plus the customer's own configuration duties.",
+      "trap": "Assuming SaaS removes the customer's security duties.",
+      "managerLens": "Assess the provider and own your share.",
+      "practicalNote": "SaaS security posture management tools check customer-side settings across services.",
+      "gap": "Assessing acquired cloud services.",
+      "followUpId": null,
+      "tags": [
+        "saas",
+        "assessment"
+      ]
+    },
+    {
+      "id": "d8-019",
+      "domain": 8,
+      "objective": "8.4",
+      "subtopic": "Trojanised vendor updates",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": null,
+      "stem": "A widely used IT monitoring product shipped a signed update containing a backdoor inserted at the vendor's build server. Which practice would MOST limit the impact on a customer?",
+      "options": [
+        "Installing every vendor update on all systems the day it is released",
+        "Checking that each update carries a valid vendor signature",
+        "Choosing the vendor with the largest number of government customers",
+        "Restricting the product's network access and monitoring its behaviour"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "Rapid, universal installation spreads a malicious update everywhere at once.",
+        "The malicious update was signed by the vendor, so signature checks pass.",
+        "Popularity did not protect customers here; it made the product a bigger target.",
+        "Correct. Least-privilege network access stops a backdoored tool calling out or moving laterally, and behaviour monitoring spots unusual activity."
+      ],
+      "concept": "Assume trusted software can be compromised: limit its privileges and watch it.",
+      "trap": "Trusting a valid signature as proof of safety.",
+      "managerLens": "Grant third-party software only the access it needs.",
+      "practicalNote": "Monitoring tools often have broad rights; restrict their outbound connections to known destinations.",
+      "gap": "Defending against software supply chain attacks.",
+      "followUpId": null,
+      "tags": [
+        "supply-chain",
+        "third-party"
+      ]
+    },
+    {
+      "id": "d8-020",
+      "domain": 8,
+      "objective": "8.5",
+      "subtopic": "SQL injection",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A penetration test finds SQL injection in a bank's account search page. Developers propose several fixes. Which is the MOST effective?",
+      "options": [
+        "Block single quotes and the word 'SELECT' in the search field",
+        "Hide database error messages from users of the search page",
+        "Use parameterised queries for every database call",
+        "Move the database to a separate server behind a firewall"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "Blocklists are easily bypassed with other encodings and syntax.",
+        "Hiding errors makes injection harder to see but not impossible.",
+        "Correct. Parameterised queries keep input as data so it can never change the query's structure, fixing the class everywhere.",
+        "Network separation does not stop injection through the application's own connection."
+      ],
+      "concept": "Parameterised queries prevent SQL injection.",
+      "trap": "Choosing filtering or obscurity over a structural fix.",
+      "managerLens": "Fix the class, not the instance found by the test.",
+      "practicalNote": "ORMs use parameterised queries by default, but raw query features can reintroduce injection.",
+      "gap": "Knowing the fix for injection.",
+      "followUpId": null,
+      "tags": [
+        "sql-injection",
+        "secure-coding"
+      ]
+    },
+    {
+      "id": "d8-021",
+      "domain": 8,
+      "objective": "8.5",
+      "subtopic": "Cross-site scripting",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A support portal shows customers' ticket comments to agents. An attacker puts JavaScript in a comment, and it runs in agents' browsers. What is the PRIMARY fix?",
+      "options": [
+        "Encode the comment data for its output context",
+        "Add a web application firewall in front of the support portal",
+        "Require agents to use a different browser for the portal",
+        "Limit comments to 500 characters so scripts cannot fit"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. Context-aware output encoding makes the browser treat stored data as text, not code, which fixes stored XSS at its root.",
+        "A WAF can block some payloads but is a compensating layer, not the fix.",
+        "XSS works in every browser; switching browsers does not help.",
+        "Short scripts or links to external scripts easily fit in 500 characters."
+      ],
+      "concept": "Output encoding (with input validation and CSP as extra layers) fixes XSS.",
+      "trap": "Choosing a perimeter control as the primary fix.",
+      "managerLens": "Fix at the source; use WAFs and CSP as defence in depth.",
+      "practicalNote": "Modern templating frameworks encode output by default; bypassing them reintroduces XSS.",
+      "gap": "Knowing the fix for XSS.",
+      "followUpId": null,
+      "tags": [
+        "xss",
+        "secure-coding"
+      ]
+    },
+    {
+      "id": "d8-022",
+      "domain": 8,
+      "objective": "8.5",
+      "subtopic": "Cross-site request forgery",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": null,
+      "stem": "Customers who are logged in to an online shop and visit a malicious site find that their delivery address has changed. The malicious page silently submitted a form to the shop. Which TWO fixes address this? (Select TWO.)",
+      "options": [
+        "Encrypt the delivery address in the shop's database",
+        "Require an anti-CSRF token on state-changing requests",
+        "Ask customers to log out after each shopping session",
+        "Validate the format of the postcode on the address form",
+        "Set the SameSite attribute on the session cookie"
+      ],
+      "correct": [
+        1,
+        4
+      ],
+      "rationales": [
+        "Encryption at rest does not stop a forged request changing the data.",
+        "Correct. A secret per-session token that the malicious site cannot know makes forged requests fail.",
+        "Logging out helps but relies on customer behaviour and is not a fix.",
+        "Postcode validation checks format, not whether the request is genuine.",
+        "Correct. SameSite cookies are not sent on cross-site form posts, so the forged request arrives without the session."
+      ],
+      "concept": "CSRF is stopped by anti-CSRF tokens, backed by SameSite cookies.",
+      "trap": "Confusing CSRF with injection or data protection issues.",
+      "managerLens": "Protect every state-changing action, not just the obvious ones.",
+      "practicalNote": "Most web frameworks include CSRF protection that must be left enabled.",
+      "gap": "Knowing the fix for CSRF.",
+      "followUpId": null,
+      "tags": [
+        "csrf",
+        "secure-coding"
+      ]
+    },
+    {
+      "id": "d8-023",
+      "domain": 8,
+      "objective": "8.5",
+      "subtopic": "API authorisation",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "In a mobile banking API, changing the accountId in a request returns another customer's balance. The user is properly authenticated. What is the root cause?",
+      "options": [
+        "The API uses JSON instead of XML for its responses",
+        "The mobile app stores the session token insecurely",
+        "TLS is not pinned to the bank's certificate in the app",
+        "The API does not check that the user may access that object"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "Data format is unrelated to authorisation.",
+        "Token storage is a separate issue; the user here is using their own valid session.",
+        "Certificate pinning protects the connection, not authorisation decisions.",
+        "Correct. This is broken object-level authorisation: the server must check ownership of each requested object, not trust the ID in the request."
+      ],
+      "concept": "Broken access control: enforce object-level authorisation on the server.",
+      "trap": "Looking for a transport or client-side cause.",
+      "managerLens": "Broken access control tops the OWASP Top 10 (2025); test it specifically.",
+      "practicalNote": "Automated tests that swap object IDs between two test users catch this reliably.",
+      "gap": "Recognising authorisation flaws in APIs.",
+      "followUpId": null,
+      "tags": [
+        "api",
+        "access-control",
+        "owasp"
+      ]
+    },
+    {
+      "id": "d8-024",
+      "domain": 8,
+      "objective": "8.5",
+      "subtopic": "Input validation and error handling",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A team is writing secure coding standards for a new web application. Which TWO rules belong in them? (Select TWO.)",
+      "options": [
+        "Validate input on the server against allow-lists of expected values",
+        "Show users generic error messages and log the details internally",
+        "Rely on JavaScript in the browser to validate every form field",
+        "Return full stack traces to users to help them report problems",
+        "Keep the application's design secret instead of hardening it"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Server-side allow-list validation cannot be bypassed by the client.",
+        "Correct. Generic errors give attackers nothing, while internal logs keep the detail for diagnosis.",
+        "Browser validation is easily bypassed; it is for usability only.",
+        "Stack traces leak internal details useful to attackers.",
+        "Secrecy of design is not a security control."
+      ],
+      "concept": "Validate on the server with allow-lists; fail securely with generic errors.",
+      "trap": "Trusting client-side checks or obscurity.",
+      "managerLens": "Write standards that developers can test against.",
+      "practicalNote": "OWASP ASVS chapters on validation and error handling make good standard text.",
+      "gap": "Knowing core secure coding rules.",
+      "followUpId": null,
+      "tags": [
+        "input-validation",
+        "error-handling"
+      ]
+    },
+    {
+      "id": "d8-025",
+      "domain": 8,
+      "objective": "8.5",
+      "subtopic": "Race conditions",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": null,
+      "stem": "A wallet app checks that a user's balance covers a withdrawal, then deducts it in a separate step. By sending many requests at the same moment, an attacker withdraws far more than the balance. What fixes this?",
+      "options": [
+        "Add a CAPTCHA before each withdrawal request",
+        "Log every withdrawal for daily review by finance",
+        "Make the check and deduction a single atomic transaction",
+        "Limit each customer to one withdrawal per hour"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "A CAPTCHA slows automation but does not close the race window.",
+        "Logging detects the loss after it happens.",
+        "Correct. This is a time-of-check to time-of-use race; doing the check and the update atomically (with locking) removes the window.",
+        "Rate limits reduce but do not remove the race, and hurt legitimate users."
+      ],
+      "concept": "TOCTOU races are fixed by atomic check-and-act operations.",
+      "trap": "Treating a logic flaw with friction or detection.",
+      "managerLens": "Financial logic needs concurrency testing, not just functional testing.",
+      "practicalNote": "Database transactions with row locks or conditional updates prevent double spending.",
+      "gap": "Recognising race conditions.",
+      "followUpId": null,
+      "tags": [
+        "race-condition",
+        "secure-coding"
+      ]
+    },
+    {
+      "id": "d8-026",
+      "domain": 8,
+      "objective": "8.5",
+      "subtopic": "OWASP Top 10 (2025)",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "The 2025 edition of the OWASP Top 10 added a category reflecting attacks through dependencies, build systems and distribution infrastructure. Which category is it?",
+      "options": [
+        "Software supply chain failures",
+        "Cryptographic failures",
+        "Logging and alerting failures",
+        "Authentication failures"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. Software supply chain failures is a new category in the 2025 edition, broadening the earlier vulnerable-components category.",
+        "Cryptographic failures concerns weak or missing cryptography.",
+        "Logging and alerting failures concern detection and response, not the supply chain.",
+        "Authentication failures concern how users prove who they are."
+      ],
+      "concept": "OWASP Top 10 (2025) recognises supply chain failures; broken access control remains first.",
+      "trap": "Answering from the 2021 list.",
+      "managerLens": "Use the current list to set training and testing priorities.",
+      "practicalNote": "SBOMs, SCA, pinned dependencies and signed builds address supply chain failures.",
+      "gap": "Knowing the current OWASP Top 10.",
+      "followUpId": null,
+      "tags": [
+        "owasp",
+        "supply-chain",
+        "current"
       ]
     }
   ]

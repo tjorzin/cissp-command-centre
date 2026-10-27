@@ -76,9 +76,18 @@ test('outline filter drops questions tagged for the other outline', () => {
   assert.deepEqual(eligible(qs, '2027').map((q) => q.id), ['a', 'b']);
 });
 
-test('mock is locked for the 20-question seed bank and unlocked for a full bank', () => {
-  assert.equal(mockReadiness(bank.questions, w2024).ready, false);
+test('mock readiness: locked for a small bank, unlocked for the full real bank', () => {
+  assert.equal(mockReadiness(bank.questions.slice(0, 20), w2024).ready, false);
+  assert.equal(mockReadiness(bank.questions, w2024).ready, true);
   assert.equal(mockReadiness(syntheticBank(), w2024).ready, true);
+});
+
+test('300 simulated mocks on the real bank: 100-150 items, domain mix within one item at every step', () => {
+  for (const skill of [3, 4.5, 6]) {
+    const r = simulateMocks(bank.questions, w2024, 300, skill);
+    assert.ok(r.minLength >= MOCK.min && r.maxLength <= MOCK.max, JSON.stringify(r));
+    assert.ok(r.worstDomainDeviation < 1, JSON.stringify(r));
+  }
 });
 
 test('300 simulated mini papers: all different, option order varies, domain mix tracks weights', () => {
