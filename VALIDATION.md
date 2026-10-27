@@ -2,6 +2,16 @@
 
 Each phase adds a section. Commands are run from the repo root with Node 24.22.1 and Playwright 1.64.1 (Chromium), using a Pixel 7 profile at 360 × 780, time zone Africa/Harare.
 
+## Phase 10: GitHub Pages and release 1.0 (28 October 2026)
+
+**Built:** `.github/workflows/pages.yml` (jobs: test → build → deploy; Node 24; `npm ci`, `npm run validate`, `npm test`, Playwright Chromium, `npm run test:e2e`, then `actions/upload-pages-artifact` and `actions/deploy-pages`; Playwright results kept for 7 days on failure). `tools/build-site.js` (`npm run build`) copies only the app files into `_site`. README: publishing steps, install on the phone, the optional Capacitor wrapper (described, not built). Service worker version `v1.0.0`; package version 1.0.0.
+
+**Tests:** `npm run test:all`: validate **no errors**, unit **99 passed**, browser **40 passed**. New `tests/e2e/pages.spec.js` builds the site as the workflow does, checks tests, tools, docs and `node_modules` are left out, serves it under `/cissp-command-centre/` (as Pages does for a project site), waits for the service worker, then goes offline and does a full reload: car mode and the question hub still load from the cache.
+
+**Not validated:** the workflow has not run on GitHub, because this repository has no remote yet (the YAML uses only GitHub's own Pages actions, but its first real run is the check); installing from a real `github.io` URL on Trust's phone; the Capacitor APK (not built).
+
+**Still open (content quality):** 115 questions at difficulty 4 and above have stems under 40 words, where the question standard wants 50 to 120 words with decoy detail. The lint reports them as warnings, not errors. A rewrite pass on those stems is the main remaining content task.
+
 ## Phase 9: car mode (28 October 2026)
 
 **Built:** `data/tracks.json` (9 original scripts, 268 spoken lines); `js/engine/car.js` (timing, resume, text export, voice order); `js/views/car.js` at `#/car`, linked from Study. Lines are spoken one at a time with `SpeechSynthesisUtterance`; each is followed by its own pause (900 ms default, 1.5 s after section ends and answers, 3.5 to 4 s after every question). Voice, speed (0.8× to 1.5×), "continue to the next track" and the position are saved in progress (`state.car`), so they export and import with everything else. Leaving the screen cancels speech.

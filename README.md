@@ -2,7 +2,7 @@
 
 A personal CISSP study app: an offline, installable PWA that tells you what to study next. Built in vanilla HTML, CSS and JavaScript, with no build step, no backend and no accounts. Progress stays on the device; use **More → Export progress** to back it up or move it to another device.
 
-> Status: phase 9 of 10 complete: all eight domains (248 questions, 62 lessons, 99 cards, 21 drills, 16 labs) and car mode (9 audio tracks, about 45 min). Next: GitHub Pages deployment (phase 10). See `VALIDATION.md`.
+> Status: version 1.0, all ten phases complete: all eight domains (248 questions, 62 lessons, 99 cards, 21 drills, 16 labs), car mode (9 audio tracks, about 45 min) and a GitHub Pages workflow. See `VALIDATION.md`.
 
 Content is added one domain at a time: write a batch file, merge it with `node tools/merge-batch.js <file>`, then `npm run validate` (schema, give-away lint, lessons, drills and labs) before committing.
 
@@ -90,6 +90,32 @@ Rerun the 300-paper randomness proof:
 npm run simulate
 ```
 
+## Publish on GitHub Pages
+
+`.github/workflows/pages.yml` runs the content lint, unit tests and browser tests on every push to `main`, and only if they pass publishes the app's static files (`index.html`, `manifest.webmanifest`, `sw.js`, `css/`, `js/`, `data/`, `icons/`; built by `npm run build`). Tests, tools and docs are not published. One-time setup:
+
+1. Create an empty repository on GitHub (private is fine if your plan allows Pages on private repos; the site itself is public either way).
+2. Push this repo to it:
+
+```bash
+git remote add origin https://github.com/<you>/cissp-command-centre.git
+```
+
+```bash
+git push -u origin main --tags
+```
+
+3. In the repository: Settings → Pages → Source: **GitHub Actions**.
+4. The site appears at `https://<you>.github.io/cissp-command-centre/`. Open it on the phone and choose **Add to Home screen** (Chrome) to install it.
+
+All paths are relative, so the app works from that subpath; the browser test `tests/e2e/pages.spec.js` builds the site the same way, serves it under `/cissp-command-centre/` and checks it installs and reloads offline. The published site holds only the app and its study content: progress stays in the phone's browser storage and is never uploaded.
+
+After an update, the next visit fetches the new files; the service worker version (`sw.js`) changes with each release so the cached shell is replaced.
+
+## Android app (optional, not built)
+
+A Capacitor wrapper could package the same files as an APK if an installable PWA is ever not enough (for example, to keep car-mode speech running with the screen locked). It would add a native toolchain (Android Studio, Gradle) and a second release path, so it is left out of 1.0. The PWA already installs, works offline and keeps all data on the device.
+
 ## Dependencies
 
 - **Runtime: none.** All code is in this repo.
@@ -108,5 +134,6 @@ js/app.js  js/store.js  js/outline.js  js/ui.js  js/views/
 data/      outlines.json (dates, weights), domains.json (62 objectives, topics tagged by outline), questions, cards, lessons,
            drills, labs, tracks.json (car-mode scripts), SOURCES.md, schema/
 docs/QUESTION-STANDARD.md
-tests/unit  tests/e2e  tools/
+tests/unit  tests/e2e  tools/ (serve, build-site, merge-batch, make-icons)
+.github/workflows/pages.yml                     test, then publish to GitHub Pages
 ```
