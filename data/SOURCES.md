@@ -61,6 +61,15 @@ Every sub-topic in both outlines was compared objective by objective. The result
 
 What this means for a sitting before 15 April 2027: study the 2024 topics. The 2027-only topics are useful background, and current practice in several areas (post-quantum cryptography, passkeys, EDR/XDR, immutable backups), but they are not on the 2024 syllabus.
 
+## Framework currency check: Domain 1 batch (28 October 2026)
+
+| Item | Finding | Source quality |
+|---|---|---|
+| NIST CSF | 2.0 (2024) is current: six functions, Govern added. No newer version found. | Secondary sources; NIST page to confirm |
+| PCI DSS | v4.0.1 (June 2024) is the only valid version; future-dated requirements mandatory since 31 March 2025. A request for comments ran to July 2026; no successor published. | Secondary sources |
+| ISC2 Code of Ethics | Four canons unchanged. ISC2 launched a separate Code of Professional Conduct in February 2026 that builds on the Code of Ethics. | isc2.org pages |
+| Zimbabwe data protection | Cyber and Data Protection Act (2021) with regulations SI 155 of 2024: breach reports to POTRAZ reportedly within 24 hours of awareness, and to data subjects within 72 hours where the risk is high. POTRAZ inspections reported from 1 September 2026. | **Secondary sources only** (law firm and news summaries); used in practical notes, never as a tested fact |
+
 ## Experience and the Associate route (verified)
 
 - Five years cumulative, full-time, paid experience in **two or more** of the eight domains.

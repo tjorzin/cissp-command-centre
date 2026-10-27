@@ -12,7 +12,7 @@ export function cardsQueue({ store, data }) {
   return { today, queue: todayQueue(st, data.cards?.cards || [], today) };
 }
 
-function filterCards(st, cards, filter, domain, queue, today) {
+function filterCards(st, cards, filter, domain, queue, today, objective = null) {
   let list = cards;
   if (filter === 'due') {
     list = queue.cards.map((id) => cards.find((c) => c.id === id)).filter(Boolean);
@@ -23,6 +23,7 @@ function filterCards(st, cards, filter, domain, queue, today) {
     const missed = new Set(st.ledger.map((e) => e.objective));
     list = cards.filter((c) => missed.has(c.objective));
   }
+  if (objective) list = list.filter((c) => c.objective === objective);
   return domain ? list.filter((c) => c.domain === domain) : list;
 }
 
@@ -68,7 +69,8 @@ function runDeck(ctx, root, list, back) {
   paint();
 }
 
-export function renderCards(ctx) {
+export function renderCards(ctx, params = []) {
+  const objective = params[0] || null; // #/cards/1.9 opens one objective's cards
   const { store, data } = ctx;
   const root = h('div', {});
   if (!data.cards) {
@@ -80,13 +82,13 @@ export function renderCards(ctx) {
   const home = () => {
     const st = store.get();
     const { today, queue } = cardsQueue(ctx);
-    let filter = queue.cards.length ? 'due' : 'all';
+    let filter = objective ? 'all' : queue.cards.length ? 'due' : 'all';
     let domain = 0;
     const list = h('div', { id: 'card-list' });
     const studyBtn = h('button', { class: 'btn', type: 'button', id: 'study-filtered' }, 'Study these');
 
     const paintList = () => {
-      const shown = filterCards(st, cards, filter, domain, queue, today);
+      const shown = filterCards(st, cards, filter, domain, queue, today, objective);
       studyBtn.disabled = !shown.length;
       studyBtn.textContent = `Study these (${shown.length})`;
       studyBtn.onclick = () => runDeck(ctx, root, shown, home);
@@ -112,7 +114,8 @@ export function renderCards(ctx) {
     const nextDue = Object.entries(st.srs).filter(([k]) => k.startsWith('card:')).map(([, v]) => v.due).sort()[0];
     root.replaceChildren(h('section', {},
       h('a', { href: '#/study', class: 'back small' }, '‹ Study'),
-      h('h2', {}, 'Cards'),
+      h('h2', {}, objective ? `Cards: objective ${objective}` : 'Cards'),
+      objective ? h('p', { class: 'small' }, h('a', { href: '#/cards' }, 'Show all cards')) : null,
       h('div', { class: 'card' },
         h('div', { class: 'stat-row' },
           h('div', { class: 'stat' }, h('b', { id: 'cards-due' }, queue.cards.length), h('span', {}, 'due today')),

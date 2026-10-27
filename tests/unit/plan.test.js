@@ -81,7 +81,9 @@ test('the baseline diagnostic takes six per domain at mixed difficulty and is sa
     assert.equal(qs.length, 6);
     assert.ok(new Set(qs.map((q) => q.difficulty)).size >= 4, `domain ${d} difficulties`);
   }
-  assert.equal(buildDiagnostic(questions, weights, mulberry32(4)).length, questions.length); // seed bank: all 20
+  // Real bank: six per domain where available, every question where a domain has fewer.
+  const expected = weights.reduce((a, w) => a + Math.min(6, questions.filter((q) => q.domain === w.n).length), 0);
+  assert.equal(buildDiagnostic(questions, weights, mulberry32(4)).length, expected);
 
   const st = defaultState();
   const seedItems = buildDiagnostic(questions, weights, mulberry32(5));
@@ -92,7 +94,7 @@ test('the baseline diagnostic takes six per domain at mixed difficulty and is sa
     advance(st.activeSession);
   }
   finishSession(st, questions);
-  assert.equal(st.baseline.presented, 20);
+  assert.equal(st.baseline.presented, seedItems.length);
   assert.equal(st.baseline.byDomain[2].correct, 0);
   assert.equal(domainPriorities(st, weights)[0].n, 2); // baseline drives priorities until 10 recent answers exist
   assert.notEqual(buildPlan(st, data, T).next.kind, 'baseline');

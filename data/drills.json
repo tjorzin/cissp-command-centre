@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "notice": "Comparison drills: sets of terms CISSP likes to blur, each with short scenarios where you pick the term that fits. Original content.",
+  "drills": [
+    {
+      "id": "dr-risk-treatment", "domain": 1, "objective": "1.9", "title": "Risk treatment: avoid, mitigate, transfer, accept",
+      "items": [
+        { "name": "Avoid", "meaning": "Stop or never start the activity that creates the risk." },
+        { "name": "Mitigate", "meaning": "Reduce likelihood or impact with controls." },
+        { "name": "Transfer", "meaning": "Shift part of the impact to another party, such as an insurer or contractor; accountability stays." },
+        { "name": "Accept", "meaning": "The owner formally takes on the remaining risk, within appetite and with a review date." }
+      ],
+      "prompts": [
+        { "text": "A bank decides not to launch a crypto custody service after assessing the regulatory and theft risk.", "answer": "Avoid", "why": "Not undertaking the activity removes the risk entirely." },
+        { "text": "A retailer buys cyber insurance to cover forensic and notification costs after a breach.", "answer": "Transfer", "why": "Insurance shifts part of the financial impact; the retailer remains accountable." },
+        { "text": "A hospital adds MFA and EDR to reduce the chance of ransomware spreading.", "answer": "Mitigate", "why": "Controls reduce likelihood and impact." },
+        { "text": "The risk owner signs off a low-rated risk on a legacy kiosk, with a review in six months.", "answer": "Accept", "why": "A documented decision by the owner, within appetite and time-bound." },
+        { "text": "A telecom outsources its card payments to a PCI-certified gateway so card data never touches its systems.", "answer": "Transfer", "why": "The gateway carries the card-data handling; the telecom still oversees the supplier." },
+        { "text": "A company stops letting staff use personal USB drives after repeated malware incidents.", "answer": "Avoid", "why": "It removes the activity that creates the risk rather than controlling it." }
+      ]
+    },
+    {
+      "id": "dr-control-types", "domain": 1, "objective": "1.9", "title": "Control types: preventive, detective, corrective, deterrent, compensating",
+      "items": [
+        { "name": "Preventive", "meaning": "Stops an incident from happening." },
+        { "name": "Detective", "meaning": "Finds an incident during or after it happens." },
+        { "name": "Corrective", "meaning": "Fixes the cause or the damage after an incident." },
+        { "name": "Deterrent", "meaning": "Discourages an attacker from trying." },
+        { "name": "Compensating", "meaning": "An alternative used when the preferred control is not feasible." }
+      ],
+      "prompts": [
+        { "text": "A firewall rule blocks inbound SMB from the internet.", "answer": "Preventive", "why": "It stops the traffic before harm can occur." },
+        { "text": "A SIEM alert fires when an account logs in from two countries within an hour.", "answer": "Detective", "why": "It identifies a likely incident as it happens." },
+        { "text": "After malware is found, the endpoint is reimaged from a clean build.", "answer": "Corrective", "why": "It removes the cause and returns the system to a good state." },
+        { "text": "A login banner warns that all access is monitored and misuse will be prosecuted.", "answer": "Deterrent", "why": "It discourages misuse but blocks nothing." },
+        { "text": "A legacy system cannot support MFA, so it is placed behind a jump host that requires MFA.", "answer": "Compensating", "why": "It substitutes for a control the system cannot provide." },
+        { "text": "Daily review of privileged account activity by a second administrator.", "answer": "Detective", "why": "Reviews find misuse after it happens." },
+        { "text": "Applying a vendor patch that closes a vulnerability exploited last week.", "answer": "Corrective", "why": "It fixes the weakness that was exploited." }
+      ]
+    },
+    {
+      "id": "dr-risk-analysis", "domain": 1, "objective": "1.9", "title": "Qualitative vs quantitative risk analysis",
+      "items": [
+        { "name": "Quantitative", "meaning": "Puts money and numbers on risk (SLE, ARO, ALE); supports spending decisions." },
+        { "name": "Qualitative", "meaning": "Rates risk by judgement (high, medium, low; heat maps); supports prioritisation." }
+      ],
+      "prompts": [
+        { "text": "The CFO asks whether a US$50,000 a year control is worth buying.", "answer": "Quantitative", "why": "A spending decision needs an expected loss in money." },
+        { "text": "A new team has no loss history and needs to rank 40 risks by next week.", "answer": "Qualitative", "why": "Quick ranking with thin data suits judgement-based ratings." },
+        { "text": "Experts rate each risk anonymously over several rounds until they converge.", "answer": "Qualitative", "why": "The Delphi technique gathers judgement, not monetary values." },
+        { "text": "A server worth US$120,000 loses 25% of its value per incident, expected twice a year.", "answer": "Quantitative", "why": "SLE = 30,000; ALE = 60,000: a monetary calculation." },
+        { "text": "The board wants a one-page heat map of the top ten risks for its meeting.", "answer": "Qualitative", "why": "Heat maps present ratings, not monetary values." }
+      ]
+    },
+    {
+      "id": "dr-bcp-drp-ir", "domain": 1, "objective": "1.7", "title": "BCP vs DRP vs incident response",
+      "items": [
+        { "name": "BCP", "meaning": "Keeps critical business processes running through a disruption; business-wide." },
+        { "name": "DRP", "meaning": "Restores IT systems and data after a disruption; technology-focused." },
+        { "name": "IR", "meaning": "Detects, contains and eradicates security incidents and learns from them." }
+      ],
+      "prompts": [
+        { "text": "Branch staff switch to paper forms while the core banking system is down.", "answer": "BCP", "why": "Keeping the business process going by other means is continuity." },
+        { "text": "The database is restored at the recovery site from last night's backup.", "answer": "DRP", "why": "Restoring systems and data is disaster recovery." },
+        { "text": "An analyst isolates a host showing ransomware behaviour and preserves its memory.", "answer": "IR", "why": "Containment and evidence handling are incident response." },
+        { "text": "Management decides which business processes must resume within four hours.", "answer": "BCP", "why": "Prioritising business processes and tolerances is continuity planning." },
+        { "text": "Engineers fail over the email service to the secondary data centre.", "answer": "DRP", "why": "Recovering a technology service at another site is disaster recovery." },
+        { "text": "After a phishing compromise, the team writes a lessons-learned report.", "answer": "IR", "why": "Post-incident review is part of the incident response lifecycle." }
+      ]
+    },
+    {
+      "id": "dr-recovery-metrics", "domain": 1, "objective": "1.7", "title": "RTO, RPO, MTD and WRT",
+      "items": [
+        { "name": "RPO", "meaning": "How much data loss is tolerable, measured as time back to the last good copy." },
+        { "name": "RTO", "meaning": "How long until the system is restored." },
+        { "name": "WRT", "meaning": "Time after restore to verify data and resume work." },
+        { "name": "MTD", "meaning": "The longest the business can tolerate the process being down. RTO + WRT ≤ MTD." }
+      ],
+      "prompts": [
+        { "text": "The business can lose at most 15 minutes of transactions.", "answer": "RPO", "why": "It limits data loss, so it drives backup or replication frequency." },
+        { "text": "Beyond 24 hours down, the regulator would suspend the payment licence.", "answer": "MTD", "why": "The point where harm becomes unacceptable is the maximum tolerable downtime." },
+        { "text": "After the platform is back, reconciling the ledger takes three hours.", "answer": "WRT", "why": "Verification and catch-up after restore is work recovery time." },
+        { "text": "IT commits to having the CRM running again within six hours of a failure.", "answer": "RTO", "why": "Time to restore the system is the recovery time objective." },
+        { "text": "Nightly backups at 02:00 are no longer enough; replication every five minutes is needed.", "answer": "RPO", "why": "Backup frequency is set by tolerable data loss." }
+      ]
+    }
+  ]
+}

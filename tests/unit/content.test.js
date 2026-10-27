@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { lintBank, lintQuestion } from '../validate-content.js';
+import { lintBank, lintQuestion, lintLessons, lintDrills, lintLabs } from '../validate-content.js';
 
 const read = (p) => JSON.parse(readFileSync(new URL(`../../${p}`, import.meta.url)));
 const bank = read('data/questions.json');
@@ -88,4 +88,35 @@ test('lint catches a skewed answer key across the bank', () => {
   const qs = Array.from({ length: 6 }, (_, i) => ({ ...base(), id: `d1-9${String(i).padStart(2, '0')}` }));
   const r = lintBank({ scenarios: [], questions: qs }, domains);
   assert.match(r.errors.join(), /answer key: position 2/);
+});
+
+test('lessons, drills and labs pass validation; Domain 1 has a lesson for all 12 objectives', () => {
+  const lessons = read('data/lessons.json');
+  assert.deepEqual(lintLessons(lessons, domains).errors, []);
+  assert.deepEqual(lintDrills(read('data/drills.json'), domains).errors, []);
+  assert.deepEqual(lintLabs(read('data/labs.json'), domains).errors, []);
+  const d1 = domains.domains[0].objectives.map((o) => o.id);
+  assert.deepEqual(d1.filter((id) => !lessons.lessons[id]), []);
+});
+
+test('Domain 1 batch: about 16% of a 240 bank, every objective covered by at least two questions', () => {
+  const d1 = bank.questions.filter((q) => q.domain === 1);
+  assert.ok(d1.length >= 38, `${d1.length}`);
+  for (const o of domains.domains[0].objectives) {
+    assert.ok(d1.filter((q) => q.objective === o.id).length >= 2, o.id);
+  }
+});
+
+test('content linters catch structural faults', () => {
+  const lesson = { summary: ['a', 'b', 'c', 'd'], keyTerms: [], scenario: {} };
+  assert.equal(lintLessons({ lessons: { '9.9': lesson } }, domains).errors.length, 4);
+  const drill = { id: 'x', domain: 1, objective: '1.9', items: [{ name: 'A' }, { name: 'B' }], prompts: [{ answer: 'C', why: 'short' }] };
+  const de = lintDrills({ drills: [drill] }, domains).errors.join();
+  assert.match(de, /at least 4 prompts/);
+  assert.match(de, /"C" is not an item/);
+  assert.match(de, /no prompt tests "A"/);
+  const lab = { id: 'l', domain: 1, objective: '1.9', day: 1, environment: 'Production', goal: 'g', prerequisites: [], steps: ['a'], validation: ['v'], rollback: ['r'], evidence: ['e'] };
+  const le = lintLabs({ labs: [lab] }, domains).errors.join();
+  assert.match(le, /LAB \/ TEST ENVIRONMENT/);
+  assert.match(le, /missing prerequisites/);
 });

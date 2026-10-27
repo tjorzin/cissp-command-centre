@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "notice": "Hands-on labs, defined day by day. Every lab is LAB / TEST ENVIRONMENT only: fictional data or isolated test systems, never production.",
+  "labs": [
+    {
+      "id": "lab-d1-risk-register", "day": 1, "domain": 1, "objective": "1.9", "minutes": 45,
+      "title": "Build a risk register for a fictional bank",
+      "environment": "LAB / TEST ENVIRONMENT: a new spreadsheet with fictional data only. Do not use real company risks, systems or names.",
+      "goal": "Turn a scenario into a working risk register with owners, ratings, treatments and an acceptance decision, and do one quantitative calculation.",
+      "prerequisites": [
+        "A spreadsheet app (Excel, LibreOffice or Google Sheets)",
+        "Read the Mukuvisi Bank case study in Questions → Scenario sets",
+        "Cards: risk treatment, SLE/ARO/ALE, control types"
+      ],
+      "steps": [
+        "Create columns: ID, risk statement (threat + vulnerability + asset), owner, likelihood (1-5), impact (1-5), inherent score, existing controls, treatment, residual likelihood, residual impact, residual score, acceptance authority, review date.",
+        "Write five risks for the fictional Mukuvisi Bank, for example ransomware on core banking, stale policy, unclassified data, single telecom carrier, insider fraud in payments.",
+        "Score likelihood and impact for each and compute inherent score = likelihood × impact.",
+        "Choose a treatment for each (avoid, mitigate, transfer, accept) and name one control per mitigated risk, labelled by type (preventive, detective, corrective, deterrent, compensating).",
+        "Re-score residual likelihood and impact after treatment and compute the residual score.",
+        "Set an appetite rule, for example residual 1-6 accepted by department head, 8-12 by executive, 15+ by board, and fill in the acceptance authority column.",
+        "For the ransomware risk, estimate asset value, exposure factor and annual rate of occurrence; compute SLE and ALE in a separate cell and compare with the annual cost of one control."
+      ],
+      "validation": [
+        "Every risk names an owner from the business, not only IT.",
+        "Every risk has a treatment, a residual score and a review date.",
+        "Acceptance authority rises with residual score as your appetite rule says.",
+        "SLE = asset value × exposure factor and ALE = SLE × ARO are calculated correctly."
+      ],
+      "rollback": [
+        "Nothing to roll back: the lab touches no system. Delete the spreadsheet if you do not want to keep it."
+      ],
+      "evidence": [
+        "Export the register as PDF or a screenshot.",
+        "A three-sentence summary for the fictional board: top risk, recommended treatment, decision needed."
+      ]
+    },
+    {
+      "id": "lab-d1-mini-bia", "day": 2, "domain": 1, "objective": "1.7", "minutes": 40,
+      "title": "Run a mini business impact analysis on a test service",
+      "environment": "LAB / TEST ENVIRONMENT: a fictional service or one you run in an isolated home or test lab. Do not interview colleagues or use production systems.",
+      "goal": "Practise turning business impact into MTD, RTO and RPO, and surface dependencies, before any recovery design.",
+      "prerequisites": [
+        "A spreadsheet or notebook",
+        "Pick one fictional business process, for example 'agent cash-in for a mobile money service'",
+        "Cards: RTO, RPO, WRT, MTD; drill: RTO, RPO, MTD and WRT"
+      ],
+      "steps": [
+        "Describe the process in two sentences and name its owner.",
+        "List what it depends on: systems, data, people, suppliers, utilities, telecom links.",
+        "Estimate the impact of an outage at 1 hour, 4 hours, 1 day and 3 days: money, regulatory, reputation, safety.",
+        "Mark the point where impact becomes unacceptable: that is the MTD.",
+        "Estimate the work recovery time after a restore (checks, reconciliation) and set RTO = MTD − WRT or lower.",
+        "Set the RPO from how much data the process can lose and still be reconstructed.",
+        "Mark every single point of failure in the dependency list."
+      ],
+      "validation": [
+        "RTO + WRT does not exceed MTD.",
+        "At least one external dependency is listed.",
+        "No recovery solution or vendor appears in the output: the BIA states requirements only."
+      ],
+      "rollback": [
+        "Nothing to roll back: this is a paper exercise."
+      ],
+      "evidence": [
+        "The completed impact table and the MTD, RTO, RPO line.",
+        "The list of single points of failure, ranked."
+      ]
+    }
+  ]
+}

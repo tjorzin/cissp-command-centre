@@ -88,9 +88,9 @@ test('300 simulated mini papers: all different, option order varies, domain mix 
   for (const d of w2024) assert.equal(r.meanPerDomain[d.n], r.expectedPerDomain[d.n], `domain ${d.n}`);
 });
 
-test('300 simulated mini papers from the 20-question seed bank still vary', () => {
+test('300 simulated mini papers from the real bank vary and use up to 25 questions', () => {
   const r = simulateMinis(bank.questions, w2024, 300, 25);
-  assert.equal(r.size, 20);
+  assert.equal(r.size, Math.min(25, bank.questions.length));
   assert.equal(r.distinctPapers, 300);
   assert.ok(r.minOrdersPerQuestion >= 10, `min orders ${r.minOrdersPerQuestion}`);
 });

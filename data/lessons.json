@@ -1,0 +1,246 @@
+{
+  "version": 1,
+  "notice": "Original lessons, one per outline objective: five lines on what the exam wants, key terms, and one worked scenario. Written in domain batches.",
+  "lessons": {
+    "1.1": {
+      "summary": [
+        "Know the four ISC2 canons in order: society, honour and legality, principals, the profession.",
+        "When duties conflict, the higher canon wins: public safety beats loyalty to an employer or client.",
+        "Acting ethically still means using legitimate channels: escalate internally, then to the proper authority.",
+        "Breaking the Code can cost you the certification; so can failing to report another member's breach.",
+        "Organisational codes of ethics sit alongside the ISC2 Code; know who enforces each."
+      ],
+      "keyTerms": [
+        { "term": "Canon", "meaning": "One of the four mandatory principles of the ISC2 Code of Ethics, applied in priority order." },
+        { "term": "Principal", "meaning": "The employer or client you serve; diligent service to them is the third canon." },
+        { "term": "Code of Professional Conduct", "meaning": "ISC2's 2026 companion guidance that builds on the Code of Ethics for all cybersecurity practitioners." },
+        { "term": "Coordinated disclosure", "meaning": "Reporting a vulnerability to the maker (and an authority if needed) before publishing, so a fix can land first." }
+      ],
+      "scenario": {
+        "situation": "Your manager asks you to backdate an access review so an audit finding can be closed before the board meets.",
+        "ask": "What do you do?",
+        "answer": "Decline and explain why: falsifying records breaks the second canon (honest and legal conduct). Offer the honest route instead: report the review as late with a dated completion plan, and escalate if pressed."
+      }
+    },
+    "1.2": {
+      "summary": [
+        "Confidentiality, integrity and availability, plus authenticity and non-repudiation, are the five properties the outline names.",
+        "Expect questions that ask which property a control or an attack mainly affects.",
+        "Non-repudiation needs proof tied to one identity: digital signatures, not shared keys.",
+        "Availability failures include sabotage, outages and capacity limits, not only attacks.",
+        "The 'right' property depends on the business: a hospital record's integrity can be life-critical."
+      ],
+      "keyTerms": [
+        { "term": "Integrity", "meaning": "Data and systems are accurate and changed only in authorised ways." },
+        { "term": "Authenticity", "meaning": "Data or a party is genuinely what it claims to be." },
+        { "term": "Non-repudiation", "meaning": "A party cannot credibly deny an action, because the evidence binds it to them alone." },
+        { "term": "DAD triad", "meaning": "Disclosure, alteration, destruction: the opposites of C, I and A." }
+      ],
+      "scenario": {
+        "situation": "A payment instruction was approved with a shared HMAC key known to five treasury staff. One of them now denies approving it.",
+        "ask": "Which property is missing, and what fixes it?",
+        "answer": "Non-repudiation. A shared secret proves integrity and origin from the group, not from one person. Individual digital signatures with private keys held only by each approver would bind the approval to one identity."
+      }
+    },
+    "1.3": {
+      "summary": [
+        "Security exists to serve the business: strategy, mission and objectives come first.",
+        "The board and senior management own security; the CISO advises and runs the programme.",
+        "Acquisitions, divestitures and governance committees all change risk and need security involved early.",
+        "Frameworks (ISO 27001, NIST CSF 2.0, COBIT, SABSA, PCI DSS, FedRAMP) structure governance; pick to fit purpose.",
+        "Due diligence is finding out; due care is acting as a reasonable organisation would."
+      ],
+      "keyTerms": [
+        { "term": "Governance", "meaning": "How leadership sets direction, accountability and oversight for security." },
+        { "term": "Security steering committee", "meaning": "A cross-business group that prioritises and approves security decisions." },
+        { "term": "NIST CSF 2.0", "meaning": "Six functions: Govern, Identify, Protect, Detect, Respond, Recover; Govern was added in 2024." },
+        { "term": "Due care / due diligence", "meaning": "Doing what a prudent organisation would (care) after investigating the risks (diligence)." }
+      ],
+      "scenario": {
+        "situation": "Your company is acquiring a smaller fintech. Signing is in three weeks, and the deal team has not involved security.",
+        "ask": "What should security do first?",
+        "answer": "Get into due diligence before signing: assess the target's security posture, breaches, compliance and integration risks, and report material findings to the decision-makers. After signing, plan integration; never connect networks until the target is assessed."
+      }
+    },
+    "1.4": {
+      "summary": [
+        "Know the main privacy laws by name and principle: GDPR, CCPA, China's PIPL, South Africa's POPIA.",
+        "Transborder data flow and import/export controls limit where data and cryptography may go.",
+        "Licensing and intellectual property: copyright, patents, trademarks, trade secrets, and software licences.",
+        "Breach notification is a legal and business decision; clocks usually start at awareness.",
+        "Contracts and industry standards (PCI DSS) bind you even where no law applies."
+      ],
+      "keyTerms": [
+        { "term": "Transborder data flow", "meaning": "Moving personal data across national borders, often allowed only with safeguards." },
+        { "term": "Trade secret", "meaning": "Confidential business information protected by keeping it secret, not by registration." },
+        { "term": "Data sovereignty", "meaning": "Data is subject to the laws of the country where it is stored or processed." },
+        { "term": "Wassenaar Arrangement", "meaning": "A multilateral export-control regime that covers some cryptography and intrusion software." }
+      ],
+      "scenario": {
+        "situation": "A Harare insurer wants to move claims processing, including medical details, to a cloud region in Europe to cut costs.",
+        "ask": "What should be settled before the move?",
+        "answer": "Whether the transfer is lawful under the applicable data protection law, what safeguards and approvals are required, contract terms with the provider on location and sub-processors, and the data owner's sign-off on the residual risk."
+      }
+    },
+    "1.5": {
+      "summary": [
+        "Investigation types differ in purpose, proof standard and who leads them.",
+        "Administrative: internal policy matters. Lowest formality; the organisation decides the outcome.",
+        "Criminal: law enforcement leads; proof beyond reasonable doubt; evidence handling must be strict.",
+        "Civil: disputes between parties; decided on the balance of probabilities.",
+        "Regulatory: a regulator examines compliance; cooperation and accurate records matter most."
+      ],
+      "keyTerms": [
+        { "term": "Burden of proof", "meaning": "How sure a decision-maker must be: beyond reasonable doubt (criminal) or balance of probabilities (civil)." },
+        { "term": "Chain of custody", "meaning": "A record of who handled evidence, when and why, from collection to court." },
+        { "term": "Administrative investigation", "meaning": "An internal inquiry into policy breaches, such as misuse of systems." },
+        { "term": "Regulatory investigation", "meaning": "An examination by a regulator into whether rules were followed." }
+      ],
+      "scenario": {
+        "situation": "An internal review of an employee's misuse of the CRM finds evidence that they sold customer data to a competitor.",
+        "ask": "What changes, and what should the investigator do now?",
+        "answer": "It may now be criminal. Stop and escalate to legal and management, preserve evidence under strict chain of custody, and let the organisation decide on involving law enforcement. Evidence handled loosely for an internal case may not be admissible later."
+      }
+    },
+    "1.6": {
+      "summary": [
+        "Policy states management's intent and is mandatory; it is high level and changes rarely.",
+        "Standards make policy specific and mandatory: which technologies, settings and baselines.",
+        "Procedures are step-by-step instructions; guidelines are recommended, not mandatory.",
+        "Senior management approves policy; the business and security draft the rest.",
+        "Review on a schedule and after major change; unenforced policy undermines due care."
+      ],
+      "keyTerms": [
+        { "term": "Policy", "meaning": "Management's mandatory statement of intent, for example 'all data is classified'." },
+        { "term": "Standard", "meaning": "A mandatory, specific requirement, for example 'AES-256 for data at rest'." },
+        { "term": "Baseline", "meaning": "The minimum security configuration for a system type." },
+        { "term": "Guideline", "meaning": "Recommended practice that allows judgement; not mandatory." }
+      ],
+      "scenario": {
+        "situation": "Engineers ignore a policy because it names a VPN product the company no longer uses.",
+        "ask": "What is the root problem, and the fix?",
+        "answer": "Technology detail is in the wrong document. Keep the policy technology-neutral (remote access must be encrypted and authenticated) and put the product and settings in a standard that can change without re-approving policy."
+      }
+    },
+    "1.7": {
+      "summary": [
+        "Business continuity starts with the business impact analysis, not with technology.",
+        "The BIA identifies critical processes, their dependencies and the impact of losing them over time.",
+        "It produces MTD per process, which sets RTO and RPO targets for recovery.",
+        "Senior management must sponsor BC and approve its scope and priorities.",
+        "External dependencies (suppliers, utilities, telecoms) are part of the analysis."
+      ],
+      "keyTerms": [
+        { "term": "BIA", "meaning": "Business impact analysis: what a disruption costs each process over time." },
+        { "term": "MTD", "meaning": "Maximum tolerable downtime: beyond it, the business suffers unacceptable harm." },
+        { "term": "RTO / RPO", "meaning": "Time allowed to restore a system / amount of data loss tolerable, as time." },
+        { "term": "Critical process", "meaning": "A business activity whose loss quickly causes unacceptable impact." }
+      ],
+      "scenario": {
+        "situation": "The IT team has bought a hot site and wants to write the continuity plan around it.",
+        "ask": "What has been skipped?",
+        "answer": "The BIA and senior management sign-off. Without knowing which processes are critical and their MTDs, nobody knows whether a hot site is needed, too little, or wasted money. Do the BIA first, then choose recovery strategies."
+      }
+    },
+    "1.8": {
+      "summary": [
+        "Personnel security covers the whole employment lifecycle: hire, move, leave.",
+        "Screening scales with the role's risk and must follow local law.",
+        "Agreements (NDA, acceptable use) are signed before access is granted.",
+        "Movers keep old access unless the process removes it; leavers lose access at or before exit.",
+        "Contractors and vendors need the same controls through contract terms."
+      ],
+      "keyTerms": [
+        { "term": "Background check", "meaning": "Verifying identity, history and references, scaled to the role's risk." },
+        { "term": "Separation of duties", "meaning": "Splitting critical tasks so no one person can complete a fraud alone." },
+        { "term": "Mandatory vacation", "meaning": "Required leave that lets hidden fraud surface while someone else does the job." },
+        { "term": "Exit process", "meaning": "Revoking access, recovering assets and reminding of obligations when someone leaves." }
+      ],
+      "scenario": {
+        "situation": "A systems administrator is being dismissed for misconduct this afternoon.",
+        "ask": "When should their access be removed?",
+        "answer": "Disable access at the time they are told, coordinated between HR and IT, so they cannot act after learning the news. Then recover equipment, rotate shared credentials they knew, and remind them of continuing confidentiality obligations."
+      }
+    },
+    "1.9": {
+      "summary": [
+        "Risk is likelihood times impact of a threat exploiting a vulnerability against an asset.",
+        "Treatments: avoid, mitigate, transfer or share, accept. The risk owner chooses; security advises.",
+        "Quantitative risk uses money (SLE, ARO, ALE); qualitative uses ratings. Both are tested.",
+        "Controls are preventive, detective, corrective, deterrent, recovery, compensating or directive.",
+        "Risk management is continuous: monitor, report, improve; frameworks include NIST SP 800-37 and ISO 31000."
+      ],
+      "keyTerms": [
+        { "term": "Residual risk", "meaning": "Risk left after controls; it must be formally accepted by the owner." },
+        { "term": "ALE", "meaning": "Annualised loss expectancy = SLE × ARO; compare with a control's annual cost." },
+        { "term": "Risk appetite", "meaning": "How much risk the organisation is willing to take to meet its objectives." },
+        { "term": "Compensating control", "meaning": "An alternative control used when the preferred one is not feasible." }
+      ],
+      "scenario": {
+        "situation": "A server worth US$200,000 faces a flood risk: a flood would destroy 40% of its value, and one is expected every 5 years. A barrier costs US$30,000 a year.",
+        "ask": "Is the barrier cost-justified?",
+        "answer": "SLE = 200,000 × 0.4 = 80,000. ARO = 0.2, so ALE = 16,000. A US$30,000 annual control to remove a US$16,000 annual loss is not justified on these numbers alone."
+      }
+    },
+    "1.10": {
+      "summary": [
+        "Threat modelling finds threats early, ideally at design time, when fixes are cheap.",
+        "STRIDE classifies threats: spoofing, tampering, repudiation, information disclosure, denial of service, elevation of privilege.",
+        "PASTA is risk-centric and business-driven; DREAD rates threats; attack trees map paths to a goal.",
+        "Start from assets and trust boundaries, usually with a data flow diagram.",
+        "Revisit the model when the design or the threat landscape changes."
+      ],
+      "keyTerms": [
+        { "term": "STRIDE", "meaning": "Microsoft's threat categories, each the opposite of a security property." },
+        { "term": "PASTA", "meaning": "Process for Attack Simulation and Threat Analysis: seven risk-centric stages." },
+        { "term": "Trust boundary", "meaning": "Where data crosses between levels of trust, a common place for threats." },
+        { "term": "Attack tree", "meaning": "A diagram with the attacker's goal at the root and ways to reach it as branches." }
+      ],
+      "scenario": {
+        "situation": "A team wants to threat-model its new mobile banking app after launch, because the release date is fixed.",
+        "ask": "What is the issue?",
+        "answer": "Threat modelling is most valuable during design, when changes are cheap. Post-launch modelling still helps, but the manager's answer is to build it into design for future releases and prioritise any high-risk findings now."
+      }
+    },
+    "1.11": {
+      "summary": [
+        "Suppliers extend your attack surface: their weaknesses become yours.",
+        "Assess before contract, require minimum controls in the contract, and monitor during it.",
+        "Evidence must be independent, current and in scope: SOC 2 Type II, ISO 27001 with matching scope.",
+        "Hardware risks include tampering, counterfeits and implants; silicon root of trust and PUFs help.",
+        "Software risks are managed with SBOMs, provenance and timely patching."
+      ],
+      "keyTerms": [
+        { "term": "SCRM", "meaning": "Supply chain risk management: identifying and managing risks from suppliers and their suppliers." },
+        { "term": "Right to audit", "meaning": "A contract clause letting the customer verify the supplier's controls." },
+        { "term": "Silicon root of trust", "meaning": "An immutable hardware anchor that verifies firmware at boot." },
+        { "term": "PUF", "meaning": "Physically unclonable function: a unique hardware fingerprint that resists cloning." }
+      ],
+      "scenario": {
+        "situation": "A key outsourced payroll provider announces it has been breached; your contract has no notification clause.",
+        "ask": "What should you do now, and for the future?",
+        "answer": "Now: engage the provider for facts, assess exposure of your data, and start your own incident process. Future: add breach-notification timelines, minimum controls and audit rights to supplier contracts, and monitor critical suppliers."
+      }
+    },
+    "1.12": {
+      "summary": [
+        "Awareness changes attention, training builds skills, education builds understanding.",
+        "Tailor content to roles and refresh it as threats change: AI-generated phishing, deepfakes, crypto scams.",
+        "Methods include security champions, gamification and realistic simulations.",
+        "Measure effectiveness by behaviour (report rates, incident trends), not just completion.",
+        "Management sponsorship and regular review keep the programme alive."
+      ],
+      "keyTerms": [
+        { "term": "Awareness", "meaning": "Short, frequent messages that keep security in mind for everyone." },
+        { "term": "Training", "meaning": "Teaching specific skills for a role, such as secure coding." },
+        { "term": "Security champion", "meaning": "A volunteer in a business team who promotes security locally." },
+        { "term": "Phishing report rate", "meaning": "Share of staff who report a simulated phish: a behaviour measure." }
+      ],
+      "scenario": {
+        "situation": "The board is told 98% of staff completed awareness training, yet phishing incidents keep rising.",
+        "ask": "What should the security manager change?",
+        "answer": "Measure behaviour, not completion: track report rates and click rates over time, target the roles most attacked, refresh content for current lures, and report outcomes to the board."
+      }
+    }
+  }
+}

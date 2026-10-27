@@ -5,8 +5,22 @@
     {
       "id": "sc-01",
       "title": "Ransomware at a mobile operator",
-      "questionIds": ["d7-001", "d7-002", "d1-004"],
+      "questionIds": [
+        "d7-001",
+        "d7-002",
+        "d1-004"
+      ],
       "text": "Mutapa Telecom is a mobile operator headquartered in Harare with about four million subscribers. At 02:10 on a Saturday, the network operations centre sees billing servers dropping offline. By 02:40 the on-call engineer confirms ransomware: files on the billing cluster are encrypted and a ransom note names a known extortion group. Domain administrator credentials were used to spread it. The billing database holds subscriber names, national ID numbers and call records. Full backups run every night and are copied to a second data centre in Bulawayo. Every backup job is checksum-verified when it completes. The last full restore test of the billing system was 14 months ago. The backup catalogue is held only on the backup server in Harare, and the backup service runs under a domain administrator account. The CEO is travelling and can be reached by phone."
+    },
+    {
+      "id": "sc-02",
+      "title": "Governance at a regional bank",
+      "questionIds": [
+        "d1-005",
+        "d1-006",
+        "d1-007"
+      ],
+      "text": "Mukuvisi Bank is a regional bank with 1,800 staff in Zimbabwe and Zambia. Its new CEO has moved the CISO from reporting to the CIO to reporting to her directly. The bank's information security policy was approved in 2019; it names specific firewall models and requires 8-character passwords. Internal audit has found that 40% of business units have never classified their data, and that the security budget is set each year as a fixed percentage of the IT budget. A ransomware attack on a peer bank last month has made the board anxious. The board's risk committee meets quarterly, but security has never presented to it."
     }
   ],
   "questions": [
@@ -25,7 +39,9 @@
         "Buy extended security updates for the historian and plan the upgrade for vendor certification.",
         "Replace the historian with a vendor-supported cloud service that already runs a current system."
       ],
-      "correct": [0],
+      "correct": [
+        0
+      ],
       "rationales": [
         "Correct. The risk belongs to the business, not to security. The first job is to make sure the accountable owner understands the risk and the treatment options (segment, buy updates, replace, accept), with their costs, and makes a recorded decision. Every other option is a treatment the owner has not yet chosen.",
         "Probably the treatment you would recommend, but it is a solution chosen before the risk owner has decided, and making network changes around a plant system can cause the very downtime the plant manager is worried about. Best step, not first step.",
@@ -38,7 +54,12 @@
       "practicalNote": "In OT environments, unapproved changes to a certified control system can void vendor support. Segmentation and monitoring are the usual interim treatment once the owner approves them.",
       "gap": "Not separating the adviser role (security) from the decision-maker role (risk owner).",
       "followUpId": null,
-      "tags": ["risk", "first-step", "management", "ot"]
+      "tags": [
+        "risk",
+        "first-step",
+        "management",
+        "ot"
+      ]
     },
     {
       "id": "d1-002",
@@ -55,7 +76,9 @@
         "Escalate in writing to senior management and, if patients stay at risk, notify the regulator.",
         "Contact the hospitals that use the pumps and give them interim mitigations privately."
       ],
-      "correct": [2],
+      "correct": [
+        2
+      ],
       "rationales": [
         "Diligent service to the principal (the third canon) does not outrank the first canon: protect society and the public. Recording the decision documents the risk but leaves patients exposed.",
         "Public disclosure before the maker and the regulator have had a chance to act exposes patients to attackers and breaks the agreement without first trying proper channels, which conflicts with acting honourably and legally (the second canon).",
@@ -68,7 +91,10 @@
       "practicalNote": "Coordinated disclosure through the manufacturer and the national device regulator or a CERT is the norm for medical devices.",
       "gap": "Knowing the canons but not how they rank when they conflict.",
       "followUpId": null,
-      "tags": ["ethics", "canons"]
+      "tags": [
+        "ethics",
+        "canons"
+      ]
     },
     {
       "id": "d1-003",
@@ -87,7 +113,11 @@
         "A software bill of materials for each release, kept current and shared with the bank",
         "A summary of a penetration test run by the supplier's own developers three years ago"
       ],
-      "correct": [0, 3, 4],
+      "correct": [
+        0,
+        3,
+        4
+      ],
       "rationales": [
         "Correct. A Type II report gives independent evidence that controls operated effectively over a period, for the service actually being bought.",
         "A certificate is only as useful as its scope. Excluding hosting operations means the part that will store the bank's customer documents is not covered.",
@@ -102,7 +132,11 @@
       "practicalNote": "Banks commonly require SOC 2 Type II or ISO 27001 with a matching scope, plus right-to-audit and incident-notification clauses, before onboarding a critical supplier.",
       "gap": "Not judging the quality (scope, independence, recency) of assurance evidence.",
       "followUpId": null,
-      "tags": ["scrm", "third-party", "assurance"]
+      "tags": [
+        "scrm",
+        "third-party",
+        "assurance"
+      ]
     },
     {
       "id": "d1-004",
@@ -119,7 +153,9 @@
         "The incident handler, once forensic analysis confirms exactly which records left.",
         "The communications team, since the notice must match statements to the press."
       ],
-      "correct": [1],
+      "correct": [
+        1
+      ],
       "rationales": [
         "The CISO runs the response and advises, but notification is a legal and business decision with regulatory, reputational and financial consequences. It sits with senior management.",
         "Correct. Notification carries legal liability and reputational impact, so senior management decides, advised by legal and the data protection officer on what the applicable law (in Zimbabwe, the Cyber and Data Protection Act) requires.",
@@ -132,7 +168,1320 @@
       "practicalNote": "Notification clocks under many laws (GDPR's 72 hours, for example) start at awareness of a likely breach; waiting for forensic certainty is a common cause of late notification.",
       "gap": "Confusing who runs the incident with who owns the legal and business decisions.",
       "followUpId": null,
-      "tags": ["privacy", "breach-notification", "management"]
+      "tags": [
+        "privacy",
+        "breach-notification",
+        "management"
+      ]
+    },
+    {
+      "id": "d1-005",
+      "domain": 1,
+      "objective": "1.3",
+      "subtopic": "Security governance and oversight",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": "sc-02",
+      "stem": "The CEO wants Mukuvisi's security governance to be measurably stronger within a year. Which change would MOST strengthen governance?",
+      "options": [
+        "Move the security budget from a share of IT spending to a zero-based annual budget.",
+        "Replace the 2019 policy with a new one that names the bank's current firewall models.",
+        "Buy cyber insurance sized to the losses suffered by the peer bank last month.",
+        "Have the CISO report the top security risks to the board risk committee quarterly."
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "Budgeting from need rather than as a share of IT is sensible and aligns spending with risk, but it is a resourcing method. Governance is about oversight and accountability at the top, which this does not create.",
+        "Policy should be technology-neutral. Naming firewall models repeats the 2019 mistake and makes the policy go stale again.",
+        "Insurance transfers part of the financial impact. It is a risk treatment, not governance, and sizing it to someone else's loss skips the bank's own analysis.",
+        "Correct. Governance means the board directs and oversees. Regular risk reporting to the risk committee gives the board the visibility it needs to set appetite, fund priorities and hold management to account."
+      ],
+      "concept": "Governance is board-level direction and oversight of security risk.",
+      "trap": "Choosing a sound management or technical improvement instead of the change that creates oversight.",
+      "managerLens": "Make security a standing item at the board's risk committee, framed in business risk terms.",
+      "practicalNote": "Board reporting typically covers the top risks, trends, appetite breaches and decisions needed, not technical metrics.",
+      "gap": "Not distinguishing governance (direction and oversight) from management (running the programme).",
+      "followUpId": "d1-006",
+      "tags": [
+        "governance",
+        "board"
+      ]
+    },
+    {
+      "id": "d1-006",
+      "domain": 1,
+      "objective": "1.6",
+      "subtopic": "Policy and standards",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": "sc-02",
+      "stem": "Internal audit recommends fixing Mukuvisi's information security policy. Which TWO changes are appropriate? (Select TWO.)",
+      "options": [
+        "Move the firewall models and password length into standards that can change separately",
+        "Have senior management approve the revised policy and set a review cycle for it",
+        "Expand the policy with step-by-step firewall configuration procedures for engineers",
+        "Make the policy advisory so business units can adapt it to local conditions",
+        "Let the IT operations manager approve the policy, since IT enforces it day to day"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Policy states intent; standards hold the specific technologies and settings, so they can be updated without re-approving the policy.",
+        "Correct. Policy carries management's authority, so senior management must approve it, and a set review cycle keeps it current.",
+        "Procedures belong in their own documents. Adding them makes the policy longer, more technical and quicker to go out of date.",
+        "Policy is mandatory. Making it advisory turns it into a guideline and removes the basis for enforcement and due care.",
+        "Policy approval sits with senior management, not with the function that implements it. IT approving its own policy weakens accountability."
+      ],
+      "concept": "Policy is mandatory, management-approved and technology-neutral; standards and procedures carry the detail.",
+      "trap": "Putting technical detail in policy, or letting the implementer approve it.",
+      "managerLens": "Keep the policy short and stable; push changeable detail down into standards owned by the right people.",
+      "practicalNote": "A common hierarchy: board-approved policy, CISO-owned standards, team-owned procedures and baselines, optional guidelines.",
+      "gap": "Mixing up what belongs in policy, standards, procedures and guidelines.",
+      "followUpId": "d1-007",
+      "tags": [
+        "policy",
+        "documentation"
+      ]
+    },
+    {
+      "id": "d1-007",
+      "domain": 1,
+      "objective": "1.9",
+      "subtopic": "Risk assessment",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": "sc-02",
+      "stem": "The board asks whether Mukuvisi should accept, mitigate or transfer its ransomware risk. What must happen BEFORE that choice can be made sensibly?",
+      "options": [
+        "Buy immutable backup storage so that recovery no longer depends on the attackers.",
+        "Assess the risk: what is at stake, how likely an attack is, and its impact.",
+        "Benchmark the bank's controls against those the peer bank lacked before its attack.",
+        "Obtain quotes for cyber insurance so that transfer can be compared on cost."
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "Immutable backups are likely to be part of the answer, but buying them is a mitigation chosen before the risk has been assessed.",
+        "Correct. Treatment decisions depend on the assessed risk: what is at stake, how likely it is and what it would cost the business. Without that, any choice is a guess.",
+        "Learning from the peer bank is useful input to threat identification, but the peer's gaps are not Mukuvisi's risk assessment.",
+        "Insurance quotes help compare one option once the risk is understood. On their own they say nothing about whether transfer is the right treatment."
+      ],
+      "concept": "Assess risk before choosing a treatment.",
+      "trap": "Jumping to a familiar control or to insurance because a peer was hit.",
+      "managerLens": "Bring the board a risk assessment with costed treatment options; let them decide within appetite.",
+      "practicalNote": "A ransomware assessment usually covers crown-jewel systems, backup resilience, recovery times against MTD, and likely extortion and regulatory costs.",
+      "gap": "Treating risk response as the first step rather than the result of assessment.",
+      "followUpId": null,
+      "tags": [
+        "risk",
+        "first-step",
+        "ransomware"
+      ]
+    },
+    {
+      "id": "d1-008",
+      "domain": 1,
+      "objective": "1.1",
+      "subtopic": "Organisational code of ethics",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "You are evaluating bids in a network equipment tender. One bidder's account manager offers you a US$40 fuel voucher. Your company's code of ethics allows staff to accept gifts worth up to US$50. What should you do?",
+      "options": [
+        "Accept it, since it is within the gift limit set by the company's code of ethics.",
+        "Decline it and declare the offer in writing to the tender committee.",
+        "Accept it but give it to charity, so that you gain nothing personally from it.",
+        "Decline it privately and say nothing, so the bidder is not penalised unfairly."
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "A gift limit is a general rule. A gift from a bidder while you are evaluating its bid is a conflict of interest whatever its value.",
+        "Correct. Declining avoids the conflict, and declaring the offer protects the tender's integrity and your own. This is acting honourably and transparently.",
+        "Passing it on removes the personal gain but not the appearance of influence on the evaluation, and the offer still goes unrecorded.",
+        "Declining is right, but hiding the offer denies the committee information it may need to judge the bidder's conduct fairly."
+      ],
+      "concept": "Conflicts of interest are avoided and disclosed, whatever a policy's general threshold.",
+      "trap": "Reading the gift limit literally and ignoring the context of an active tender.",
+      "managerLens": "Transparency protects the process: decline, declare, and let the committee decide.",
+      "practicalNote": "Many procurement rules ban all gifts from bidders during an open tender, whatever the general gift policy allows.",
+      "gap": "Applying a rule mechanically without considering conflict of interest.",
+      "followUpId": null,
+      "tags": [
+        "ethics",
+        "conflict-of-interest"
+      ]
+    },
+    {
+      "id": "d1-009",
+      "domain": 1,
+      "objective": "1.1",
+      "subtopic": "ISC2 Code of Ethics",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": null,
+      "stem": "Your employer, a municipal water utility, tells you to hold back a SCADA vulnerability report from the national CERT until after a bond issue next month, because disclosure might affect the price. The flaw could let an attacker change chlorine dosing at a treatment plant. Which action BEST fits the ISC2 Code of Ethics?",
+      "options": [
+        "Follow the instruction, since diligent service to the employer is a canon as well.",
+        "Report it to the national CERT straight away without telling management first.",
+        "Press management in writing to act now, and go to the CERT if it refuses.",
+        "Resign from the utility, so that you are no longer bound by the instruction."
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "Service to the principal is the third canon. Protecting society and public safety is the first, and it wins when they conflict.",
+        "Going straight outside skips the honourable step of giving the employer the chance to act, and may breach legitimate duties for no gain.",
+        "Correct. Public safety comes first, but the honourable route is to escalate in writing and give management the chance to mitigate and notify, then go to the CERT if it will not.",
+        "Resigning leaves the danger to the public unaddressed. It protects you, not the people the first canon protects."
+      ],
+      "concept": "The first canon (protect society) outranks service to the employer; escalate through proper channels.",
+      "trap": "Obeying the employer, or overcorrecting by bypassing them entirely.",
+      "managerLens": "Document, escalate, and use the legitimate external authority when internal escalation fails.",
+      "practicalNote": "National CERTs handle coordinated disclosure for critical infrastructure and can advise on interim mitigations.",
+      "gap": "Knowing the canons but not their order of precedence or how to act on it.",
+      "followUpId": null,
+      "tags": [
+        "ethics",
+        "canons",
+        "ot"
+      ]
+    },
+    {
+      "id": "d1-010",
+      "domain": 1,
+      "objective": "1.2",
+      "subtopic": "CIA and related properties",
+      "difficulty": 2,
+      "type": "single",
+      "scenario": null,
+      "stem": "A hospital laboratory system shows a patient's blood type as O negative, although the sample tested was A positive. Nothing was disclosed and the system stayed available throughout. Which security property failed?",
+      "options": [
+        "Loss of confidentiality",
+        "Loss of availability",
+        "Loss of integrity",
+        "Loss of authenticity"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "No data was disclosed to anyone unauthorised, so confidentiality held.",
+        "The system stayed online and usable, so availability held.",
+        "Correct. The record no longer matches reality. Integrity is about data being accurate and changed only in authorised ways.",
+        "Authenticity concerns whether data or a party is genuinely what it claims to be. The issue here is the accuracy of the record itself."
+      ],
+      "concept": "Integrity: data stays accurate and is changed only in authorised ways.",
+      "trap": "Overthinking a plain accuracy failure as an authenticity problem.",
+      "managerLens": "In healthcare, integrity failures can be life-threatening; prioritise controls such as validation and change logging.",
+      "practicalNote": "Laboratory systems use interface checks, double verification of critical results and audit trails to protect integrity.",
+      "gap": "Linking a failure to the right security property.",
+      "followUpId": "d1-011",
+      "tags": [
+        "cia",
+        "integrity"
+      ]
+    },
+    {
+      "id": "d1-011",
+      "domain": 1,
+      "objective": "1.2",
+      "subtopic": "Non-repudiation",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A government e-procurement portal must ensure that a supplier cannot later credibly deny having submitted a particular bid. Which mechanism BEST provides this?",
+      "options": [
+        "A hash of each bid stored alongside it on the procurement server",
+        "A message authentication code with a key the supplier shares with the buyer",
+        "TLS encryption of the connection used to upload each bid file",
+        "A digital signature made with the supplier's own private key"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "A hash shows whether the bid changed, but anyone can compute one, so it does not bind the bid to the supplier.",
+        "A MAC proves the bid came from someone holding the shared key. The buyer holds it too, so the supplier can claim the buyer created it.",
+        "TLS protects the bid in transit and authenticates the server. It leaves no lasting proof of who submitted the bid.",
+        "Correct. Only the supplier holds its private key, so a valid signature binds the bid to the supplier and supports non-repudiation."
+      ],
+      "concept": "Non-repudiation requires proof bound to a single party: asymmetric digital signatures.",
+      "trap": "Choosing a shared-key MAC, which proves integrity but not which party acted.",
+      "managerLens": "Where disputes are likely, require individual signing keys and keep the evidence.",
+      "practicalNote": "E-procurement and e-filing systems commonly use qualified or advanced electronic signatures with time-stamping.",
+      "gap": "Confusing integrity and origin within a group with non-repudiation by one party.",
+      "followUpId": null,
+      "tags": [
+        "non-repudiation",
+        "signatures"
+      ]
+    },
+    {
+      "id": "d1-012",
+      "domain": 1,
+      "objective": "1.2",
+      "subtopic": "Availability controls",
+      "difficulty": 3,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A mobile money operator is reviewing controls in its core platform. Which TWO controls MAINLY protect availability? (Select TWO.)",
+      "options": [
+        "Redundant power feeds and a standby generator for the data centre",
+        "Full-disk encryption on the laptops used by customer-care staff",
+        "Load-balanced application servers in an active-active cluster",
+        "File integrity monitoring on the transaction processing servers",
+        "Role-based access to customer records in the support system"
+      ],
+      "correct": [
+        0,
+        2
+      ],
+      "rationales": [
+        "Correct. Redundant power keeps the platform running through supply failures.",
+        "Disk encryption protects the confidentiality of data on lost or stolen laptops.",
+        "Correct. Active-active clustering keeps the service up if a server fails and spreads load.",
+        "File integrity monitoring detects unauthorised changes. It mainly supports integrity.",
+        "Role-based access limits who can see records. It mainly supports confidentiality."
+      ],
+      "concept": "Each control maps mainly to one property: redundancy and clustering protect availability.",
+      "trap": "Picking a control that is valuable but serves a different property.",
+      "managerLens": "Map controls to the property the business needs most for each system.",
+      "practicalNote": "For payment platforms, availability targets often appear as uptime SLAs agreed with the regulator or partners.",
+      "gap": "Mapping controls to the property they protect.",
+      "followUpId": null,
+      "tags": [
+        "cia",
+        "availability"
+      ]
+    },
+    {
+      "id": "d1-013",
+      "domain": 1,
+      "objective": "1.3",
+      "subtopic": "Roles and responsibilities",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A regulator investigating a breach at an insurer finds that the CISO twice warned in writing about unpatched internet-facing servers, and that the CIO deferred the work to fund a new CRM. The board was never told. Who bears ULTIMATE accountability for the insurer's information security?",
+      "options": [
+        "The CISO, who was responsible for running the security programme",
+        "The CIO, who decided to defer the patching to fund other work",
+        "The board and senior management, who govern the insurer as a whole",
+        "The system owners of the exposed servers in the data centre"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "The CISO is responsible for the programme and gave warnings. Responsibility can be delegated; ultimate accountability cannot.",
+        "The CIO made a poor decision and is answerable for it, but ultimate accountability for the organisation's security sits above the CIO.",
+        "Correct. Senior management and the board are ultimately accountable for protecting the organisation's assets. Failing to escalate the risk to them is itself a governance failure.",
+        "System owners are accountable for their systems' protection, but they do not carry ultimate accountability for the whole organisation."
+      ],
+      "concept": "Ultimate accountability for security rests with senior management and the board.",
+      "trap": "Blaming the person who made the operational decision or ran the programme.",
+      "managerLens": "Risks that exceed appetite must be escalated to those who are accountable, in writing.",
+      "practicalNote": "Many regulators now hold boards and named senior managers personally accountable for cyber risk oversight.",
+      "gap": "Confusing responsibility (can be delegated) with accountability (cannot).",
+      "followUpId": null,
+      "tags": [
+        "roles",
+        "accountability"
+      ]
+    },
+    {
+      "id": "d1-014",
+      "domain": 1,
+      "objective": "1.3",
+      "subtopic": "Security control frameworks",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A Zimbabwean payments start-up plans to sell services to banks in Europe and the United States within 18 months. Its board wants one framework that will give it an organisation-wide management system the banks will recognise through independent assessment. Which is the BEST choice?",
+      "options": [
+        "NIST CSF 2.0, with a self-assessed profile shared with each bank",
+        "ISO/IEC 27001:2022, with certification by an accredited body",
+        "COBIT 2019, with a capability assessment of its IT processes",
+        "PCI DSS v4.0.1, with a report on compliance from a QSA"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "CSF 2.0 is widely respected and useful for structuring a programme, but it is not a certifiable standard, and self-assessment is not independent.",
+        "Correct. ISO/IEC 27001 specifies an information security management system, and accredited certification is recognised internationally by banks.",
+        "COBIT is an IT governance framework. Capability assessments are useful, but they do not give a recognised certification of an information security management system.",
+        "PCI DSS may well apply to a payments firm, but it covers the cardholder data environment, not an organisation-wide management system."
+      ],
+      "concept": "Choose a framework for its purpose: ISO 27001 for a certifiable ISMS; CSF for structure; COBIT for IT governance; PCI DSS for card data.",
+      "trap": "Picking the framework most associated with the sector (PCI DSS for payments) rather than the one that meets the stated need.",
+      "managerLens": "Start from the business requirement (independent, recognised assurance) and pick the framework that delivers it.",
+      "practicalNote": "Firms often hold ISO 27001 certification and map controls to NIST CSF 2.0 and PCI DSS to answer different customers.",
+      "gap": "Not knowing what each major framework is for and whether it is certifiable.",
+      "followUpId": null,
+      "tags": [
+        "frameworks",
+        "iso27001",
+        "nist-csf"
+      ]
+    },
+    {
+      "id": "d1-015",
+      "domain": 1,
+      "objective": "1.3",
+      "subtopic": "Due care and due diligence",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": null,
+      "stem": "Which TWO activities are examples of due DILIGENCE rather than due care? (Select TWO.)",
+      "options": [
+        "Reviewing a cloud provider's audit reports before signing the contract",
+        "Patching servers within the timeframes set in the patch standard",
+        "Assessing a company's security posture before agreeing to acquire it",
+        "Running the backup jobs and restore tests that the policy requires",
+        "Enforcing the acceptable use policy when staff are found breaching it"
+      ],
+      "correct": [
+        0,
+        2
+      ],
+      "rationales": [
+        "Correct. Investigating a provider before committing is finding out the risk: due diligence.",
+        "Patching to a standard is acting as a prudent organisation should: due care.",
+        "Correct. Assessing a target's security before an acquisition is investigation: due diligence.",
+        "Running required backups and tests is carrying out the controls: due care.",
+        "Enforcing policy is acting on known obligations: due care."
+      ],
+      "concept": "Due diligence is investigating and understanding risk; due care is acting on it reasonably.",
+      "trap": "Swapping the two terms.",
+      "managerLens": "Both matter in court: diligence shows you knew, care shows you acted.",
+      "practicalNote": "Regulators and courts often ask for evidence of both: assessment records and proof that controls ran.",
+      "gap": "Distinguishing investigation (diligence) from action (care).",
+      "followUpId": null,
+      "tags": [
+        "due-care",
+        "due-diligence"
+      ]
+    },
+    {
+      "id": "d1-016",
+      "domain": 1,
+      "objective": "1.3",
+      "subtopic": "Acquisitions and divestitures",
+      "difficulty": 6,
+      "type": "single",
+      "scenario": null,
+      "stem": "Your company is selling a business unit. The buyer takes over in 60 days, and the unit's 300 staff move with it. They currently share your Active Directory, email and ERP system, and some of them administer shared servers. What is the MOST important security concern to address in the separation plan?",
+      "options": [
+        "Keeping data that stays with your business from leaving with the unit",
+        "Ensuring the unit's staff complete awareness training before they transfer",
+        "Ensuring the buyer's security tools work with your monitoring platform",
+        "Ensuring the unit's software licences transfer so the buyer stays compliant"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. In a divestiture the main risk is that the departing unit takes, or keeps access to, data and systems that stay with the seller. Separating data, accounts and administrative rights by the handover date is the priority.",
+        "Training is good practice but does nothing about the data and access the staff will keep after they leave.",
+        "Compatibility of the buyer's tools is the buyer's integration concern, not the seller's main risk.",
+        "Licence transfer matters commercially, but it is a lesser concern than protecting the seller's retained data and systems."
+      ],
+      "concept": "Divestiture security: separate data, identities and privileged access before handover.",
+      "trap": "Focusing on the buyer's needs or on routine tasks rather than the seller's exposure.",
+      "managerLens": "Treat departing staff as future outsiders: plan their access removal and data separation with the deal timeline.",
+      "practicalNote": "Separation plans typically use a transitional services agreement with tightly scoped access, then cut over identities and data.",
+      "gap": "Not recognising the distinct risks of divestitures compared with acquisitions.",
+      "followUpId": null,
+      "tags": [
+        "governance",
+        "divestiture"
+      ]
+    },
+    {
+      "id": "d1-017",
+      "domain": 1,
+      "objective": "1.4",
+      "subtopic": "Intellectual property",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A developer leaves a fintech and joins a competitor. He takes no files, but rebuilds from memory a fraud-scoring algorithm the fintech never published or patented and protected only through NDAs and access controls. Which form of protection is the fintech relying on?",
+      "options": [
+        "Copyright in the source code of the scoring engine",
+        "A patent on the method the scoring algorithm uses",
+        "Trade secret protection for the confidential algorithm",
+        "Trademark protection for the name of the scoring product"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "Copyright protects the expression, such as the written code, not the underlying idea. Rebuilding from memory without copying the code is a weaker copyright case.",
+        "No patent was filed, so there is no patent protection.",
+        "Correct. Information kept secret through NDAs and access controls, and valuable because it is secret, is protected as a trade secret.",
+        "A trademark protects names and logos, not how an algorithm works."
+      ],
+      "concept": "Trade secrets are protected by keeping them confidential, not by registration.",
+      "trap": "Choosing copyright, which protects expression, not ideas or methods.",
+      "managerLens": "If the value lies in secrecy, back it with NDAs, need-to-know access and exit reminders.",
+      "practicalNote": "Trade secret claims fail if the owner cannot show reasonable steps to keep the information secret.",
+      "gap": "Matching each form of intellectual property to what it protects.",
+      "followUpId": null,
+      "tags": [
+        "intellectual-property",
+        "legal"
+      ]
+    },
+    {
+      "id": "d1-018",
+      "domain": 1,
+      "objective": "1.4",
+      "subtopic": "Transborder data flow",
+      "difficulty": 5,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A Harare-based telecom plans to replicate subscriber records, including national ID numbers, to a backup site in another country. Which TWO steps are MOST important before replication begins? (Select TWO.)",
+      "options": [
+        "Confirm the transfer is lawful under the applicable data protection law",
+        "Put contractual safeguards in place with the operator of the backup site",
+        "Encrypt the replication link with the strongest cipher the routers support",
+        "Choose the country with the lowest network latency to reduce replication lag",
+        "Notify every subscriber individually before the first replication runs"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Cross-border transfers of personal data are often restricted; the legal basis and any required approvals must be settled first.",
+        "Correct. A contract binding the receiving operator to protect the data, use it only as instructed and allow oversight is a core transfer safeguard.",
+        "Encryption in transit is a sound control, but it does not make an unlawful transfer lawful or govern how the data is handled at rest abroad.",
+        "Latency is an engineering concern. Choosing the country should start with legal adequacy and protection, not speed.",
+        "Laws usually require transparency through privacy notices; individual notice to every subscriber before replication is not normally the key step."
+      ],
+      "concept": "Transborder data flows need a lawful basis and enforceable safeguards before technical design.",
+      "trap": "Leading with a technical control (encryption) instead of the legal question.",
+      "managerLens": "Legal permissibility and contracts come first; engineering choices follow.",
+      "practicalNote": "Data protection laws, including Zimbabwe's, generally restrict transfers to countries without adequate protection unless safeguards or approvals are in place.",
+      "gap": "Not recognising the legal dimension of moving personal data across borders.",
+      "followUpId": null,
+      "tags": [
+        "privacy",
+        "transborder",
+        "legal"
+      ]
+    },
+    {
+      "id": "d1-019",
+      "domain": 1,
+      "objective": "1.4",
+      "subtopic": "Import and export controls",
+      "difficulty": 3,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A company will ship laptops with full-disk encryption to new offices in several countries. Which TWO legal checks should be made before shipping? (Select TWO.)",
+      "options": [
+        "Whether the destination countries restrict importing or using encryption",
+        "Whether exporting the encryption product needs a licence from the origin",
+        "Whether the TPM chips in the laptops support the required key lengths",
+        "Whether staff in the new offices have read the acceptable use policy",
+        "Whether the recovery keys are escrowed with the corporate service desk"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Some countries restrict the import or use of strong cryptography, or require registration.",
+        "Correct. Encryption products can fall under export controls, such as those aligned with the Wassenaar Arrangement, in the country of origin.",
+        "A technical compatibility check, not a legal one.",
+        "Policy acknowledgement matters, but it is not a legal check on moving cryptography across borders.",
+        "Key escrow is good operational practice, not a legal import or export check."
+      ],
+      "concept": "Cryptography can be subject to both export and import controls.",
+      "trap": "Treating encryption as purely technical and missing the legal restrictions.",
+      "managerLens": "Involve legal and trade compliance before deploying cryptography internationally.",
+      "practicalNote": "Mass-market encryption is often exempt or simplified under export rules, but checks are still needed for each route.",
+      "gap": "Not knowing that cryptography is regulated across borders.",
+      "followUpId": null,
+      "tags": [
+        "legal",
+        "export-controls",
+        "crypto"
+      ]
+    },
+    {
+      "id": "d1-020",
+      "domain": 1,
+      "objective": "1.5",
+      "subtopic": "Standards of proof",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "An employee is dismissed after an internal investigation finds she leaked pricing data to a competitor. She sues for unfair dismissal, and the police separately investigate the leak as a crime. Which statement about the standards of proof is correct?",
+      "options": [
+        "Both cases need proof beyond reasonable doubt because the same facts are involved",
+        "The criminal case uses the balance of probabilities because the employer gathered it",
+        "Both cases use the balance of probabilities because the dismissal already happened",
+        "Civil needs the balance of probabilities; criminal needs proof beyond reasonable doubt"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "The standard depends on the type of case, not on the facts. A civil claim does not need the criminal standard.",
+        "Who gathered the evidence does not change the standard. Criminal cases always need proof beyond reasonable doubt.",
+        "The dismissal having happened does not lower the criminal standard.",
+        "Correct. Civil matters are decided on the balance of probabilities; criminal guilt must be proved beyond reasonable doubt."
+      ],
+      "concept": "Civil: balance of probabilities. Criminal: beyond reasonable doubt.",
+      "trap": "Assuming one standard applies to all proceedings arising from the same facts.",
+      "managerLens": "Collect evidence to the criminal standard whenever a matter might become criminal.",
+      "practicalNote": "Evidence handled loosely in an internal case may be excluded later; strict chain of custody keeps options open.",
+      "gap": "Knowing which standard of proof each investigation type needs.",
+      "followUpId": null,
+      "tags": [
+        "investigations",
+        "legal"
+      ]
+    },
+    {
+      "id": "d1-021",
+      "domain": 1,
+      "objective": "1.5",
+      "subtopic": "Investigation types",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A retailer discovers that its payment terminals stored full card data for two years. The card brands require a forensic investigation by an investigator they have approved. Which type of investigation is this?",
+      "options": [
+        "A regulatory investigation, because a government body has ordered it",
+        "An industry-standards investigation, required under card brand rules",
+        "A civil investigation, because the card brands may later sue for losses",
+        "An administrative investigation, because it concerns internal procedures"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "The card brands are not a government regulator; their requirement comes from industry rules and contracts.",
+        "Correct. Investigations required by industry bodies such as the card brands, under contract and their rules, are industry-standards investigations.",
+        "A lawsuit may follow, but the required forensic investigation is not itself a civil proceeding.",
+        "It concerns more than internal procedure: an external body requires it under its rules."
+      ],
+      "concept": "Industry-standards investigations are driven by industry bodies and contracts, not by law or regulators.",
+      "trap": "Assuming any external, mandatory investigation is regulatory.",
+      "managerLens": "Know which obligations come from contracts and industry schemes; they can be as binding as law.",
+      "practicalNote": "In card breaches, a PCI Forensic Investigator (PFI) approved by the PCI Security Standards Council usually leads.",
+      "gap": "Telling apart regulatory and industry-standards investigations.",
+      "followUpId": null,
+      "tags": [
+        "investigations",
+        "pci",
+        "outline2024only"
+      ]
+    },
+    {
+      "id": "d1-022",
+      "domain": 1,
+      "objective": "1.5",
+      "subtopic": "Escalating investigations",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "During an administrative investigation into an employee's misuse of company email, the investigator finds what appears to be child sexual abuse material on the employee's laptop. What should the investigator do NEXT?",
+      "options": [
+        "Stop, secure the laptop untouched and escalate so police can be involved",
+        "Copy the material to a secure drive so that HR and legal counsel can review it",
+        "Finish the email investigation first, then decide whether the material matters",
+        "Delete the material so the company is not left holding illegal content"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. The matter has become criminal. Stop, preserve the evidence untouched and escalate to legal so law enforcement can be involved.",
+        "Copying or distributing such material may itself be an offence, and it damages evidence handling.",
+        "Delaying a criminal matter for an internal one risks evidence and legal exposure.",
+        "Deleting destroys evidence and may be a crime in itself."
+      ],
+      "concept": "When an internal matter becomes criminal, stop, preserve and escalate.",
+      "trap": "Continuing the original investigation or trying to handle the material internally.",
+      "managerLens": "Have a written escalation path to legal and law enforcement for exactly this situation.",
+      "practicalNote": "Investigators should not view, copy or move such material beyond what is needed to secure it; legal counsel directs next steps.",
+      "gap": "Recognising when an investigation changes type and what that requires.",
+      "followUpId": null,
+      "tags": [
+        "investigations",
+        "evidence"
+      ]
+    },
+    {
+      "id": "d1-023",
+      "domain": 1,
+      "objective": "1.6",
+      "subtopic": "Document hierarchy",
+      "difficulty": 2,
+      "type": "single",
+      "scenario": null,
+      "stem": "A standard states that all laptops must use full-disk encryption. A separate document explains, step by step, how to turn encryption on for each laptop model the company uses. What is that second document?",
+      "options": [
+        "A guideline",
+        "A baseline",
+        "A policy",
+        "A procedure"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "Guidelines are recommendations that allow judgement. Step-by-step instructions for meeting a mandatory standard are not optional advice.",
+        "A baseline defines a minimum configuration for a type of system, not the steps to apply it.",
+        "A policy is management's high-level statement of intent, not instructions.",
+        "Correct. Detailed, step-by-step instructions for doing a task are a procedure."
+      ],
+      "concept": "Policy (intent), standard (specific requirement), procedure (steps), guideline (advice), baseline (minimum configuration).",
+      "trap": "Confusing a procedure with a guideline or a baseline.",
+      "managerLens": "Put each kind of content in the right document so each can change at the right pace.",
+      "practicalNote": "Procedures are usually owned by the teams that perform them and change more often than standards.",
+      "gap": "Recalling the document hierarchy.",
+      "followUpId": null,
+      "tags": [
+        "policy",
+        "documentation"
+      ]
+    },
+    {
+      "id": "d1-024",
+      "domain": 1,
+      "objective": "1.6",
+      "subtopic": "Policy exceptions",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A business unit cannot meet the company's password standard because a legacy claims system supports only 8-character passwords. Replacing the system is planned for next year. What is the BEST way to handle this?",
+      "options": [
+        "Document an exception with compensating controls, approved by the risk owner, with an expiry",
+        "Rewrite the password standard so that it allows 8-character passwords for every system",
+        "Leave the system as it is, since the standard cannot be met and auditors will understand",
+        "Block the legacy system from use until it supports the password length the standard sets"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. A formal, time-limited exception with compensating controls such as MFA or network restriction, approved by the person accountable for the risk, keeps the standard intact and the risk visible.",
+        "Weakening the standard for every system to fit one legacy system lowers security everywhere.",
+        "An undocumented gap is unmanaged risk and a likely audit finding; it fails due care.",
+        "Blocking a working business system is disproportionate when compensating controls can manage the risk until replacement."
+      ],
+      "concept": "Exceptions are formal, approved, compensated and time-limited.",
+      "trap": "Changing the rule for everyone, or ignoring the gap.",
+      "managerLens": "Keep the standard; manage the deviation through an approved, tracked exception.",
+      "practicalNote": "Exception registers usually record the owner, compensating controls, risk rating and expiry date, and are reviewed regularly.",
+      "gap": "Not knowing how to handle a justified deviation from policy.",
+      "followUpId": null,
+      "tags": [
+        "policy",
+        "exceptions",
+        "compensating-control"
+      ]
+    },
+    {
+      "id": "d1-025",
+      "domain": 1,
+      "objective": "1.7",
+      "subtopic": "Business impact analysis",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "The board of a medical insurer has approved a business continuity programme and appointed a BC manager. What should the BC manager do FIRST?",
+      "options": [
+        "Choose recovery sites that meet the IT department's preferred recovery times",
+        "Identify critical business processes and how losing them would hurt over time",
+        "Write the continuity plan from the template the external auditors recommended",
+        "Run a tabletop exercise to find gaps in the existing recovery arrangements"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "Recovery sites are chosen to meet business-driven targets. Choosing them first, from IT's preferences, puts the strategy before the analysis.",
+        "Correct. With the programme approved, the business impact analysis comes next: it identifies critical processes and their tolerance for disruption, which drives every later choice.",
+        "A plan written before the BIA has nothing to base priorities on.",
+        "Exercises test a plan; without the BIA and a plan, there is little to test against."
+      ],
+      "concept": "After management approval, the BIA is the first analytical step in continuity planning.",
+      "trap": "Starting with technology or with testing.",
+      "managerLens": "Let business impact, not IT preference, set recovery priorities.",
+      "practicalNote": "BIAs are usually done through interviews and questionnaires with process owners, then validated by management.",
+      "gap": "Knowing the order of continuity planning steps.",
+      "followUpId": "d1-026",
+      "tags": [
+        "bcp",
+        "bia",
+        "first-step"
+      ]
+    },
+    {
+      "id": "d1-026",
+      "domain": 1,
+      "objective": "1.7",
+      "subtopic": "MTD, RTO and recovery work",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "The BIA finds that a bank's mobile money service can be down for at most 8 hours before regulatory and reputational harm becomes unacceptable. After the platform is restored, verifying data and reconciling transactions takes 3 hours. What is the LONGEST recovery time objective that can be set for the platform?",
+      "options": [
+        "3 hours",
+        "8 hours",
+        "5 hours",
+        "11 hours"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "Three hours is the work recovery time, not the RTO.",
+        "Eight hours is the MTD. Setting RTO equal to it leaves no time for the 3 hours of verification and reconciliation.",
+        "Correct. RTO plus work recovery time must not exceed MTD: 8 − 3 = 5 hours.",
+        "Adding the two exceeds the MTD; the service would be out for longer than the business can tolerate."
+      ],
+      "concept": "RTO + WRT ≤ MTD.",
+      "trap": "Setting RTO equal to MTD and forgetting the work needed after restore.",
+      "managerLens": "Recovery targets come from business tolerance, minus the time the business needs to resume work.",
+      "practicalNote": "Payment and mobile money platforms often have reconciliation steps that take hours after a technical restore.",
+      "gap": "Relating MTD, RTO and WRT.",
+      "followUpId": null,
+      "tags": [
+        "bcp",
+        "rto",
+        "mtd"
+      ]
+    },
+    {
+      "id": "d1-027",
+      "domain": 1,
+      "objective": "1.7",
+      "subtopic": "BIA outputs",
+      "difficulty": 5,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A business impact analysis for a hospital's pharmacy dispensing system is under way. Which THREE items belong in its output? (Select THREE.)",
+      "options": [
+        "The maximum tolerable downtime of each dependent clinical process",
+        "The external suppliers and utilities each critical process relies on",
+        "The make and model of the standby generator the hospital should buy",
+        "Recovery point and recovery time targets derived from impact over time",
+        "The detailed call tree for contacting staff when the plan is invoked",
+        "The vendor selected to provide a hot site for the dispensing system"
+      ],
+      "correct": [
+        0,
+        1,
+        3
+      ],
+      "rationales": [
+        "Correct. MTD per process is a core BIA output.",
+        "Correct. Dependencies, including external ones, are identified in the BIA because they can defeat recovery.",
+        "Equipment choices are part of recovery strategy and design, which follow the BIA.",
+        "Correct. RPO and RTO targets follow from the impact analysis.",
+        "Call trees belong in the continuity or response plan, not the BIA.",
+        "Selecting a vendor is a strategy decision made after the BIA sets requirements."
+      ],
+      "concept": "The BIA produces requirements (impacts, MTD, dependencies, RTO/RPO), not solutions.",
+      "trap": "Including strategy or plan content in the analysis.",
+      "managerLens": "Keep analysis and solution separate so the business, not vendors, sets the requirements.",
+      "practicalNote": "In hospitals, BIAs often show that manual fallbacks (paper dispensing) shape the true MTD.",
+      "gap": "Knowing what the BIA produces versus later planning stages.",
+      "followUpId": null,
+      "tags": [
+        "bcp",
+        "bia"
+      ]
+    },
+    {
+      "id": "d1-028",
+      "domain": 1,
+      "objective": "1.7",
+      "subtopic": "External dependencies",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": null,
+      "stem": "A bank's BIA rates its core banking platform as critical with a 4-hour MTD. The platform runs in a resilient data centre with a hot standby site. Every connection from both sites to the national card switch runs through one telecom carrier, whose fibre was cut twice last year for more than six hours each time. What should the BC manager raise FIRST?",
+      "options": [
+        "The hot standby should be tested more often to prove it can meet the 4-hour MTD.",
+        "The data centre should be certified to a higher tier of resilience to protect the MTD.",
+        "The card switch operator should be asked to share its own continuity plan first.",
+        "The single carrier is an external dependency that can defeat the 4-hour MTD."
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "Testing the standby is good practice, but both sites share the same carrier, so a perfect failover would still be cut off.",
+        "Data centre resilience is already strong; the weakness lies outside it.",
+        "The switch operator's plan matters, but the bank's own single path to it is the more immediate weakness, and one the bank can fix.",
+        "Correct. A single external dependency shared by both sites has already caused outages longer than the MTD. It undermines the whole recovery design and must be raised first."
+      ],
+      "concept": "External dependencies can defeat internal resilience; the BIA must surface them.",
+      "trap": "Focusing on internal controls that look impressive while a shared external dependency remains.",
+      "managerLens": "Look for single points of failure across the whole service chain, not just inside your walls.",
+      "practicalNote": "Telecom route diversity means separate carriers or physically separate paths into each site.",
+      "gap": "Overlooking external dependencies in continuity planning.",
+      "followUpId": null,
+      "tags": [
+        "bcp",
+        "dependencies",
+        "single-point-of-failure"
+      ]
+    },
+    {
+      "id": "d1-029",
+      "domain": 1,
+      "objective": "1.8",
+      "subtopic": "Candidate screening",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A bank is hiring a database administrator who will have privileged access to the core banking system. Which pre-employment screening is MOST appropriate for the role?",
+      "options": [
+        "Credit and criminal checks within local law, plus verified references",
+        "A review of the candidate's personal social media accounts over five years",
+        "A personality test to assess how the candidate reacts to stress at work",
+        "A check of the candidate's previous salaries to confirm stated experience"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. A high-trust financial role justifies credit and criminal checks, done lawfully, and verified references.",
+        "Broad social media trawls raise privacy and discrimination concerns and add little for this role.",
+        "Personality tests are not a security screening control and do not reveal integrity risks.",
+        "Past salaries do not verify trustworthiness or experience reliably."
+      ],
+      "concept": "Screening is scaled to the role's risk and limited by law.",
+      "trap": "Choosing intrusive or irrelevant checks.",
+      "managerLens": "Define screening levels by role risk with HR and legal, and apply them consistently.",
+      "practicalNote": "Banking regulators often require fit-and-proper checks for staff in sensitive roles.",
+      "gap": "Matching screening depth to role and legal limits.",
+      "followUpId": null,
+      "tags": [
+        "personnel",
+        "screening"
+      ]
+    },
+    {
+      "id": "d1-030",
+      "domain": 1,
+      "objective": "1.8",
+      "subtopic": "Fraud prevention in personnel controls",
+      "difficulty": 5,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A payments clerk has handled supplier payments alone for six years and has never taken more than two days of leave at a time. Which TWO controls would MOST help detect or prevent fraud in this role? (Select TWO.)",
+      "options": [
+        "Mandatory consecutive leave, with someone else doing the role",
+        "Separating the set-up of new suppliers from approving payments",
+        "A larger annual bonus tied to accurate payment processing",
+        "Stronger password rules and MFA on the clerk's own account",
+        "An annual refresher on the company's code of conduct"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Enforced leave puts someone else in the role, which often surfaces concealed fraud.",
+        "Correct. Separating supplier set-up from payment approval stops one person creating a fake supplier and paying it.",
+        "Incentives do not detect or prevent fraud by the person receiving them.",
+        "Strong authentication protects the account from outsiders, not from misuse by its legitimate holder.",
+        "Awareness of the code is useful but weak against a determined insider."
+      ],
+      "concept": "Separation of duties and mandatory vacation counter insider fraud.",
+      "trap": "Picking controls aimed at outsiders when the risk is the insider.",
+      "managerLens": "Design roles so no one person can complete a fraud alone, and verify by rotation.",
+      "practicalNote": "Many banks require two consecutive weeks of leave for staff in sensitive roles.",
+      "gap": "Matching controls to insider risk.",
+      "followUpId": null,
+      "tags": [
+        "personnel",
+        "separation-of-duties",
+        "fraud"
+      ]
+    },
+    {
+      "id": "d1-031",
+      "domain": 1,
+      "objective": "1.8",
+      "subtopic": "Vendor and contractor controls",
+      "difficulty": 3,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A contractor from a managed service provider has had VPN access for 18 months. The contract ended last month, but the account is still active. Which TWO controls failed? (Select TWO.)",
+      "options": [
+        "Offboarding tied to the end date of the contractor's agreement",
+        "Periodic review of third-party accounts by the business owner",
+        "Multi-factor authentication on the VPN used by the contractor",
+        "Background screening of the provider's staff before the contract",
+        "Security awareness training run by the provider for its staff"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Contractor access should end automatically or by process when the contract ends.",
+        "Correct. A regular access review would have found an account whose business reason had ended.",
+        "MFA protects the account against misuse by others; it does not remove access that is no longer needed.",
+        "Screening happens before access is granted; it has nothing to do with ending access.",
+        "The provider's training does not control whether your organisation removes access."
+      ],
+      "concept": "Third-party access must end with the relationship and be reviewed periodically.",
+      "trap": "Choosing a strong control that addresses a different risk.",
+      "managerLens": "Tie every third-party account to a contract, an owner and an end date.",
+      "practicalNote": "Many organisations set contractor accounts to expire automatically and require sponsor renewal.",
+      "gap": "Managing the end of third-party access.",
+      "followUpId": null,
+      "tags": [
+        "personnel",
+        "third-party",
+        "access-review"
+      ]
+    },
+    {
+      "id": "d1-032",
+      "domain": 1,
+      "objective": "1.9",
+      "subtopic": "Types of control",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "After several thefts from a warehouse, a company installs visible CCTV cameras with signs stating that all footage is recorded, and a supervisor reviews the footage each morning. Which control types are these?",
+      "options": [
+        "Preventive and corrective",
+        "Deterrent and detective",
+        "Compensating and recovery",
+        "Directive and preventive"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "Cameras do not physically stop theft, and nothing here restores losses or fixes a fault.",
+        "Correct. Visible cameras and signs discourage would-be thieves (deterrent); reviewing footage finds incidents after they happen (detective).",
+        "Nothing replaces a control that could not be used, and nothing restores operations.",
+        "Signs give notice rather than instructions for staff to follow, and cameras do not physically prevent theft."
+      ],
+      "concept": "Control types: deterrent discourages, preventive stops, detective finds, corrective fixes, recovery restores, compensating substitutes, directive instructs.",
+      "trap": "Calling a camera preventive because it reduces theft.",
+      "managerLens": "Combine types so a failure of one is caught by another.",
+      "practicalNote": "Unmonitored cameras are deterrent only; review or live monitoring is what adds detection.",
+      "gap": "Classifying controls by what they actually do.",
+      "followUpId": null,
+      "tags": [
+        "controls",
+        "control-types"
+      ]
+    },
+    {
+      "id": "d1-033",
+      "domain": 1,
+      "objective": "1.9",
+      "subtopic": "Quantitative and qualitative analysis",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A CFO asks how much the company should be willing to spend each year on a DDoS protection service for its e-commerce site. Which approach to risk analysis BEST answers the question?",
+      "options": [
+        "Qualitative analysis ranking DDoS against other risks on a heat map",
+        "A threat model of the website using the STRIDE categories",
+        "A Delphi workshop where experts rate the risk anonymously",
+        "Quantitative analysis estimating the expected annual loss from outages"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "A heat map ranks risks but does not produce a monetary figure to compare with a service's cost.",
+        "Threat modelling identifies threats in a design; it does not value the loss.",
+        "The Delphi technique gathers expert opinion, usually qualitatively, without producing a cost figure.",
+        "Correct. Estimating annualised loss expectancy gives a monetary ceiling that a control's annual cost can be compared against."
+      ],
+      "concept": "Quantitative analysis supports spending decisions; qualitative analysis supports prioritisation.",
+      "trap": "Choosing a familiar ranking method when the question is about money.",
+      "managerLens": "Answer the CFO in the CFO's terms: expected loss against control cost.",
+      "practicalNote": "Outage cost estimates usually combine lost sales per hour, recovery costs and reputational impact.",
+      "gap": "Knowing when quantitative analysis is needed.",
+      "followUpId": null,
+      "tags": [
+        "risk",
+        "quantitative"
+      ]
+    },
+    {
+      "id": "d1-034",
+      "domain": 1,
+      "objective": "1.9",
+      "subtopic": "Residual risk and acceptance",
+      "difficulty": 6,
+      "type": "multi",
+      "scenario": null,
+      "stem": "After treatment, the residual risk of a flood at a data centre is still above the company's risk appetite. The facilities manager proposes to accept it and sign the risk register entry himself. Which TWO statements are correct? (Select TWO.)",
+      "options": [
+        "Residual risk above appetite needs acceptance by someone with that authority",
+        "A manager may accept residual risk for any asset within his own area of work",
+        "Further treatment should be considered before anyone accepts this risk",
+        "Residual risk falls to zero once all of the planned controls are in place",
+        "The facilities manager should transfer the risk by moving the servers"
+      ],
+      "correct": [
+        0,
+        2
+      ],
+      "rationales": [
+        "Correct. Accepting risk beyond appetite is a decision for someone with the authority to exceed it, usually senior management.",
+        "Authority to accept risk depends on its size, not only on whose area it sits in. Risk above appetite needs a higher level.",
+        "Correct. When residual risk exceeds appetite, more treatment (or a different strategy) should be considered before acceptance.",
+        "Controls reduce risk; some always remains. That is why residual risk must be accepted explicitly.",
+        "Moving the servers is avoidance or mitigation, not transfer, and it is not the facilities manager's decision alone."
+      ],
+      "concept": "Residual risk is accepted by someone with authority matching its size; above appetite, consider further treatment first.",
+      "trap": "Letting the person closest to the asset accept any level of risk.",
+      "managerLens": "Escalate risks above appetite to the level that set the appetite.",
+      "practicalNote": "Risk registers usually define acceptance authority by rating, such as department head for medium and executive for high.",
+      "gap": "Knowing who may accept residual risk and when.",
+      "followUpId": null,
+      "tags": [
+        "risk",
+        "residual-risk",
+        "acceptance"
+      ]
+    },
+    {
+      "id": "d1-035",
+      "domain": 1,
+      "objective": "1.9",
+      "subtopic": "Risk frameworks",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "Which publication sets out a risk management process for systems (prepare, categorise, select, implement, assess, authorise and monitor) rather than a catalogue of controls?",
+      "options": [
+        "NIST SP 800-37",
+        "NIST SP 800-53",
+        "ISO/IEC 27002",
+        "CIS Controls v8"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. SP 800-37 Rev. 2 is NIST's Risk Management Framework, with those seven steps.",
+        "SP 800-53 is the catalogue of security and privacy controls that the RMF selects from.",
+        "ISO/IEC 27002 is a code of practice listing controls, not a risk management process.",
+        "The CIS Controls are a prioritised set of safeguards, not a risk management process."
+      ],
+      "concept": "Process frameworks (SP 800-37, ISO 31000) differ from control catalogues (SP 800-53, ISO 27002, CIS).",
+      "trap": "Confusing the RMF with the control catalogue it uses.",
+      "managerLens": "Use a process framework to decide, and a catalogue to choose controls.",
+      "practicalNote": "Organisations often pair SP 800-37 with SP 800-53, or ISO 27001 with ISO 27002.",
+      "gap": "Recalling what each common framework is for.",
+      "followUpId": null,
+      "tags": [
+        "risk",
+        "frameworks",
+        "nist"
+      ]
+    },
+    {
+      "id": "d1-036",
+      "domain": 1,
+      "objective": "1.10",
+      "subtopic": "STRIDE threat categories",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "In a threat model of a bank's statements API, the team finds that a logged-in customer can change the account_id parameter in a request and receive another customer's statements. Which STRIDE category does this fall under?",
+      "options": [
+        "Spoofing identity",
+        "Tampering with data",
+        "Information disclosure",
+        "Repudiation of actions"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "The customer is genuinely logged in as themselves; no one is pretending to be another user.",
+        "Tampering is unauthorised modification of data. Changing a request parameter to read data does not alter stored data.",
+        "Correct. The result is that data reaches someone not authorised to see it: information disclosure.",
+        "Repudiation is about denying actions. Nothing here concerns proof of who did what."
+      ],
+      "concept": "STRIDE maps threats to the property they violate; exposure of data to the wrong party is information disclosure.",
+      "trap": "Choosing tampering because a parameter was changed.",
+      "managerLens": "Classify by the impact on the business: the data was exposed.",
+      "practicalNote": "This flaw is an insecure direct object reference; fix it with server-side authorisation checks on every object.",
+      "gap": "Applying STRIDE categories by impact rather than by technique.",
+      "followUpId": null,
+      "tags": [
+        "threat-modelling",
+        "stride"
+      ]
+    },
+    {
+      "id": "d1-037",
+      "domain": 1,
+      "objective": "1.10",
+      "subtopic": "When to threat model",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A team is building a new customer self-service portal. At which point does threat modelling give the MOST value for its cost?",
+      "options": [
+        "During design, before code is written, using data flow diagrams",
+        "After the penetration test, to explain the findings to management",
+        "During user acceptance testing, when the features are stable",
+        "After go-live, once real attack data is available from the SIEM"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. Threats found at design time can be fixed in the design, which is far cheaper than changing built code.",
+        "Explaining findings after testing is useful, but by then the design is fixed and fixes are expensive.",
+        "Features are stable by then, so design-level changes are costly and late.",
+        "Waiting for attacks means learning from damage; fixes are most expensive after go-live."
+      ],
+      "concept": "Threat model early: design-time fixes are cheapest.",
+      "trap": "Waiting for something concrete to analyse.",
+      "managerLens": "Build threat modelling into the design gate of every project.",
+      "practicalNote": "A lightweight design-time model with a data flow diagram and STRIDE takes hours, not weeks.",
+      "gap": "Knowing when threat modelling pays off.",
+      "followUpId": "d1-036",
+      "tags": [
+        "threat-modelling",
+        "sdlc"
+      ]
+    },
+    {
+      "id": "d1-038",
+      "domain": 1,
+      "objective": "1.11",
+      "subtopic": "Hardware supply chain",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": null,
+      "stem": "A telecom receives six core routers from a reseller at 30% below list price. The serial numbers check out with the manufacturer, but two units fail firmware signature verification at boot. What should the security manager do FIRST?",
+      "options": [
+        "Reflash the two units with firmware downloaded from the manufacturer's site",
+        "Quarantine all six units and engage the manufacturer to verify authenticity",
+        "Deploy the units in a test VLAN and monitor them for unusual network traffic",
+        "Return the two units to the reseller and ask for replacements to be shipped"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "Reflashing may not remove a hardware implant or tampered boot components, and it destroys evidence.",
+        "Correct. Failed signature checks and an unusual price point to counterfeit or tampered equipment. Isolate the whole batch, preserve evidence and get the manufacturer to verify it.",
+        "Connecting suspect core equipment to any network, even a test one, risks compromise and is not a verification method.",
+        "Returning only the failed units ignores the risk in the rest of the batch and the supplier's reliability."
+      ],
+      "concept": "Supply chain risk: counterfeit or tampered hardware is isolated and verified, not repaired.",
+      "trap": "Trying to fix the device instead of questioning the supply chain.",
+      "managerLens": "Buy critical equipment through authorised channels and treat anomalies as potential incidents.",
+      "practicalNote": "Manufacturers can verify units by serial and hardware root-of-trust checks, and maintain authorised reseller lists.",
+      "gap": "Recognising hardware supply chain threats and the right first response.",
+      "followUpId": null,
+      "tags": [
+        "scrm",
+        "hardware",
+        "first-step"
+      ]
+    },
+    {
+      "id": "d1-039",
+      "domain": 1,
+      "objective": "1.12",
+      "subtopic": "Programme effectiveness",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "Which measure gives the BEST evidence that a phishing awareness programme is changing behaviour?",
+      "options": [
+        "The share of staff who completed the annual awareness course this year",
+        "The number of awareness posters and intranet articles published each month",
+        "The average score staff achieve on the phishing quiz at the end of the course",
+        "The share of staff reporting simulated lures, tracked as it rises over time"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "Completion shows attendance, not changed behaviour.",
+        "Output volume measures activity, not effect.",
+        "Quiz scores show knowledge at a point in time; they do not show what people do with real emails.",
+        "Correct. Reporting rates on realistic simulations measure behaviour, and a rising trend shows the programme is working."
+      ],
+      "concept": "Measure awareness by behaviour, not by activity or completion.",
+      "trap": "Choosing an easy-to-collect activity metric.",
+      "managerLens": "Report outcome metrics to leadership: what staff now do differently.",
+      "practicalNote": "Pair report rate with click rate and time-to-report; fast reporting limits real incidents.",
+      "gap": "Distinguishing activity metrics from outcome metrics.",
+      "followUpId": null,
+      "tags": [
+        "awareness",
+        "metrics"
+      ]
+    },
+    {
+      "id": "d1-040",
+      "domain": 1,
+      "objective": "1.12",
+      "subtopic": "Emerging threats in awareness",
+      "difficulty": 5,
+      "type": "multi",
+      "scenario": null,
+      "stem": "Staff in a company's finance team received a deepfake voice call impersonating the CFO and asking for an urgent payment. One payment was nearly made. Which TWO changes to the awareness programme would BEST address this? (Select TWO.)",
+      "options": [
+        "Teach finance staff to confirm payment requests through a known second channel",
+        "Run role-specific simulations of voice and video impersonation for finance",
+        "Make the annual general awareness course longer for staff company-wide",
+        "Add a module on spotting suspicious links in emails to existing courses",
+        "Publish samples of the CFO's voice so that staff can learn to recognise it"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Out-of-band verification through a known number defeats impersonation however convincing the voice.",
+        "Correct. Targeted, realistic simulations for the people most at risk build the right reflexes.",
+        "Longer generic training does little for a targeted, role-specific threat.",
+        "Link-spotting addresses email phishing, not voice impersonation.",
+        "Publishing voice samples helps attackers clone the voice and does not stop a good deepfake."
+      ],
+      "concept": "Refresh awareness for emerging threats, targeted by role, and pair it with verification procedures.",
+      "trap": "Adding more generic content instead of targeted, realistic training.",
+      "managerLens": "Put a verification step in the payment process so awareness is backed by procedure.",
+      "practicalNote": "Many finance teams now require call-back to a number on file for any payment change or urgent request.",
+      "gap": "Adapting awareness to new attack techniques such as deepfakes.",
+      "followUpId": null,
+      "tags": [
+        "awareness",
+        "deepfake",
+        "social-engineering"
+      ]
     },
     {
       "id": "d2-001",
@@ -149,7 +1498,9 @@
         "The insurer, because it determines the purposes of the processing.",
         "The insurer's IT team, because they act as custodians of the data."
       ],
-      "correct": [2],
+      "correct": [
+        2
+      ],
       "rationales": [
         "The provider is a processor. It is liable for breaching its contract and instructions, but the party accountable to the data subject remains the controller.",
         "The cloud platform is a sub-processor acting as custodian of the storage. Its obligations run to the processor, not primary accountability to the employee.",
@@ -162,7 +1513,10 @@
       "practicalNote": "Data processing agreements should list approved sub-processors and locations. Most data protection laws, including GDPR, keep the controller accountable when it uses processors.",
       "gap": "Mixing up data roles and where accountability sits.",
       "followUpId": null,
-      "tags": ["data-roles", "privacy"]
+      "tags": [
+        "data-roles",
+        "privacy"
+      ]
     },
     {
       "id": "d2-002",
@@ -180,7 +1534,10 @@
         "Overwrite each drive three times with random data, then reformat it.",
         "Delete the partitions and run a full format on each drive before release."
       ],
-      "correct": [0, 1],
+      "correct": [
+        0,
+        1
+      ],
       "rationales": [
         "Correct. Firmware sanitise commands (block erase or crypto erase) reach areas the operating system cannot, including over-provisioned blocks. Verification is part of the process in NIST SP 800-88.",
         "Correct. Destroying the media encryption key makes the data unrecoverable, provided the encryption was implemented correctly and no copy of the key exists. NIST SP 800-88 recognises cryptographic erase as a purge method.",
@@ -194,7 +1551,11 @@
       "practicalNote": "Keep a sanitisation record per serial number. Many organisations physically destroy drives that held the most sensitive data, even after a purge.",
       "gap": "Not knowing how SSDs store data and why that changes sanitisation.",
       "followUpId": null,
-      "tags": ["remanence", "sanitisation", "ssd"]
+      "tags": [
+        "remanence",
+        "sanitisation",
+        "ssd"
+      ]
     },
     {
       "id": "d3-001",
@@ -211,7 +1572,9 @@
         "The Bell-LaPadula simple security property",
         "The Clark-Wilson separation of duty rule"
       ],
-      "correct": [1],
+      "correct": [
+        1
+      ],
       "rationales": [
         "Biba's star property protects integrity: no write up. It would block the append to the higher level, which this system allows.",
         "Correct. Bell-LaPadula's star property (no write down) stops a subject leaking data to a lower classification, while writing up is permitted.",
@@ -224,7 +1587,10 @@
       "practicalNote": "Mandatory access control systems such as SELinux in MLS mode enforce these rules with labels.",
       "gap": "Not linking each model to its security goal and its read and write rules.",
       "followUpId": null,
-      "tags": ["models", "confidentiality"]
+      "tags": [
+        "models",
+        "confidentiality"
+      ]
     },
     {
       "id": "d3-002",
@@ -241,7 +1607,9 @@
         "Collision attacks against the SHA-256 hashes used in the TLS handshakes",
         "Captured sessions decrypted later, once quantum computers break ECDHE"
       ],
-      "correct": [3],
+      "correct": [
+        3
+      ],
       "rationales": [
         "Grover's algorithm roughly halves the effective strength of a symmetric key, leaving AES-256 at about 128-bit security, which is still considered adequate.",
         "An availability problem worth managing, but it does not expose the content of the cables.",
@@ -254,7 +1622,10 @@
       "practicalNote": "Hybrid key exchange (classical X25519 combined with ML-KEM) is already enabled by default in major browsers and TLS libraries.",
       "gap": "Not knowing which algorithms quantum computing actually breaks.",
       "followUpId": null,
-      "tags": ["crypto", "post-quantum"]
+      "tags": [
+        "crypto",
+        "post-quantum"
+      ]
     },
     {
       "id": "d4-001",
@@ -271,7 +1642,9 @@
         "Micro-segment workloads so only required flows between servers are allowed.",
         "Add a network IDS on the internet link to alert on exploitation attempts."
       ],
-      "correct": [2],
+      "correct": [
+        2
+      ],
       "rationales": [
         "The perimeter firewall inspects north-south traffic. The damage came from east-west movement inside the data centre, which it does not see. The discount is a decoy.",
         "Coarse segmentation helps a little, but servers that talk to each other often share a VLAN, and routing between VLANs is usually permissive unless it is filtered.",
@@ -284,7 +1657,11 @@
       "practicalNote": "Micro-segmentation is usually built with host firewalls, hypervisor distributed firewalls or SDN policy, starting with high-value assets such as payment systems.",
       "gap": "Not distinguishing north-south from east-west traffic and the controls for each.",
       "followUpId": null,
-      "tags": ["segmentation", "zero-trust", "lateral-movement"]
+      "tags": [
+        "segmentation",
+        "zero-trust",
+        "lateral-movement"
+      ]
     },
     {
       "id": "d4-002",
@@ -301,7 +1678,9 @@
         "Use Telnet inside the corporate remote-access VPN, which encrypts the traffic.",
         "Let the vendor's cloud portal push changes once they are approved by e-mail."
       ],
-      "correct": [0],
+      "correct": [
+        0
+      ],
       "rationales": [
         "Correct. A separate management network, reached only through a monitored jump host with strong authentication, keeps device administration off user networks and the internet.",
         "Keys are better than passwords, but exposing management services to the internet invites scanning, brute force and exploitation of SSH or device vulnerabilities.",
@@ -314,7 +1693,10 @@
       "practicalNote": "Common designs use an out-of-band management network or VRF, a bastion or privileged access workstation, and TACACS+ or RADIUS with MFA.",
       "gap": "Not separating the management plane from user and data traffic.",
       "followUpId": null,
-      "tags": ["management-plane", "remote-access"]
+      "tags": [
+        "management-plane",
+        "remote-access"
+      ]
     },
     {
       "id": "d5-001",
@@ -331,7 +1713,9 @@
         "Discretionary access control with ward managers granting access daily",
         "Attribute-based access control evaluating user, resource and context"
       ],
-      "correct": [3],
+      "correct": [
+        3
+      ],
       "rationales": [
         "This is the role explosion the IAM team warned about: every ward multiplied by every shift, and RBAC still cannot express the device condition cleanly.",
         "MAC uses classification labels and clearances set centrally. It does not handle dynamic conditions such as roster, time and device.",
@@ -344,7 +1728,10 @@
       "practicalNote": "ABAC is often implemented with a policy decision point fed by HR rostering and device-management data.",
       "gap": "Not recognising when conditions are attributes rather than roles.",
       "followUpId": null,
-      "tags": ["access-control", "abac"]
+      "tags": [
+        "access-control",
+        "abac"
+      ]
     },
     {
       "id": "d5-002",
@@ -362,7 +1749,10 @@
         "Force service account passwords to change monthly through group policy",
         "Remove the analyst's payment-approval rights in the ERP system immediately"
       ],
-      "correct": [0, 2],
+      "correct": [
+        0,
+        2
+      ],
       "rationales": [
         "Correct. The analyst kept old rights because the mover process did not remove them. Driving changes from HR events fixes the cause, not just this case.",
         "More frequent reviews find problems sooner but still rely on catching what the process left behind. It treats the symptom.",
@@ -376,7 +1766,11 @@
       "practicalNote": "Link the IAM system to HR as the authoritative source for joiners, movers and leavers, and keep a service account register with owner and purpose.",
       "gap": "Not separating corrective action for one case from a root-cause process change.",
       "followUpId": null,
-      "tags": ["access-review", "provisioning", "root-cause"]
+      "tags": [
+        "access-review",
+        "provisioning",
+        "root-cause"
+      ]
     },
     {
       "id": "d5-003",
@@ -393,7 +1787,9 @@
         "Time-based one-time passwords generated in an authenticator app",
         "SMS codes with a shorter, 60-second validity period for each login"
       ],
-      "correct": [1],
+      "correct": [
+        1
+      ],
       "rationales": [
         "Number matching defeats prompt bombing, but an adversary-in-the-middle proxy can show the number to the victim and relay the approval.",
         "Correct. FIDO2/WebAuthn credentials are bound to the site's origin, so a phishing proxy on a different domain cannot obtain a usable assertion, and there is no push to approve.",
@@ -406,7 +1802,11 @@
       "practicalNote": "NIST digital identity guidance and CISA treat FIDO2/WebAuthn and PKI-based authenticators as phishing-resistant; OTP and push approval are not.",
       "gap": "Not knowing which MFA types resist adversary-in-the-middle attacks.",
       "followUpId": "d5-001",
-      "tags": ["mfa", "phishing-resistant", "passkeys"]
+      "tags": [
+        "mfa",
+        "phishing-resistant",
+        "passkeys"
+      ]
     },
     {
       "id": "d6-001",
@@ -423,7 +1823,9 @@
         "A penetration test from the attacker's starting point, with agreed rules",
         "A configuration audit of the payroll servers against CIS benchmarks"
       ],
-      "correct": [2],
+      "correct": [
+        2
+      ],
       "rationales": [
         "A scan lists known weaknesses on the targets. It does not show whether they can be reached and exploited from the guest network.",
         "A rule review checks the intended policy, not actual reachability through misconfigurations, other paths or chained weaknesses.",
@@ -436,7 +1838,11 @@
       "practicalNote": "Rules of engagement define scope, timing, contacts and stop conditions, and are signed by someone with authority over the systems.",
       "gap": "Not distinguishing what scans, audits and penetration tests each prove.",
       "followUpId": "d6-002",
-      "tags": ["pentest", "vulnerability-scan", "assessment"]
+      "tags": [
+        "pentest",
+        "vulnerability-scan",
+        "assessment"
+      ]
     },
     {
       "id": "d6-002",
@@ -453,7 +1859,9 @@
         "Downgrade the finding's severity in the report, because a compensating control is now in place.",
         "Accept the product owner's plan and ask the testers to confirm the fix after the next release."
       ],
-      "correct": [0],
+      "correct": [
+        0
+      ],
       "rationales": [
         "Correct. A risk this size needs a formal exception: approved by the person accountable for the business risk, time-limited, and conditional on a compensating control proven to work. WAF rules for SQL injection are often bypassable, so test them.",
         "Taking a revenue-generating portal offline may be justified under active exploitation, but doing it without assessing the compensating control is disproportionate and is not the security manager's call alone.",
@@ -466,7 +1874,11 @@
       "practicalNote": "Track exceptions in the risk register with an owner and expiry, and retest the WAF rule with encoding and evasion variants.",
       "gap": "Not knowing how findings move from report to remediation or to a formal exception.",
       "followUpId": null,
-      "tags": ["exception-handling", "remediation", "compensating-control"]
+      "tags": [
+        "exception-handling",
+        "remediation",
+        "compensating-control"
+      ]
     },
     {
       "id": "d7-001",
@@ -483,7 +1895,9 @@
         "Have forensics image every encrypted server before anything changes.",
         "Isolate affected segments and disable the compromised admin accounts."
       ],
-      "correct": [3],
+      "correct": [
+        3
+      ],
       "rationales": [
         "Restoring while the attacker still holds domain administrator rights invites re-encryption, and the backups' integrity is not yet known. Recovery follows containment.",
         "The incident response plan should already give the incident manager authority to contain. Waiting for the CEO while encryption spreads increases the damage; inform executives in parallel.",
@@ -496,7 +1910,11 @@
       "practicalNote": "Typical ransomware containment: isolate hosts or VLANs at the switch or through EDR, disable compromised accounts, block command-and-control, and protect the backup systems.",
       "gap": "Not knowing the order of incident response steps under pressure.",
       "followUpId": "d7-002",
-      "tags": ["incident-response", "ransomware", "first-step"]
+      "tags": [
+        "incident-response",
+        "ransomware",
+        "first-step"
+      ]
     },
     {
       "id": "d7-002",
@@ -515,7 +1933,11 @@
         "The backup service runs under a domain administrator account.",
         "The billing system gets a full backup each night of the week."
       ],
-      "correct": [0, 2, 4],
+      "correct": [
+        0,
+        2,
+        4
+      ],
       "rationales": [
         "Correct. An untested restore is an assumption. Fourteen months of change to the billing system means procedures, dependencies and media may no longer work.",
         "Geographic separation is a strength: an event at the Harare site does not destroy the copies.",
@@ -530,7 +1952,11 @@
       "practicalNote": "Ransomware groups routinely target backup consoles with stolen domain administrator credentials; a separate identity domain and immutable storage are now standard advice.",
       "gap": "Confusing backup success with recovery capability.",
       "followUpId": "d1-004",
-      "tags": ["backup", "recovery", "ransomware"]
+      "tags": [
+        "backup",
+        "recovery",
+        "ransomware"
+      ]
     },
     {
       "id": "d7-003",
@@ -547,7 +1973,9 @@
         "Patch tonight without a change record, because the threat justifies skipping it.",
         "Shut down the VPN until the change advisory board approves the patch on Thursday."
       ],
-      "correct": [1],
+      "correct": [
+        1
+      ],
       "rationales": [
         "Waiting three days with an actively exploited flaw on an internet-facing service is an unacceptable exposure.",
         "Correct. Emergency changes still need authorisation from a designated approver, testing proportionate to the urgency, a record, and review at the next board meeting.",
@@ -560,7 +1988,11 @@
       "practicalNote": "An emergency CAB (ECAB) approves out-of-hours changes; many organisations pre-authorise vendor security patches for exposed systems.",
       "gap": "Not knowing how change management handles emergencies.",
       "followUpId": null,
-      "tags": ["change-management", "patching", "emergency"]
+      "tags": [
+        "change-management",
+        "patching",
+        "emergency"
+      ]
     },
     {
       "id": "d8-001",
@@ -578,7 +2010,10 @@
         "Code-signing of release artefacts with a key held in an HSM",
         "Linting plug-ins in developers' IDEs to enforce code style"
       ],
-      "correct": [0, 2],
+      "correct": [
+        0,
+        2
+      ],
       "rationales": [
         "Correct. SCA inventories open-source dependencies and flags known vulnerabilities and licence issues. SAST on first-party code does not cover them, and they make up most of the app.",
         "Another SAST tool may find a few extra issues, but it tests the same small share of the code in the same way.",
@@ -592,7 +2027,12 @@
       "practicalNote": "SCA tools also produce SBOMs. DAST usually runs against staging, with authenticated scans for logged-in functions.",
       "gap": "Not knowing what each application security testing technique covers.",
       "followUpId": "d8-002",
-      "tags": ["sast", "dast", "sca", "appsec"]
+      "tags": [
+        "sast",
+        "dast",
+        "sca",
+        "appsec"
+      ]
     },
     {
       "id": "d8-002",
@@ -609,7 +2049,9 @@
         "Require independent test results, an SBOM and security terms in the contract",
         "Rely on the product's market share, since many governments already use it"
       ],
-      "correct": [2],
+      "correct": [
+        2
+      ],
       "rationales": [
         "Testing a system you do not own without permission may be illegal and breaches the vendor's terms. It also tests a demo, not your deployment.",
         "This breaches the licence agreement and carries legal risk. It is not an approach a manager can approve.",
@@ -622,7 +2064,11 @@
       "practicalNote": "Ask for recent independent penetration test summaries, certifications such as Common Criteria where relevant, an SBOM, and a vulnerability disclosure and patching commitment in the contract.",
       "gap": "Not knowing the legitimate ways to gain assurance over commercial software.",
       "followUpId": null,
-      "tags": ["cots", "procurement", "sbom"]
+      "tags": [
+        "cots",
+        "procurement",
+        "sbom"
+      ]
     }
   ]
 }

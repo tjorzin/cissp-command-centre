@@ -80,7 +80,9 @@ test('scenario set shows the case study and keeps question order', async ({ page
 test('mini exam is timed, gives no feedback until the end, and can be ended early', async ({ page }) => {
   await page.goto('/#/questions');
   await page.locator('#mode-mini button').click();
-  await expect(page.locator('#timer')).toHaveText(/^(29|30):\d\d$/); // 20 questions x 90 s
+  const size = Math.min(25, bank.questions.length);
+  const mins = Math.floor((size * 90) / 60);
+  await expect(page.locator('#timer')).toHaveText(new RegExp(`^(${mins - 1}|${mins}):\\d\\d$`)); // size x 90 s
   const before = await page.locator('#stem').textContent();
   await answer(page, { right: false, confidence: 'guess' });
   await expect(page.locator('.verdict')).toHaveCount(0);
@@ -89,7 +91,7 @@ test('mini exam is timed, gives no feedback until the end, and can be ended earl
   page.once('dialog', (d) => d.accept());
   await page.locator('#end-btn').click();
   await expect(page).toHaveURL(/#\/results\//);
-  await expect(page.locator('#score')).toHaveText('0/20');
+  await expect(page.locator('#score')).toHaveText(`0/${size}`);
   await expect(page.locator('.domain-table tbody tr')).toHaveCount(1);
 });
 

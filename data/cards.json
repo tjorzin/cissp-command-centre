@@ -2,105 +2,472 @@
   "version": 1,
   "notice": "Original cram cards written for this app. Short by design: term, plain meaning, the exam trap, one memory hook.",
   "cards": [
-    { "id": "c1-001", "domain": 1, "objective": "1.3", "term": "Due diligence vs due care",
+    {
+      "id": "c1-001",
+      "domain": 1,
+      "objective": "1.3",
+      "term": "Due diligence vs due care",
       "meaning": "Due diligence is finding out: assessing risks, vetting suppliers, knowing what could go wrong. Due care is acting on it as a reasonable person would: putting the controls in place and keeping them running.",
       "trap": "Swapping them. Research and assessment is diligence; implementation and upkeep is care.",
-      "hook": "Diligence is the homework; care is doing the job.", "tags": [] },
-    { "id": "c1-002", "domain": 1, "objective": "1.9", "term": "Risk treatment options",
+      "hook": "Diligence is the homework; care is doing the job.",
+      "tags": []
+    },
+    {
+      "id": "c1-002",
+      "domain": 1,
+      "objective": "1.9",
+      "term": "Risk treatment options",
       "meaning": "Avoid (stop the activity), mitigate (reduce likelihood or impact), transfer or share (insurance, contracts), accept (owner signs off on the residual risk).",
       "trap": "Thinking transfer moves accountability. Insurance moves some financial impact; the organisation still owns the risk.",
-      "hook": "You can outsource the cost, never the accountability.", "tags": ["comparison"] },
-    { "id": "c1-003", "domain": 1, "objective": "1.9", "term": "SLE, ARO and ALE",
+      "hook": "You can outsource the cost, never the accountability.",
+      "tags": [
+        "comparison"
+      ]
+    },
+    {
+      "id": "c1-003",
+      "domain": 1,
+      "objective": "1.9",
+      "term": "SLE, ARO and ALE",
       "meaning": "Single loss expectancy = asset value × exposure factor. Annualised loss expectancy = SLE × annualised rate of occurrence. A control is cost-justified when the ALE it removes exceeds its annual cost.",
       "trap": "Multiplying by ARO before working out the single loss, or comparing a control's one-off price with an annual figure.",
-      "hook": "One loss first, then how many a year.", "tags": ["quantitative"] },
-    { "id": "c1-004", "domain": 1, "objective": "1.1", "term": "ISC2 canons, in order",
+      "hook": "One loss first, then how many a year.",
+      "tags": [
+        "quantitative"
+      ]
+    },
+    {
+      "id": "c1-004",
+      "domain": 1,
+      "objective": "1.1",
+      "term": "ISC2 canons, in order",
       "meaning": "Protect society, the common good and the infrastructure; act honourably, honestly, justly, responsibly and legally; serve principals diligently and competently; advance and protect the profession.",
       "trap": "Putting the employer or client ahead of public safety when the two conflict.",
-      "hook": "Widest circle first: society, honour, client, profession.", "tags": ["ethics"] },
-    { "id": "c2-001", "domain": 2, "objective": "2.4", "term": "Controller, processor, custodian",
+      "hook": "Widest circle first: society, honour, client, profession.",
+      "tags": [
+        "ethics"
+      ]
+    },
+    {
+      "id": "c1-005",
+      "domain": 1,
+      "objective": "1.3",
+      "term": "Accountability vs responsibility",
+      "meaning": "Responsibility is doing the work and can be delegated. Accountability is answering for the outcome and stays with the person or body that owns it, ultimately senior management.",
+      "trap": "Blaming the CISO for a risk the board was never told about. Escalation is what makes accountability work.",
+      "hook": "You can hand over the task, not the blame.",
+      "tags": [
+        "comparison",
+        "governance"
+      ]
+    },
+    {
+      "id": "c1-006",
+      "domain": 1,
+      "objective": "1.3",
+      "term": "NIST CSF 2.0 functions",
+      "meaning": "Six functions: Govern, Identify, Protect, Detect, Respond, Recover. Govern, added in 2024, covers strategy, roles, policy, oversight and supply chain risk.",
+      "trap": "Answering from CSF 1.1, which had only five functions and no Govern.",
+      "hook": "Govern sits in the middle and steers the other five.",
+      "tags": [
+        "frameworks",
+        "current"
+      ]
+    },
+    {
+      "id": "c1-007",
+      "domain": 1,
+      "objective": "1.6",
+      "term": "Policy, standard, procedure, guideline",
+      "meaning": "Policy: mandatory intent, approved by senior management. Standard: mandatory specifics. Procedure: mandatory steps. Guideline: recommended, optional. A baseline sets the minimum configuration.",
+      "trap": "Putting product names in policy, or treating a guideline as mandatory.",
+      "hook": "Why, what, how, and 'you might like to'.",
+      "tags": [
+        "comparison",
+        "documentation"
+      ]
+    },
+    {
+      "id": "c1-008",
+      "domain": 1,
+      "objective": "1.9",
+      "term": "Qualitative vs quantitative risk",
+      "meaning": "Quantitative puts money on risk (SLE, ARO, ALE) and supports spending decisions. Qualitative rates risk (high, medium, low) and supports prioritisation when data is thin.",
+      "trap": "Using a heat map to answer 'how much should we spend?'.",
+      "hook": "Money question, money method.",
+      "tags": [
+        "comparison",
+        "risk"
+      ]
+    },
+    {
+      "id": "c1-009",
+      "domain": 1,
+      "objective": "1.9",
+      "term": "Control types",
+      "meaning": "Directive (tells), deterrent (discourages), preventive (stops), detective (finds), corrective (fixes), recovery (restores), compensating (substitutes when the preferred control is not possible).",
+      "trap": "Calling a camera preventive. Visible cameras deter; reviewed footage detects.",
+      "hook": "Tell, discourage, stop, find, fix, restore, substitute.",
+      "tags": [
+        "comparison",
+        "controls"
+      ]
+    },
+    {
+      "id": "c1-010",
+      "domain": 1,
+      "objective": "1.5",
+      "term": "Investigation types and proof",
+      "meaning": "Administrative: internal policy. Criminal: law enforcement, beyond reasonable doubt. Civil: disputes, balance of probabilities. Regulatory: a regulator checks compliance.",
+      "trap": "Handling evidence loosely in an internal case that later turns criminal.",
+      "hook": "Collect as if it will end up in court.",
+      "tags": [
+        "comparison",
+        "investigations"
+      ]
+    },
+    {
+      "id": "c1-011",
+      "domain": 1,
+      "objective": "1.4",
+      "term": "Copyright, patent, trademark, trade secret",
+      "meaning": "Copyright protects expression such as code. A patent protects an invention, for a limited term, once registered. A trademark protects a brand. A trade secret protects valuable information kept confidential.",
+      "trap": "Thinking copyright protects an algorithm's idea. It protects the written code, not the method.",
+      "hook": "Words, inventions, names, secrets.",
+      "tags": [
+        "comparison",
+        "legal"
+      ]
+    },
+    {
+      "id": "c1-012",
+      "domain": 1,
+      "objective": "1.10",
+      "term": "STRIDE",
+      "meaning": "Spoofing (authenticity), Tampering (integrity), Repudiation (non-repudiation), Information disclosure (confidentiality), Denial of service (availability), Elevation of privilege (authorisation).",
+      "trap": "Classifying by technique rather than by the property that is violated.",
+      "hook": "Each letter breaks one security property.",
+      "tags": [
+        "threat-modelling"
+      ]
+    },
+    {
+      "id": "c1-013",
+      "domain": 1,
+      "objective": "1.2",
+      "term": "Integrity vs authenticity vs non-repudiation",
+      "meaning": "Integrity: the data has not been altered. Authenticity: it came from who it claims to. Non-repudiation: that one party cannot credibly deny it, because only they could have produced the proof.",
+      "trap": "Choosing a shared-key MAC for non-repudiation. Anyone holding the shared key could have made it.",
+      "hook": "Unchanged, genuine, undeniable.",
+      "tags": [
+        "comparison",
+        "cia"
+      ]
+    },
+    {
+      "id": "c1-014",
+      "domain": 1,
+      "objective": "1.7",
+      "term": "Business impact analysis",
+      "meaning": "Finds the critical processes, what they depend on, and how the harm of losing them grows over time. Its outputs (MTD, then RTO and RPO) set requirements for recovery.",
+      "trap": "Choosing a recovery site or vendor before the BIA. The BIA states needs, not solutions.",
+      "hook": "Impact first, solutions later.",
+      "tags": [
+        "bcp"
+      ]
+    },
+    {
+      "id": "c1-015",
+      "domain": 1,
+      "objective": "1.8",
+      "term": "Separation of duties, job rotation, mandatory vacation",
+      "meaning": "Separation of duties splits a critical task so one person cannot complete a fraud alone. Job rotation and mandatory vacation put someone else in the role, so hidden fraud surfaces.",
+      "trap": "Answering with MFA or stronger passwords when the threat is the legitimate insider.",
+      "hook": "Split it, swap it, send them on leave.",
+      "tags": [
+        "comparison",
+        "personnel"
+      ]
+    },
+    {
+      "id": "c1-016",
+      "domain": 1,
+      "objective": "1.11",
+      "term": "Judging supplier assurance",
+      "meaning": "Good evidence is independent, current and in scope: a SOC 2 Type II report or ISO 27001 certificate that covers the service you buy, plus contract terms you can enforce.",
+      "trap": "Accepting a certificate whose scope leaves out the service, or a questionnaire the supplier filled in itself.",
+      "hook": "Who checked, when, and did it cover my service?",
+      "tags": [
+        "scrm",
+        "assurance"
+      ]
+    },
+    {
+      "id": "c1-017",
+      "domain": 1,
+      "objective": "1.12",
+      "term": "Awareness vs training vs education",
+      "meaning": "Awareness keeps security in mind for everyone. Training builds skills for a role. Education builds deep understanding for a career. Measure each by changed behaviour.",
+      "trap": "Reporting course completion as proof that a programme works.",
+      "hook": "Notice it, do it, understand it.",
+      "tags": [
+        "comparison",
+        "awareness"
+      ]
+    },
+    {
+      "id": "c2-001",
+      "domain": 2,
+      "objective": "2.4",
+      "term": "Controller, processor, custodian",
       "meaning": "The controller decides why and how personal data is processed and is accountable to data subjects. The processor acts on the controller's instructions. The custodian looks after the data day to day for the owner.",
       "trap": "Assuming whoever holds or moved the data is accountable. Accountability stays with the controller.",
-      "hook": "The one who decides why is the one who answers.", "tags": ["data-roles"] },
-    { "id": "c2-002", "domain": 2, "objective": "2.4", "term": "Clear, purge, destroy",
+      "hook": "The one who decides why is the one who answers.",
+      "tags": [
+        "data-roles"
+      ]
+    },
+    {
+      "id": "c2-002",
+      "domain": 2,
+      "objective": "2.4",
+      "term": "Clear, purge, destroy",
       "meaning": "Clear: overwrite so normal tools cannot recover data. Purge: defeat laboratory recovery (firmware sanitise, crypto erase, degauss for magnetic media). Destroy: shred, disintegrate or incinerate.",
       "trap": "Degaussing or multi-pass overwriting SSDs. Flash needs sanitise commands, crypto erase or destruction.",
-      "hook": "Match the method to the media, then verify.", "tags": ["remanence"] },
-    { "id": "c2-003", "domain": 2, "objective": "2.6", "term": "Scoping vs tailoring",
+      "hook": "Match the method to the media, then verify.",
+      "tags": [
+        "remanence"
+      ]
+    },
+    {
+      "id": "c2-003",
+      "domain": 2,
+      "objective": "2.6",
+      "term": "Scoping vs tailoring",
       "meaning": "Scoping decides which controls in a baseline apply to the system. Tailoring adjusts the controls that remain so they fit the organisation's environment and risk.",
       "trap": "Reversing the two, or thinking tailoring means dropping controls without justification.",
-      "hook": "Scope picks which; tailor shapes how.", "tags": ["comparison"] },
-    { "id": "c3-001", "domain": 3, "objective": "3.2", "term": "Bell-LaPadula vs Biba",
+      "hook": "Scope picks which; tailor shapes how.",
+      "tags": [
+        "comparison"
+      ]
+    },
+    {
+      "id": "c3-001",
+      "domain": 3,
+      "objective": "3.2",
+      "term": "Bell-LaPadula vs Biba",
       "meaning": "Bell-LaPadula protects confidentiality: no read up, no write down. Biba protects integrity: no read down, no write up.",
       "trap": "Both have a star property about writing. Bell-LaPadula's blocks writing down; Biba's blocks writing up.",
-      "hook": "Secrets must not leak down; dirt must not climb up.", "tags": ["models", "comparison"] },
-    { "id": "c3-002", "domain": 3, "objective": "3.6", "term": "Shor vs Grover",
+      "hook": "Secrets must not leak down; dirt must not climb up.",
+      "tags": [
+        "models",
+        "comparison"
+      ]
+    },
+    {
+      "id": "c3-002",
+      "domain": 3,
+      "objective": "3.6",
+      "term": "Shor vs Grover",
       "meaning": "Shor's algorithm would break RSA, Diffie-Hellman and elliptic-curve cryptography on a large quantum computer. Grover's algorithm only halves the effective strength of symmetric keys and hashes.",
       "trap": "Thinking AES-256 is the main quantum worry. Public-key exchange and signatures are.",
-      "hook": "Shor shatters public keys; Grover just grazes symmetric ones.", "tags": ["quantum"] },
-    { "id": "c3-003", "domain": 3, "objective": "3.6", "term": "Post-quantum standards",
+      "hook": "Shor shatters public keys; Grover just grazes symmetric ones.",
+      "tags": [
+        "quantum"
+      ]
+    },
+    {
+      "id": "c3-003",
+      "domain": 3,
+      "objective": "3.6",
+      "term": "Post-quantum standards",
       "meaning": "NIST's first post-quantum standards: ML-KEM (FIPS 203) for key establishment, and ML-DSA (FIPS 204) and SLH-DSA (FIPS 205) for digital signatures.",
       "trap": "Leaving long-lived secrets on classical key exchange: traffic recorded today can be decrypted later.",
-      "hook": "KEM for keys, DSA for signatures.", "tags": ["quantum", "current"] },
-    { "id": "c4-001", "domain": 4, "objective": "4.1", "term": "North-south vs east-west traffic",
+      "hook": "KEM for keys, DSA for signatures.",
+      "tags": [
+        "quantum",
+        "current"
+      ]
+    },
+    {
+      "id": "c4-001",
+      "domain": 4,
+      "objective": "4.1",
+      "term": "North-south vs east-west traffic",
       "meaning": "North-south traffic crosses the perimeter, in and out of the data centre. East-west traffic moves between systems inside it. Micro-segmentation controls east-west flows.",
       "trap": "Buying a bigger perimeter firewall to stop lateral movement it never sees.",
-      "hook": "Perimeter guards the gate; segmentation guards the corridors.", "tags": ["comparison"] },
-    { "id": "c4-002", "domain": 4, "objective": "4.1", "term": "IPsec AH vs ESP",
+      "hook": "Perimeter guards the gate; segmentation guards the corridors.",
+      "tags": [
+        "comparison"
+      ]
+    },
+    {
+      "id": "c4-002",
+      "domain": 4,
+      "objective": "4.1",
+      "term": "IPsec AH vs ESP",
       "meaning": "AH authenticates and protects the integrity of packets but does not encrypt. ESP provides confidentiality and can also provide integrity. Transport mode protects the payload; tunnel mode wraps the whole original packet.",
       "trap": "Choosing AH when confidentiality is needed. AH also fails across NAT, because NAT changes the header fields AH protects.",
-      "hook": "AH: Authentication only, no secrecy.", "tags": ["protocols", "comparison"] },
-    { "id": "c4-003", "domain": 4, "objective": "4.3", "term": "Out-of-band management",
+      "hook": "AH: Authentication only, no secrecy.",
+      "tags": [
+        "protocols",
+        "comparison"
+      ]
+    },
+    {
+      "id": "c4-003",
+      "domain": 4,
+      "objective": "4.3",
+      "term": "Out-of-band management",
       "meaning": "Device administration over a separate network path from user and production traffic, usually through a hardened jump host with MFA and logging.",
       "trap": "Thinking an encrypted tunnel to the edge makes in-band management on user networks safe.",
-      "hook": "Admins take the service road, not the public road.", "tags": [] },
-    { "id": "c5-001", "domain": 5, "objective": "5.4", "term": "DAC, MAC, RBAC, ABAC",
+      "hook": "Admins take the service road, not the public road.",
+      "tags": []
+    },
+    {
+      "id": "c5-001",
+      "domain": 5,
+      "objective": "5.4",
+      "term": "DAC, MAC, RBAC, ABAC",
       "meaning": "DAC: the owner grants access. MAC: the system enforces labels and clearances. RBAC: access follows job role. ABAC: a policy evaluates attributes of user, resource and context such as time or device.",
       "trap": "Forcing RBAC on rules that depend on time, location or device, which leads to role explosion.",
-      "hook": "Owner, label, role, attribute.", "tags": ["comparison"] },
-    { "id": "c5-002", "domain": 5, "objective": "5.2", "term": "Phishing-resistant MFA",
+      "hook": "Owner, label, role, attribute.",
+      "tags": [
+        "comparison"
+      ]
+    },
+    {
+      "id": "c5-002",
+      "domain": 5,
+      "objective": "5.2",
+      "term": "Phishing-resistant MFA",
       "meaning": "Authentication that a real-time phishing proxy cannot relay, such as FIDO2/WebAuthn passkeys or smart cards, because the credential is bound to the genuine site's origin.",
       "trap": "Treating number-matching push, TOTP or SMS as phishing-resistant. All can be relayed live.",
-      "hook": "If a fake site can pass it on, it is not phishing-resistant.", "tags": ["mfa", "current"] },
-    { "id": "c5-003", "domain": 5, "objective": "5.2", "term": "Identification, authentication, authorisation, accountability",
+      "hook": "If a fake site can pass it on, it is not phishing-resistant.",
+      "tags": [
+        "mfa",
+        "current"
+      ]
+    },
+    {
+      "id": "c5-003",
+      "domain": 5,
+      "objective": "5.2",
+      "term": "Identification, authentication, authorisation, accountability",
       "meaning": "Identification claims an identity. Authentication proves it. Authorisation decides what it may do. Accountability ties actions back to it through logging and audit.",
       "trap": "Calling a username check authentication, or forgetting accountability needs unique IDs and logs.",
-      "hook": "Who are you, prove it, what may you do, who did it.", "tags": ["comparison"] },
-    { "id": "c6-001", "domain": 6, "objective": "6.2", "term": "Vulnerability scan vs penetration test",
+      "hook": "Who are you, prove it, what may you do, who did it.",
+      "tags": [
+        "comparison"
+      ]
+    },
+    {
+      "id": "c6-001",
+      "domain": 6,
+      "objective": "6.2",
+      "term": "Vulnerability scan vs penetration test",
       "meaning": "A scan lists known weaknesses, usually automatically and broadly. A penetration test tries to exploit and chain weaknesses to prove impact, under agreed rules of engagement.",
       "trap": "Treating a clean scan as proof that no attack path exists.",
-      "hook": "A scan finds unlocked doors; a pen test walks through them.", "tags": ["comparison"] },
-    { "id": "c6-002", "domain": 6, "objective": "6.5", "term": "SOC 2 Type I vs Type II",
+      "hook": "A scan finds unlocked doors; a pen test walks through them.",
+      "tags": [
+        "comparison"
+      ]
+    },
+    {
+      "id": "c6-002",
+      "domain": 6,
+      "objective": "6.5",
+      "term": "SOC 2 Type I vs Type II",
       "meaning": "Type I reports on whether controls are suitably designed at a point in time. Type II also tests whether they operated effectively over a period, typically six to twelve months.",
       "trap": "Accepting a Type I report as evidence that controls actually work.",
-      "hook": "Type I is a photo; Type II is a film.", "tags": ["assurance", "comparison"] },
-    { "id": "c6-003", "domain": 6, "objective": "6.2", "term": "Synthetic transactions vs real user monitoring",
+      "hook": "Type I is a photo; Type II is a film.",
+      "tags": [
+        "assurance",
+        "comparison"
+      ]
+    },
+    {
+      "id": "c6-003",
+      "domain": 6,
+      "objective": "6.2",
+      "term": "Synthetic transactions vs real user monitoring",
       "meaning": "Synthetic transactions are scripted tests run on a schedule to check that a service works. Real user monitoring passively records what actual users experience.",
       "trap": "Thinking real user monitoring can test a feature that nobody has used yet.",
-      "hook": "Synthetic is a rehearsal; real user monitoring is the audience.", "tags": ["comparison"] },
-    { "id": "c7-001", "domain": 7, "objective": "7.6", "term": "Incident response order",
+      "hook": "Synthetic is a rehearsal; real user monitoring is the audience.",
+      "tags": [
+        "comparison"
+      ]
+    },
+    {
+      "id": "c7-001",
+      "domain": 7,
+      "objective": "7.6",
+      "term": "Incident response order",
       "meaning": "Prepare, detect and analyse, contain, eradicate, recover, then lessons learned. Reporting and evidence handling run alongside.",
       "trap": "Restoring systems before containment, or letting evidence collection delay containment of an active attack.",
-      "hook": "Stop the bleeding before you stitch.", "tags": ["first-step"] },
-    { "id": "c7-002", "domain": 7, "objective": "7.10", "term": "RPO, RTO, WRT, MTD",
+      "hook": "Stop the bleeding before you stitch.",
+      "tags": [
+        "first-step"
+      ]
+    },
+    {
+      "id": "c7-002",
+      "domain": 7,
+      "objective": "7.10",
+      "term": "RPO, RTO, WRT, MTD",
       "meaning": "RPO: how much data loss is tolerable, as time. RTO: time to restore the system. WRT: time to verify data and resume work after restore. MTD: the longest the business can survive the outage. RTO + WRT must not exceed MTD.",
       "trap": "Confusing RPO (data) with RTO (time to restore), or setting RTO equal to MTD with no time left for recovery work.",
-      "hook": "Point is data, time is systems, MTD is the cliff edge.", "tags": ["bcp", "comparison"] },
-    { "id": "c7-003", "domain": 7, "objective": "7.12", "term": "DR test types",
+      "hook": "Point is data, time is systems, MTD is the cliff edge.",
+      "tags": [
+        "bcp",
+        "comparison"
+      ]
+    },
+    {
+      "id": "c7-003",
+      "domain": 7,
+      "objective": "7.12",
+      "term": "DR test types",
       "meaning": "Read-through (checklist), walkthrough or tabletop, simulation, parallel (recovery site runs alongside production), full interruption (production stops and fails over).",
       "trap": "Choosing full interruption for confidence. Parallel gives real evidence without risking production.",
-      "hook": "Read, walk, simulate, run in parallel, then pull the plug.", "tags": ["comparison"] },
-    { "id": "c8-001", "domain": 8, "objective": "8.2", "term": "SAST, DAST, IAST, SCA",
+      "hook": "Read, walk, simulate, run in parallel, then pull the plug.",
+      "tags": [
+        "comparison"
+      ]
+    },
+    {
+      "id": "c8-001",
+      "domain": 8,
+      "objective": "8.2",
+      "term": "SAST, DAST, IAST, SCA",
       "meaning": "SAST analyses your source code without running it. DAST attacks the running application from outside. IAST instruments the running app from inside. SCA inventories third-party components and their known flaws.",
       "trap": "Assuming SAST covers open-source dependencies. That is SCA's job.",
-      "hook": "Static reads, dynamic pokes, interactive watches, composition counts.", "tags": ["comparison"] },
-    { "id": "c8-002", "domain": 8, "objective": "8.4", "term": "Software bill of materials",
+      "hook": "Static reads, dynamic pokes, interactive watches, composition counts.",
+      "tags": [
+        "comparison"
+      ]
+    },
+    {
+      "id": "c8-002",
+      "domain": 8,
+      "objective": "8.4",
+      "term": "Software bill of materials",
       "meaning": "A machine-readable list of the components and versions inside a piece of software, so you can find out quickly whether you are affected when a component flaw is announced.",
       "trap": "Treating an SBOM as proof the software is secure. It is an inventory, not an assessment.",
-      "hook": "An SBOM is the ingredients label, not the health inspection.", "tags": ["supply-chain"] },
-    { "id": "c8-003", "domain": 8, "objective": "8.1", "term": "DevSecOps",
+      "hook": "An SBOM is the ingredients label, not the health inspection.",
+      "tags": [
+        "supply-chain"
+      ]
+    },
+    {
+      "id": "c8-003",
+      "domain": 8,
+      "objective": "8.1",
+      "term": "DevSecOps",
       "meaning": "Security built into every stage of a DevOps pipeline: threat modelling at design, automated testing in CI/CD, and security sharing responsibility with development and operations.",
       "trap": "Thinking DevSecOps means adding one security scan at the end of the pipeline.",
-      "hook": "Security rides the whole pipeline, not the last carriage.", "tags": [] }
+      "hook": "Security rides the whole pipeline, not the last carriage.",
+      "tags": []
+    }
   ]
 }

@@ -2,6 +2,33 @@
 
 Each phase adds a section. Commands are run from the repo root with Node 24.22.1 and Playwright 1.64.1 (Chromium), using a Pixel 7 profile at 360 × 780, time zone Africa/Harare.
 
+## Phase 8, batch 1: Domain 1 content (28 October 2026)
+
+Framework versions re-checked before writing (recorded in `data/SOURCES.md`): NIST CSF 2.0, PCI DSS v4.0.1 and the ISC2 canons are current; ISC2 added a Code of Professional Conduct in February 2026; Zimbabwe's 2024 breach-reporting rule is from secondary sources only and is used in practical notes, not tested.
+
+**Content added**
+- 36 new Domain 1 questions (40 in total, about 16% of a 240-question bank) and a second case study (Mukuvisi Bank governance, 3 questions). Every Domain 1 objective has at least 2 questions.
+- 12 lessons (`data/lessons.json`): five lines on what the exam wants, key terms and a worked scenario for each Domain 1 objective, shown on the domain page with links to that objective's questions and cards.
+- 13 Domain 1 cards (38 in all), mostly comparisons; every Domain 1 objective now has at least one card.
+- Comparison drills (`data/drills.json`, new screen): risk treatment; control types; qualitative vs quantitative; BCP vs DRP vs IR; RTO, RPO, MTD and WRT.
+- Labs (`data/labs.json`, new screen): day 1, a risk register for a fictional bank; day 2, a mini BIA. Both marked LAB / TEST ENVIRONMENT.
+
+`npm run validate`: **no errors.** On the first pass the give-away lint rejected 6 of the new questions: a length tell in two (d1-010, d1-036), the correct option alone repeating a stem word in two (d1-011, d1-014), absolutes in two options (d1-040), plus a too-short sub-topic. All rewritten. Six keys were then trimmed so the correct option is the single longest in 8 of 41 single-answer questions (20%).
+
+**Bank after batch 1:** 56 questions; 15 multi-select (27%: 12 × TWO, 3 × THREE); single-answer keys in positions 0/1/2/3: 9/11/11/10; difficulty 2: 2, 3: 12, 4: 23, 5: 15, 6: 4 (75% at 4 to 6).
+
+`npm test`: **85 passed, 0 failed** (3 new): lessons, drills and labs validate; all 12 Domain 1 objectives have lessons and at least two questions; the new linters catch malformed lessons, drills whose answers are not items or that leave an item untested, and labs without the test-environment marker or required sections.
+
+`npx playwright test`: **33 passed, 0 failed** (3 new; 3 consecutive runs): a lesson's five lines and worked answer, "Practise" launching that objective's questions and "Cards" opening its four cards; a full drill run with one forced miss, score saved; lab steps persisting across reload and completion only once every step is ticked.
+
+Five older tests assumed a 20-question bank (mini exam size and timer, diagnostic size, a single expandable section per objective) and were updated to derive sizes from the bank.
+
+Manual review: lesson 1.7 and a drill at 360 px (dark). Drill feedback colours were dimmed by the disabled-button style; fixed.
+
+### Not validated
+- **No question has been checked against ISC2's real exam**; difficulty levels are judged, not measured.
+- The labs have not been carried out end to end by a learner.
+
 ## Phase 7: Next Study Plan, baseline diagnostic and reminders (28 October 2026)
 
 Also in this phase: the mock gate default changed to "band above in both of the last two mocks" (your decision, 27 October 2026); its tests were updated to match.

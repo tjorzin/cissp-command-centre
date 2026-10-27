@@ -304,6 +304,25 @@ textarea {
 .phase-line li.current::marker { color: var(--accent); }
 .checkpoint { border-left: 4px solid var(--warn-text); }
 
+.lesson-block { margin: 8px 0; }
+.lesson-block > summary { min-height: 40px; line-height: 40px; cursor: pointer; color: var(--accent); }
+.lesson-block ol { padding-left: 20px; margin: 4px 0; }
+.lesson-block li { margin: 3px 0; }
+.topics-block summary { min-height: 36px; line-height: 36px; cursor: pointer; color: var(--muted); }
+.btn.disabled { opacity: .5; pointer-events: none; }
+.choice-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 8px 0; }
+.choice-btn { width: 100%; white-space: normal; text-align: center; }
+.choice-btn.right { border-color: var(--ok); color: var(--ok); }
+.choice-btn.wrong { border-color: var(--danger); color: var(--danger); }
+.choice-btn.right[disabled], .choice-btn.wrong[disabled] { opacity: 1; border-width: 2px; font-weight: 700; }
+.lab-warning {
+  margin: 0 0 12px; padding: 10px 12px; border-radius: 10px;
+  background: var(--warn-bg); color: var(--warn-text); font-weight: 700; font-size: .875rem;
+}
+.lab-steps { padding-left: 0; list-style: none; margin: 0; display: grid; gap: 6px; }
+.lab-step { align-items: flex-start; }
+.lab-step input { margin-top: 3px; flex: none; }
+
 .toast {
   position: fixed; left: var(--gutter); right: var(--gutter); bottom: 84px; z-index: 20;
   padding: 12px var(--gutter); border-radius: var(--radius);

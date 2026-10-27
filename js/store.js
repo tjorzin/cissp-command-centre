@@ -28,7 +28,9 @@ export function defaultState(now = new Date()) {
     activeSession: null,
     reteach: {},
     srsDay: null,
-    plan: null
+    plan: null,
+    drills: {},
+    labs: {}
   };
 }
 

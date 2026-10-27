@@ -26,14 +26,16 @@ test('first run: Today leads with the baseline diagnostic, which then becomes th
 
   await page.locator('#do-next-btn').click();
   await expect(page).toHaveURL(/#\/session/);
-  for (let i = 0; i < bank.questions.length; i++) {
+  // Six per domain where the bank has them: answer until the results page appears.
+  const size = [1, 2, 3, 4, 5, 6, 7, 8].reduce((a, d) => a + Math.min(6, bank.questions.filter((q) => q.domain === d).length), 0);
+  for (let i = 0; i < size; i++) {
     await answerShown(page, (q) => q.domain !== 4, 'unsure');
-    if (i < bank.questions.length - 1) await expect(page.locator('.session .verdict')).toHaveCount(0); // no feedback until the end
+    if (i < size - 1) await expect(page.locator('.session .verdict')).toHaveCount(0); // no feedback until the end
   }
   await expect(page).toHaveURL(/#\/results\//);
 
   const st = await stored(page);
-  expect(st.baseline.presented).toBe(bank.questions.length);
+  expect(st.baseline.presented).toBe(size);
   expect(st.baseline.byDomain['4']).toEqual({ asked: 2, correct: 0 });
 
   await page.goto('/#/home');

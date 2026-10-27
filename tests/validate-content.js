@@ -211,12 +211,74 @@ export function lintCards(deck, domainsData) {
   return { errors, stats: { cards: cards.length, domainsCovered: domains.size } };
 }
 
+// Lessons: five summary lines, key terms and a worked scenario, keyed by a real objective.
+export function lintLessons(lessonsData, domainsData) {
+  const errors = [];
+  const objectives = new Set(domainsData.domains.flatMap((d) => d.objectives.map((o) => o.id)));
+  for (const [id, l] of Object.entries(lessonsData.lessons || {})) {
+    const e = (m) => errors.push(`lesson ${id}: ${m}`);
+    if (!objectives.has(id)) e('no such objective');
+    if (!Array.isArray(l.summary) || l.summary.length !== 5) e('summary must have exactly 5 lines');
+    else if (l.summary.some((s) => s.length > 140)) e('a summary line is over 140 characters');
+    if (!Array.isArray(l.keyTerms) || l.keyTerms.length < 3) e('needs at least 3 key terms');
+    else if (l.keyTerms.some((k) => !k.term || !k.meaning)) e('key term missing term or meaning');
+    if (!l.scenario?.situation || !l.scenario?.ask || !l.scenario?.answer) e('worked scenario needs situation, ask and answer');
+  }
+  return { errors, stats: { lessons: Object.keys(lessonsData.lessons || {}).length } };
+}
+
+// Drills: every prompt's answer is one of the drill's items; enough prompts to test each item.
+export function lintDrills(drillsData, domainsData) {
+  const errors = [];
+  const objectives = new Set(domainsData.domains.flatMap((d) => d.objectives.map((o) => o.id)));
+  const ids = new Set();
+  for (const d of drillsData.drills || []) {
+    const e = (m) => errors.push(`${d.id}: ${m}`);
+    if (ids.has(d.id)) e('duplicate id');
+    ids.add(d.id);
+    if (!objectives.has(d.objective) || Number(d.objective[0]) !== d.domain) e('objective does not match domain');
+    const names = new Set(d.items.map((i) => i.name));
+    if (names.size < 2) e('needs at least 2 items');
+    if (d.prompts.length < 4) e('needs at least 4 prompts');
+    for (const p of d.prompts) {
+      if (!names.has(p.answer)) e(`prompt answer "${p.answer}" is not an item`);
+      if (!p.why || p.why.length < 20) e('prompt explanation too thin');
+    }
+    const answered = new Set(d.prompts.map((p) => p.answer));
+    for (const n of names) if (!answered.has(n)) e(`no prompt tests "${n}"`);
+  }
+  return { errors, stats: { drills: (drillsData.drills || []).length } };
+}
+
+// Labs: test environment only, with every section the brief requires.
+export function lintLabs(labsData, domainsData) {
+  const errors = [];
+  const objectives = new Set(domainsData.domains.flatMap((d) => d.objectives.map((o) => o.id)));
+  for (const lab of labsData.labs || []) {
+    const e = (m) => errors.push(`${lab.id}: ${m}`);
+    if (!objectives.has(lab.objective) || Number(lab.objective[0]) !== lab.domain) e('objective does not match domain');
+    if (!/^LAB \/ TEST ENVIRONMENT/.test(lab.environment || '')) e('environment must start with "LAB / TEST ENVIRONMENT"');
+    if (!lab.goal) e('missing goal');
+    if (!Number.isInteger(lab.day) || lab.day < 1) e('day must be a positive whole number');
+    for (const k of ['prerequisites', 'steps', 'validation', 'rollback', 'evidence']) {
+      if (!Array.isArray(lab[k]) || !lab[k].length) e(`missing ${k}`);
+    }
+    if ((lab.steps || []).length < 3) e('needs at least 3 steps');
+  }
+  return { errors, stats: { labs: (labsData.labs || []).length } };
+}
+
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   const read = (p) => JSON.parse(readFileSync(new URL(`../${p}`, import.meta.url)));
   const result = lintBank(read('data/questions.json'), read('data/domains.json'));
   const cards = lintCards(read('data/cards.json'), read('data/domains.json'));
   result.errors.push(...cards.errors);
   console.log(`Cards: ${cards.stats.cards} across ${cards.stats.domainsCovered} domains`);
+  for (const [name, fn, file] of [['Lessons', lintLessons, 'lessons'], ['Drills', lintDrills, 'drills'], ['Labs', lintLabs, 'labs']]) {
+    const r = fn(read(`data/${file}.json`), read('data/domains.json'));
+    result.errors.push(...r.errors);
+    console.log(`${name}: ${Object.values(r.stats)[0]}`);
+  }
   for (const m of result.errors) console.log(`ERROR   ${m}`);
   for (const m of result.warnings) console.log(`warning ${m}`);
   if (result.stats) console.log(JSON.stringify(result.stats, null, 2));

@@ -17,7 +17,7 @@ test('a domain page shows its objectives, topics and the 2027 changes', async ({
 
   const crypto = page.locator('[data-objective="3.6"]');
   await expect(crypto.locator('.topics').first()).toContainText('Quantum key distribution');
-  await crypto.locator('summary').click();
+  await crypto.locator('.changes summary').click();
   await expect(crypto.locator('.chg.add')).toContainText(['Post-quantum cryptography']);
   await expect(crypto.locator('.chg.drop')).toContainText(['Quantum cryptography', 'Quantum key distribution']);
 
