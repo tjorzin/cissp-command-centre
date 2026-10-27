@@ -23,7 +23,8 @@ export function defaultState(now = new Date()) {
     srs: {},
     sessions: [],
     studyDays: [],
-    baseline: null
+    baseline: null,
+    activeSession: null
   };
 }
 

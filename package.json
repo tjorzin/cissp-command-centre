@@ -1,6 +1,6 @@
 {
   "name": "cissp-command-centre",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "description": "Personal CISSP study PWA. Dev dependencies are for tests only; the app ships with no runtime dependencies.",
   "type": "module",
@@ -8,7 +8,9 @@
     "serve": "node tools/serve.js",
     "test": "node --test \"tests/unit/*.test.js\"",
     "test:e2e": "playwright test",
-    "test:all": "npm test && npm run test:e2e"
+    "validate": "node tests/validate-content.js",
+    "simulate": "node tests/sim-papers.js 300",
+    "test:all": "npm run validate && npm test && npm run test:e2e"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1"

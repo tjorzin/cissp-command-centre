@@ -1,0 +1,628 @@
+{
+  "version": 1,
+  "notice": "Original practice questions written for this app. None is a real ISC2 exam item. Held to docs/QUESTION-STANDARD.md.",
+  "scenarios": [
+    {
+      "id": "sc-01",
+      "title": "Ransomware at a mobile operator",
+      "questionIds": ["d7-001", "d7-002", "d1-004"],
+      "text": "Mutapa Telecom is a mobile operator headquartered in Harare with about four million subscribers. At 02:10 on a Saturday, the network operations centre sees billing servers dropping offline. By 02:40 the on-call engineer confirms ransomware: files on the billing cluster are encrypted and a ransom note names a known extortion group. Domain administrator credentials were used to spread it. The billing database holds subscriber names, national ID numbers and call records. Full backups run every night and are copied to a second data centre in Bulawayo. Every backup job is checksum-verified when it completes. The last full restore test of the billing system was 14 months ago. The backup catalogue is held only on the backup server in Harare, and the backup service runs under a domain administrator account. The CEO is travelling and can be reached by phone."
+    }
+  ],
+  "questions": [
+    {
+      "id": "d1-001",
+      "domain": 1,
+      "objective": "1.9",
+      "subtopic": "Risk response and treatment",
+      "difficulty": 6,
+      "type": "single",
+      "scenario": null,
+      "stem": "You are the security manager for a copper mining group. The processing plant's SCADA historian runs Windows Server 2012, which no longer receives routine security updates. The control-system vendor will not certify a newer operating system for at least 18 months, and the plant manager says unplanned downtime costs about US$40,000 an hour. Last year's penetration test reached the historian from the corporate network in under a day. Your assessment rates the exposure as high. What should you do FIRST?",
+      "options": [
+        "Present the assessed risk and costed treatment options to the plant's risk owner for a decision.",
+        "Move the historian into its own segment with allow-list firewall rules and enhanced monitoring.",
+        "Buy extended security updates for the historian and plan the upgrade for vendor certification.",
+        "Replace the historian with a vendor-supported cloud service that already runs a current system."
+      ],
+      "correct": [0],
+      "rationales": [
+        "Correct. The risk belongs to the business, not to security. The first job is to make sure the accountable owner understands the risk and the treatment options (segment, buy updates, replace, accept), with their costs, and makes a recorded decision. Every other option is a treatment the owner has not yet chosen.",
+        "Probably the treatment you would recommend, but it is a solution chosen before the risk owner has decided, and making network changes around a plant system can cause the very downtime the plant manager is worried about. Best step, not first step.",
+        "Extended security updates were sold for a limited period and not for every deployment, and buying them commits money on the owner's behalf. It is one option to put in front of the owner, not the first action.",
+        "Moving a control-system historian to the cloud adds new connectivity to an OT environment and needs vendor certification that the stem says is 18 months away. It is the most disruptive option and is premature."
+      ],
+      "concept": "Risk ownership: security assesses and advises; the business risk owner chooses the treatment.",
+      "trap": "Jumping to the technically best control (segmentation) before the risk owner has decided.",
+      "managerLens": "Frame the risk in business terms (downtime cost, likelihood shown by the test), give costed options, and get a documented decision with a review date.",
+      "practicalNote": "In OT environments, unapproved changes to a certified control system can void vendor support. Segmentation and monitoring are the usual interim treatment once the owner approves them.",
+      "gap": "Not separating the adviser role (security) from the decision-maker role (risk owner).",
+      "followUpId": null,
+      "tags": ["risk", "first-step", "management", "ot"]
+    },
+    {
+      "id": "d1-002",
+      "domain": 1,
+      "objective": "1.1",
+      "subtopic": "ISC2 Code of Ethics",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "You are an independent assessor hired by a medical device maker. You find that its infusion pumps accept dose changes over hospital Wi-Fi without authentication. The product director thanks you, says a fix is planned for next year's model, and reminds you of your non-disclosure agreement. Pumps already in service will not be updated. Following the ISC2 Code of Ethics, what is the MOST appropriate course?",
+      "options": [
+        "Keep the finding confidential and record the director's decision in your final report.",
+        "Publish a public advisory with interim mitigations so hospitals can protect patients.",
+        "Escalate in writing to senior management and, if patients stay at risk, notify the regulator.",
+        "Contact the hospitals that use the pumps and give them interim mitigations privately."
+      ],
+      "correct": [2],
+      "rationales": [
+        "Diligent service to the principal (the third canon) does not outrank the first canon: protect society and the public. Recording the decision documents the risk but leaves patients exposed.",
+        "Public disclosure before the maker and the regulator have had a chance to act exposes patients to attackers and breaks the agreement without first trying proper channels, which conflicts with acting honourably and legally (the second canon).",
+        "Correct. Protecting the public comes first, but the honourable and legal route is to escalate within the client and then to the authority responsible for device safety. This protects patients without skipping legitimate steps.",
+        "Well meant, but it bypasses both the client and the regulator, breaks the agreement without using legitimate escalation, and gives an uncoordinated fix to some hospitals and not others."
+      ],
+      "concept": "The ISC2 canons in order: protect society, act honourably and legally, serve principals diligently, advance the profession.",
+      "trap": "Treating the NDA or loyalty to the client as overriding, or overcorrecting into public disclosure.",
+      "managerLens": "Escalate through the client's governance, document it, and use the regulator as the legitimate channel when public safety stays at risk.",
+      "practicalNote": "Coordinated disclosure through the manufacturer and the national device regulator or a CERT is the norm for medical devices.",
+      "gap": "Knowing the canons but not how they rank when they conflict.",
+      "followUpId": null,
+      "tags": ["ethics", "canons"]
+    },
+    {
+      "id": "d1-003",
+      "domain": 1,
+      "objective": "1.11",
+      "subtopic": "Supplier risk mitigations",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A regional bank is about to adopt a SaaS loan-origination platform that will hold customer identity documents. The supplier's sales team has offered a discount for signing this month. Which THREE measures BEST reduce the supply chain risk before go-live? (Select THREE.)",
+      "options": [
+        "An independent SOC 2 Type II report covering the in-scope service for the past year",
+        "An ISO/IEC 27001 certificate whose scope excludes the supplier's hosting operations",
+        "A security questionnaire completed and signed by the supplier's regional sales director",
+        "Contract clauses that set minimum security controls and give the bank a right to audit",
+        "A software bill of materials for each release, kept current and shared with the bank",
+        "A summary of a penetration test run by the supplier's own developers three years ago"
+      ],
+      "correct": [0, 3, 4],
+      "rationales": [
+        "Correct. A Type II report gives independent evidence that controls operated effectively over a period, for the service actually being bought.",
+        "A certificate is only as useful as its scope. Excluding hosting operations means the part that will store the bank's customer documents is not covered.",
+        "Self-attestation by a sales role is the weakest form of assurance: not independent, not tested, and from someone with an incentive to close the deal.",
+        "Correct. Contractual minimum controls and audit rights make security obligations enforceable and let the bank verify them for the life of the contract.",
+        "Correct. An SBOM shows which components are in the product, so the bank can respond quickly when a component vulnerability is announced.",
+        "Old, internal and not independent. Testing by the people who built the system, years ago, says little about the current release."
+      ],
+      "concept": "Supply chain assurance: independent, current, in-scope evidence plus enforceable contract terms.",
+      "trap": "Accepting a certificate or questionnaire without checking its scope, independence and age.",
+      "managerLens": "Do not let a sales deadline drive risk acceptance; make assurance requirements a condition of signature.",
+      "practicalNote": "Banks commonly require SOC 2 Type II or ISO 27001 with a matching scope, plus right-to-audit and incident-notification clauses, before onboarding a critical supplier.",
+      "gap": "Not judging the quality (scope, independence, recency) of assurance evidence.",
+      "followUpId": null,
+      "tags": ["scrm", "third-party", "assurance"]
+    },
+    {
+      "id": "d1-004",
+      "domain": 1,
+      "objective": "1.4",
+      "subtopic": "Privacy and breach notification",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": "sc-01",
+      "stem": "On Sunday the extortion group posts a sample of Mutapa's subscriber records on its leak site. The legal adviser asks who should decide whether, when and how Mutapa notifies the data protection authority and affected subscribers. Who should make that decision?",
+      "options": [
+        "The CISO, because the incident response plan names the CISO as incident owner.",
+        "Executive management, advised by legal counsel and the data protection officer.",
+        "The incident handler, once forensic analysis confirms exactly which records left.",
+        "The communications team, since the notice must match statements to the press."
+      ],
+      "correct": [1],
+      "rationales": [
+        "The CISO runs the response and advises, but notification is a legal and business decision with regulatory, reputational and financial consequences. It sits with senior management.",
+        "Correct. Notification carries legal liability and reputational impact, so senior management decides, advised by legal and the data protection officer on what the applicable law (in Zimbabwe, the Cyber and Data Protection Act) requires.",
+        "Waiting for full forensic certainty can miss statutory deadlines, which typically run from when the organisation becomes aware of a likely breach. The handler supplies facts, not the decision.",
+        "Communications carries out the message once it is decided. Consistency matters, but the team does not own the legal decision."
+      ],
+      "concept": "Breach notification is a senior management decision, informed by legal and privacy advice.",
+      "trap": "Assuming the technical incident owner, or the forensic result, decides notification.",
+      "managerLens": "Escalate early with the facts known, let legal set the obligations and the clock, and let executives decide.",
+      "practicalNote": "Notification clocks under many laws (GDPR's 72 hours, for example) start at awareness of a likely breach; waiting for forensic certainty is a common cause of late notification.",
+      "gap": "Confusing who runs the incident with who owns the legal and business decisions.",
+      "followUpId": null,
+      "tags": ["privacy", "breach-notification", "management"]
+    },
+    {
+      "id": "d2-001",
+      "domain": 2,
+      "objective": "2.4",
+      "subtopic": "Data roles",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A Harare-based insurer uses a South African payroll provider, which processes employee records only on the insurer's documented instructions. Without telling the insurer, the provider starts storing encrypted backup copies with a global cloud platform. An employee later complains that their data was moved outside the agreed jurisdictions. Which party is ultimately accountable to the employee?",
+      "options": [
+        "The payroll provider, because it decided to use the cloud platform.",
+        "The cloud platform, because it physically holds the backup copies.",
+        "The insurer, because it determines the purposes of the processing.",
+        "The insurer's IT team, because they act as custodians of the data."
+      ],
+      "correct": [2],
+      "rationales": [
+        "The provider is a processor. It is liable for breaching its contract and instructions, but the party accountable to the data subject remains the controller.",
+        "The cloud platform is a sub-processor acting as custodian of the storage. Its obligations run to the processor, not primary accountability to the employee.",
+        "Correct. The insurer is the controller: it decides why and how employee data is processed, so it stays accountable to the employee even when a processor makes an unauthorised change. It can then pursue the provider under the contract.",
+        "Custodians implement controls on the owner's behalf. They are not accountable to data subjects; the organisation acting as controller is."
+      ],
+      "concept": "Controller, processor and custodian: accountability to data subjects stays with the controller.",
+      "trap": "Assigning accountability to whoever took the action or physically holds the data.",
+      "managerLens": "Make processor contracts require approval of sub-processors and transfer locations, and audit compliance.",
+      "practicalNote": "Data processing agreements should list approved sub-processors and locations. Most data protection laws, including GDPR, keep the controller accountable when it uses processors.",
+      "gap": "Mixing up data roles and where accountability sits.",
+      "followUpId": null,
+      "tags": ["data-roles", "privacy"]
+    },
+    {
+      "id": "d2-002",
+      "domain": 2,
+      "objective": "2.4",
+      "subtopic": "Data remanence and destruction",
+      "difficulty": 5,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A hospital is transferring 200 solid-state drives from its patient-records cluster to a research institute that is a separate organisation. The drives are self-encrypting, and their keys are managed by the storage array. Which TWO actions are appropriate to sanitise the drives before release? (Select TWO.)",
+      "options": [
+        "Run the drives' built-in sanitise command, then verify a sample of drives.",
+        "Perform a cryptographic erase by destroying each drive's media encryption key.",
+        "Degauss the drives with a degausser rated for high-coercivity media.",
+        "Overwrite each drive three times with random data, then reformat it.",
+        "Delete the partitions and run a full format on each drive before release."
+      ],
+      "correct": [0, 1],
+      "rationales": [
+        "Correct. Firmware sanitise commands (block erase or crypto erase) reach areas the operating system cannot, including over-provisioned blocks. Verification is part of the process in NIST SP 800-88.",
+        "Correct. Destroying the media encryption key makes the data unrecoverable, provided the encryption was implemented correctly and no copy of the key exists. NIST SP 800-88 recognises cryptographic erase as a purge method.",
+        "SSDs store data in flash cells, not magnetic domains, so degaussing does not remove it.",
+        "Wear levelling and spare blocks mean host overwrites do not reliably reach every cell on an SSD. Multi-pass overwriting is a magnetic-disk technique.",
+        "Formatting removes file system structures, not the data. The records stay recoverable."
+      ],
+      "concept": "Sanitisation must match the media: purge SSDs with firmware sanitise or cryptographic erase.",
+      "trap": "Applying magnetic-disk techniques (degaussing, multi-pass overwrite) to flash storage.",
+      "managerLens": "Media leaving the organisation needs purge-level sanitisation with verification and a record, chosen according to the data's classification.",
+      "practicalNote": "Keep a sanitisation record per serial number. Many organisations physically destroy drives that held the most sensitive data, even after a purge.",
+      "gap": "Not knowing how SSDs store data and why that changes sanitisation.",
+      "followUpId": null,
+      "tags": ["remanence", "sanitisation", "ssd"]
+    },
+    {
+      "id": "d3-001",
+      "domain": 3,
+      "objective": "3.2",
+      "subtopic": "Security models",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A defence contractor's system must stop a process running at Secret from writing data to an Unclassified file, yet it allows the same process to append entries to a Top Secret audit log. Which rule is being enforced?",
+      "options": [
+        "The Biba integrity star property",
+        "The Bell-LaPadula star property",
+        "The Bell-LaPadula simple security property",
+        "The Clark-Wilson separation of duty rule"
+      ],
+      "correct": [1],
+      "rationales": [
+        "Biba's star property protects integrity: no write up. It would block the append to the higher level, which this system allows.",
+        "Correct. Bell-LaPadula's star property (no write down) stops a subject leaking data to a lower classification, while writing up is permitted.",
+        "The simple security property governs reading (no read up). The scenario is about writing.",
+        "Clark-Wilson enforces integrity through well-formed transactions and separation of duties. It does not use classification levels."
+      ],
+      "concept": "Bell-LaPadula protects confidentiality: no read up, no write down.",
+      "trap": "Mixing up Biba (integrity) and Bell-LaPadula (confidentiality), which both have a star property.",
+      "managerLens": "Model choice follows the protection goal; confidentiality-first environments such as defence use Bell-LaPadula-style rules.",
+      "practicalNote": "Mandatory access control systems such as SELinux in MLS mode enforce these rules with labels.",
+      "gap": "Not linking each model to its security goal and its read and write rules.",
+      "followUpId": null,
+      "tags": ["models", "confidentiality"]
+    },
+    {
+      "id": "d3-002",
+      "domain": 3,
+      "objective": "3.6",
+      "subtopic": "Cryptographic methods",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": null,
+      "stem": "A foreign ministry must keep diplomatic cables confidential for at least 25 years. Traffic between embassies runs over TLS 1.3 using ECDHE key exchange and AES-256-GCM. An adversary is known to record the ministry's internet traffic in bulk. Which threat to these cables is MOST significant over that period?",
+      "options": [
+        "Grover's algorithm reducing AES-256 to an insecure effective key length",
+        "Certificate expiry causing outages between embassy and ministry systems",
+        "Collision attacks against the SHA-256 hashes used in the TLS handshakes",
+        "Captured sessions decrypted later, once quantum computers break ECDHE"
+      ],
+      "correct": [3],
+      "rationales": [
+        "Grover's algorithm roughly halves the effective strength of a symmetric key, leaving AES-256 at about 128-bit security, which is still considered adequate.",
+        "An availability problem worth managing, but it does not expose the content of the cables.",
+        "No practical SHA-256 collision attack exists, and a collision would not reveal the contents of past sessions.",
+        "Correct. This is 'harvest now, decrypt later'. A large enough quantum computer running Shor's algorithm would break elliptic-curve key exchange and expose the session keys of recorded traffic. Data that must stay secret for decades is the first priority for post-quantum key exchange such as ML-KEM (FIPS 203)."
+      ],
+      "concept": "Harvest now, decrypt later: long confidentiality lifetimes drive early migration to post-quantum key exchange.",
+      "trap": "Worrying about symmetric ciphers, which quantum computing weakens only modestly, instead of public-key exchange.",
+      "managerLens": "Prioritise post-quantum migration by data lifetime: anything that must stay secret beyond the expected arrival of quantum attacks goes first.",
+      "practicalNote": "Hybrid key exchange (classical X25519 combined with ML-KEM) is already enabled by default in major browsers and TLS libraries.",
+      "gap": "Not knowing which algorithms quantum computing actually breaks.",
+      "followUpId": null,
+      "tags": ["crypto", "post-quantum"]
+    },
+    {
+      "id": "d4-001",
+      "domain": 4,
+      "objective": "4.1",
+      "subtopic": "Micro-segmentation",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "An attacker exploited a public web server in a retailer's data centre, then moved laterally to the database and payment servers on the same flat server network. The perimeter next-generation firewall is due for renewal next quarter, and the vendor is offering a larger model at a discount. Which change would MOST reduce the impact of a similar compromise?",
+      "options": [
+        "Upgrade to the larger perimeter firewall and enable its intrusion prevention.",
+        "Put each department's servers in a separate VLAN with routing between them.",
+        "Micro-segment workloads so only required flows between servers are allowed.",
+        "Add a network IDS on the internet link to alert on exploitation attempts."
+      ],
+      "correct": [2],
+      "rationales": [
+        "The perimeter firewall inspects north-south traffic. The damage came from east-west movement inside the data centre, which it does not see. The discount is a decoy.",
+        "Coarse segmentation helps a little, but servers that talk to each other often share a VLAN, and routing between VLANs is usually permissive unless it is filtered.",
+        "Correct. Default-deny rules between workloads limit an attacker on one server to the flows that server genuinely needs, which contains lateral movement.",
+        "Detection at the edge may spot the initial exploit, but it neither prevents nor limits movement inside the network."
+      ],
+      "concept": "East-west traffic control: micro-segmentation limits lateral movement.",
+      "trap": "Investing in the perimeter when the problem is inside it.",
+      "managerLens": "Spend where the attack path actually ran; tie the investment to the incident's root cause, not to a vendor offer.",
+      "practicalNote": "Micro-segmentation is usually built with host firewalls, hypervisor distributed firewalls or SDN policy, starting with high-value assets such as payment systems.",
+      "gap": "Not distinguishing north-south from east-west traffic and the controls for each.",
+      "followUpId": null,
+      "tags": ["segmentation", "zero-trust", "lateral-movement"]
+    },
+    {
+      "id": "d4-002",
+      "domain": 4,
+      "objective": "4.3",
+      "subtopic": "Remote access for administration",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "Network engineers now work partly from home and need to manage the company's core routers and switches. Which design BEST protects the management plane?",
+      "options": [
+        "Reach a dedicated management network through a hardened jump host with MFA.",
+        "Expose SSH on the routers' internet interfaces and require key-based logins.",
+        "Use Telnet inside the corporate remote-access VPN, which encrypts the traffic.",
+        "Let the vendor's cloud portal push changes once they are approved by e-mail."
+      ],
+      "correct": [0],
+      "rationales": [
+        "Correct. A separate management network, reached only through a monitored jump host with strong authentication, keeps device administration off user networks and the internet.",
+        "Keys are better than passwords, but exposing management services to the internet invites scanning, brute force and exploitation of SSH or device vulnerabilities.",
+        "The VPN protects only the path to the corporate edge. Telnet then sends credentials in clear text across internal segments, and management stays reachable from user networks.",
+        "E-mail approval is weak authorisation, and the design gives a third party write access to core devices without strong controls."
+      ],
+      "concept": "Protect the management plane with isolation and strong, monitored access.",
+      "trap": "Believing that encrypting one hop, or key authentication alone, makes exposed management acceptable.",
+      "managerLens": "Administrative access to core infrastructure is high impact; require isolation, MFA and logging by policy.",
+      "practicalNote": "Common designs use an out-of-band management network or VRF, a bastion or privileged access workstation, and TACACS+ or RADIUS with MFA.",
+      "gap": "Not separating the management plane from user and data traffic.",
+      "followUpId": null,
+      "tags": ["management-plane", "remote-access"]
+    },
+    {
+      "id": "d5-001",
+      "domain": 5,
+      "objective": "5.4",
+      "subtopic": "Authorisation models",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A hospital wants nurses to see patient records only for patients on the ward they are rostered to, only during their shift, and only from hospital-managed devices. The IAM team already maintains 40 roles and says adding per-ward, per-shift roles is unmanageable. Which access control model fits BEST?",
+      "options": [
+        "Role-based access control with a role for each ward and shift combination",
+        "Mandatory access control with labels assigned to each patient record",
+        "Discretionary access control with ward managers granting access daily",
+        "Attribute-based access control evaluating user, resource and context"
+      ],
+      "correct": [3],
+      "rationales": [
+        "This is the role explosion the IAM team warned about: every ward multiplied by every shift, and RBAC still cannot express the device condition cleanly.",
+        "MAC uses classification labels and clearances set centrally. It does not handle dynamic conditions such as roster, time and device.",
+        "DAC relies on owners granting access by hand. Daily manual grants are error-prone and do not enforce device or time conditions.",
+        "Correct. ABAC evaluates attributes of the subject (role, rostered ward), the resource (the patient's ward) and the context (time, device) in a policy, so one rule covers every ward and shift."
+      ],
+      "concept": "ABAC handles context-dependent decisions without role explosion.",
+      "trap": "Defaulting to RBAC because it is familiar.",
+      "managerLens": "Choose the model that enforces the business rule with the least administrative overhead and the fewest errors.",
+      "practicalNote": "ABAC is often implemented with a policy decision point fed by HR rostering and device-management data.",
+      "gap": "Not recognising when conditions are attributes rather than roles.",
+      "followUpId": null,
+      "tags": ["access-control", "abac"]
+    },
+    {
+      "id": "d5-002",
+      "domain": 5,
+      "objective": "5.5",
+      "subtopic": "Access review and provisioning",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A quarterly access review at a bank finds that a finance analyst who moved to marketing four months ago still holds payment-approval rights in the ERP system. It also finds 30 service accounts with no named owner, several with domain administrator rights. Which TWO process changes address the ROOT causes? (Select TWO.)",
+      "options": [
+        "Trigger access changes from HR mover events, removing previous entitlements",
+        "Increase the frequency of user access reviews from quarterly to monthly",
+        "Assign a named owner to every service account and include them in reviews",
+        "Force service account passwords to change monthly through group policy",
+        "Remove the analyst's payment-approval rights in the ERP system immediately"
+      ],
+      "correct": [0, 2],
+      "rationales": [
+        "Correct. The analyst kept old rights because the mover process did not remove them. Driving changes from HR events fixes the cause, not just this case.",
+        "More frequent reviews find problems sooner but still rely on catching what the process left behind. It treats the symptom.",
+        "Correct. Unowned accounts cannot be reviewed or justified. Ownership is the precondition for reviewing privilege and decommissioning accounts.",
+        "Rotation reduces credential exposure but does nothing about missing ownership or excessive privilege.",
+        "Necessary today, but it fixes one instance. The question asks for process changes that stop the problem recurring."
+      ],
+      "concept": "Access creep and orphaned accounts come from gaps in the lifecycle process: movers and ownership.",
+      "trap": "Choosing the immediate fix, or more reviews, instead of the process that caused the finding.",
+      "managerLens": "Fix the instance and the process; audits find symptoms, management fixes causes.",
+      "practicalNote": "Link the IAM system to HR as the authoritative source for joiners, movers and leavers, and keep a service account register with owner and purpose.",
+      "gap": "Not separating corrective action for one case from a root-cause process change.",
+      "followUpId": null,
+      "tags": ["access-review", "provisioning", "root-cause"]
+    },
+    {
+      "id": "d5-003",
+      "domain": 5,
+      "objective": "5.2",
+      "subtopic": "Passwordless and phishing-resistant authentication",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "Staff at a telecom operator have approved fraudulent push notifications after attackers bombarded them with login prompts. Separately, a phishing kit relayed users' passwords and one-time codes to the real portal in real time. Which authentication approach BEST resists both attacks?",
+      "options": [
+        "Push notifications that require users to type a number shown on screen",
+        "FIDO2 security keys or passkeys bound to the legitimate site's origin",
+        "Time-based one-time passwords generated in an authenticator app",
+        "SMS codes with a shorter, 60-second validity period for each login"
+      ],
+      "correct": [1],
+      "rationales": [
+        "Number matching defeats prompt bombing, but an adversary-in-the-middle proxy can show the number to the victim and relay the approval.",
+        "Correct. FIDO2/WebAuthn credentials are bound to the site's origin, so a phishing proxy on a different domain cannot obtain a usable assertion, and there is no push to approve.",
+        "TOTP codes can be relayed by a real-time phishing proxy within their validity window.",
+        "SMS codes can be relayed in real time and are also exposed to SIM swap. A shorter validity does not stop a live relay."
+      ],
+      "concept": "Phishing-resistant MFA: origin-bound public-key credentials (FIDO2/WebAuthn).",
+      "trap": "Assuming any MFA, or number matching, stops real-time phishing.",
+      "managerLens": "Roll out phishing-resistant MFA to privileged and high-risk users first, then extend it.",
+      "practicalNote": "NIST digital identity guidance and CISA treat FIDO2/WebAuthn and PKI-based authenticators as phishing-resistant; OTP and push approval are not.",
+      "gap": "Not knowing which MFA types resist adversary-in-the-middle attacks.",
+      "followUpId": "d5-001",
+      "tags": ["mfa", "phishing-resistant", "passkeys"]
+    },
+    {
+      "id": "d6-001",
+      "domain": 6,
+      "objective": "6.2",
+      "subtopic": "Penetration testing vs vulnerability assessment",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "The board asks whether an outsider on the guest Wi-Fi could actually reach payroll data. The firewall team says the rules prevent it, and last month's vulnerability scan found no critical issues on the payroll servers. Which assessment would answer the board's question MOST directly?",
+      "options": [
+        "An authenticated vulnerability scan of the payroll servers and databases",
+        "A line-by-line review of the firewall rule base by an independent auditor",
+        "A penetration test from the attacker's starting point, with agreed rules",
+        "A configuration audit of the payroll servers against CIS benchmarks"
+      ],
+      "correct": [2],
+      "rationales": [
+        "A scan lists known weaknesses on the targets. It does not show whether they can be reached and exploited from the guest network.",
+        "A rule review checks the intended policy, not actual reachability through misconfigurations, other paths or chained weaknesses.",
+        "Correct. Only a test that starts where the attacker would start and tries to reach the data shows whether it is actually possible.",
+        "Hardening audits check settings against a baseline. Useful, but they do not test the attack path the board asked about."
+      ],
+      "concept": "Penetration testing demonstrates exploitability; scanning finds candidate weaknesses.",
+      "trap": "Treating a clean scan or a reviewed rule base as proof that no attack path exists.",
+      "managerLens": "Match the assessment to the question being asked; the board asked about real-world reachability.",
+      "practicalNote": "Rules of engagement define scope, timing, contacts and stop conditions, and are signed by someone with authority over the systems.",
+      "gap": "Not distinguishing what scans, audits and penetration tests each prove.",
+      "followUpId": "d6-002",
+      "tags": ["pentest", "vulnerability-scan", "assessment"]
+    },
+    {
+      "id": "d6-002",
+      "domain": 6,
+      "objective": "6.4",
+      "subtopic": "Exception handling",
+      "difficulty": 6,
+      "type": "single",
+      "scenario": null,
+      "stem": "A penetration test finds a critical SQL injection flaw in the customer portal. The product owner wants to defer the code fix to the next release in five months, saying the web application firewall already blocks the test payloads. Security operations confirms the WAF rule is in blocking mode. What should the security manager do?",
+      "options": [
+        "Route a time-limited exception to the accountable executive, with the WAF rule tested for bypasses.",
+        "Require the portal to go offline until developers deploy and verify the code fix for the flaw.",
+        "Downgrade the finding's severity in the report, because a compensating control is now in place.",
+        "Accept the product owner's plan and ask the testers to confirm the fix after the next release."
+      ],
+      "correct": [0],
+      "rationales": [
+        "Correct. A risk this size needs a formal exception: approved by the person accountable for the business risk, time-limited, and conditional on a compensating control proven to work. WAF rules for SQL injection are often bypassable, so test them.",
+        "Taking a revenue-generating portal offline may be justified under active exploitation, but doing it without assessing the compensating control is disproportionate and is not the security manager's call alone.",
+        "The flaw still exists in the code. A compensating control changes the residual risk recorded in the risk register, not the technical severity of the finding.",
+        "A product owner may lack the authority to accept a critical risk, and nobody has checked that the WAF stops variants. This skips exception handling."
+      ],
+      "concept": "Exception handling: documented, approved by the accountable owner, time-bound, with verified compensating controls.",
+      "trap": "Treating a compensating control as a fix, or jumping to the most disruptive option.",
+      "managerLens": "Neither block the business nor rubber-stamp: put the decision with the right authority, with evidence and an expiry date.",
+      "practicalNote": "Track exceptions in the risk register with an owner and expiry, and retest the WAF rule with encoding and evasion variants.",
+      "gap": "Not knowing how findings move from report to remediation or to a formal exception.",
+      "followUpId": null,
+      "tags": ["exception-handling", "remediation", "compensating-control"]
+    },
+    {
+      "id": "d7-001",
+      "domain": 7,
+      "objective": "7.6",
+      "subtopic": "Incident response sequence",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": "sc-01",
+      "stem": "It is 02:45 and encryption is still spreading to other Mutapa servers. What should the incident manager do NEXT?",
+      "options": [
+        "Start restoring the billing servers from last night's copy in Bulawayo.",
+        "Phone the CEO for approval before any action that affects service.",
+        "Have forensics image every encrypted server before anything changes.",
+        "Isolate affected segments and disable the compromised admin accounts."
+      ],
+      "correct": [3],
+      "rationales": [
+        "Restoring while the attacker still holds domain administrator rights invites re-encryption, and the backups' integrity is not yet known. Recovery follows containment.",
+        "The incident response plan should already give the incident manager authority to contain. Waiting for the CEO while encryption spreads increases the damage; inform executives in parallel.",
+        "Evidence matters, but imaging every server takes hours while encryption spreads. Contain first, preserving volatile evidence on key systems as part of it.",
+        "Correct. The attack is active, so containment comes first: stop the spread and remove the attacker's privileged access, preserving evidence where practical."
+      ],
+      "concept": "Incident response: after detection and confirmation, contain before eradication and recovery.",
+      "trap": "Rushing to recovery, or letting evidence collection or approvals delay containment.",
+      "managerLens": "Limit the damage first, under authority delegated in the incident response plan, and keep executives informed in parallel.",
+      "practicalNote": "Typical ransomware containment: isolate hosts or VLANs at the switch or through EDR, disable compromised accounts, block command-and-control, and protect the backup systems.",
+      "gap": "Not knowing the order of incident response steps under pressure.",
+      "followUpId": "d7-002",
+      "tags": ["incident-response", "ransomware", "first-step"]
+    },
+    {
+      "id": "d7-002",
+      "domain": 7,
+      "objective": "7.10",
+      "subtopic": "Backup and recovery strategy",
+      "difficulty": 5,
+      "type": "multi",
+      "scenario": "sc-01",
+      "stem": "Containment is holding. Before Mutapa relies on its backups to recover billing, which THREE facts from the case MOST undermine confidence that recovery will succeed? (Select THREE.)",
+      "options": [
+        "The last full restore test of the billing system was 14 months ago.",
+        "Backups are copied each night to a second data centre in Bulawayo.",
+        "The backup catalogue is held only on the backup server in Harare.",
+        "Each backup job is verified with checksums when it completes.",
+        "The backup service runs under a domain administrator account.",
+        "The billing system gets a full backup each night of the week."
+      ],
+      "correct": [0, 2, 4],
+      "rationales": [
+        "Correct. An untested restore is an assumption. Fourteen months of change to the billing system means procedures, dependencies and media may no longer work.",
+        "Geographic separation is a strength: an event at the Harare site does not destroy the copies.",
+        "Correct. If the only catalogue sits on a server in the compromised environment, it may be encrypted, and restores become slow, manual or impossible.",
+        "Checksums show the copy matches what was read. That is a strength, though it does not prove the system can be restored.",
+        "Correct. The attacker holds domain administrator credentials, so the backups may be deleted, encrypted or tampered with. Backup systems need separate credentials and, ideally, immutable copies.",
+        "Nightly full backups support a short recovery point. It is a strength, not a weakness."
+      ],
+      "concept": "Recoverability depends on tested restores, intact backup metadata and backups isolated from production credentials.",
+      "trap": "Treating successful, verified backup jobs as proof that recovery will work.",
+      "managerLens": "Ask for evidence of restorability, not of backup activity; fund regular restore tests and isolated, immutable copies.",
+      "practicalNote": "Ransomware groups routinely target backup consoles with stolen domain administrator credentials; a separate identity domain and immutable storage are now standard advice.",
+      "gap": "Confusing backup success with recovery capability.",
+      "followUpId": "d1-004",
+      "tags": ["backup", "recovery", "ransomware"]
+    },
+    {
+      "id": "d7-003",
+      "domain": 7,
+      "objective": "7.9",
+      "subtopic": "Emergency change",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "At 23:00 on a Monday, a vendor releases a patch for a remote-access VPN vulnerability that is being actively exploited. The VPN serves 1,200 remote staff, and the vendor rates the patch as low risk to stability. The change advisory board next meets on Thursday. What should happen?",
+      "options": [
+        "Schedule the patch for Thursday's board, since the VPN is critical to the business.",
+        "Use the emergency change process: authorised approval now, board review afterwards.",
+        "Patch tonight without a change record, because the threat justifies skipping it.",
+        "Shut down the VPN until the change advisory board approves the patch on Thursday."
+      ],
+      "correct": [1],
+      "rationales": [
+        "Waiting three days with an actively exploited flaw on an internet-facing service is an unacceptable exposure.",
+        "Correct. Emergency changes still need authorisation from a designated approver, testing proportionate to the urgency, a record, and review at the next board meeting.",
+        "Bypassing change management loses the record, rollback planning and accountability, exactly when mistakes during an outage are most likely.",
+        "Removing remote access for days has a large business impact and is unnecessary when an emergency route exists. It is a containment option only if patching fails."
+      ],
+      "concept": "Emergency change management: speed with authorisation, documentation and later review.",
+      "trap": "Thinking urgency means skipping the process, or that following the process means waiting.",
+      "managerLens": "Good processes have a fast path; use it rather than bypassing or delaying.",
+      "practicalNote": "An emergency CAB (ECAB) approves out-of-hours changes; many organisations pre-authorise vendor security patches for exposed systems.",
+      "gap": "Not knowing how change management handles emergencies.",
+      "followUpId": null,
+      "tags": ["change-management", "patching", "emergency"]
+    },
+    {
+      "id": "d8-001",
+      "domain": 8,
+      "objective": "8.2",
+      "subtopic": "Application security testing",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A team builds a Node.js customer app. Its CI pipeline already runs static analysis (SAST) on the team's own code at every commit. Most of the shipped code comes from open-source npm packages. Which TWO additions close the LARGEST remaining testing gaps? (Select TWO.)",
+      "options": [
+        "Software composition analysis of all dependencies in each build",
+        "A second static analysis tool from another vendor to cross-check",
+        "Dynamic testing against a staging deployment before each release",
+        "Code-signing of release artefacts with a key held in an HSM",
+        "Linting plug-ins in developers' IDEs to enforce code style"
+      ],
+      "correct": [0, 2],
+      "rationales": [
+        "Correct. SCA inventories open-source dependencies and flags known vulnerabilities and licence issues. SAST on first-party code does not cover them, and they make up most of the app.",
+        "Another SAST tool may find a few extra issues, but it tests the same small share of the code in the same way.",
+        "Correct. Dynamic testing (DAST) exercises the running application and finds configuration, authentication and runtime issues that static analysis cannot see.",
+        "Code signing protects the integrity of what is shipped. Valuable, but it is not testing and finds no vulnerabilities.",
+        "Style linting improves consistency. It is not a meaningful security test."
+      ],
+      "concept": "Test coverage: SAST for your own code, SCA for dependencies, DAST for the running app.",
+      "trap": "Assuming SAST covers third-party components, or confusing integrity controls with testing.",
+      "managerLens": "Invest where the risk is: most modern code is third-party, so dependency analysis gives the biggest return.",
+      "practicalNote": "SCA tools also produce SBOMs. DAST usually runs against staging, with authenticated scans for logged-in functions.",
+      "gap": "Not knowing what each application security testing technique covers.",
+      "followUpId": "d8-002",
+      "tags": ["sast", "dast", "sca", "appsec"]
+    },
+    {
+      "id": "d8-002",
+      "domain": 8,
+      "objective": "8.4",
+      "subtopic": "Commercial off-the-shelf software",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": null,
+      "stem": "A ministry is buying a commercial HR system that will hold staff medical and disciplinary records. The vendor refuses to share source code, and its licence forbids reverse engineering. The procurement committee meets next week, and the quoted price expires at month end. Which approach BEST assesses the product's security before purchase?",
+      "options": [
+        "Run a DAST scan against the vendor's public demo instance without asking",
+        "Decompile the client application to look for hard-coded secrets and flaws",
+        "Require independent test results, an SBOM and security terms in the contract",
+        "Rely on the product's market share, since many governments already use it"
+      ],
+      "correct": [2],
+      "rationales": [
+        "Testing a system you do not own without permission may be illegal and breaches the vendor's terms. It also tests a demo, not your deployment.",
+        "This breaches the licence agreement and carries legal risk. It is not an approach a manager can approve.",
+        "Correct. When you cannot inspect the code, rely on independent assurance (third-party test reports or certifications), transparency about components (an SBOM) and enforceable commitments on vulnerability handling.",
+        "Popularity is not assurance. Widely used products are also attractive targets."
+      ],
+      "concept": "Assessing acquired software: independent assurance, transparency and contractual controls.",
+      "trap": "Testing without authorisation, or substituting popularity for evidence.",
+      "managerLens": "Make security evidence a procurement requirement, within legal and contractual limits.",
+      "practicalNote": "Ask for recent independent penetration test summaries, certifications such as Common Criteria where relevant, an SBOM, and a vulnerability disclosure and patching commitment in the contract.",
+      "gap": "Not knowing the legitimate ways to gain assurance over commercial software.",
+      "followUpId": null,
+      "tags": ["cots", "procurement", "sbom"]
+    }
+  ]
+}

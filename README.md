@@ -2,7 +2,11 @@
 
 A personal CISSP study app: an offline, installable PWA that tells you what to study next. Built in vanilla HTML, CSS and JavaScript, with no build step, no backend and no accounts. Progress stays on the device; use **More → Export progress** to back it up or move it to another device.
 
-> Status: phase 2 of 10 (domain data model for the 2024 and 2027 outlines). See `VALIDATION.md`.
+> Status: phase 3 of 10 (question engine with all modes and a 20-question seed bank). See `VALIDATION.md`.
+
+## Question modes
+
+Practice set, Scenario set, Mini exam (25 × 90 s), Adaptive mock (100 to 150 questions, 3 hours; a staircase simulation, not ISC2's algorithm; unlocks at 150 questions), Weakness drill and Hard mode (levels 5 to 6). Confidence (guess / unsure / sure) is captured before every answer is revealed.
 
 ## Exam facts
 
@@ -28,6 +32,18 @@ npx playwright install chromium
 
 ```bash
 npm run test:all
+```
+
+Check the question bank against the standard (schema and give-away lint):
+
+```bash
+npm run validate
+```
+
+Rerun the 300-paper randomness proof:
+
+```bash
+npm run simulate
 ```
 
 ## Dependencies

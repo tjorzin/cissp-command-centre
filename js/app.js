@@ -6,6 +6,9 @@ import { renderHome } from './views/home.js';
 import { renderPlaceholder } from './views/placeholder.js';
 import { renderMore } from './views/more.js';
 import { renderStudy } from './views/study.js';
+import { renderQuestions } from './views/questions.js';
+import { renderSession } from './views/session.js';
+import { renderResults } from './views/results.js';
 
 // A null backend makes every storage call throw, which the store catches: it then
 // runs in memory and isPersistent() reports false so the app can warn.
@@ -24,7 +27,9 @@ const ctx = { store, data: {} };
 const routes = {
   home: renderHome,
   study: renderStudy,
-  questions: (c) => renderPlaceholder(c, 'Questions', 'Practice sets, scenario sets, mini exams, adaptive mocks, weakness mode and hard mode arrive in phase 3.'),
+  questions: renderQuestions,
+  session: renderSession,
+  results: renderResults,
   ledger: (c) => renderPlaceholder(c, 'Error Ledger', 'Every miss and every lucky guess is recorded here from phase 4, with the Patterns panel.'),
   more: renderMore
 };
@@ -55,8 +60,9 @@ function route() {
   const [first, ...params] = location.hash.replace(/^#\/?/, '').split('/');
   const name = routes[first] ? first : 'home';
   const view = routes[name];
+  const tab = name === 'session' || name === 'results' ? 'questions' : name;
   document.querySelectorAll('.tabbar a').forEach((a) => {
-    if (a.dataset.tab === name) a.setAttribute('aria-current', 'page');
+    if (a.dataset.tab === tab) a.setAttribute('aria-current', 'page');
     else a.removeAttribute('aria-current');
   });
   const main = document.getElementById('main');
@@ -76,9 +82,12 @@ function watchOnline() {
 async function start() {
   applyTheme();
   watchOnline();
-  const [outlines, domains] = await Promise.allSettled([loadJSON('data/outlines.json'), loadJSON('data/domains.json')]);
-  if (outlines.status === 'fulfilled') ctx.data.outlines = outlines.value; else console.error(outlines.reason);
-  if (domains.status === 'fulfilled') ctx.data.domains = domains.value; else console.error(domains.reason);
+  const files = { outlines: 'data/outlines.json', domains: 'data/domains.json', questions: 'data/questions.json' };
+  const loaded = await Promise.allSettled(Object.values(files).map(loadJSON));
+  Object.keys(files).forEach((k, i) => {
+    if (loaded[i].status === 'fulfilled') ctx.data[k] = loaded[i].value;
+    else console.error(loaded[i].reason);
+  });
   store.subscribe(() => { applyTheme(); renderBanners(); });
   addEventListener('hashchange', route);
   route();

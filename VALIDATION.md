@@ -2,6 +2,42 @@
 
 Each phase adds a section. Commands are run from the repo root with Node 24.22.1 and Playwright 1.64.1 (Chromium), using a Pixel 7 profile at 360 × 780, time zone Africa/Harare.
 
+## Phase 3: question engine, all modes, seed bank (27 October 2026)
+
+`node tests/validate-content.js`: **no errors**, 1 warning (d3-001 stem is 38 words at difficulty 4).
+- **Schema check:** every question has all 18 fields, `rationales.length === options.length`, valid `correct` indices, ids, objectives and scenario links resolve.
+- **Give-away lint:** checks option length parity (≤ 35% longer than the others), correct-only stem echo, absolutes in more than one option, "all/none of the above", "Select TWO/THREE" wording, and rationale depth. On its first run it caught 4 real tells in the seed bank (absolutes in several options in 3 questions; correct answers in d8-001 were the only ones echoing the stem). All were rewritten.
+- **Answer-key spread (15 single-answer items):** positions 0/1/2/3 hold 3/4/5/3 (max 33%). Correct option is the single longest in 4/15 (27%).
+- **Bank shape:** 20 questions, 1 case study (3 questions), 5 multi-select (25%; 3 × TWO, 2 × THREE), difficulty 3: 2, 4: 10, 5: 6, 6: 2 (90% at 4 to 6). Domains 4/2/2/2/3/2/3/2.
+
+`npm test`: **49 passed, 0 failed** (24 new)
+- Lint self-tests: crafted bad questions are caught for length tells, stem echo, absolutes, banned options, multi wording, schema faults and a skewed answer key.
+- Engine: seeded shuffle reproducible; grading all-or-nothing; largest-remainder allocation sums to n and is within one of weight × n for both outlines at 25/100/125/150 (100 → 16/10/13/13/13/12/13/10); weakness mode puts misses and guesses first, then the same objectives; scenario order kept; hard mode is levels 5 to 6 only; outline-tagged questions filtered; session lifecycle records answers, time per question, results and the **Harare** study day.
+
+**Randomness proof** (`node tests/sim-papers.js 300`):
+
+| Run | Result |
+|---|---|
+| 300 mini papers, synthetic 640-question bank | 300/300 distinct papers; every question seen in ≥ 3 option orders (mean 9.2); per-domain count equals the weighted allocation 4/3/3/3/3/3/3/3 on every paper |
+| 300 mini papers, 20-question seed bank | 300/300 distinct; every question seen in all 24 option orders; domain mix is the bank's own mix (it uses all 20), not the weights |
+| 300 mocks each at simulated skill 2.5 / 4 / 5.5 | length 100 to 150 every run; domain counts within 0.84 of weight × items at every step; bands 0/0/300, 135/147/18, 300/0/0 (above/borderline/below) |
+
+`npx playwright test`: **16 passed, 0 failed** (5 new; 3 consecutive runs)
+- Practice: submit stays disabled until both an answer and a confidence rating are given; a forced wrong answer shows "Incorrect", a rationale for every option, the keys, and the "Think like a manager" checklist; 10-question set ends on results showing 9/10; storage holds 10 answers with qid, correctness, confidence and mode; Weakness drill then opens on the missed question.
+- Scenario set shows the case study and keeps question order. Mini exam shows a 30-minute timer, gives no feedback until the end, and can be ended early. An unfinished session survives reload and resumes. The adaptive mock shows why it is locked. No horizontal scroll at 360 px.
+
+Manual review: screenshots of a question, its review and the hub (360 px, dark). Found and fixed a stray "null" under single-answer stems; a test now guards it.
+
+### Validated
+- Engine logic, randomness and domain mix by simulation; full user flow in Chromium.
+
+### Not validated
+- **Difficulty levels are judged, not measured.** No item statistics exist yet.
+- **No question has been checked against ISC2's real exam**, and none is a real item.
+- **The adaptive mock is a staircase simulation**, not ISC2's CAT, and its bands (thresholds 4.5 and 3.0) are assumptions. It is locked in the app until the bank holds 150 questions with enough in every domain; it has been exercised only on a synthetic bank.
+- The seed bank is 20 questions: mini exams currently use all 20 and follow the bank's domain mix, not the weights.
+- The give-away lint is heuristic: it cannot catch grammatical tells or category odd-one-out; those remain review checks.
+
 ## Phase 2: domain data model for both outlines (27 October 2026)
 
 `npm test`: **25 passed, 0 failed** (10 new)
