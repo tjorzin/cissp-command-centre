@@ -113,6 +113,14 @@ Content tests the principles (device-bound keys give the highest assurance; mode
 
 Content tests prioritisation principles (severity alone is not risk; add exploitation evidence and asset criticality), not version-specific scores.
 
+## Framework currency check: Domain 7 batch (28 October 2026)
+
+| Item | Finding | Source quality |
+|---|---|---|
+| NIST SP 800-61 | **Revision 3 final, 3 April 2025**, superseding Rev. 2. Recast as a CSF 2.0 Community Profile; a secondary source says it replaces Rev. 2's lifecycle (preparation; detection and analysis; containment, eradication and recovery; post-incident activity) with the six CSF functions | NIST (publication); secondary (lifecycle detail) |
+
+Content uses the 2024 CISSP outline's incident steps (7.6) and the stable principle that containment precedes eradication and recovery; it does not test Rev. 2's phase names as current NIST guidance.
+
 ## Experience and the Associate route (verified)
 
 - Five years cumulative, full-time, paid experience in **two or more** of the eight domains.

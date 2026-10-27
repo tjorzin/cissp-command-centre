@@ -71,6 +71,16 @@
         "d6-005"
       ],
       "text": "Zambezi Pay processes card and mobile money payments for 300 merchants in Zimbabwe and Zambia. Its internal audit team of three reports to the CFO, who also owns IT. The same penetration testing firm has tested the company every year for five years. Large merchant clients now ask for independent assurance that Zambezi Pay's security controls work across the whole year. The security dashboard presented to the board shows 'patches applied this month' and 'awareness course completion', both green."
+    },
+    {
+      "id": "sc-08",
+      "title": "Security operations at a hospital group",
+      "questionIds": [
+        "d7-004",
+        "d7-005",
+        "d7-006"
+      ],
+      "text": "Parirenyatwa Private Hospitals runs four hospitals in Harare and Mutare. Its three-person SOC uses a SIEM that raises about 4,000 alerts a day, of which analysts look at fewer than 200; most turn out to be false positives. EDR is installed on 60% of workstations and on none of the servers. This morning, a nurse's workstation began uploading large volumes of data to an unknown cloud storage site, and the legal team says the police may need to be involved if patient records were taken."
     }
   ],
   "questions": [
@@ -6958,6 +6968,1109 @@
         "change-management",
         "patching",
         "emergency"
+      ]
+    },
+    {
+      "id": "d7-004",
+      "domain": 7,
+      "objective": "7.2",
+      "subtopic": "Alert fatigue and tuning",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": "sc-08",
+      "stem": "The hospital's CISO wants the SOC to stop missing real attacks among its 4,000 daily alerts, without hiring more analysts this year. What should the SOC do FIRST?",
+      "options": [
+        "Buy a second SIEM so that alerts can be split between two consoles",
+        "Tune or retire noisy rules, rank by risk and automate triage",
+        "Raise the alert threshold until only 200 alerts a day are produced",
+        "Ask analysts to work longer shifts until the backlog is cleared"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "A second SIEM doubles cost and complexity and does nothing about the noise.",
+        "Correct. Removing noisy rules, prioritising detections that protect critical assets, and automating enrichment with SOAR let three analysts focus on what matters.",
+        "Raising thresholds blindly may suppress the very alerts that matter.",
+        "Longer shifts are unsustainable and burn out the team without fixing the cause."
+      ],
+      "concept": "Alert fatigue is fixed by tuning and risk-based prioritisation, with automation.",
+      "trap": "Adding tools or effort instead of improving signal quality.",
+      "managerLens": "Measure the SOC by detections that matter, not alerts processed.",
+      "practicalNote": "Detection use cases should map to the organisation's top threats and critical assets.",
+      "gap": "Running a SOC effectively.",
+      "followUpId": "d7-005",
+      "tags": [
+        "siem",
+        "soar",
+        "alert-fatigue"
+      ]
+    },
+    {
+      "id": "d7-005",
+      "domain": 7,
+      "objective": "7.1",
+      "subtopic": "Evidence handling in a live incident",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": "sc-08",
+      "stem": "The nurse's workstation is still running and uploading data. Legal says police may become involved. The IT team wants to reimage the machine at once. What should the incident lead do?",
+      "options": [
+        "Reimage the workstation now so the nurse can get back to work",
+        "Leave it running untouched until the police arrive to examine it",
+        "Switch it off at the wall so that no more data can leave it",
+        "Isolate it, capture memory and image it under chain of custody"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "Reimaging destroys the evidence needed to know what was taken and to support any prosecution.",
+        "Leaving it connected lets the exfiltration continue.",
+        "Pulling the power stops the upload but destroys volatile memory evidence such as running processes and connections.",
+        "Correct. Network isolation stops the upload while keeping the machine running, so memory can be captured, then the disk imaged, with every step recorded."
+      ],
+      "concept": "Contain without destroying evidence: isolate, capture volatile data, then image.",
+      "trap": "Choosing speed of recovery or a hard power-off over evidence preservation.",
+      "managerLens": "When legal action is possible, handle every step as if it will be examined in court.",
+      "practicalNote": "EDR network containment can isolate a host while keeping it reachable for forensic collection.",
+      "gap": "Balancing containment with evidence preservation.",
+      "followUpId": "d7-006",
+      "tags": [
+        "forensics",
+        "evidence",
+        "incident-response"
+      ]
+    },
+    {
+      "id": "d7-006",
+      "domain": 7,
+      "objective": "7.7",
+      "subtopic": "Endpoint protection coverage",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": "sc-08",
+      "stem": "After the incident, the hospital has budget to improve detection. EDR covers 60% of workstations and no servers. Which investment gives the MOST improvement?",
+      "options": [
+        "Extend EDR to servers and remaining workstations, riskiest first",
+        "Replace the EDR product with a different vendor's on the same 60%",
+        "Add a second antivirus engine to the workstations that already have EDR",
+        "Buy a honeypot to attract attackers away from the real systems"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. Unmonitored servers and workstations are blind spots; covering them, starting with those holding patient data, closes the largest gap.",
+        "Changing vendors on the same machines leaves the blind spots untouched.",
+        "Doubling protection where it already exists adds little compared with covering unprotected systems.",
+        "A honeypot can add early warning but does not fix missing visibility on real systems."
+      ],
+      "concept": "Coverage gaps undermine detection; close them by risk.",
+      "trap": "Improving where you already have controls rather than where you have none.",
+      "managerLens": "Track control coverage as a key metric.",
+      "practicalNote": "Servers holding sensitive data are usually the first priority for EDR coverage.",
+      "gap": "Prioritising detection investment.",
+      "followUpId": null,
+      "tags": [
+        "edr",
+        "coverage"
+      ]
+    },
+    {
+      "id": "d7-007",
+      "domain": 7,
+      "objective": "7.1",
+      "subtopic": "Order of volatility",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A forensic investigator arrives at a running server suspected of compromise. Which evidence should be collected FIRST?",
+      "options": [
+        "Archived logs already held in the central SIEM",
+        "A full image of the server's hard disks",
+        "The contents of memory and running processes",
+        "Last week's backup tapes for the server"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "SIEM archives are already preserved centrally and will not change soon.",
+        "Disk contents persist after shutdown, so imaging comes after volatile data.",
+        "Correct. Memory, running processes and network connections disappear when the system is shut down or changes, so they come first.",
+        "Backups are the least volatile and can be collected later."
+      ],
+      "concept": "Collect evidence in order of volatility: most short-lived first.",
+      "trap": "Imaging the disk first because it is the familiar step.",
+      "managerLens": "Make order of volatility part of the incident playbook.",
+      "practicalNote": "Memory capture tools are run before shutdown; their output is hashed like any evidence.",
+      "gap": "Knowing evidence collection order.",
+      "followUpId": null,
+      "tags": [
+        "forensics",
+        "volatility"
+      ]
+    },
+    {
+      "id": "d7-008",
+      "domain": 7,
+      "objective": "7.1",
+      "subtopic": "Chain of custody",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "An investigator imaged a suspect's laptop drive, then left the drive in an unlocked office overnight without recording who could access it. What is the MAIN consequence?",
+      "options": [
+        "Gaps in the chain of custody let the evidence be challenged in court",
+        "The drive's data is now encrypted and needs a recovery key to read",
+        "The forensic image is no longer valid and must be destroyed",
+        "The suspect can now claim the evidence belongs to the investigator"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. Without a continuous record of who held the evidence, the defence can argue it may have been altered, which can make it inadmissible.",
+        "Leaving a drive unattended does not encrypt it.",
+        "The image may still be usable, especially if its hash matches; the problem is proving integrity.",
+        "Ownership is not the issue; integrity and handling are."
+      ],
+      "concept": "Chain of custody proves evidence was not tampered with.",
+      "trap": "Thinking a technical copy alone makes evidence safe.",
+      "managerLens": "Train responders: every handover is logged and every item stored securely.",
+      "practicalNote": "Evidence bags with tamper seals and a signed custody form travel with each item.",
+      "gap": "Understanding chain of custody.",
+      "followUpId": null,
+      "tags": [
+        "forensics",
+        "chain-of-custody"
+      ]
+    },
+    {
+      "id": "d7-009",
+      "domain": 7,
+      "objective": "7.2",
+      "subtopic": "User and entity behaviour analytics",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "An accountant who normally downloads a few reports a day suddenly downloads ten times her usual volume at 02:00, using valid credentials. Which capability is BEST suited to spotting this?",
+      "options": [
+        "A signature-based intrusion detection system",
+        "A web application firewall on the finance portal",
+        "Anti-malware on the accountant's workstation",
+        "User and entity behaviour analytics"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "Signatures look for known attack patterns; valid logins and downloads do not match one.",
+        "A WAF protects against web attacks, not unusual but valid use.",
+        "Anti-malware looks for malicious software, not unusual behaviour by a user.",
+        "Correct. UEBA learns normal behaviour for each user and flags deviations such as unusual volume and time."
+      ],
+      "concept": "UEBA detects anomalies in behaviour that signatures miss.",
+      "trap": "Choosing signature-based tools for misuse of valid credentials.",
+      "managerLens": "Insider and stolen-credential threats need behaviour-based detection.",
+      "practicalNote": "UEBA alerts work best when combined with context such as HR events like resignations.",
+      "gap": "Matching detection to threat type.",
+      "followUpId": null,
+      "tags": [
+        "ueba",
+        "insider-threat"
+      ]
+    },
+    {
+      "id": "d7-010",
+      "domain": 7,
+      "objective": "7.2",
+      "subtopic": "Egress monitoring",
+      "difficulty": 5,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A company suspects data is being exfiltrated slowly through DNS queries and encrypted uploads to personal cloud storage. Which TWO monitoring measures address this MOST directly? (Select TWO.)",
+      "options": [
+        "Analyse outbound DNS for unusual query lengths, volumes and domains",
+        "Apply DLP and cloud access controls to outbound web uploads",
+        "Monitor inbound email for malicious attachments and links",
+        "Increase the retention of firewall logs from 90 days to a year",
+        "Scan internal servers for missing patches more often"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. DNS tunnelling shows up as long, high-volume or random-looking queries to unusual domains.",
+        "Correct. DLP and CASB controls inspect and block uploads of sensitive data to unsanctioned services.",
+        "Inbound email monitoring addresses initial access, not data leaving.",
+        "Longer retention helps investigation but does not detect the exfiltration.",
+        "Patching reduces vulnerabilities but does not watch data leaving."
+      ],
+      "concept": "Egress monitoring looks at what leaves: DNS, uploads and unusual channels.",
+      "trap": "Focusing on inbound threats when the question is about outbound data.",
+      "managerLens": "Know where your data can leave, and watch those paths.",
+      "practicalNote": "Forcing all DNS through internal resolvers makes DNS tunnelling much easier to see and block.",
+      "gap": "Designing egress monitoring.",
+      "followUpId": null,
+      "tags": [
+        "egress",
+        "dlp",
+        "dns"
+      ]
+    },
+    {
+      "id": "d7-011",
+      "domain": 7,
+      "objective": "7.3",
+      "subtopic": "Configuration drift",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "Servers built to a hardened baseline are found, a year later, to have many settings changed by hand to solve one-off problems. What BEST prevents this happening again?",
+      "options": [
+        "Rebuild every server from scratch once a year",
+        "Use configuration management that detects and corrects drift",
+        "Ask administrators to document any setting they change by hand",
+        "Remove administrators' rights so no settings can ever change"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "Annual rebuilds still leave drift in place for most of the year.",
+        "Correct. Configuration management tools compare systems with the baseline continuously and correct or report drift, with legitimate changes made through the baseline itself.",
+        "Documentation depends on discipline and does not stop or detect undocumented changes.",
+        "Removing all rights makes systems unmanageable; controlled change is the goal."
+      ],
+      "concept": "Configuration management keeps systems at their baseline and detects drift.",
+      "trap": "Relying on manual discipline or impractical lockdown.",
+      "managerLens": "Make the secure configuration the easy, automatic state.",
+      "practicalNote": "Desired-state configuration tools and CIS benchmark scans are common ways to manage drift.",
+      "gap": "Managing configuration over time.",
+      "followUpId": null,
+      "tags": [
+        "configuration-management",
+        "baselines"
+      ]
+    },
+    {
+      "id": "d7-012",
+      "domain": 7,
+      "objective": "7.3",
+      "subtopic": "Secure provisioning",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "Engineers build new cloud servers by hand from a checklist, and audits keep finding missed hardening steps. Which approach BEST makes builds consistent and secure?",
+      "options": [
+        "Add more steps to the build checklist and require a second signature",
+        "Have the security team rebuild each server after engineers finish",
+        "Build servers from version-controlled templates with hardening built in",
+        "Allow engineers to skip hardening on servers that are not internet-facing"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "Longer checklists increase the chance of missed steps.",
+        "Rebuilding everyone's work creates a bottleneck and duplicate effort.",
+        "Correct. Infrastructure as code or golden images produce the same hardened result every time, and changes are reviewed in version control.",
+        "Internal servers still need hardening; attackers move laterally."
+      ],
+      "concept": "Provision from code or hardened images, not by hand.",
+      "trap": "Adding manual steps to a manual process.",
+      "managerLens": "Automate the secure path so consistency does not depend on memory.",
+      "practicalNote": "Policy-as-code checks can block deployments that do not meet the baseline.",
+      "gap": "Securing provisioning.",
+      "followUpId": null,
+      "tags": [
+        "provisioning",
+        "iac"
+      ]
+    },
+    {
+      "id": "d7-013",
+      "domain": 7,
+      "objective": "7.4",
+      "subtopic": "Least privilege in operations",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "Help desk staff can reset the password of any account, including executives and domain administrators, after a phone call. What is the BEST change?",
+      "options": [
+        "Record all calls to the help desk for later review",
+        "Make the help desk staff domain administrators so they are trusted",
+        "Remove password reset from the help desk and move it to IT security",
+        "Tier reset rights, sending privileged resets to a stronger process"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "Recording helps investigation but does not stop a social engineer resetting an admin password.",
+        "Granting more privilege makes the risk worse.",
+        "Moving all resets elsewhere creates a bottleneck for ordinary users.",
+        "Correct. Least privilege by tier: ordinary resets stay quick, while privileged and executive accounts need stronger identity checks and a separate process."
+      ],
+      "concept": "Apply least privilege to operational roles, tiered by risk.",
+      "trap": "Choosing an all-or-nothing change.",
+      "managerLens": "Protect the highest-value accounts with the strongest processes.",
+      "practicalNote": "Help desk resets of privileged accounts were the entry point in several well-known breaches.",
+      "gap": "Applying least privilege to operations.",
+      "followUpId": null,
+      "tags": [
+        "least-privilege",
+        "help-desk"
+      ]
+    },
+    {
+      "id": "d7-014",
+      "domain": 7,
+      "objective": "7.4",
+      "subtopic": "Outsourced operations",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A company outsources its 24/7 security monitoring to a managed security service provider under a detailed SLA. Which responsibility stays with the company?",
+      "options": [
+        "Accountability for incidents and for risk decisions",
+        "Running the provider's SIEM platform and its infrastructure",
+        "Staffing the provider's overnight analyst shifts",
+        "Maintaining the provider's own detection rules library"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. Operations can be outsourced; accountability for the organisation's security and risk decisions cannot.",
+        "The provider runs and maintains its own SIEM platform under the contract.",
+        "Staffing is the provider's responsibility under the contract.",
+        "The provider maintains its rules, though the company should review their coverage."
+      ],
+      "concept": "Outsourcing operations does not outsource accountability.",
+      "trap": "Believing an SLA transfers responsibility for outcomes.",
+      "managerLens": "Manage the provider: review performance, coverage and escalations.",
+      "practicalNote": "Contracts should define escalation, response authority and reporting, and the company should test them.",
+      "gap": "Managing security service providers.",
+      "followUpId": null,
+      "tags": [
+        "mssp",
+        "sla",
+        "accountability"
+      ]
+    },
+    {
+      "id": "d7-015",
+      "domain": 7,
+      "objective": "7.5",
+      "subtopic": "Media management",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A bank finds that a backup tape listed as stored offsite cannot be found, and nobody can say when it went missing. Which control would have revealed the loss earliest?",
+      "options": [
+        "Labelling each tape with the bank's logo and the date",
+        "Reconciling tape counts against the inventory at every handover",
+        "Storing the tapes in fireproof safes at the offsite vault",
+        "Using longer-life tapes that need replacing less often"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "Labels identify tapes but do not detect a missing one.",
+        "Correct. Checking counts against the inventory at each movement shows a loss at the step where it happened.",
+        "Fireproof safes protect tapes from fire, not loss in transit.",
+        "Tape life affects cost, not loss detection."
+      ],
+      "concept": "Media inventory and reconciliation detect loss quickly.",
+      "trap": "Choosing a protective control when the need is detection.",
+      "managerLens": "If you cannot say where every tape is, you cannot say your data is safe.",
+      "practicalNote": "Barcode scanning at pick-up and delivery makes reconciliation quick.",
+      "gap": "Managing media.",
+      "followUpId": null,
+      "tags": [
+        "media-management"
+      ]
+    },
+    {
+      "id": "d7-016",
+      "domain": 7,
+      "objective": "7.5",
+      "subtopic": "Archives and encryption keys",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": null,
+      "stem": "A pension fund must keep encrypted backups for ten years. Its key management system will be replaced in three years by a different product. What must the migration plan make sure of?",
+      "options": [
+        "That the old archives are deleted once the new system goes live",
+        "That new backups use a longer key length than the old ones",
+        "That each archive stays decryptable for its retention period",
+        "That the old key management system stays switched on forever"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "Deleting archives breaches the ten-year retention requirement.",
+        "Key length for new backups does not help with reading old ones.",
+        "Correct. Encrypted archives are useless without their keys, so keys must be migrated or archives re-encrypted, and recovery tested.",
+        "Keeping old systems running indefinitely is costly and becomes a security risk as support ends."
+      ],
+      "concept": "Encrypted archives depend on keys being recoverable for the whole retention period.",
+      "trap": "Forgetting that lost keys mean lost data.",
+      "managerLens": "Treat key management as part of retention and continuity planning.",
+      "practicalNote": "Test decrypting a sample of old archives after any key management change.",
+      "gap": "Linking key management to retention.",
+      "followUpId": null,
+      "tags": [
+        "archiving",
+        "key-management"
+      ]
+    },
+    {
+      "id": "d7-017",
+      "domain": 7,
+      "objective": "7.6",
+      "subtopic": "Lessons learned",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A company has suffered the same kind of phishing-led account compromise three times in a year. Each time, the affected account was reset and work carried on. Which TWO steps would MOST reduce recurrence? (Select TWO.)",
+      "options": [
+        "Run a root cause analysis after each incident to find why it was possible",
+        "Turn lessons-learned findings into owned actions tracked to completion",
+        "Reset every user's password once a month across the company",
+        "Send a company-wide email after each incident reminding staff to be careful",
+        "Close each incident faster so it does not distract the team"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Root cause analysis reveals the weakness, such as phishable MFA, that allows repeat compromise.",
+        "Correct. Findings only reduce risk when someone owns the fix and it is tracked to completion.",
+        "Routine password resets do not address phishing that captures new passwords too.",
+        "Generic reminders change little against a recurring technical weakness.",
+        "Closing faster without learning repeats the cycle."
+      ],
+      "concept": "Lessons learned turn incidents into lasting fixes.",
+      "trap": "Treating recovery as the end of the incident.",
+      "managerLens": "Report repeat incidents to leadership as a process failure, not bad luck.",
+      "practicalNote": "Post-incident reviews work best when blameless and focused on systemic causes.",
+      "gap": "Completing the incident lifecycle.",
+      "followUpId": null,
+      "tags": [
+        "incident-response",
+        "lessons-learned"
+      ]
+    },
+    {
+      "id": "d7-018",
+      "domain": 7,
+      "objective": "7.7",
+      "subtopic": "Honeypots: enticement and entrapment",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A company sets up a honeypot server named 'payroll-backup' on its internal network to detect intruders. Legal asks whether this is acceptable. Which statement is correct?",
+      "options": [
+        "It is entrapment, because the name is designed to attract attackers",
+        "It is unlawful, because honeypots always break privacy laws",
+        "It is acceptable as long as the honeypot holds real payroll data",
+        "It is enticement, which is generally acceptable for detection"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "An attractive name entices someone already intent on intruding; it does not induce an innocent person to commit a crime.",
+        "Honeypots are widely used legally, though privacy and monitoring rules still apply.",
+        "Real data in a honeypot creates the very exposure it should avoid.",
+        "Correct. Making a target attractive to existing intruders is enticement, generally acceptable; entrapment means inducing someone to commit a crime they otherwise would not."
+      ],
+      "concept": "Enticement is acceptable; entrapment is not.",
+      "trap": "Confusing an attractive lure with inducement to crime.",
+      "managerLens": "Get legal sign-off on deception technologies and keep them free of real data.",
+      "practicalNote": "Any access to an internal honeypot is a high-confidence alert, because no one should be there.",
+      "gap": "Understanding the legal side of honeypots.",
+      "followUpId": null,
+      "tags": [
+        "honeypot",
+        "legal"
+      ]
+    },
+    {
+      "id": "d7-019",
+      "domain": 7,
+      "objective": "7.7",
+      "subtopic": "Sandboxing",
+      "difficulty": 2,
+      "type": "single",
+      "scenario": null,
+      "stem": "Email attachments that are not known to be malicious are opened automatically in an isolated virtual environment to watch what they do before delivery. What is this control called?",
+      "options": [
+        "A honeynet of decoys",
+        "Sandbox detonation",
+        "A web app firewall",
+        "A forward web proxy"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "A honeynet is a network of decoys meant to attract attackers.",
+        "Correct. Sandboxing runs suspicious content in isolation to observe its behaviour safely.",
+        "A WAF filters web requests to applications.",
+        "A forward proxy relays users' web traffic; it does not detonate files."
+      ],
+      "concept": "Sandboxes detonate suspicious content safely.",
+      "trap": "Confusing sandboxes with decoys.",
+      "managerLens": "Use sandboxing for unknown files; known-bad files are blocked outright.",
+      "practicalNote": "Some malware detects sandboxes and stays dormant, so sandboxing is one layer among several.",
+      "gap": "Knowing detective and preventive tools.",
+      "followUpId": null,
+      "tags": [
+        "sandbox",
+        "email-security"
+      ]
+    },
+    {
+      "id": "d7-020",
+      "domain": 7,
+      "objective": "7.7",
+      "subtopic": "Deploying an IPS",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A bank is placing a new intrusion prevention system inline in front of its core banking servers. How should it be introduced?",
+      "options": [
+        "Enable blocking for every signature on day one for maximum protection",
+        "Install it out of band, so that traffic is unaffected",
+        "Run it in detection mode, tune it, then enable blocking selectively",
+        "Let the vendor enable whichever signatures it thinks are best"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "Blocking everything at once risks false positives stopping legitimate transactions.",
+        "Out of band, it becomes an IDS and cannot prevent anything.",
+        "Correct. Observing real traffic first lets the bank tune out false positives before blocking, so protection does not cost availability.",
+        "Vendor defaults do not reflect the bank's traffic or risk decisions."
+      ],
+      "concept": "Introduce inline prevention carefully: detect, tune, then block.",
+      "trap": "Turning on blocking without tuning.",
+      "managerLens": "Availability of core services is part of security; plan rollouts with rollback.",
+      "practicalNote": "Many IPS deployments keep some signatures alert-only permanently.",
+      "gap": "Deploying preventive controls safely.",
+      "followUpId": null,
+      "tags": [
+        "ips"
+      ]
+    },
+    {
+      "id": "d7-021",
+      "domain": 7,
+      "objective": "7.8",
+      "subtopic": "Patch deployment",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A critical operating system patch must reach 2,000 workstations this week. Previous patches have occasionally broken a line-of-business application. What is the BEST deployment approach?",
+      "options": [
+        "Push it to all 2,000 workstations at once to finish quickly",
+        "Wait for next month's patch cycle so testing can be thorough",
+        "Ask each user to install it themselves when convenient",
+        "Test on a pilot group, then roll out in stages with rollback ready"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "A simultaneous push risks breaking the application everywhere at once.",
+        "Waiting a month leaves a critical vulnerability open.",
+        "User-driven installation is unreliable and slow.",
+        "Correct. A pilot catches problems early, and staged rollout limits impact while finishing within the week."
+      ],
+      "concept": "Patch quickly but safely: pilot, stage, verify.",
+      "trap": "Trading safety for speed, or speed for safety.",
+      "managerLens": "Set patch SLAs by risk and build a process that meets them safely.",
+      "practicalNote": "Pilot groups should include machines that run the most fragile business applications.",
+      "gap": "Running patch deployments.",
+      "followUpId": null,
+      "tags": [
+        "patching"
+      ]
+    },
+    {
+      "id": "d7-022",
+      "domain": 7,
+      "objective": "7.8",
+      "subtopic": "Vulnerability management programme",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A company's vulnerability management keeps missing systems and fixing issues in no clear order. Which TWO changes would MOST improve the programme? (Select TWO.)",
+      "options": [
+        "Base scanning on a complete, maintained asset inventory",
+        "Set remediation SLAs by risk, with owners for each system",
+        "Scan only the systems that were patched most recently",
+        "Leave remediation priorities to each system administrator",
+        "Publish the full scan results on the company intranet"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Systems missing from the inventory are missing from scans.",
+        "Correct. Risk-based SLAs and named owners turn findings into ordered, accountable work.",
+        "Scanning only recently patched systems misses the ones that need attention most.",
+        "Leaving priority to each administrator produces inconsistent, risk-blind ordering.",
+        "Publishing vulnerability details widely helps attackers, not remediation."
+      ],
+      "concept": "Vulnerability management needs complete coverage and risk-based, owned remediation.",
+      "trap": "Choosing options that narrow coverage or diffuse accountability.",
+      "managerLens": "Report coverage and SLA performance, not just counts of findings.",
+      "practicalNote": "Comparing scanner targets with the CMDB and cloud inventories regularly finds missing systems.",
+      "gap": "Designing vulnerability management.",
+      "followUpId": null,
+      "tags": [
+        "vulnerability-management",
+        "inventory"
+      ]
+    },
+    {
+      "id": "d7-023",
+      "domain": 7,
+      "objective": "7.9",
+      "subtopic": "Unauthorised changes",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "Configuration monitoring shows that a new rule allowing inbound RDP from the internet was added to a firewall at 02:00. There is no change ticket. What should happen?",
+      "options": [
+        "Raise a retrospective change ticket so the records are complete",
+        "Treat it as a possible incident: find who added it and assess exposure",
+        "Leave it in place until the next change advisory board meeting",
+        "Remove the rule quietly and remind administrators about the process"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "Paperwork after the fact legitimises a change nobody approved and may hide an attack.",
+        "Correct. An unapproved rule exposing RDP to the internet may be an attacker's work; investigate who made it, whether it was used, and remove it through change control.",
+        "Leaving an internet-facing RDP rule for days invites attack.",
+        "Removing it without investigation may destroy evidence and miss a compromise."
+      ],
+      "concept": "Unauthorised changes are investigated as potential incidents.",
+      "trap": "Treating an unauthorised change as an administrative lapse only.",
+      "managerLens": "Change monitoring is a detection control; act on what it finds.",
+      "practicalNote": "Check firewall and VPN logs for connections that used the rule while it existed.",
+      "gap": "Responding to unauthorised change.",
+      "followUpId": null,
+      "tags": [
+        "change-management",
+        "detection"
+      ]
+    },
+    {
+      "id": "d7-024",
+      "domain": 7,
+      "objective": "7.10",
+      "subtopic": "Recovery site selection",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A payment switch has a recovery time objective of four hours. The board asks for the cheapest recovery site that can meet it. Which option fits?",
+      "options": [
+        "A hot recovery site",
+        "A warm recovery site",
+        "A cold recovery site",
+        "A reciprocal agreement"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. Only a hot site (or an equivalent cloud failover) is ready within hours; it is the cheapest option that meets the RTO.",
+        "A warm site usually needs days to load data and configure systems.",
+        "A cold site provides only space and power; it takes weeks.",
+        "Reciprocal agreements are hard to enforce and rarely support a payment switch within four hours."
+      ],
+      "concept": "The RTO decides the recovery site; cost is weighed only among options that meet it.",
+      "trap": "Choosing the cheapest option regardless of the requirement.",
+      "managerLens": "'Cheapest' means cheapest that still meets the business requirement.",
+      "practicalNote": "Cloud-based recovery can offer hot-site recovery times at lower standing cost.",
+      "gap": "Matching recovery sites to RTOs.",
+      "followUpId": null,
+      "tags": [
+        "recovery-sites",
+        "rto"
+      ]
+    },
+    {
+      "id": "d7-025",
+      "domain": 7,
+      "objective": "7.11",
+      "subtopic": "DR communications",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "During a disaster recovery invocation at a bank, a journalist calls an engineer asking whether customer data was lost. What should the engineer do?",
+      "options": [
+        "Explain the technical situation accurately so the story is correct",
+        "Confirm that no data was lost, to reassure the bank's customers",
+        "Refer the journalist to the plan's designated communications lead",
+        "Decline to answer and hang up without saying anything further"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "Even accurate technical detail from the wrong person can conflict with official messages and legal duties.",
+        "Unverified reassurance may be false and create legal and reputational damage.",
+        "Correct. The plan names who speaks to the media, so messages are accurate, consistent and legally sound.",
+        "Hanging up without a referral looks evasive; the plan gives a better route."
+      ],
+      "concept": "DR communications go through designated spokespeople.",
+      "trap": "Helpful improvisation by the wrong person.",
+      "managerLens": "Brief everyone on the plan's communication rules before they are needed.",
+      "practicalNote": "Pre-approved holding statements help the communications lead respond quickly.",
+      "gap": "Managing communications during disasters.",
+      "followUpId": null,
+      "tags": [
+        "disaster-recovery",
+        "communications"
+      ]
+    },
+    {
+      "id": "d7-026",
+      "domain": 7,
+      "objective": "7.11",
+      "subtopic": "Restoration order",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "After a data centre fire, a company is restoring 40 systems at its recovery site. Engineers propose starting with the easiest systems to build momentum. What should decide the restoration order?",
+      "options": [
+        "The order in which the systems were originally installed",
+        "The size of each system, smallest first to finish quickly",
+        "The engineers' preference, since they know the systems best",
+        "Business priority and dependencies from the impact analysis"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "Installation history has nothing to do with business need.",
+        "Restoring small systems first can leave critical services down longest.",
+        "Engineers' knowledge matters for how to restore, not for what the business needs first.",
+        "Correct. The BIA sets which processes are most critical and what each depends on, which determines the order."
+      ],
+      "concept": "Restore in business priority order, respecting dependencies.",
+      "trap": "Letting technical convenience set priorities.",
+      "managerLens": "Agree restoration priorities before the disaster, not during it.",
+      "practicalNote": "Infrastructure services such as identity, DNS and networking usually come first because critical systems depend on them.",
+      "gap": "Prioritising restoration.",
+      "followUpId": null,
+      "tags": [
+        "disaster-recovery",
+        "bia"
+      ]
+    },
+    {
+      "id": "d7-027",
+      "domain": 7,
+      "objective": "7.12",
+      "subtopic": "Choosing a DR test",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A mobile money operator wants real evidence that its recovery site can process live transactions, without interrupting service to customers. Which test fits BEST?",
+      "options": [
+        "A tabletop exercise",
+        "A parallel test",
+        "A full interruption test",
+        "A checklist read-through"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "A tabletop is a discussion; it does not show the site can process transactions.",
+        "Correct. A parallel test runs real processing at the recovery site alongside production, without stopping customer service.",
+        "Full interruption shuts production down, risking the customer service the operator wants to protect.",
+        "A checklist review checks the plan's content, not the site's capability."
+      ],
+      "concept": "Parallel tests prove capability without disrupting production.",
+      "trap": "Choosing full interruption because it is the most thorough.",
+      "managerLens": "Match test realism to what the business can tolerate.",
+      "practicalNote": "Parallel tests need careful handling of duplicate transactions and results.",
+      "gap": "Choosing DR test types.",
+      "followUpId": null,
+      "tags": [
+        "dr-testing"
+      ]
+    },
+    {
+      "id": "d7-028",
+      "domain": 7,
+      "objective": "7.12",
+      "subtopic": "Tabletop exercises",
+      "difficulty": 3,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A company's new ransomware response plan has never been exercised. It runs a tabletop exercise with IT, legal, communications and senior managers. Which TWO are realistic benefits of this exercise? (Select TWO.)",
+      "options": [
+        "Finding gaps and unclear steps in the plan at low cost",
+        "Clarifying who decides what, including paying or refusing ransom",
+        "Proving the backups can be restored within the RTO",
+        "Measuring how fast the SOC detects real ransomware",
+        "Confirming the recovery site can handle production load"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Talking through a scenario exposes gaps and ambiguities without touching systems.",
+        "Correct. Tabletops are ideal for clarifying decision rights, especially hard business decisions.",
+        "Proving restore times needs a technical test, not a discussion.",
+        "Detection speed is measured by technical exercises such as purple teaming.",
+        "Load capacity needs a parallel or full test."
+      ],
+      "concept": "Tabletops test plans, roles and decisions cheaply; technical tests prove capability.",
+      "trap": "Expecting a discussion exercise to prove technical capability.",
+      "managerLens": "Include executives: the hardest incident decisions are theirs.",
+      "practicalNote": "Injects such as a ransom note or a journalist's call keep tabletops realistic.",
+      "gap": "Knowing what each exercise type proves.",
+      "followUpId": null,
+      "tags": [
+        "tabletop",
+        "dr-testing"
+      ]
+    },
+    {
+      "id": "d7-029",
+      "domain": 7,
+      "objective": "7.13",
+      "subtopic": "BC exercise participation",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A company's annual business continuity exercise is run entirely by the IT department, which fails over its systems and declares success. What is the MAIN weakness?",
+      "options": [
+        "Business process owners have not tested how their work continues",
+        "The exercise should have been run by an outside consultancy",
+        "IT should have failed over twice to make sure the result is reliable",
+        "The exercise should have been unannounced to IT staff"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. Continuity is about business processes; without process owners, nobody tests manual workarounds, people, suppliers or decision-making.",
+        "An outside facilitator can help, but who runs it is not the main gap.",
+        "Repeating the IT failover still leaves the business side untested.",
+        "Surprise may add realism, but the missing participants are the bigger problem."
+      ],
+      "concept": "BC is a business programme; exercises must involve process owners.",
+      "trap": "Equating IT failover with business continuity.",
+      "managerLens": "Business leaders own continuity; IT supports it.",
+      "practicalNote": "Good BC exercises test people, premises, suppliers and processes as well as technology.",
+      "gap": "Understanding the scope of BC exercises.",
+      "followUpId": null,
+      "tags": [
+        "bcp",
+        "exercises"
+      ]
+    },
+    {
+      "id": "d7-030",
+      "domain": 7,
+      "objective": "7.13",
+      "subtopic": "Plan maintenance",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A company merged two departments and moved its call centre to a new building, but its continuity plan still lists the old teams, contacts and location. When should the plan have been updated?",
+      "options": [
+        "At the next scheduled five-yearly review of the plan",
+        "Only after the next real disruption shows the gaps",
+        "When the major changes happened, as well as on a regular cycle",
+        "When the external auditors request an updated copy"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "Five years is far too long, and major change should not wait for a cycle.",
+        "Waiting for a disruption means the plan fails when it is needed.",
+        "Correct. Plans are reviewed regularly (at least annually) and whenever major organisational or technical change occurs.",
+        "Plans are maintained for the business, not for auditors."
+      ],
+      "concept": "Continuity plans are maintained on a cycle and after major change.",
+      "trap": "Treating the plan as a document reviewed only on schedule.",
+      "managerLens": "Make plan updates part of change management for reorganisations and moves.",
+      "practicalNote": "Contact lists are the parts most often out of date; check them quarterly.",
+      "gap": "Keeping plans current.",
+      "followUpId": null,
+      "tags": [
+        "bcp",
+        "maintenance"
+      ]
+    },
+    {
+      "id": "d7-031",
+      "domain": 7,
+      "objective": "7.14",
+      "subtopic": "Tailgating",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "Staff at a data centre often hold the secure door open for colleagues carrying equipment, so several people enter on one badge swipe. Which control BEST addresses this?",
+      "options": [
+        "A sign on the door asking staff to badge in individually",
+        "A longer delay before the door locks again after each swipe",
+        "A camera that records everyone entering through the door",
+        "A mantrap or turnstile that admits one person per authentication"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "Signs rely on behaviour that already isn't happening.",
+        "A longer delay before locking makes it even easier for others to slip through.",
+        "A camera records tailgating but does not prevent it.",
+        "Correct. A mantrap or turnstile physically allows one person per badge, preventing tailgating and piggybacking."
+      ],
+      "concept": "Mantraps and turnstiles enforce one person per authentication.",
+      "trap": "Choosing awareness or detection where prevention is needed.",
+      "managerLens": "Back physical controls with awareness so staff do not feel rude challenging others.",
+      "practicalNote": "Equipment deliveries need a separate controlled route so the main door is not propped open.",
+      "gap": "Preventing tailgating.",
+      "followUpId": null,
+      "tags": [
+        "physical",
+        "tailgating"
+      ]
+    },
+    {
+      "id": "d7-032",
+      "domain": 7,
+      "objective": "7.14",
+      "subtopic": "Visitor management",
+      "difficulty": 3,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A bank is tightening visitor controls at its head office, which contains a server room and a trading floor. Which TWO controls should apply to visitors? (Select TWO.)",
+      "options": [
+        "Log each visitor's identity, host, arrival and departure",
+        "Issue a visible visitor badge and escort visitors in secure areas",
+        "Let regular contractors use a shared visitor badge each week",
+        "Allow visitors into the server room if their host vouches for them",
+        "Ask visitors to sign in only when security staff are on duty"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. A log records who was on site, when and with whom, for security and emergencies.",
+        "Correct. Visible badges and escorts make visitors identifiable and supervised.",
+        "Shared badges mean nobody can tell which contractor was on site, destroying accountability.",
+        "Vouching is not authorisation; server room access needs a defined approval and escort.",
+        "Controls that apply only sometimes are easy to bypass."
+      ],
+      "concept": "Visitor management: identification, logging, visible badges and escorts.",
+      "trap": "Accepting convenience shortcuts for familiar visitors.",
+      "managerLens": "Treat visitors as untrusted until escorted, however familiar.",
+      "practicalNote": "Visitor logs also help account for everyone during an evacuation.",
+      "gap": "Managing visitors.",
+      "followUpId": null,
+      "tags": [
+        "physical",
+        "visitors"
+      ]
+    },
+    {
+      "id": "d7-033",
+      "domain": 7,
+      "objective": "7.15",
+      "subtopic": "Travel security",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A CFO is travelling to a country where border officials are known to copy devices and hotel networks are monitored. Which TWO measures BEST protect company data on this trip? (Select TWO.)",
+      "options": [
+        "Issue a clean loaner laptop and phone with minimal data, wiped on return",
+        "Connect only through the corporate VPN, avoiding direct hotel network use",
+        "Lock the CFO's usual laptop in the hotel safe when it is not in use",
+        "Turn off full-disk encryption so customs checks are less likely to delay entry",
+        "Bring the usual laptop so the CFO has their files to hand while away"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. A loaner with minimal data limits what can be copied, and wiping it on return removes anything planted.",
+        "Correct. A VPN protects traffic from monitored networks.",
+        "Hotel safes are not secure against determined state actors.",
+        "Turning off encryption removes protection if the device is taken.",
+        "Taking the usual laptop exposes all its data to copying."
+      ],
+      "concept": "High-risk travel: minimal data, clean devices, trusted connections.",
+      "trap": "Relying on physical storage or convenience.",
+      "managerLens": "Assume devices may be copied; carry only what you can afford to lose.",
+      "practicalNote": "Some countries restrict encryption; check local law and brief travellers.",
+      "gap": "Protecting travellers and their data.",
+      "followUpId": null,
+      "tags": [
+        "travel",
+        "personnel-safety"
+      ]
+    },
+    {
+      "id": "d7-034",
+      "domain": 7,
+      "objective": "7.15",
+      "subtopic": "Duress signals",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A bank wants staff who are forced at gunpoint to open a vault to be able to call for help without the attackers noticing. Which control fits?",
+      "options": [
+        "A second staff member who must also enter a code",
+        "A camera that records everyone near the vault",
+        "A duress code that opens the vault and raises a silent alarm",
+        "A time-delay lock that opens the vault after ten minutes"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "Two-person control helps against insiders but does not signal for help.",
+        "A camera records events but does not summon help discreetly.",
+        "Correct. A duress code appears to comply while silently alerting security or police, protecting staff.",
+        "A time delay can deter robbers, but it does not let staff signal for help and may raise tension."
+      ],
+      "concept": "Duress codes let people signal for help while appearing to comply.",
+      "trap": "Choosing a control that increases danger to staff.",
+      "managerLens": "Staff safety comes first; design controls so compliance is safe.",
+      "practicalNote": "Duress codes are also used on alarm panels and some login systems.",
+      "gap": "Protecting personnel under threat.",
+      "followUpId": null,
+      "tags": [
+        "duress",
+        "personnel-safety"
       ]
     },
     {

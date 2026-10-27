@@ -905,8 +905,8 @@
       "domain": 7,
       "objective": "7.6",
       "term": "Incident response order",
-      "meaning": "Prepare, detect and analyse, contain, eradicate, recover, then lessons learned. Reporting and evidence handling run alongside.",
-      "trap": "Restoring systems before containment, or letting evidence collection delay containment of an active attack.",
+      "meaning": "The CISSP outline lists detection, response, mitigation, reporting, recovery, remediation and lessons learned. Whatever the model, contain before you eradicate and recover, and preserve evidence as you go.",
+      "trap": "Restoring systems before containment, or answering from an old model as if it were current NIST guidance (SP 800-61 Rev. 3, 2025, is organised around CSF 2.0).",
       "hook": "Stop the bleeding before you stitch.",
       "tags": [
         "first-step"
@@ -935,6 +935,176 @@
       "hook": "Read, walk, simulate, run in parallel, then pull the plug.",
       "tags": [
         "comparison"
+      ]
+    },
+    {
+      "id": "c7-004",
+      "domain": 7,
+      "objective": "7.1",
+      "term": "Order of volatility",
+      "meaning": "Collect the most short-lived evidence first: CPU registers and cache, memory, network state and running processes, then disk, then logs and backups.",
+      "trap": "Pulling the plug, which destroys memory evidence.",
+      "hook": "Grab what vanishes first.",
+      "tags": [
+        "forensics"
+      ]
+    },
+    {
+      "id": "c7-005",
+      "domain": 7,
+      "objective": "7.1",
+      "term": "Chain of custody",
+      "meaning": "A continuous record of who collected, held, transferred and examined each piece of evidence, when and why. Gaps let the evidence be challenged in court.",
+      "trap": "Thinking a hashed image alone makes handling records unnecessary.",
+      "hook": "Every hand, every time.",
+      "tags": [
+        "forensics"
+      ]
+    },
+    {
+      "id": "c7-006",
+      "domain": 7,
+      "objective": "7.2",
+      "term": "SIEM vs SOAR vs UEBA",
+      "meaning": "SIEM collects and correlates logs to raise alerts. SOAR automates enrichment and response steps with playbooks. UEBA learns normal behaviour and flags deviations.",
+      "trap": "Buying more SIEM capacity to fix alert fatigue.",
+      "hook": "See it, act on it, spot the odd one.",
+      "tags": [
+        "comparison"
+      ]
+    },
+    {
+      "id": "c7-007",
+      "domain": 7,
+      "objective": "7.3",
+      "term": "Baselines and drift",
+      "meaning": "A baseline is the approved secure configuration. Drift is the gradual divergence from it through ad hoc changes. Configuration management detects and corrects drift.",
+      "trap": "Relying on administrators to document hand changes.",
+      "hook": "Define it, build to it, keep it there.",
+      "tags": [
+        "configuration-management"
+      ]
+    },
+    {
+      "id": "c7-008",
+      "domain": 7,
+      "objective": "7.4",
+      "term": "Operational security principles",
+      "meaning": "Need to know, least privilege, separation of duties, job rotation and privileged account management. Outsourcing operations does not outsource accountability.",
+      "trap": "Assuming an SLA transfers responsibility for outcomes.",
+      "hook": "Little access, split duties, swap seats, watch the admins.",
+      "tags": [
+        "operations"
+      ]
+    },
+    {
+      "id": "c7-009",
+      "domain": 7,
+      "objective": "7.5",
+      "term": "Media management",
+      "meaning": "Label, store, transport and dispose of media under control. Keep an inventory and reconcile at every handover. Keep encryption keys recoverable for as long as the data is retained.",
+      "trap": "Losing archive keys, which makes the archive unreadable.",
+      "hook": "Count it in, count it out, keep the key.",
+      "tags": [
+        "media"
+      ]
+    },
+    {
+      "id": "c7-010",
+      "domain": 7,
+      "objective": "7.7",
+      "term": "IDS vs IPS",
+      "meaning": "An IDS watches a copy of traffic and alerts. An IPS sits inline and can block. Introduce an IPS in detection mode, tune it, then enable blocking.",
+      "trap": "Turning on blocking everywhere on day one.",
+      "hook": "IDS tells; IPS stops.",
+      "tags": [
+        "comparison"
+      ]
+    },
+    {
+      "id": "c7-011",
+      "domain": 7,
+      "objective": "7.7",
+      "term": "Enticement vs entrapment",
+      "meaning": "Enticement makes a target attractive to someone already intent on attacking: generally acceptable. Entrapment induces a person to commit a crime they would not otherwise commit: not acceptable.",
+      "trap": "Thinking an attractive honeypot name is entrapment.",
+      "hook": "Leave the door looking juicy; never push anyone through it.",
+      "tags": [
+        "comparison",
+        "legal"
+      ]
+    },
+    {
+      "id": "c7-012",
+      "domain": 7,
+      "objective": "7.8",
+      "term": "Patch process",
+      "meaning": "Inventory, assess and prioritise by risk, test on a pilot group, roll out in stages with rollback, verify, and track exceptions. Emergency patches use the emergency change path.",
+      "trap": "Pushing to every machine at once, or waiting a month for testing.",
+      "hook": "Pilot, stage, verify.",
+      "tags": [
+        "patching"
+      ]
+    },
+    {
+      "id": "c7-013",
+      "domain": 7,
+      "objective": "7.9",
+      "term": "Change management",
+      "meaning": "Request, assess (including security impact), approve, test, implement with rollback, review. Unauthorised changes are investigated as possible incidents.",
+      "trap": "Raising a retrospective ticket for an unexplained change.",
+      "hook": "No ticket, no change; no explanation, investigate.",
+      "tags": [
+        "change-management"
+      ]
+    },
+    {
+      "id": "c7-014",
+      "domain": 7,
+      "objective": "7.11",
+      "term": "DR process",
+      "meaning": "Response, personnel, communications, assessment, restoration in business priority order, training and lessons learned. Communications go through designated spokespeople.",
+      "trap": "Restoring the easiest systems first.",
+      "hook": "People, priorities, one voice.",
+      "tags": [
+        "disaster-recovery"
+      ]
+    },
+    {
+      "id": "c7-015",
+      "domain": 7,
+      "objective": "7.13",
+      "term": "BC exercises",
+      "meaning": "Continuity exercises involve business process owners, not just IT, and test people, premises, suppliers and manual workarounds. Plans are reviewed yearly and after major change.",
+      "trap": "Declaring continuity tested after an IT-only failover.",
+      "hook": "The business continues, not just the servers.",
+      "tags": [
+        "bcp"
+      ]
+    },
+    {
+      "id": "c7-016",
+      "domain": 7,
+      "objective": "7.14",
+      "term": "Tailgating vs piggybacking",
+      "meaning": "Tailgating: following someone through a secure door without their knowledge. Piggybacking: entering with their consent but without your own authentication. Mantraps and turnstiles stop both.",
+      "trap": "Relying on signs or cameras to prevent either.",
+      "hook": "One badge, one person.",
+      "tags": [
+        "comparison",
+        "physical"
+      ]
+    },
+    {
+      "id": "c7-017",
+      "domain": 7,
+      "objective": "7.15",
+      "term": "Duress and travel",
+      "meaning": "A duress code appears to comply while silently raising an alarm. For high-risk travel, use clean loaner devices with minimal data, trusted connections, and a wipe on return.",
+      "trap": "Choosing controls that put staff in more danger.",
+      "hook": "Safe people first; carry only what you can lose.",
+      "tags": [
+        "personnel-safety"
       ]
     },
     {

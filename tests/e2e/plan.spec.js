@@ -103,12 +103,13 @@ test('functional run: forced misses update ledger, patterns, weakness set and th
   });
   await page.reload();
 
-  // Three practice rounds on Domain 7, every answer wrong and marked "sure".
+  // Three rounds of the ransomware case study (a fixed set of three questions on three
+  // objectives: 7.6, 7.10 and 1.4), every answer wrong and marked "sure".
+  const sc = bank.scenarios.find((s) => s.id === 'sc-01');
   for (let round = 0; round < 3; round++) {
     await page.goto('/#/questions');
-    await page.locator('#practice-domain').selectOption('7');
-    await page.getByRole('button', { name: 'Start practice' }).click();
-    for (let i = 0; i < 3; i++) {
+    await page.locator(`[data-scenario="${sc.id}"]`).click();
+    for (let i = 0; i < sc.questionIds.length; i++) {
       await answerShown(page, () => false, 'sure');
       await page.locator('#next-btn').click();
     }
@@ -125,9 +126,9 @@ test('functional run: forced misses update ledger, patterns, weakness set and th
   expect(st.ledger[0]).toMatchObject({ domain: 7, confidence: 'sure', kind: 'wrong' });
   expect(st.ledger[0].whyWrong.length).toBeGreaterThan(0);
 
-  // Weakness set: drills Domain 7 objectives (it opens on a reteach card first: 3 misses each).
+  // Weakness set: drills the missed objectives (it opens on a reteach card first: 3 misses each).
   await page.locator('#drill-weak').click();
-  await expect(page.locator('[data-reteach^="7."]')).toBeVisible();
+  await expect(page.locator('[data-reteach]')).toBeVisible();
 
   // Next day: the plan re-plans from the misses.
   await page.goto('/#/questions');

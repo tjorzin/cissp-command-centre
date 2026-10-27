@@ -1345,6 +1345,486 @@
         "ask": "What is the problem?",
         "answer": "Independence: auditing your own work undermines the result. Another auditor, or an external party, should perform the audit."
       }
+    },
+    "7.1": {
+      "summary": [
+        "Investigations need evidence that will stand up: collected lawfully, preserved, and documented.",
+        "Collect in order of volatility: CPU and memory first, then disk, then logs and backups.",
+        "Chain of custody records who held evidence, when and why, from collection to court.",
+        "Work on forensic copies verified by hashes, never on the original.",
+        "Artefacts come from data, computers, networks and mobile devices; each needs suitable tools."
+      ],
+      "keyTerms": [
+        {
+          "term": "Order of volatility",
+          "meaning": "Collect the most short-lived evidence first, such as memory before disk."
+        },
+        {
+          "term": "Forensic image",
+          "meaning": "A bit-for-bit copy verified with a hash, used instead of the original."
+        },
+        {
+          "term": "Write blocker",
+          "meaning": "Hardware or software that stops a drive being changed while it is copied."
+        },
+        {
+          "term": "Admissibility",
+          "meaning": "Whether a court will accept evidence; poor handling can make it inadmissible."
+        }
+      ],
+      "scenario": {
+        "situation": "A running laptop belongs to an employee suspected of fraud, and legal may involve the police.",
+        "ask": "What should the investigator do first?",
+        "answer": "Document the scene, capture volatile memory before powering anything down, then take a hashed forensic image, recording every step in the chain of custody."
+      }
+    },
+    "7.2": {
+      "summary": [
+        "Logging and monitoring turn raw events into detections: IDPS, SIEM, UEBA, threat intelligence.",
+        "Tune continuously: too many false positives cause alert fatigue and missed real attacks.",
+        "SOAR automates enrichment and routine response steps so analysts focus on judgement.",
+        "Egress monitoring and DLP catch data leaving; UEBA catches unusual behaviour by people and systems.",
+        "Protect logs: central collection, integrity, time synchronisation and retention."
+      ],
+      "keyTerms": [
+        {
+          "term": "SIEM",
+          "meaning": "Collects and correlates logs from many sources to raise alerts."
+        },
+        {
+          "term": "SOAR",
+          "meaning": "Security orchestration, automation and response: playbooks that automate enrichment and actions."
+        },
+        {
+          "term": "UEBA",
+          "meaning": "User and entity behaviour analytics: detects deviations from normal behaviour."
+        },
+        {
+          "term": "Threat hunting",
+          "meaning": "Proactively searching for attackers who have evaded existing alerts."
+        }
+      ],
+      "scenario": {
+        "situation": "A SOC receives 4,000 alerts a day and investigates fewer than 200.",
+        "ask": "What should the manager do?",
+        "answer": "Tune or retire noisy rules, prioritise detections by risk to critical assets, and automate enrichment and triage with SOAR, so analysts spend time on the alerts that matter."
+      }
+    },
+    "7.3": {
+      "summary": [
+        "Configuration management keeps systems in a known, approved state.",
+        "Baselines define the secure configuration for each system type.",
+        "Provision from hardened images or infrastructure-as-code so every build is consistent.",
+        "Monitor for drift and fix it automatically or through change control.",
+        "Configuration records feed vulnerability, incident and change management."
+      ],
+      "keyTerms": [
+        {
+          "term": "Baseline",
+          "meaning": "The approved secure configuration for a system type."
+        },
+        {
+          "term": "Configuration drift",
+          "meaning": "Systems gradually diverging from their baseline through ad hoc changes."
+        },
+        {
+          "term": "Infrastructure as code",
+          "meaning": "Building systems from version-controlled definitions rather than by hand."
+        },
+        {
+          "term": "Golden image",
+          "meaning": "A hardened, approved template used to build new systems."
+        }
+      ],
+      "scenario": {
+        "situation": "New servers are built by hand and each ends up slightly different.",
+        "ask": "What is the fix?",
+        "answer": "Build from hardened images or infrastructure-as-code templates under version control, and scan regularly for drift from the baseline."
+      }
+    },
+    "7.4": {
+      "summary": [
+        "Need to know and least privilege limit what each person can see and do.",
+        "Separation of duties and job rotation counter insider fraud and error.",
+        "Privileged accounts are managed tightly: vaulted, time-limited and monitored.",
+        "Service providers can run operations, but accountability stays with the organisation.",
+        "Defence in depth layers operational controls so one failure is not fatal."
+      ],
+      "keyTerms": [
+        {
+          "term": "Job rotation",
+          "meaning": "Moving people between duties so concealed problems come to light."
+        },
+        {
+          "term": "Privileged account management",
+          "meaning": "Controls over admin accounts: vaulting, approval, recording and review."
+        },
+        {
+          "term": "SLA",
+          "meaning": "Service-level agreement: measurable commitments from a provider."
+        },
+        {
+          "term": "Two-person integrity",
+          "meaning": "Critical actions need two people, so no one can act alone."
+        }
+      ],
+      "scenario": {
+        "situation": "Help desk staff can reset the password of any account, including executives and domain administrators.",
+        "ask": "What should change?",
+        "answer": "Tier the reset rights: the help desk resets ordinary accounts with identity checks, while privileged and executive accounts go through a separate, stronger process."
+      }
+    },
+    "7.5": {
+      "summary": [
+        "Protect media through its whole life: labelling, storage, transport, reuse and disposal.",
+        "Keep an inventory of media and reconcile movements so losses are noticed.",
+        "Encrypt media, and keep the keys recoverable for as long as the data must be kept.",
+        "Archive with integrity checks and readable formats for long retention periods.",
+        "Dispose of media to a level that matches the data it held."
+      ],
+      "keyTerms": [
+        {
+          "term": "Media management",
+          "meaning": "Tracking and controlling storage media from issue to disposal."
+        },
+        {
+          "term": "Key escrow / archival",
+          "meaning": "Keeping decryption keys recoverable for the life of encrypted archives."
+        },
+        {
+          "term": "Reconciliation",
+          "meaning": "Checking that media counts match records at each handover."
+        },
+        {
+          "term": "Archiving",
+          "meaning": "Moving data to long-term storage, kept readable and intact."
+        }
+      ],
+      "scenario": {
+        "situation": "Backups must be kept for ten years, encrypted with keys in a key manager that will be replaced in three years.",
+        "ask": "What must the migration plan include?",
+        "answer": "Preserve the old keys (or re-encrypt the archives) so data can still be decrypted for the full retention period, with tested recovery."
+      }
+    },
+    "7.6": {
+      "summary": [
+        "The outline's steps: detection, response, mitigation, reporting, recovery, remediation, lessons learned.",
+        "Contain before you eradicate and recover; preserve evidence while you do.",
+        "Report to management, regulators and others as law and contracts require, on time.",
+        "Remediation fixes the root cause; recovery restores service.",
+        "Lessons learned turn an incident into lasting improvements."
+      ],
+      "keyTerms": [
+        {
+          "term": "Containment",
+          "meaning": "Stopping an incident spreading, such as isolating hosts or disabling accounts."
+        },
+        {
+          "term": "Root cause analysis",
+          "meaning": "Finding why the incident was possible, not just what happened."
+        },
+        {
+          "term": "Playbook",
+          "meaning": "A pre-agreed set of steps for a type of incident."
+        },
+        {
+          "term": "Lessons learned",
+          "meaning": "A post-incident review that produces owned improvements."
+        }
+      ],
+      "scenario": {
+        "situation": "The same phishing-led compromise has happened three times in a year.",
+        "ask": "What is missing?",
+        "answer": "Effective lessons learned: a root cause analysis after each incident, with owned actions (for example phishing-resistant MFA) tracked to completion."
+      }
+    },
+    "7.7": {
+      "summary": [
+        "Detective and preventive tools: firewalls, IDS and IPS, allow and deny lists, sandboxes, honeypots, anti-malware, EDR.",
+        "IDS alerts; IPS blocks inline. Tune in detection mode first to avoid blocking legitimate traffic.",
+        "Sandboxes detonate suspicious files safely; honeypots attract and study attackers.",
+        "Honeypots may entice but must never entrap.",
+        "Coverage matters: an unmonitored endpoint is a blind spot."
+      ],
+      "keyTerms": [
+        {
+          "term": "IPS",
+          "meaning": "Inline system that detects and blocks malicious traffic."
+        },
+        {
+          "term": "EDR",
+          "meaning": "Endpoint detection and response: records endpoint activity and supports investigation and containment."
+        },
+        {
+          "term": "Enticement",
+          "meaning": "Making a target attractive to someone already intent on attacking; legally acceptable."
+        },
+        {
+          "term": "Entrapment",
+          "meaning": "Inducing someone to commit a crime they would not otherwise commit; not acceptable."
+        }
+      ],
+      "scenario": {
+        "situation": "A new IPS is about to be placed inline in front of the core banking system.",
+        "ask": "How should it be introduced?",
+        "answer": "Run it in detection-only mode first, tune out false positives against real traffic, then enable blocking for well-understood signatures, with a rollback plan."
+      }
+    },
+    "7.8": {
+      "summary": [
+        "Patch and vulnerability management starts with a complete asset inventory.",
+        "Prioritise by risk: exploitation, exposure and asset criticality, with SLAs per priority.",
+        "Test patches on a pilot group, then roll out in stages with rollback ready.",
+        "Emergency patches follow the emergency change path, not a bypass.",
+        "Verify deployment and track exceptions to closure."
+      ],
+      "keyTerms": [
+        {
+          "term": "Pilot group",
+          "meaning": "A small, representative set of systems that gets patches first."
+        },
+        {
+          "term": "Staged rollout",
+          "meaning": "Deploying in waves so problems are caught before they spread."
+        },
+        {
+          "term": "Patch SLA",
+          "meaning": "The time allowed to patch each priority level."
+        },
+        {
+          "term": "Virtual patching",
+          "meaning": "A compensating control, such as an IPS rule, that blocks an exploit until a patch is applied."
+        }
+      ],
+      "scenario": {
+        "situation": "A critical patch must reach 2,000 workstations this week.",
+        "ask": "How should it be deployed?",
+        "answer": "Test it on a pilot group of representative machines, then deploy in stages with monitoring and a rollback plan, and confirm completion with a scan."
+      }
+    },
+    "7.9": {
+      "summary": [
+        "Change management makes changes deliberate: request, assess, approve, test, implement, review.",
+        "Assess security impact as part of every significant change.",
+        "Emergency changes still need authorisation, records and later review.",
+        "Unauthorised changes are detected through configuration and integrity monitoring.",
+        "An unauthorised change is investigated, not just reversed."
+      ],
+      "keyTerms": [
+        {
+          "term": "CAB",
+          "meaning": "Change advisory board: reviews and approves significant changes."
+        },
+        {
+          "term": "Rollback plan",
+          "meaning": "How to undo a change if it fails."
+        },
+        {
+          "term": "Unauthorised change",
+          "meaning": "A change made outside the approved process; possibly malicious."
+        },
+        {
+          "term": "File integrity monitoring",
+          "meaning": "Detects changes to important files and configurations."
+        }
+      ],
+      "scenario": {
+        "situation": "Integrity monitoring shows a firewall rule was added at 02:00 with no change ticket.",
+        "ask": "What should happen?",
+        "answer": "Treat it as a possible security incident: find who made it and why, assess what it exposed, and remove it through change control if unjustified."
+      }
+    },
+    "7.10": {
+      "summary": [
+        "Recovery strategy follows the BIA: RTO, RPO and MTD decide the solution.",
+        "Backups: full, incremental, differential; keep copies offsite, offline or immutable.",
+        "Recovery sites: hot (hours), warm (days), cold (weeks), plus cloud and reciprocal options.",
+        "Resilience: redundancy, high availability, fault tolerance and quality of service.",
+        "Test restores, not just backups."
+      ],
+      "keyTerms": [
+        {
+          "term": "Hot site",
+          "meaning": "A fully equipped site with current data, ready within hours."
+        },
+        {
+          "term": "Warm site",
+          "meaning": "Equipment in place but data and configuration need loading; ready in days."
+        },
+        {
+          "term": "Cold site",
+          "meaning": "Space and utilities only; equipment must be brought in; weeks to ready."
+        },
+        {
+          "term": "Differential backup",
+          "meaning": "Everything changed since the last full backup."
+        }
+      ],
+      "scenario": {
+        "situation": "A core service has a 4-hour RTO and the board wants the cheapest compliant option.",
+        "ask": "Which recovery site fits?",
+        "answer": "A hot site (or an equivalent cloud failover) is needed to meet 4 hours; warm and cold sites take days to weeks. Cheapest compliant still means meeting the RTO."
+      }
+    },
+    "7.11": {
+      "summary": [
+        "DR processes cover response, personnel, communications, assessment, restoration and training.",
+        "Restore in business priority order from the BIA, not in IT convenience order.",
+        "Communications have named owners: staff, customers, regulators and media.",
+        "People come first: staff safety, roles and backups for key people.",
+        "Learn after every invocation and update the plan."
+      ],
+      "keyTerms": [
+        {
+          "term": "Invocation",
+          "meaning": "The formal decision to activate the DR plan."
+        },
+        {
+          "term": "Damage assessment",
+          "meaning": "Establishing what is affected and how badly before restoring."
+        },
+        {
+          "term": "Restoration order",
+          "meaning": "The sequence of recovery set by business priority."
+        },
+        {
+          "term": "Communications plan",
+          "meaning": "Who tells whom, what and when during a disaster."
+        }
+      ],
+      "scenario": {
+        "situation": "During a DR invocation, an engineer posts updates about the outage on social media.",
+        "ask": "What is wrong?",
+        "answer": "External communication belongs to the designated communications lead in the plan, to keep messages accurate, consistent and legally sound."
+      }
+    },
+    "7.12": {
+      "summary": [
+        "Test types, least to most disruptive: read-through, walkthrough or tabletop, simulation, parallel, full interruption.",
+        "Parallel tests run the recovery site alongside production without stopping it.",
+        "Full interruption gives the most confidence and carries the most risk.",
+        "Tabletops find plan gaps and clarify roles cheaply.",
+        "Record results against RTO and RPO, and track fixes."
+      ],
+      "keyTerms": [
+        {
+          "term": "Tabletop exercise",
+          "meaning": "A discussion-based walk through a scenario with the people who would respond."
+        },
+        {
+          "term": "Parallel test",
+          "meaning": "Recovery systems run real workloads alongside production."
+        },
+        {
+          "term": "Full interruption test",
+          "meaning": "Production is shut down and operations move to the recovery site."
+        },
+        {
+          "term": "Simulation",
+          "meaning": "A practice run of the response to a scenario, short of moving operations."
+        }
+      ],
+      "scenario": {
+        "situation": "A bank wants real evidence its recovery site works without risking customer service.",
+        "ask": "Which test fits?",
+        "answer": "A parallel test: the recovery site processes real work alongside production, proving capability without stopping live services."
+      }
+    },
+    "7.13": {
+      "summary": [
+        "Business continuity is a business programme, not an IT project.",
+        "Exercises must include process owners, not just technical teams.",
+        "Plans are reviewed after major change and at least annually.",
+        "Security participates: controls must still work in continuity mode.",
+        "Exercise results feed improvements tracked to completion."
+      ],
+      "keyTerms": [
+        {
+          "term": "BCP",
+          "meaning": "Business continuity plan: how critical business processes continue during disruption."
+        },
+        {
+          "term": "Exercise",
+          "meaning": "A planned rehearsal of the continuity plan with the people who would use it."
+        },
+        {
+          "term": "Plan maintenance",
+          "meaning": "Keeping the plan current with organisational and technical change."
+        },
+        {
+          "term": "Manual workaround",
+          "meaning": "A non-IT way of keeping a process going during an outage."
+        }
+      ],
+      "scenario": {
+        "situation": "A reorganisation merged two departments, but the continuity plan still lists the old teams and contacts.",
+        "ask": "What should happen?",
+        "answer": "Review and update the plan now, because a major change has occurred, and set a trigger so future reorganisations prompt a review."
+      }
+    },
+    "7.14": {
+      "summary": [
+        "Physical security layers from the perimeter inwards: deter, delay, detect, respond.",
+        "Control entry with badges, mantraps or turnstiles, and guards.",
+        "Tailgating and piggybacking defeat badge systems; design and awareness counter them.",
+        "Visitors are logged, badged visibly and escorted in secure areas.",
+        "Internal controls protect sensitive rooms, racks and media."
+      ],
+      "keyTerms": [
+        {
+          "term": "Mantrap",
+          "meaning": "Two interlocking doors so only one person passes at a time after authentication."
+        },
+        {
+          "term": "Tailgating",
+          "meaning": "Following an authorised person through a door without authenticating."
+        },
+        {
+          "term": "Piggybacking",
+          "meaning": "Entering with an authorised person's consent but without your own authentication."
+        },
+        {
+          "term": "Visitor log",
+          "meaning": "A record of who visited, when, whom they saw and their escort."
+        }
+      ],
+      "scenario": {
+        "situation": "Staff routinely hold the data centre door open for colleagues carrying equipment.",
+        "ask": "What should change?",
+        "answer": "Install a mantrap or turnstile that admits one person per badge, and back it with awareness that each person badges in, even when it feels rude."
+      }
+    },
+    "7.15": {
+      "summary": [
+        "Personnel safety comes before all assets.",
+        "Travel to high-risk places: loaner devices, minimal data, trusted connections, and a check on return.",
+        "Emergency management: evacuation, shelter, accounting for people and communication.",
+        "Duress systems let people signal silently that they are acting under threat.",
+        "Awareness covers insider threat, social media exposure and MFA fatigue."
+      ],
+      "keyTerms": [
+        {
+          "term": "Duress code",
+          "meaning": "A covert signal, such as a special PIN, that raises a silent alarm."
+        },
+        {
+          "term": "Loaner device",
+          "meaning": "A clean device issued for risky travel and wiped on return."
+        },
+        {
+          "term": "Emergency management",
+          "meaning": "Plans to protect people in fires, floods, attacks and other emergencies."
+        },
+        {
+          "term": "Muster point",
+          "meaning": "A safe place where people gather and are counted after evacuation."
+        }
+      ],
+      "scenario": {
+        "situation": "An executive is travelling to a country known for searching and copying devices at the border.",
+        "ask": "What should the security team provide?",
+        "answer": "A clean loaner laptop and phone with only the data needed, access through the corporate VPN, and a wipe and inspection of the devices on return."
+      }
     }
   }
 }

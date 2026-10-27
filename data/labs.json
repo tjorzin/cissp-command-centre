@@ -435,6 +435,78 @@
         "Your sorted list and priority rule.",
         "The comparison with a pure CVSS sort and your CIO summary."
       ]
+    },
+    {
+      "id": "lab-d7-event-logs",
+      "day": 13,
+      "domain": 7,
+      "objective": "7.2",
+      "minutes": 45,
+      "title": "Review Windows security event logs in the test domain",
+      "environment": "LAB / TEST ENVIRONMENT: the lab.test domain from days 9 and 10 only. Do not export or examine logs from real systems without authorisation.",
+      "goal": "Generate and find the security events an analyst relies on: logons, failures, lockouts and privileged group changes.",
+      "prerequisites": [
+        "The lab.test domain controller VM from day 9",
+        "An elevated PowerShell window on it",
+        "Cards: SIEM vs SOAR vs UEBA; chain of custody"
+      ],
+      "steps": [
+        "Set a lockout policy in the lab: open Group Policy Management, edit the Default Domain Policy, and set the account lockout threshold to 5 attempts.",
+        "Sign in as a test user with the wrong password six times, then sign in correctly as another test user.",
+        "Add a test user to Domain Admins, then remove them.",
+        "Find failed logons: `Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625} -MaxEvents 20 | Format-List TimeCreated, Message`",
+        "Find the lockout (event 4740) and the successful logon (4624), noting the logon type.",
+        "Find the privileged group change: `Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4728,4729} -MaxEvents 10`",
+        "Write a short incident note: what happened, when, which account, and what you would check next in a real investigation."
+      ],
+      "validation": [
+        "You found events 4625, 4740, 4624 and 4728/4729 that match what you did.",
+        "Your note gives exact times and account names from the events.",
+        "Your note says what you would check next, such as the source workstation of the failures."
+      ],
+      "rollback": [
+        "Reset the lockout threshold, unlock the test account with `Unlock-ADAccount`, or revert the VM snapshot."
+      ],
+      "evidence": [
+        "Screenshots or exported text of each event you found.",
+        "Your incident note."
+      ]
+    },
+    {
+      "id": "lab-d7-restore-test",
+      "day": 14,
+      "domain": 7,
+      "objective": "7.10",
+      "minutes": 45,
+      "title": "Back up a test file share and prove you can restore it",
+      "environment": "LAB / TEST ENVIRONMENT: the lab.test server VM with a second virtual disk for backups. Never practise restores over real data or on production servers.",
+      "goal": "Show that a backup is only proven by a restore, and measure how long recovery takes against an RTO you set.",
+      "prerequisites": [
+        "The lab VM from day 9 with the C:\\LabShares folders",
+        "A second virtual disk attached and formatted as E:",
+        "The Windows Server Backup feature: `Install-WindowsFeature Windows-Server-Backup`"
+      ],
+      "steps": [
+        "Set a target before you start: for example RTO 15 minutes, RPO the time of today's backup.",
+        "Back up the shares: `wbadmin start backup -backupTarget:E: -include:C:\\LabShares -quiet`",
+        "Record the backup time, then add a new file to C:\\LabShares\\Claims after the backup.",
+        "Simulate a loss: delete the C:\\LabShares\\Claims folder.",
+        "List backup versions: `wbadmin get versions`, and note the version identifier.",
+        "Start a timer and restore: `wbadmin start recovery -version:<identifier> -itemType:File -items:C:\\LabShares\\Claims -recursive -recoveryTarget:C:\\LabShares\\Claims`",
+        "Check the restored files open, note which file was lost (the one added after the backup), and stop the timer."
+      ],
+      "validation": [
+        "The folder is restored and its files open.",
+        "The file created after the backup is missing, showing what the RPO means in practice.",
+        "Your measured recovery time is recorded and compared with the RTO you set."
+      ],
+      "rollback": [
+        "Delete the restored test data, or revert the VM snapshot."
+      ],
+      "evidence": [
+        "The wbadmin output for backup, versions and recovery.",
+        "Your measured recovery time against the RTO, and a note on the lost file."
+      ]
     }
   ]
 }

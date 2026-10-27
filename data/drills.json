@@ -560,6 +560,66 @@
       ]
     },
     {
+      "id": "dr-monitoring-tools",
+      "domain": 7,
+      "objective": "7.2",
+      "title": "IDS, IPS, SIEM, SOAR or UEBA?",
+      "items": [
+        {
+          "name": "IDS",
+          "meaning": "Watches traffic and raises alerts; does not block."
+        },
+        {
+          "name": "IPS",
+          "meaning": "Sits inline and blocks malicious traffic."
+        },
+        {
+          "name": "SIEM",
+          "meaning": "Collects and correlates logs from many sources."
+        },
+        {
+          "name": "SOAR",
+          "meaning": "Automates enrichment and response with playbooks."
+        },
+        {
+          "name": "UEBA",
+          "meaning": "Spots unusual behaviour by users and systems."
+        }
+      ],
+      "prompts": [
+        {
+          "text": "A failed login on the VPN and a new admin account on a server are linked into one alert.",
+          "answer": "SIEM",
+          "why": "Correlating events from different sources is the SIEM's job."
+        },
+        {
+          "text": "A phishing alert automatically triggers a mailbox search and blocks the sender domain.",
+          "answer": "SOAR",
+          "why": "Playbook-driven automated response is SOAR."
+        },
+        {
+          "text": "Exploit traffic to a web server is dropped before it arrives.",
+          "answer": "IPS",
+          "why": "Inline blocking is prevention."
+        },
+        {
+          "text": "A copy of core switch traffic is analysed and suspicious patterns raise alerts.",
+          "answer": "IDS",
+          "why": "Out-of-band analysis that alerts is detection."
+        },
+        {
+          "text": "A developer suddenly accesses finance shares he has never used before.",
+          "answer": "UEBA",
+          "why": "Deviation from normal behaviour is UEBA's speciality."
+        },
+        {
+          "text": "Alerts are enriched with threat intelligence and asset owner details before an analyst sees them.",
+          "answer": "SOAR",
+          "why": "Automated enrichment is a core SOAR function."
+        }
+      ]
+    },
+    {
       "id": "dr-osi-layers",
       "domain": 4,
       "objective": "4.1",
@@ -672,6 +732,62 @@
           "text": "Nightly backups at 02:00 are no longer enough; replication every five minutes is needed.",
           "answer": "RPO",
           "why": "Backup frequency is set by tolerable data loss."
+        }
+      ]
+    },
+    {
+      "id": "dr-recovery-sites",
+      "domain": 7,
+      "objective": "7.10",
+      "title": "Hot, warm, cold or reciprocal?",
+      "items": [
+        {
+          "name": "Hot site",
+          "meaning": "Fully equipped with current data; ready in hours. Most expensive."
+        },
+        {
+          "name": "Warm site",
+          "meaning": "Equipment in place; data and configuration need loading. Ready in days."
+        },
+        {
+          "name": "Cold site",
+          "meaning": "Space, power and cooling only. Ready in weeks. Cheapest."
+        },
+        {
+          "name": "Reciprocal agreement",
+          "meaning": "Two organisations agree to host each other; cheap but hard to enforce."
+        }
+      ],
+      "prompts": [
+        {
+          "text": "A payment switch with a 2-hour RTO.",
+          "answer": "Hot site",
+          "why": "Only a hot site meets recovery within hours."
+        },
+        {
+          "text": "An HR system that can be down for five days.",
+          "answer": "Warm site",
+          "why": "Days of tolerance fit a warm site at lower cost."
+        },
+        {
+          "text": "An archive system that can wait a month to return.",
+          "answer": "Cold site",
+          "why": "Weeks of tolerance allow the cheapest option."
+        },
+        {
+          "text": "Two small councils agree to share office space if either building is lost.",
+          "answer": "Reciprocal agreement",
+          "why": "Mutual hosting between organisations is a reciprocal agreement."
+        },
+        {
+          "text": "A site with racks and network links in place but no current data.",
+          "answer": "Warm site",
+          "why": "Equipment without current data describes a warm site."
+        },
+        {
+          "text": "An empty building with power and air conditioning on standby.",
+          "answer": "Cold site",
+          "why": "Space and utilities only is a cold site."
         }
       ]
     },

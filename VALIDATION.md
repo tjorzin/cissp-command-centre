@@ -2,6 +2,21 @@
 
 Each phase adds a section. Commands are run from the repo root with Node 24.22.1 and Playwright 1.64.1 (Chromium), using a Pixel 7 profile at 360 × 780, time zone Africa/Harare.
 
+## Phase 8, batch 7: Domain 7 content (28 October 2026)
+
+Framework check (`data/SOURCES.md`): **NIST SP 800-61 Revision 3 is final (April 2025)**, recast around CSF 2.0. Questions use the 2024 outline's incident steps and the stable principle that containment precedes recovery; the incident-response card was updated so it no longer presents Rev. 2's phases as current NIST guidance.
+
+**Content added:** 31 Domain 7 questions (34 in total, every one of the 15 objectives covered at least twice) and an eighth case study (security operations at a hospital group: alert fatigue, evidence handling, EDR coverage); lessons for all 15 objectives; 14 cards (every Domain 7 objective has one); 2 drills (recovery sites; IDS, IPS, SIEM, SOAR or UEBA); the brief's two named labs (day 13: Windows security event log review in the test domain; day 14: backup and timed restore test with wbadmin).
+
+`npm run validate`: **no errors.** The give-away lint first rejected 9 questions: absolutes in two or more options (d7-016, d7-018, d7-020, d7-030, d7-033) and length tells among short terms (d7-019, d7-024, d7-027), plus thin rationales and a short sub-topic; all fixed, and ten keys trimmed so the correct option is the single longest in 47 of 168 single-answer questions (28%).
+
+**Bank after batch 7:** 224 questions.
+
+`npm test`: **91 passed, 0 failed.** `npx playwright test`: **36 passed, 0 failed** (3 consecutive runs). The brief's functional run assumed Domain 7 had three questions; it now uses the fixed three-question ransomware case study, so its expected counts (9 entries, 3 objectives, 3 reteaches) stay exact.
+
+### Not validated
+- The event log and wbadmin lab commands were not run in this session.
+
 ## Phase 8, batch 6: Domain 6 content (28 October 2026)
 
 Framework check (`data/SOURCES.md`): CVSS v4.0 (November 2023) is the latest version, with v3.1 still widely used; CISA KEV is a separate exploitation signal; EPSS version not confirmed. Content tests prioritisation principles, not version-specific scores.
