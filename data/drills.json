@@ -55,6 +55,58 @@
       ]
     },
     {
+      "id": "dr-cloud-models",
+      "domain": 3,
+      "objective": "3.5",
+      "title": "Who secures it: IaaS, PaaS or SaaS customer?",
+      "items": [
+        {
+          "name": "IaaS",
+          "meaning": "Customer secures the guest OS and everything above it."
+        },
+        {
+          "name": "PaaS",
+          "meaning": "Customer secures the application code, data, identities and configuration."
+        },
+        {
+          "name": "SaaS",
+          "meaning": "Customer secures its data, user access and the service's settings."
+        }
+      ],
+      "prompts": [
+        {
+          "text": "The customer must patch the Linux kernel on its cloud servers.",
+          "answer": "IaaS",
+          "why": "Only in IaaS does the customer manage the operating system."
+        },
+        {
+          "text": "The customer deploys code to a managed app platform and must fix its own vulnerable library.",
+          "answer": "PaaS",
+          "why": "In PaaS the provider runs the platform; the code and its dependencies are the customer's."
+        },
+        {
+          "text": "The customer's only duties for its email service are user access, MFA and sharing settings.",
+          "answer": "SaaS",
+          "why": "In SaaS the customer manages data, identities and configuration."
+        },
+        {
+          "text": "The customer configures host firewalls on the virtual machines it built.",
+          "answer": "IaaS",
+          "why": "Guest OS firewalls belong to the customer in IaaS."
+        },
+        {
+          "text": "The customer sets which external users may access shared folders in a file-sharing service.",
+          "answer": "SaaS",
+          "why": "Sharing configuration is the SaaS customer's responsibility."
+        },
+        {
+          "text": "The customer chooses runtime settings and secrets for its managed database-backed web app.",
+          "answer": "PaaS",
+          "why": "Application configuration and secrets are the PaaS customer's."
+        }
+      ]
+    },
+    {
       "id": "dr-control-types",
       "domain": 1,
       "objective": "1.9",
@@ -116,6 +168,58 @@
           "text": "Applying a vendor patch that closes a vulnerability exploited last week.",
           "answer": "Corrective",
           "why": "It fixes the weakness that was exploited."
+        }
+      ]
+    },
+    {
+      "id": "dr-crypto-families",
+      "domain": 3,
+      "objective": "3.6",
+      "title": "Symmetric vs asymmetric vs hashing",
+      "items": [
+        {
+          "name": "Symmetric",
+          "meaning": "One shared secret key encrypts and decrypts; fast; suits bulk data. AES, ChaCha20."
+        },
+        {
+          "name": "Asymmetric",
+          "meaning": "Public and private key pair; slow; suits key exchange and signatures. RSA, ECC, ML-KEM, ML-DSA."
+        },
+        {
+          "name": "Hashing",
+          "meaning": "One-way fixed-length digest; no key; shows whether data changed. SHA-256, SHA-3."
+        }
+      ],
+      "prompts": [
+        {
+          "text": "Encrypting a 2 TB database backup quickly before it goes offsite.",
+          "answer": "Symmetric",
+          "why": "Bulk data needs a fast cipher such as AES."
+        },
+        {
+          "text": "Two parties agree a session key over the internet with no shared secret.",
+          "answer": "Asymmetric",
+          "why": "Key exchange without a shared secret is what public-key cryptography solves."
+        },
+        {
+          "text": "Checking that a downloaded installer matches the vendor's published fingerprint.",
+          "answer": "Hashing",
+          "why": "Comparing digests shows whether the file changed."
+        },
+        {
+          "text": "A supplier signs an invoice so the buyer can prove who sent it.",
+          "answer": "Asymmetric",
+          "why": "Digital signatures use a private key to sign and a public key to verify."
+        },
+        {
+          "text": "Storing user passwords so the system never keeps the passwords themselves.",
+          "answer": "Hashing",
+          "why": "Passwords are stored as salted, slow hashes, not encrypted."
+        },
+        {
+          "text": "Full-disk encryption on staff laptops.",
+          "answer": "Symmetric",
+          "why": "Disk encryption uses a symmetric cipher such as AES-XTS."
         }
       ]
     },
@@ -426,6 +530,62 @@
           "text": "A file server's volumes are overwritten once before it is redeployed internally.",
           "answer": "Clear",
           "why": "A single logical overwrite for internal reuse is clearing."
+        }
+      ]
+    },
+    {
+      "id": "dr-security-models",
+      "domain": 3,
+      "objective": "3.2",
+      "title": "Security models",
+      "items": [
+        {
+          "name": "Bell-LaPadula",
+          "meaning": "Confidentiality: no read up, no write down."
+        },
+        {
+          "name": "Biba",
+          "meaning": "Integrity: no read down, no write up."
+        },
+        {
+          "name": "Clark-Wilson",
+          "meaning": "Integrity through well-formed transactions, separation of duties and audit."
+        },
+        {
+          "name": "Brewer-Nash",
+          "meaning": "Chinese Wall: prevents conflicts of interest based on access history."
+        }
+      ],
+      "prompts": [
+        {
+          "text": "A Secret-cleared process may not save its output to an Unclassified folder.",
+          "answer": "Bell-LaPadula",
+          "why": "No write down protects confidentiality."
+        },
+        {
+          "text": "Untrusted field reports may not update the calibration master data.",
+          "answer": "Biba",
+          "why": "No write up protects higher-integrity data."
+        },
+        {
+          "text": "Clerks can change ledger balances only through the approved posting program, never directly.",
+          "answer": "Clark-Wilson",
+          "why": "Well-formed transactions through certified programs."
+        },
+        {
+          "text": "After working on one airline's file, an analyst is blocked from a rival airline's file.",
+          "answer": "Brewer-Nash",
+          "why": "Access depends on what the analyst has already seen."
+        },
+        {
+          "text": "A process may not read data at a lower integrity level than its own.",
+          "answer": "Biba",
+          "why": "No read down keeps low-integrity data from influencing the subject."
+        },
+        {
+          "text": "Users cleared Confidential may not open Top Secret files.",
+          "answer": "Bell-LaPadula",
+          "why": "No read up is the simple security property."
         }
       ]
     }

@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { noOverflow } from './helpers.js';
 import { readFileSync } from 'node:fs';
 
 const bank = JSON.parse(readFileSync(new URL('../../data/questions.json', import.meta.url)));
@@ -19,7 +20,6 @@ async function practiseDomain(page, domain) {
   await page.getByRole('button', { name: 'Start practice' }).click();
 }
 
-const noOverflow = async (page) => expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)).toBeLessThanOrEqual(0);
 
 test('forced misses fill the ledger; misconceptions lead the Patterns panel; one-tap tagging persists', async ({ page }) => {
   await page.goto('/#/ledger');

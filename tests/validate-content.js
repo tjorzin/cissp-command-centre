@@ -264,6 +264,9 @@ export function lintLabs(labsData, domainsData) {
       if (!Array.isArray(lab[k]) || !lab[k].length) e(`missing ${k}`);
     }
     if ((lab.steps || []).length < 3) e('needs at least 3 steps');
+    for (const k of ['prerequisites', 'steps', 'validation', 'rollback', 'evidence']) {
+      for (const s of lab[k] || []) if ((s.match(/`/g) || []).length % 2) e(`unbalanced backticks in ${k}: ${s.slice(0, 40)}`);
+    }
   }
   return { errors, stats: { labs: (labsData.labs || []).length } };
 }

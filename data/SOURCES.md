@@ -79,6 +79,17 @@ What this means for a sitting before 15 April 2027: study the 2024 topics. The 2
 
 Content follows Rev. 2 and IEEE 2883 and still accepts "destroy" as the common name for the top level.
 
+## Framework currency check: Domain 3 batch (28 October 2026)
+
+| Item | Finding | Status used in content |
+|---|---|---|
+| FIPS 203 / 204 / 205 | ML-KEM (key establishment), ML-DSA and SLH-DSA (signatures), final August 2024 | Tested as current |
+| FIPS 206 (FN-DSA, from Falcon) | Still a draft in mid-2026; final expected late 2026 or 2027 | Mentioned as draft only |
+| HQC | Selected March 2025 as a backup KEM on a different mathematical basis; draft standard pending | Mentioned as draft only |
+| NIST IR 8547 | Initial public draft (November 2024): 112-bit algorithms such as RSA-2048 and P-256 deprecated by 2030, quantum-vulnerable public-key algorithms disallowed by 2035. Still a draft | Practical notes only, labelled draft |
+
+Sources: vendor and trade summaries of NIST announcements; confirm on csrc.nist.gov before relying on dates.
+
 ## Experience and the Associate route (verified)
 
 - Five years cumulative, full-time, paid experience in **two or more** of the eight domains.

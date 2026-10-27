@@ -577,6 +577,326 @@
         "ask": "Which method fits?",
         "answer": "Tokenisation: systems hold tokens, the card numbers sit in a separate vault, and refunds use the token. Encrypting card numbers in place keeps those systems in scope if they can reach the keys."
       }
+    },
+    "3.1": {
+      "summary": [
+        "Build security into design: least privilege, defence in depth, secure defaults, fail securely, separation of duties.",
+        "Keep it simple: complexity hides flaws and makes systems harder to verify.",
+        "Zero trust: never trust by network location; verify identity, device and context for every request.",
+        "Privacy by design and shared responsibility (cloud) are design principles, not afterthoughts.",
+        "Threat modelling at design time finds problems while they are cheap to fix."
+      ],
+      "keyTerms": [
+        {
+          "term": "Fail securely",
+          "meaning": "When a control fails, it denies access rather than allowing it (for data); people's safety still comes first."
+        },
+        {
+          "term": "Defence in depth",
+          "meaning": "Layered, independent controls so one failure does not expose the asset."
+        },
+        {
+          "term": "Zero trust",
+          "meaning": "No implicit trust from network location; every access is authenticated, authorised and checked continuously."
+        },
+        {
+          "term": "Secure defaults",
+          "meaning": "Systems ship in their most secure configuration; users must opt in to riskier settings."
+        }
+      ],
+      "scenario": {
+        "situation": "An API checks every request with a separate authorisation service. The team asks what the API should do if that service is unreachable.",
+        "ask": "What does 'fail securely' require?",
+        "answer": "Deny the request (fail closed) and alert. Allowing requests through when the check cannot run would let anyone in during an outage or an attack on the authorisation service."
+      }
+    },
+    "3.2": {
+      "summary": [
+        "Bell-LaPadula protects confidentiality: no read up, no write down.",
+        "Biba protects integrity: no read down, no write up.",
+        "Clark-Wilson protects integrity through well-formed transactions, separation of duties and audit.",
+        "Brewer-Nash (Chinese Wall) prevents conflicts of interest based on what a user has already accessed.",
+        "Know the model's goal first; the rules follow from it."
+      ],
+      "keyTerms": [
+        {
+          "term": "Simple security property",
+          "meaning": "Bell-LaPadula's read rule: no read up."
+        },
+        {
+          "term": "Star (*) property",
+          "meaning": "The write rule: no write down (Bell-LaPadula) or no write up (Biba)."
+        },
+        {
+          "term": "Well-formed transaction",
+          "meaning": "Clark-Wilson: data changes only through certified programs, never directly."
+        },
+        {
+          "term": "Chinese Wall",
+          "meaning": "Brewer-Nash: access to one client's data blocks access to its competitors' data."
+        }
+      ],
+      "scenario": {
+        "situation": "A consultant who has worked on Bank A's merger file asks to open Bank B's file. Bank B is a direct competitor.",
+        "ask": "Which model applies and what happens?",
+        "answer": "Brewer-Nash. Having accessed Bank A's data, the consultant is blocked from Bank B's, to prevent a conflict of interest. Access decisions depend on history, not just clearance."
+      }
+    },
+    "3.3": {
+      "summary": [
+        "Select controls from the system's security requirements, which come from its categorisation and the business need.",
+        "Categorise by the impact of losing confidentiality, integrity and availability; the highest drives the baseline.",
+        "Use a catalogue (NIST SP 800-53, ISO 27002) and tailor it; do not invent controls from scratch.",
+        "Evaluation schemes such as Common Criteria give assurance that a product meets stated requirements.",
+        "Controls should be proportionate: spend where the impact is, not evenly everywhere."
+      ],
+      "keyTerms": [
+        {
+          "term": "Security categorisation",
+          "meaning": "Rating a system's impact (low, moderate, high) for C, I and A to choose a baseline."
+        },
+        {
+          "term": "Common Criteria",
+          "meaning": "ISO/IEC 15408: an international scheme for evaluating products against security requirements."
+        },
+        {
+          "term": "EAL",
+          "meaning": "Evaluation Assurance Level: how thoroughly a product was evaluated, not how strong it is."
+        },
+        {
+          "term": "Protection Profile",
+          "meaning": "A standard set of security requirements for a type of product, such as firewalls."
+        }
+      ],
+      "scenario": {
+        "situation": "A public price list website has no confidential data, but wrong prices would cost the company money.",
+        "ask": "Where should control effort go?",
+        "answer": "Integrity: change control, file integrity monitoring and signed or approved publishing. Encryption at rest adds little, because the data is public."
+      }
+    },
+    "3.4": {
+      "summary": [
+        "Memory protection keeps processes apart: separate address spaces, DEP/NX and ASLR.",
+        "A TPM is a chip on the board: it protects platform keys and measures the boot process.",
+        "An HSM is a dedicated, tamper-resistant device for high-value keys and heavy cryptographic work.",
+        "Trusted execution environments and secure enclaves protect data while it is processed.",
+        "Know what each capability protects against, and what it does not."
+      ],
+      "keyTerms": [
+        {
+          "term": "DEP / NX",
+          "meaning": "Marks memory areas such as the stack as non-executable, so injected code cannot run there."
+        },
+        {
+          "term": "ASLR",
+          "meaning": "Randomises where code and data sit in memory, making exploits harder to aim."
+        },
+        {
+          "term": "TPM",
+          "meaning": "Trusted Platform Module: stores keys and measures boot to support attestation and sealed storage."
+        },
+        {
+          "term": "HSM",
+          "meaning": "Hardware security module: tamper-resistant appliance for generating, storing and using critical keys."
+        }
+      ],
+      "scenario": {
+        "situation": "A bank is building a certificate authority whose root key must never leave tamper-resistant hardware.",
+        "ask": "TPM or HSM?",
+        "answer": "An HSM. It is built to guard and use high-value keys under strict access control and audit. A TPM protects one platform's own keys and boot integrity."
+      }
+    },
+    "3.5": {
+      "summary": [
+        "Each architecture has typical weaknesses: client, server, database, ICS/OT, cloud, IoT, containers, serverless, embedded.",
+        "ICS and OT put safety and availability first; patching is slow, so isolation and monitoring matter.",
+        "Cloud follows shared responsibility: the customer's share shrinks from IaaS to PaaS to SaaS, but never reaches zero.",
+        "Containers share the host kernel; a kernel flaw can break isolation between them.",
+        "Databases face inference and aggregation: harmless data combined can reveal secrets."
+      ],
+      "keyTerms": [
+        {
+          "term": "Aggregation",
+          "meaning": "Combining low-sensitivity items so the whole becomes sensitive."
+        },
+        {
+          "term": "Inference",
+          "meaning": "Deducing sensitive information from data you are allowed to see."
+        },
+        {
+          "term": "Shared responsibility",
+          "meaning": "The split of security duties between cloud provider and customer."
+        },
+        {
+          "term": "SCADA / ICS",
+          "meaning": "Systems that monitor and control physical processes, such as plants and grids."
+        }
+      ],
+      "scenario": {
+        "situation": "A factory's PLCs run 15-year-old firmware with no updates available. Engineers want remote access from the office network.",
+        "ask": "What should security recommend?",
+        "answer": "Keep the OT network segmented from the office network, allow remote access only through a monitored jump host with MFA, and monitor OT traffic. Patching is not an option, so isolation and detection carry the load."
+      }
+    },
+    "3.6": {
+      "summary": [
+        "Symmetric encryption is fast and suits bulk data; asymmetric solves key exchange and signatures; hybrids use both.",
+        "Hashes give integrity; digital signatures add authenticity and non-repudiation.",
+        "PKI binds public keys to identities through certificates; revocation (CRL, OCSP) handles compromised keys.",
+        "Key management is where crypto usually fails: generation, storage, rotation, escrow and destruction.",
+        "Plan for post-quantum: ML-KEM (FIPS 203) for key establishment, ML-DSA and SLH-DSA for signatures."
+      ],
+      "keyTerms": [
+        {
+          "term": "Hybrid cryptography",
+          "meaning": "Asymmetric crypto exchanges a symmetric session key, which encrypts the data."
+        },
+        {
+          "term": "OCSP",
+          "meaning": "Online Certificate Status Protocol: real-time check of whether a certificate is revoked."
+        },
+        {
+          "term": "Key escrow",
+          "meaning": "A copy of a key held by a trusted party so data can be recovered."
+        },
+        {
+          "term": "Crypto agility",
+          "meaning": "Designing systems so algorithms can be replaced without redesign."
+        }
+      ],
+      "scenario": {
+        "situation": "Database encryption keys are kept in a configuration file on the same server as the database.",
+        "ask": "What is the weakness, and the fix?",
+        "answer": "Anyone who compromises the server gets both data and keys, so encryption adds little. Move keys to a key management service or HSM, with separate access control, logging and rotation."
+      }
+    },
+    "3.7": {
+      "summary": [
+        "Know the attacker's starting point: ciphertext only, known plaintext, chosen plaintext, chosen ciphertext.",
+        "Implementation and side-channel attacks (timing, power, fault injection) beat the maths by attacking the device.",
+        "Brute force is limited by key length; frequency analysis breaks simple substitution ciphers.",
+        "Credential attacks: pass the hash, Kerberos ticket attacks (golden and silver tickets), credential stuffing.",
+        "Adversary-in-the-middle attacks are stopped by authenticated key exchange and certificate validation."
+      ],
+      "keyTerms": [
+        {
+          "term": "Known plaintext",
+          "meaning": "The attacker has some plaintext and its matching ciphertext."
+        },
+        {
+          "term": "Side-channel attack",
+          "meaning": "Recovering secrets from physical effects such as timing, power use or emissions."
+        },
+        {
+          "term": "Pass the hash",
+          "meaning": "Authenticating with a stolen password hash without cracking it."
+        },
+        {
+          "term": "Golden ticket",
+          "meaning": "A forged Kerberos ticket-granting ticket made with the stolen KRBTGT key."
+        }
+      ],
+      "scenario": {
+        "situation": "An attacker with a smart card in a lab measures its power use while it signs thousands of messages.",
+        "ask": "What attack is this, and what defends against it?",
+        "answer": "A side-channel (power analysis) attack. Defences are in the implementation: constant-time code, masking, noise and hardware designed to resist power analysis, which evaluation schemes test for."
+      }
+    },
+    "3.8": {
+      "summary": [
+        "Site selection weighs natural hazards, crime, access, utilities and telecom diversity.",
+        "CPTED uses natural surveillance, natural access control and territorial reinforcement.",
+        "Layer physical security from the perimeter inwards: deter, delay, detect, respond.",
+        "Life safety always comes first: exits, fire safety and emergency access cannot be traded for security.",
+        "Keep critical facilities low-profile: no signs advertising the data centre."
+      ],
+      "keyTerms": [
+        {
+          "term": "CPTED",
+          "meaning": "Crime prevention through environmental design: using layout and landscaping to deter crime."
+        },
+        {
+          "term": "Natural surveillance",
+          "meaning": "Design that lets people see what is happening, such as windows and lighting over car parks."
+        },
+        {
+          "term": "Territorial reinforcement",
+          "meaning": "Clear boundaries that signal ownership, such as fences, signs and landscaping."
+        },
+        {
+          "term": "Defence in depth (physical)",
+          "meaning": "Concentric layers: perimeter, building, floor, room, rack."
+        }
+      ],
+      "scenario": {
+        "situation": "A company is choosing between two sites for a new data centre: one near head office in a river valley, one 40 km away on higher ground with two power substations nearby.",
+        "ask": "Which factors decide it?",
+        "answer": "Hazard exposure (flood risk in the valley) and diverse utilities and telecom routes favour the second site. Convenience for executives is not a security factor."
+      }
+    },
+    "3.9": {
+      "summary": [
+        "Server rooms need controlled access, environmental monitoring and fire detection and suppression.",
+        "Fire classes differ: ordinary combustibles, liquids, electrical; choose suppression to match and to protect people.",
+        "Pre-action sprinklers and clean agents reduce water damage risk in data halls.",
+        "Keep temperature and humidity in range: too dry causes static, too humid causes condensation and corrosion.",
+        "Power protection: UPS for short gaps, generators for long ones, redundant feeds where justified."
+      ],
+      "keyTerms": [
+        {
+          "term": "Pre-action sprinkler",
+          "meaning": "Pipes stay dry until detection triggers; water then needs a sprinkler head to open."
+        },
+        {
+          "term": "Clean agent",
+          "meaning": "A gas suppressant such as FM-200 or FK-5-1-12 that leaves no residue and is safe at design levels."
+        },
+        {
+          "term": "Fail-safe lock",
+          "meaning": "Unlocks when power fails, protecting people; fail-secure stays locked, protecting assets."
+        },
+        {
+          "term": "UPS",
+          "meaning": "Uninterruptible power supply: batteries that bridge short outages and allow orderly shutdown."
+        }
+      ],
+      "scenario": {
+        "situation": "Magnetic locks secure the exit doors of a staffed data hall. The fire alarm sounds.",
+        "ask": "What should the doors do?",
+        "answer": "Unlock for exit (fail-safe), because life safety comes first. Protect the assets in other ways, such as cameras, alarms on door opening and locked racks."
+      }
+    },
+    "3.10": {
+      "summary": [
+        "Security belongs in every lifecycle phase: requirements, design, build, test, deploy, operate, retire.",
+        "Define security requirements early, from stakeholder needs and risk; they are cheaper to meet than to retrofit.",
+        "Verification and validation show the system meets its security requirements before it goes live.",
+        "Changes in operation trigger a security impact analysis and, where needed, re-authorisation.",
+        "Retirement covers data retention, media sanitisation and removing access, keys and rules."
+      ],
+      "keyTerms": [
+        {
+          "term": "Verification",
+          "meaning": "Checking the system was built to its specification: built right."
+        },
+        {
+          "term": "Validation",
+          "meaning": "Checking the system meets the users' real need: the right thing built."
+        },
+        {
+          "term": "Security impact analysis",
+          "meaning": "Assessing how a proposed change affects a system's security posture."
+        },
+        {
+          "term": "Authorisation (ATO)",
+          "meaning": "A senior official's formal acceptance of a system's residual risk before operation."
+        }
+      ],
+      "scenario": {
+        "situation": "An internal HR system, approved two years ago, is about to be opened to staff over the internet.",
+        "ask": "What should happen before the change?",
+        "answer": "A security impact analysis of the new exposure, updated controls (for example MFA, WAF, logging), and fresh acceptance of the residual risk by the system's authorising official or owner."
+      }
     }
   }
 }

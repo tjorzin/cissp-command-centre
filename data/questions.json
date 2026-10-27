@@ -31,6 +31,16 @@
         "d2-005"
       ],
       "text": "Kopje Community Clinics runs 12 clinics in and around Harare. It is moving from paper files and an old patient-records system to a cloud electronic health record. Nobody has classified the clinics' information, and no one is named as owner of the patient data. Clinicians share lab results with each other on personal WhatsApp groups, and receptionists carry patient lists between sites on USB drives. The vendor of the old patient-records system will stop issuing security updates next month, but the migration will take another six months. A university research partner has asked for two years of patient data to study treatment outcomes, and the clinics may need to contact patients again if the research finds a safety problem with a medicine."
+    },
+    {
+      "id": "sc-04",
+      "title": "Cloud, plant and server room at a mining company",
+      "questionIds": [
+        "d3-003",
+        "d3-004",
+        "d3-005"
+      ],
+      "text": "Gwayi Minerals runs a coal processing plant near Hwange and a head office in Bulawayo. It is moving its ERP system to an IaaS provider: the provider runs the data centres and hypervisors, and Gwayi builds and manages its own virtual machines. At the plant, PLCs and a SCADA historian control conveyors and crushers. The PLCs run firmware that the manufacturer no longer updates, and engineers want to reach the historian from head office to monitor production. Gwayi is also fitting out a small server room at head office for systems that stay on-premises. Two network engineers work in that room for most of the day."
     }
   ],
   "questions": [
@@ -2463,6 +2473,1090 @@
       "tags": [
         "crypto",
         "post-quantum"
+      ]
+    },
+    {
+      "id": "d3-003",
+      "domain": 3,
+      "objective": "3.1",
+      "subtopic": "Shared responsibility in IaaS",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": "sc-04",
+      "stem": "Gwayi's CFO assumes that moving the ERP system to the IaaS provider makes the provider responsible for its security. Which responsibility stays with Gwayi under the IaaS model?",
+      "options": [
+        "Physical security of the provider's data centres and their access control",
+        "Patching the hypervisors that host Gwayi's virtual machines",
+        "Replacing failed disks in the provider's storage arrays",
+        "Hardening and patching the operating systems of Gwayi's virtual machines"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "Physical security of the facilities is the provider's responsibility in every cloud model.",
+        "The hypervisor layer belongs to the provider in IaaS.",
+        "Underlying hardware, including storage, is the provider's to maintain.",
+        "Correct. In IaaS the customer manages everything from the guest operating system up: OS hardening and patching, applications, data, identities and network rules inside its virtual network."
+      ],
+      "concept": "Shared responsibility: in IaaS the customer secures the guest OS and everything above it.",
+      "trap": "Believing that moving to the cloud moves all security to the provider.",
+      "managerLens": "Write down the split for each service model and check the provider's attestations cover their share.",
+      "practicalNote": "Most cloud breaches come from the customer's share: misconfigured storage, weak identities, unpatched VMs.",
+      "gap": "Knowing what each cloud model leaves to the customer.",
+      "followUpId": "d3-004",
+      "tags": [
+        "cloud",
+        "shared-responsibility"
+      ]
+    },
+    {
+      "id": "d3-004",
+      "domain": 3,
+      "objective": "3.5",
+      "subtopic": "ICS and OT vulnerabilities",
+      "difficulty": 5,
+      "type": "multi",
+      "scenario": "sc-04",
+      "stem": "The plant's PLCs cannot be patched, and engineers want to monitor the SCADA historian from head office. Which TWO measures BEST manage the risk? (Select TWO.)",
+      "options": [
+        "Keep the OT network segmented from the corporate network, with tightly filtered flows",
+        "Allow head office access only through a monitored jump host or one-way data diode",
+        "Install the corporate antivirus agent on the PLCs and the SCADA historian",
+        "Join the PLCs and historian to the corporate Active Directory domain",
+        "Run weekly authenticated vulnerability scans across the PLC network"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Segmentation limits who and what can reach unpatchable controllers.",
+        "Correct. A controlled, monitored path (or one-way transfer of historian data) gives engineers visibility without exposing control systems.",
+        "PLCs cannot run general-purpose antivirus, and unapproved software on control systems can affect safety and vendor support.",
+        "Domain-joining OT assets ties them to IT's attack surface; a compromised domain would reach the plant.",
+        "Active scanning can disrupt fragile PLCs and stop production; OT usually relies on passive monitoring."
+      ],
+      "concept": "Unpatchable OT is protected by isolation, controlled access paths and passive monitoring.",
+      "trap": "Applying IT practices such as AV, domain joins and active scans to control systems.",
+      "managerLens": "In OT, safety and availability come first; prefer controls that cannot stop the plant.",
+      "practicalNote": "IEC 62443 zones and conduits and the Purdue model are common ways to structure OT segmentation.",
+      "gap": "Securing ICS without disrupting them.",
+      "followUpId": "d3-005",
+      "tags": [
+        "ot",
+        "ics",
+        "segmentation"
+      ]
+    },
+    {
+      "id": "d3-005",
+      "domain": 3,
+      "objective": "3.9",
+      "subtopic": "Fire suppression",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": "sc-04",
+      "stem": "Gwayi is choosing fire suppression for the new head office server room, where two engineers work most of the day. Water damage to equipment is a concern, but staff safety is the priority. Which option BEST fits?",
+      "options": [
+        "A clean agent system designed to be safe for occupied spaces",
+        "Total-flooding carbon dioxide for fast extinguishing",
+        "A wet-pipe sprinkler system charged with water at all times",
+        "A new Halon 1301 system, which is highly effective on electrical fires"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. Clean agents such as FK-5-1-12 or FM-200 extinguish without water damage and are designed to be safe for people at their design concentration.",
+        "CO2 at extinguishing concentrations is lethal; it suits unoccupied spaces only.",
+        "Wet pipes can discharge from a damaged head and soak equipment; pre-action would be safer than wet pipe if water is used.",
+        "Halon production was banned under the Montreal Protocol; new Halon systems are not installed."
+      ],
+      "concept": "Choose suppression to protect people first, then equipment.",
+      "trap": "Choosing the most effective extinguisher without considering occupants.",
+      "managerLens": "Life safety is non-negotiable; within that, minimise damage to assets.",
+      "practicalNote": "Clean agent rooms need sealed walls, door fans tests and abort switches; local fire codes also apply.",
+      "gap": "Matching suppression systems to occupied spaces.",
+      "followUpId": null,
+      "tags": [
+        "physical",
+        "fire",
+        "life-safety"
+      ]
+    },
+    {
+      "id": "d3-006",
+      "domain": 3,
+      "objective": "3.1",
+      "subtopic": "Fail securely",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A payments API sends every request to a central authorisation service to check the caller's permissions. During a network fault, the API cannot reach that service for several minutes. How should the API behave?",
+      "options": [
+        "Allow requests from callers whose permissions it has checked in the last hour",
+        "Deny the requests and raise an alert until the service is back",
+        "Allow every request, so that customers are not affected by the outage",
+        "Queue the requests and approve them automatically when the service returns"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "Stale decisions may allow callers whose access has since been revoked; it is a fail-open shortcut.",
+        "Correct. Failing securely means denying access when the control cannot make a decision, and alerting so the fault is fixed.",
+        "Allowing everything turns an outage into an open door; attackers can even cause outages for this reason.",
+        "Automatic approval later still processes requests nobody authorised."
+      ],
+      "concept": "Fail securely: when a security control cannot decide, deny.",
+      "trap": "Putting availability ahead of authorisation for financial transactions.",
+      "managerLens": "Decide failure behaviour at design time and get the business owner to accept the availability impact.",
+      "practicalNote": "Short-lived cached decisions with strict expiry are sometimes accepted, but only as a documented, risk-assessed design.",
+      "gap": "Applying fail-secure design to software.",
+      "followUpId": null,
+      "tags": [
+        "design-principles",
+        "fail-secure"
+      ]
+    },
+    {
+      "id": "d3-007",
+      "domain": 3,
+      "objective": "3.1",
+      "subtopic": "Secure design principles",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A design review of a new mobile banking back end proposes several changes. Which THREE apply recognised secure design principles? (Select THREE.)",
+      "options": [
+        "Give each service account just the permissions its service needs",
+        "Validate input in the application as well as at the web application firewall",
+        "Require two administrators to approve export of production signing keys",
+        "Open all firewall ports during deployments and close them afterwards",
+        "Show detailed stack traces in production error messages to speed up support",
+        "Let the operations team share one administrator account for simplicity"
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "rationales": [
+        "Correct. Least privilege limits what a compromised service account can do.",
+        "Correct. Defence in depth: if the WAF misses an attack, the application still validates input.",
+        "Correct. Two-person control (separation of duties) stops one person exporting keys alone.",
+        "Opening everything, even briefly, abandons secure defaults and creates an exposure window.",
+        "Detailed errors leak internal information to attackers; production should fail quietly and log details internally.",
+        "Shared accounts destroy accountability and break individual access control."
+      ],
+      "concept": "Least privilege, defence in depth and separation of duties in practice.",
+      "trap": "Accepting convenience changes that quietly undo a principle.",
+      "managerLens": "Make design principles review criteria, so convenience shortcuts are visible and justified.",
+      "practicalNote": "Many teams keep a secure design checklist in their architecture review template.",
+      "gap": "Recognising design principles in concrete changes.",
+      "followUpId": null,
+      "tags": [
+        "design-principles",
+        "least-privilege",
+        "defence-in-depth"
+      ]
+    },
+    {
+      "id": "d3-008",
+      "domain": 3,
+      "objective": "3.1",
+      "subtopic": "Zero trust",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A company says it is moving to a zero trust architecture. Staff currently get broad access to internal applications once they connect to the corporate VPN. Which change BEST reflects zero trust?",
+      "options": [
+        "Buy a larger VPN concentrator so that more staff can connect at once",
+        "Trust devices on the office LAN fully and require MFA only for remote access",
+        "Authorise each request to each app by user, device health and context",
+        "Require users to sign in with MFA once a day at the start of their work"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "A bigger VPN keeps the same network-based trust model.",
+        "Trusting the office LAN is exactly the location-based trust zero trust removes.",
+        "Correct. Zero trust removes implicit trust from network location: each access decision checks identity, device posture and context, per application.",
+        "Daily MFA is good hygiene, but a single check that then grants broad access is still perimeter thinking."
+      ],
+      "concept": "Zero trust: per-request, per-resource decisions based on identity, device and context.",
+      "trap": "Equating zero trust with MFA or a better VPN.",
+      "managerLens": "Zero trust is a journey; start with the most valuable applications and strongest identity controls.",
+      "practicalNote": "NIST SP 800-207 describes zero trust with policy decision and enforcement points in front of each resource.",
+      "gap": "Understanding what zero trust changes.",
+      "followUpId": null,
+      "tags": [
+        "zero-trust",
+        "design-principles"
+      ]
+    },
+    {
+      "id": "d3-009",
+      "domain": 3,
+      "objective": "3.2",
+      "subtopic": "Biba integrity model",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A medical device maker wants a rule that stops data from low-integrity sources, such as unverified field reports, from altering its high-integrity calibration database. Which model's rules address this directly?",
+      "options": [
+        "Biba integrity model",
+        "Bell-LaPadula model",
+        "Brewer-Nash model",
+        "Graham-Denning model"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. Biba protects integrity: subjects may not write up to higher integrity levels, so low-integrity sources cannot corrupt high-integrity data.",
+        "Bell-LaPadula is about confidentiality and actually allows writing up.",
+        "Brewer-Nash prevents conflicts of interest between competing clients.",
+        "Graham-Denning defines rules for creating and deleting subjects and objects and managing rights, not integrity levels."
+      ],
+      "concept": "Biba: no write up, no read down, to protect integrity.",
+      "trap": "Choosing Bell-LaPadula because it is the best-known model.",
+      "managerLens": "Start from the protection goal: integrity points to Biba or Clark-Wilson.",
+      "practicalNote": "Windows Mandatory Integrity Control uses integrity levels in a Biba-like way to limit what low-integrity processes can change.",
+      "gap": "Linking models to their security goals.",
+      "followUpId": "d3-010",
+      "tags": [
+        "models",
+        "integrity"
+      ]
+    },
+    {
+      "id": "d3-010",
+      "domain": 3,
+      "objective": "3.2",
+      "subtopic": "Brewer-Nash model",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "At an audit firm, an analyst who has opened files for one mobile network operator is automatically blocked from opening files for that operator's direct competitor, though she may still open files for a bank. Which model does this implement?",
+      "options": [
+        "Clark-Wilson model",
+        "Biba model",
+        "Take-Grant model",
+        "Brewer-Nash model"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "Clark-Wilson enforces integrity through well-formed transactions and separation of duties, not conflict-of-interest rules.",
+        "Biba controls integrity levels, not access based on what a user has already seen.",
+        "Take-Grant models how rights are passed between subjects.",
+        "Correct. Brewer-Nash (the Chinese Wall) changes access dynamically based on history to prevent conflicts of interest."
+      ],
+      "concept": "Brewer-Nash: access depends on what you have already accessed.",
+      "trap": "Thinking every access model is static.",
+      "managerLens": "Consultancies and auditors use Chinese Walls to manage client confidentiality and conflicts.",
+      "practicalNote": "Ethical walls in legal and audit document systems implement this automatically.",
+      "gap": "Recognising history-based access control.",
+      "followUpId": null,
+      "tags": [
+        "models",
+        "conflict-of-interest"
+      ]
+    },
+    {
+      "id": "d3-011",
+      "domain": 3,
+      "objective": "3.3",
+      "subtopic": "Controls from requirements",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A retailer's public price list website holds no confidential data, but a wrong price displayed for even an hour costs it money and causes complaints. The site must also stay available during sales. Where should control effort focus FIRST?",
+      "options": [
+        "Encrypting the price database at rest with keys in a separate HSM",
+        "Change control and integrity monitoring for the published prices",
+        "Data loss prevention on the web servers to stop prices leaking out",
+        "Classifying the price list as Confidential and limiting who can view it"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "Encryption at rest protects confidentiality, which matters little for public data.",
+        "Correct. The requirement is integrity (and availability): controlled, approved changes and detection of unauthorised changes address the real impact.",
+        "The prices are public; preventing leakage is pointless.",
+        "Restricting views contradicts the purpose of a public price list."
+      ],
+      "concept": "Select controls from the requirement: here integrity, not confidentiality.",
+      "trap": "Defaulting to encryption whatever the requirement.",
+      "managerLens": "Spend where the impact is; categorise C, I and A separately.",
+      "practicalNote": "File integrity monitoring and approval workflows in the content system are typical controls for this case.",
+      "gap": "Deriving controls from C, I and A requirements.",
+      "followUpId": null,
+      "tags": [
+        "controls",
+        "integrity",
+        "requirements"
+      ]
+    },
+    {
+      "id": "d3-012",
+      "domain": 3,
+      "objective": "3.3",
+      "subtopic": "Common Criteria",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A government department is choosing between two firewalls that both hold Common Criteria certificates, one at EAL2 and one at EAL4. Which TWO statements about Common Criteria are correct? (Select TWO.)",
+      "options": [
+        "The EAL shows how thoroughly the product was evaluated, not how strong its security is",
+        "Products are evaluated against a security target, often based on a protection profile",
+        "An EAL7 product is the most secure product available in its category",
+        "A certificate stays valid for later versions of the product too",
+        "Common Criteria applies to hardware products only, not to software"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. A higher EAL means deeper evaluation and more assurance in the claims, not stronger features.",
+        "Correct. The vendor's security target states the claims; protection profiles standardise requirements for a product type.",
+        "EAL7 means formally verified evaluation of the claims, not that the product is the most secure.",
+        "Certificates apply to the evaluated version and configuration only.",
+        "Common Criteria covers software, hardware and firmware products."
+      ],
+      "concept": "Common Criteria measures assurance in stated claims; EAL is evaluation depth.",
+      "trap": "Reading EAL as a security strength score.",
+      "managerLens": "Check the security target matches your needs and the evaluated configuration matches your deployment.",
+      "practicalNote": "The Common Criteria portal lists certified products, their security targets and evaluated configurations.",
+      "gap": "Interpreting product evaluations.",
+      "followUpId": null,
+      "tags": [
+        "common-criteria",
+        "assurance"
+      ]
+    },
+    {
+      "id": "d3-013",
+      "domain": 3,
+      "objective": "3.4",
+      "subtopic": "TPM and HSM",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A bank is setting up an internal certificate authority. Its root signing key must be generated and used only inside a tamper-resistant device, with dual control over its use. Which component is designed for this?",
+      "options": [
+        "The TPM chip on the CA server's motherboard",
+        "A secure enclave in an administrator's smartphone",
+        "A hardware security module with dual-control access",
+        "An encrypted software keystore on the CA server"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "A TPM protects keys tied to one platform, mainly for boot integrity and sealed storage; it is not built for CA operations with dual control.",
+        "A phone enclave protects the phone's own keys, not an enterprise root CA.",
+        "Correct. HSMs are tamper-resistant devices built to generate, store and use high-value keys, with role separation, quorum controls and audit.",
+        "Software keystores can be copied if the server is compromised; they do not provide tamper resistance."
+      ],
+      "concept": "HSMs protect high-value keys; TPMs protect a platform's integrity and its own keys.",
+      "trap": "Choosing the TPM because it is also 'trusted hardware'.",
+      "managerLens": "Match the protection to the key's value: root CA keys justify HSMs and key ceremonies.",
+      "practicalNote": "Root CA keys are often kept offline in an HSM and used only in recorded key ceremonies.",
+      "gap": "Distinguishing TPM and HSM roles.",
+      "followUpId": null,
+      "tags": [
+        "tpm",
+        "hsm",
+        "pki"
+      ]
+    },
+    {
+      "id": "d3-014",
+      "domain": 3,
+      "objective": "3.4",
+      "subtopic": "Memory protection",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "An attacker exploits a buffer overflow in a legacy service to place shellcode on the stack and jump to it. Which operating system feature is designed to stop that injected code from running?",
+      "options": [
+        "Data execution prevention marking the stack non-executable",
+        "Address space layout randomisation of the service's memory",
+        "Measured boot using the platform's TPM",
+        "Running the service in its own user account"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. DEP/NX marks data areas such as the stack as non-executable, so the processor refuses to run code placed there.",
+        "ASLR makes it harder to find the right address, but it does not stop code from executing where it lands.",
+        "Measured boot verifies the boot chain; it does not affect a running service's memory.",
+        "A separate account limits the damage after exploitation, not the execution of the injected code."
+      ],
+      "concept": "DEP/NX prevents execution in data areas; ASLR makes targeting harder. They work together.",
+      "trap": "Choosing ASLR because it is the better-known mitigation.",
+      "managerLens": "Require modern exploit mitigations on legacy services, or isolate the services that cannot use them.",
+      "practicalNote": "Attackers bypass DEP with return-oriented programming, which is why DEP and ASLR are used together.",
+      "gap": "Knowing what each memory protection feature does.",
+      "followUpId": null,
+      "tags": [
+        "memory-protection",
+        "exploit-mitigation"
+      ]
+    },
+    {
+      "id": "d3-015",
+      "domain": 3,
+      "objective": "3.4",
+      "subtopic": "Uses of a TPM chip",
+      "difficulty": 3,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A company is standardising on laptops with TPM 2.0 chips. Which TWO are typical uses of the TPM? (Select TWO.)",
+      "options": [
+        "Protecting the disk encryption key so it is released only if the boot state is unchanged",
+        "Recording boot measurements so the laptop's integrity can be attested to a server",
+        "Offloading TLS encryption for the company's high-traffic web servers",
+        "Storing the passwords users save for websites in their browsers",
+        "Scanning files on the laptop for known malware signatures"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Sealing the disk encryption key to the TPM means a tampered boot chain cannot unlock the disk.",
+        "Correct. Measured boot records hashes in the TPM so a server can check the device before granting access.",
+        "Bulk TLS offload is a job for accelerators or HSMs, not a laptop's TPM.",
+        "Browser password storage is handled by the browser or operating system, not by the TPM itself.",
+        "Malware scanning is software; the TPM does not inspect files."
+      ],
+      "concept": "TPMs seal keys to platform state and support attestation.",
+      "trap": "Assuming any security task can be given to the TPM.",
+      "managerLens": "Use TPM-backed disk encryption and device attestation as building blocks for zero trust.",
+      "practicalNote": "BitLocker uses the TPM to seal its key; device health attestation feeds conditional access decisions.",
+      "gap": "Knowing what a TPM is for.",
+      "followUpId": null,
+      "tags": [
+        "tpm"
+      ]
+    },
+    {
+      "id": "d3-016",
+      "domain": 3,
+      "objective": "3.5",
+      "subtopic": "Container isolation",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A SaaS provider plans to run containers for many customers on shared hosts instead of giving each customer its own virtual machine. What is the MAIN additional security risk of this design?",
+      "options": [
+        "Container images are larger than VM images and take longer to copy",
+        "Containers start more slowly than virtual machines during scaling",
+        "Each container needs its own public IP address on the internet",
+        "Containers share the host kernel, so a kernel flaw breaks isolation"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "Container images are usually smaller than VM images, and size is not a security risk.",
+        "Containers usually start faster; startup time is not a security concern here.",
+        "Containers do not each need a public IP address.",
+        "Correct. All containers on a host share one kernel; a kernel vulnerability or misconfiguration can let one tenant escape to the host or other tenants."
+      ],
+      "concept": "Containers isolate less strongly than VMs because they share the host kernel.",
+      "trap": "Focusing on operational differences instead of isolation.",
+      "managerLens": "For multi-tenant designs, decide the isolation strength the risk needs: hardened containers, sandboxed runtimes or VMs.",
+      "practicalNote": "Sandboxed runtimes and micro-VMs add a stronger boundary for untrusted multi-tenant workloads.",
+      "gap": "Understanding container isolation.",
+      "followUpId": null,
+      "tags": [
+        "containers",
+        "cloud",
+        "isolation"
+      ]
+    },
+    {
+      "id": "d3-017",
+      "domain": 3,
+      "objective": "3.5",
+      "subtopic": "IoT devices that cannot be patched",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A hotel installs 300 smart thermostats. They have hard-coded administrator credentials, and the vendor has said it will not release firmware updates. What is the BEST way to reduce the risk?",
+      "options": [
+        "Install antivirus software on each thermostat before it goes live",
+        "Place the thermostats on an isolated network with tightly limited flows",
+        "Change the hard-coded credentials on each device through its web interface",
+        "Rely on the hotel's perimeter firewall to block attacks from outside"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "IoT devices like these cannot run antivirus software.",
+        "Correct. When devices cannot be fixed, isolate them: a separate network that can reach only the management service it needs.",
+        "Hard-coded credentials, by definition, cannot be changed.",
+        "The perimeter does not stop threats already inside, such as guests on the hotel network."
+      ],
+      "concept": "Unfixable devices are contained by segmentation.",
+      "trap": "Choosing an option that is impossible for the device.",
+      "managerLens": "Make security requirements part of IoT procurement; isolate what you cannot fix.",
+      "practicalNote": "Guest, corporate, payment and IoT networks are usually kept on separate VLANs or SSIDs with firewall rules between them.",
+      "gap": "Managing IoT that cannot be patched.",
+      "followUpId": null,
+      "tags": [
+        "iot",
+        "segmentation"
+      ]
+    },
+    {
+      "id": "d3-018",
+      "domain": 3,
+      "objective": "3.5",
+      "subtopic": "Serverless and FaaS",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A fintech moves part of its application to serverless functions on a public cloud. Which security responsibility remains with the fintech?",
+      "options": [
+        "Patching the operating system that the functions run on",
+        "Maintaining the physical servers in the provider's regions",
+        "The function code and the permissions granted to each function",
+        "Securing the hypervisor that isolates one tenant from another"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "In serverless, the provider manages and patches the runtime environment and OS.",
+        "Physical infrastructure always belongs to the provider.",
+        "Correct. The customer still owns its code, dependencies, data, and the identity permissions each function has.",
+        "Tenant isolation below the function is the provider's responsibility."
+      ],
+      "concept": "Serverless shrinks the customer's share to code, data and permissions, but not to zero.",
+      "trap": "Assuming serverless means the provider handles all security.",
+      "managerLens": "Focus serverless security on least-privilege function roles, secure code and dependency management.",
+      "practicalNote": "Over-permissive function roles are among the most common serverless weaknesses.",
+      "gap": "Knowing the customer's share in serverless.",
+      "followUpId": null,
+      "tags": [
+        "serverless",
+        "cloud",
+        "shared-responsibility"
+      ]
+    },
+    {
+      "id": "d3-019",
+      "domain": 3,
+      "objective": "3.5",
+      "subtopic": "Inference and aggregation",
+      "difficulty": 5,
+      "type": "multi",
+      "scenario": null,
+      "stem": "HR analysts may only query average salaries by department. In departments with two or three staff, they have worked out individuals' salaries by comparing averages before and after a new hire. Which TWO controls address this? (Select TWO.)",
+      "options": [
+        "Refuse queries whose result would cover fewer than a set number of people",
+        "Add small random noise to aggregate results so they cannot be differenced",
+        "Encrypt the salary database at rest with keys held in an HSM",
+        "Log every query the analysts run against the salary database",
+        "Require analysts to use stronger passwords for the HR system"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. A minimum query set size stops statistics that describe only a handful of people.",
+        "Correct. Perturbation (adding noise) prevents exact differencing while keeping aggregates useful.",
+        "Encryption at rest does not stop authorised queries from revealing information.",
+        "Logging may detect misuse later but does not prevent the inference.",
+        "Password strength does not affect what authorised analysts can deduce."
+      ],
+      "concept": "Inference attacks are countered by limiting or perturbing query results.",
+      "trap": "Applying access or encryption controls to a problem caused by authorised queries.",
+      "managerLens": "Treat statistical outputs about people as personal data when groups are small.",
+      "practicalNote": "Differential privacy formalises noise-adding so aggregate data can be released safely.",
+      "gap": "Recognising and countering inference.",
+      "followUpId": null,
+      "tags": [
+        "database",
+        "inference",
+        "privacy"
+      ]
+    },
+    {
+      "id": "d3-020",
+      "domain": 3,
+      "objective": "3.6",
+      "subtopic": "Hybrid cryptography",
+      "difficulty": 2,
+      "type": "single",
+      "scenario": null,
+      "stem": "Why do protocols such as TLS use asymmetric cryptography to agree a key, and then a symmetric cipher for the data?",
+      "options": [
+        "Symmetric ciphers cannot provide integrity for data in transit",
+        "Asymmetric solves key exchange; symmetric ciphers are much faster",
+        "Asymmetric algorithms need much shorter keys than symmetric ones",
+        "Symmetric keys cannot be changed during a session once agreed"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "Authenticated symmetric modes such as AES-GCM provide integrity as well as confidentiality.",
+        "Correct. Public-key methods let two parties agree a key without a shared secret, but they are slow; symmetric ciphers then encrypt the bulk data efficiently.",
+        "It is the reverse: asymmetric keys are much longer for comparable strength.",
+        "Session keys can be renegotiated; this is not why hybrids are used."
+      ],
+      "concept": "Hybrid cryptography: asymmetric for key exchange and signatures, symmetric for bulk data.",
+      "trap": "Mixing up which family is faster or needs longer keys.",
+      "managerLens": "Know the trade-offs well enough to judge vendor claims.",
+      "practicalNote": "TLS 1.3 uses ephemeral (EC)DHE for key exchange and AES-GCM or ChaCha20-Poly1305 for data.",
+      "gap": "Understanding why hybrid cryptography exists.",
+      "followUpId": null,
+      "tags": [
+        "crypto",
+        "symmetric",
+        "asymmetric"
+      ]
+    },
+    {
+      "id": "d3-021",
+      "domain": 3,
+      "objective": "3.6",
+      "subtopic": "Key management",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "An audit finds that the encryption key for a customer database is stored in a configuration file on the same server as the database. Developers propose fixes. Which BEST addresses the weakness?",
+      "options": [
+        "Rotate the key monthly and keep the new key in the same configuration file",
+        "Switch to a longer key length, such as AES-256 instead of AES-128",
+        "Obfuscate the configuration file so that the key is harder to spot",
+        "Move the key to a key management service with separate access control"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "Rotation helps, but anyone who compromises the server still gets the current key.",
+        "Key length is not the problem; the key is sitting beside the data it protects.",
+        "Obfuscation is not protection; anyone with server access can recover the key.",
+        "Correct. Separating keys from data, with their own access control, logging and rotation, means a server compromise does not hand over both."
+      ],
+      "concept": "Keep keys separate from the data they protect.",
+      "trap": "Strengthening the algorithm when key storage is the weakness.",
+      "managerLens": "Make key management a platform service, not a decision for each application team.",
+      "practicalNote": "Cloud KMS services and HSMs provide envelope encryption, so applications never handle master keys.",
+      "gap": "Spotting key management failures.",
+      "followUpId": null,
+      "tags": [
+        "key-management",
+        "crypto"
+      ]
+    },
+    {
+      "id": "d3-022",
+      "domain": 3,
+      "objective": "3.6",
+      "subtopic": "Certificate revocation",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A company learns that the private key for its customer portal's TLS certificate was copied by an attacker. The certificate is valid for another nine months. What should it do FIRST?",
+      "options": [
+        "Revoke the certificate and replace it with a new key pair",
+        "Keep the certificate until it expires, then renew it as usual",
+        "Move the portal to a new IP address and update DNS records",
+        "Enable HTTP Strict Transport Security on the portal"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. With the key compromised, the attacker could impersonate the portal. Revoking the certificate and issuing a new one on a new key ends that.",
+        "Waiting nine months leaves an impersonation risk open the whole time.",
+        "A new address does not stop the attacker presenting the valid certificate from anywhere.",
+        "HSTS forces HTTPS but does not stop an attacker using the stolen key and certificate."
+      ],
+      "concept": "Key compromise requires revocation and re-keying.",
+      "trap": "Treating the certificate's expiry date as protection.",
+      "managerLens": "Have a tested procedure for emergency certificate replacement.",
+      "practicalNote": "Browsers check revocation inconsistently, so short certificate lifetimes are increasingly used as well.",
+      "gap": "Responding to key compromise in PKI.",
+      "followUpId": null,
+      "tags": [
+        "pki",
+        "revocation"
+      ]
+    },
+    {
+      "id": "d3-023",
+      "domain": 3,
+      "objective": "3.6",
+      "subtopic": "Digital signatures",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A supplier sends a digitally signed contract PDF. The signature verifies against the supplier's certificate, which chains to a trusted CA. Which TWO things does this show? (Select TWO.)",
+      "options": [
+        "The document has not been altered since it was signed",
+        "It was signed with the private key matching the supplier's certificate",
+        "The contents of the document were kept confidential in transit",
+        "The supplier's signatory read the document before signing it",
+        "The document was created on the date shown in its metadata"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. A valid signature means the signed content matches what was signed: integrity.",
+        "Correct. Only the holder of the private key could have produced it: authenticity and support for non-repudiation.",
+        "Signatures do not encrypt; confidentiality needs encryption.",
+        "Cryptography cannot show what a person read or intended.",
+        "Without a trusted timestamp, the signature does not prove when the document was created."
+      ],
+      "concept": "Digital signatures give integrity and origin, not confidentiality or proof of time.",
+      "trap": "Over-reading what a signature proves.",
+      "managerLens": "Add trusted timestamping when the time of signing matters legally.",
+      "practicalNote": "PAdES signatures with a timestamp authority are common for long-term signed PDFs.",
+      "gap": "Knowing what signatures do and do not prove.",
+      "followUpId": null,
+      "tags": [
+        "signatures",
+        "pki"
+      ]
+    },
+    {
+      "id": "d3-024",
+      "domain": 3,
+      "objective": "3.7",
+      "subtopic": "Known plaintext attack",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "An attacker has captured a company's encrypted emails and notices that every email ends with the same standard signature block, whose wording is published on the company's website. Which type of attack does this enable?",
+      "options": [
+        "Chosen plaintext",
+        "Ciphertext only",
+        "Known plaintext",
+        "Chosen ciphertext"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "In a chosen plaintext attack the attacker picks plaintexts and gets them encrypted; here they simply know some plaintext.",
+        "The attacker has more than ciphertext: they know part of the plaintext.",
+        "Correct. Knowing both a piece of plaintext and its ciphertext is a known plaintext attack.",
+        "Chosen ciphertext attacks involve getting chosen ciphertexts decrypted."
+      ],
+      "concept": "Classify cryptanalytic attacks by what the attacker has.",
+      "trap": "Confusing known and chosen plaintext.",
+      "managerLens": "Modern ciphers resist known plaintext attacks; the risk is mostly in weak or home-made algorithms.",
+      "practicalNote": "Predictable message content helped break Enigma; modern algorithms are designed to withstand this.",
+      "gap": "Distinguishing cryptanalytic attack types.",
+      "followUpId": null,
+      "tags": [
+        "cryptanalysis"
+      ]
+    },
+    {
+      "id": "d3-025",
+      "domain": 3,
+      "objective": "3.7",
+      "subtopic": "Side-channel attacks",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "Researchers recover a smart card's signing key by measuring tiny changes in its power use while it signs thousands of messages. Which category of attack is this?",
+      "options": [
+        "Side-channel attack",
+        "Brute-force attack",
+        "Frequency analysis",
+        "Birthday attack"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. Power analysis extracts secrets from physical effects of the computation: a side-channel attack.",
+        "Brute force tries keys exhaustively; here the key leaks from the device.",
+        "Frequency analysis breaks simple substitution ciphers using letter frequencies.",
+        "A birthday attack finds hash collisions; it does not extract keys from hardware."
+      ],
+      "concept": "Side-channel attacks target the implementation, not the algorithm.",
+      "trap": "Assuming strong algorithms make the device secure.",
+      "managerLens": "Demand side-channel resistance evidence, such as Common Criteria evaluation, for cards and HSMs.",
+      "practicalNote": "Constant-time code, masking and noise generation are standard side-channel countermeasures.",
+      "gap": "Recognising implementation attacks.",
+      "followUpId": null,
+      "tags": [
+        "cryptanalysis",
+        "side-channel"
+      ]
+    },
+    {
+      "id": "d3-026",
+      "domain": 3,
+      "objective": "3.7",
+      "subtopic": "Pass the hash",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "After compromising a workstation, an attacker extracts NTLM password hashes from memory and uses them directly to authenticate to file servers, without cracking any of them. What is this technique?",
+      "options": [
+        "Golden ticket",
+        "Pass the hash",
+        "Rainbow table attack",
+        "Credential stuffing"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "A golden ticket is a forged Kerberos ticket made with the KRBTGT account's key.",
+        "Correct. Pass the hash uses the hash itself as the credential, so cracking is unnecessary.",
+        "Rainbow tables crack hashes back to passwords; this attacker never cracks them.",
+        "Credential stuffing reuses username and password pairs leaked from other sites."
+      ],
+      "concept": "Pass the hash: the hash is enough to authenticate with NTLM.",
+      "trap": "Assuming a hash must be cracked before it is useful.",
+      "managerLens": "Reduce exposure with privileged access workstations, LAPS, Credential Guard and less NTLM use.",
+      "practicalNote": "Tiered administration keeps domain admin credentials off ordinary workstations where they could be harvested.",
+      "gap": "Knowing Windows credential attacks.",
+      "followUpId": null,
+      "tags": [
+        "credential-attacks",
+        "windows"
+      ]
+    },
+    {
+      "id": "d3-027",
+      "domain": 3,
+      "objective": "3.8",
+      "subtopic": "Crime prevention through design",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A bank applies crime prevention through environmental design to its new branch. Which design feature is an example of natural surveillance?",
+      "options": [
+        "A fence with a single controlled gate around the car park",
+        "Bollards along the front to stop vehicles reaching the entrance",
+        "Signs and paving that mark where public space ends",
+        "Windows and lighting that let people see the car park"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "A fence with one gate is natural access control.",
+        "Bollards are a physical barrier against vehicles.",
+        "Marking boundaries is territorial reinforcement.",
+        "Correct. Natural surveillance is design that lets people see activity, which discourages crime."
+      ],
+      "concept": "CPTED: natural surveillance, natural access control, territorial reinforcement.",
+      "trap": "Mixing up the three CPTED strategies.",
+      "managerLens": "Build security into site design early; it is cheaper than adding guards later.",
+      "practicalNote": "Low landscaping and good lighting along walkways are classic natural surveillance measures.",
+      "gap": "Recognising CPTED strategies.",
+      "followUpId": null,
+      "tags": [
+        "physical",
+        "cpted"
+      ]
+    },
+    {
+      "id": "d3-028",
+      "domain": 3,
+      "objective": "3.8",
+      "subtopic": "Site selection",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A bank is choosing a site for a new data centre. Which TWO factors matter MOST from a security and resilience point of view? (Select TWO.)",
+      "options": [
+        "Exposure to floods and other natural hazards",
+        "Access to diverse power and telecom routes",
+        "Short travel time for executives at head office",
+        "Low rent compared with other available sites",
+        "Prominent signs that show it is the bank's data centre"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Natural hazards such as flooding can take the whole site down.",
+        "Correct. Independent utility and telecom paths avoid single points of failure.",
+        "Executive convenience is not a security or resilience factor.",
+        "Cost matters to the business, but it is not a security factor.",
+        "Advertising the site makes it a target; data centres are usually kept low-profile."
+      ],
+      "concept": "Site selection weighs hazards, utilities, access and visibility.",
+      "trap": "Letting convenience or cost stand in for security factors.",
+      "managerLens": "Put hazard and dependency analysis in front of property decisions.",
+      "practicalNote": "Flood maps, seismic data and utility route surveys are standard inputs to data centre site selection.",
+      "gap": "Knowing what matters in site selection.",
+      "followUpId": null,
+      "tags": [
+        "physical",
+        "site-selection"
+      ]
+    },
+    {
+      "id": "d3-029",
+      "domain": 3,
+      "objective": "3.9",
+      "subtopic": "Fail-safe doors and life safety",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "Magnetic locks secure the exit doors of a staffed data hall. The design team must decide how the locks behave when the fire alarm sounds. What should happen?",
+      "options": [
+        "Stay locked until a guard confirms that there really is a fire",
+        "Stay locked, because the servers inside must be protected",
+        "Unlock for exit, because people's safety comes before the assets",
+        "Unlock only for staff whose badges are cleared for the data hall"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "Delaying exit until someone confirms the fire puts lives at risk.",
+        "Equipment can be replaced; people cannot. Protecting assets never outranks life safety.",
+        "Correct. Exit doors must fail safe (unlock) in an emergency; assets are protected by other means such as cameras and door alarms.",
+        "Badge checks in a fire delay escape and may trap visitors or contractors."
+      ],
+      "concept": "Life safety first: emergency exits fail safe.",
+      "trap": "Choosing fail-secure for an exit because the room holds valuable equipment.",
+      "managerLens": "No security control may compromise safe escape; fire codes usually require it too.",
+      "practicalNote": "Exit doors often combine fail-safe locks, a local alarm on opening and camera coverage.",
+      "gap": "Applying fail-safe versus fail-secure.",
+      "followUpId": null,
+      "tags": [
+        "physical",
+        "life-safety"
+      ]
+    },
+    {
+      "id": "d3-030",
+      "domain": 3,
+      "objective": "3.9",
+      "subtopic": "Environmental controls",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "During Harare's dry season, monitoring shows relative humidity in a server room falling to 15%. What is the MAIN risk to the equipment?",
+      "options": [
+        "Condensation forming on circuit boards",
+        "Corrosion of metal connectors and contacts",
+        "Electrostatic discharge damaging components",
+        "Overheating of the processors in the servers"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "Condensation is a risk of high humidity, not low.",
+        "Corrosion is also a high-humidity problem.",
+        "Correct. Very dry air lets static build up, and discharge can damage electronic components.",
+        "Humidity does not directly cause processors to overheat; temperature and airflow do."
+      ],
+      "concept": "Low humidity causes static; high humidity causes condensation and corrosion.",
+      "trap": "Mixing up the effects of low and high humidity.",
+      "managerLens": "Monitor temperature and humidity with alerts, not just air conditioning.",
+      "practicalNote": "ASHRAE guidance gives recommended temperature and humidity ranges for data centres.",
+      "gap": "Knowing environmental risks to equipment.",
+      "followUpId": null,
+      "tags": [
+        "physical",
+        "environmental"
+      ]
+    },
+    {
+      "id": "d3-031",
+      "domain": 3,
+      "objective": "3.10",
+      "subtopic": "Changes in operation",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "An internal HR system was approved for use two years ago, when it was reachable only from the office network. The business now wants staff to use it from home over the internet. What should happen BEFORE the change goes live?",
+      "options": [
+        "Nothing, since the system was already approved and is running well",
+        "Run a full penetration test first, then make the change at once",
+        "Move it behind the VPN, since that keeps it off the open internet",
+        "Analyse the change's security impact and have the owner re-accept risk"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "The original approval assumed internal-only access; a major change in exposure invalidates that assumption.",
+        "Testing is useful evidence, but it does not replace analysis of new requirements and an owner's decision.",
+        "A VPN may be one answer, but choosing it skips the analysis of what the change needs.",
+        "Correct. A significant change triggers a security impact analysis, updated controls and fresh acceptance of the residual risk."
+      ],
+      "concept": "Significant changes in operation trigger impact analysis and re-authorisation.",
+      "trap": "Treating an earlier approval as permanent.",
+      "managerLens": "Tie change management to security review for changes that alter exposure.",
+      "practicalNote": "In NIST's RMF, significant changes trigger reassessment and possibly re-authorisation.",
+      "gap": "Managing security through the operational lifecycle.",
+      "followUpId": null,
+      "tags": [
+        "lifecycle",
+        "change"
+      ]
+    },
+    {
+      "id": "d3-032",
+      "domain": 3,
+      "objective": "3.10",
+      "subtopic": "Decommissioning",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A company is decommissioning an old customer portal after moving its users to a new platform. Which TWO steps belong in the decommissioning plan? (Select TWO.)",
+      "options": [
+        "Archive data the retention schedule requires, then sanitise the remaining storage",
+        "Revoke the portal's service accounts, certificates and firewall rules",
+        "Keep the portal's virtual machine powered off indefinitely just in case",
+        "Delete the portal's security logs on the day it is switched off",
+        "Reuse the portal's public IP address for a new service without review"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Retained data is archived as required; everything else is sanitised.",
+        "Correct. Leftover accounts, certificates and firewall rules are common footholds for attackers.",
+        "A dormant VM still holds data and credentials, and may be restarted unpatched.",
+        "Logs may be needed for investigations and are usually under retention rules.",
+        "Old DNS records or partner allow-lists may still point at the address."
+      ],
+      "concept": "Retirement removes data, access and trust relationships, not just the server.",
+      "trap": "Switching a system off and calling it retired.",
+      "managerLens": "Use a decommissioning checklist with sign-off by the system owner.",
+      "practicalNote": "Dangling DNS records pointing at released cloud addresses enable subdomain takeover.",
+      "gap": "Knowing the steps of secure retirement.",
+      "followUpId": null,
+      "tags": [
+        "lifecycle",
+        "disposal"
       ]
     },
     {

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
+import { noOverflow } from './helpers.js';
 
-const noOverflow = async (page) => expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)).toBeLessThanOrEqual(0);
 
 test('a new user sees honest empty states and four unmet gates with evidence', async ({ page }) => {
   await page.goto('/');

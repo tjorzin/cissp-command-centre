@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { noOverflow } from './helpers.js';
 import { readFileSync } from 'node:fs';
 
 const bank = JSON.parse(readFileSync(new URL('../../data/questions.json', import.meta.url)));
@@ -14,7 +15,6 @@ async function answer(page, { right, confidence = 'sure' }) {
   return q;
 }
 
-const noOverflow = async (page) => expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)).toBeLessThanOrEqual(0);
 
 test('practice: confidence is required, feedback explains every option, results and weakness update', async ({ page }) => {
   await page.goto('/#/questions');

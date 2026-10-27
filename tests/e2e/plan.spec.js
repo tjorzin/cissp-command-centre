@@ -1,11 +1,11 @@
 import { test, expect } from '@playwright/test';
+import { noOverflow } from './helpers.js';
 import { readFileSync } from 'node:fs';
 
 const bank = JSON.parse(readFileSync(new URL('../../data/questions.json', import.meta.url)));
 const byStem = (stem) => bank.questions.find((q) => q.stem === stem);
 const harare = (iso) => new Date(`${iso}+02:00`);
 const stored = (page) => page.evaluate(() => JSON.parse(localStorage.getItem('cissp-cc')));
-const noOverflow = async (page) => expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)).toBeLessThanOrEqual(0);
 
 async function answerShown(page, right, confidence = 'sure') {
   const q = byStem(await page.locator('#stem').textContent());

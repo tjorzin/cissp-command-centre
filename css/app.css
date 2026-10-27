@@ -322,6 +322,12 @@ textarea {
 .lab-steps { padding-left: 0; list-style: none; margin: 0; display: grid; gap: 6px; }
 .lab-step { align-items: flex-start; }
 .lab-step input { margin-top: 3px; flex: none; }
+code.cmd {
+  display: block; margin: 6px 0; padding: 8px 10px; border-radius: 8px;
+  background: var(--surface-2); font: .82rem/1.45 ui-monospace, Consolas, Menlo, monospace;
+  white-space: pre; overflow-x: auto; max-width: 100%;
+}
+.lab-steps > li, .lab-step, .lab-step > span { min-width: 0; }
 
 .toast {
   position: fixed; left: var(--gutter); right: var(--gutter); bottom: 84px; z-index: 20;

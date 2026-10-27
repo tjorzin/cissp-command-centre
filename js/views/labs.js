@@ -4,6 +4,9 @@ import { h } from '../ui.js';
 
 const WARNING = 'LAB / TEST ENVIRONMENT. Never run lab steps on production systems or with real company data.';
 
+// Text with `commands` in backticks: commands render as code blocks that wrap safely.
+const withCode = (text) => text.split('`').map((part, i) => (i % 2 ? h('code', { class: 'cmd' }, part) : part));
+
 function renderList(ctx) {
   const { store, data } = ctx;
   const progress = store.get().labs;
@@ -49,11 +52,11 @@ function renderLab(ctx, lab) {
         refresh();
       }
     });
-    return h('li', {}, h('label', { class: 'check lab-step', for: `step-${i}` }, box, h('span', {}, s)));
+    return h('li', {}, h('label', { class: 'check lab-step', for: `step-${i}` }, box, h('span', {}, ...withCode(s))));
   }));
   refresh();
 
-  const list = (title, items) => h('div', { class: 'card' }, h('h3', {}, title), h('ul', { class: 'small' }, ...items.map((x) => h('li', {}, x))));
+  const list = (title, items) => h('div', { class: 'card' }, h('h3', {}, title), h('ul', { class: 'small' }, ...items.map((x) => h('li', {}, ...withCode(x)))));
   return h('section', { class: 'lab', 'data-lab-page': lab.id },
     h('a', { href: '#/labs', class: 'back small' }, '‹ All labs'),
     h('h2', {}, `Day ${lab.day}: ${lab.title}`),

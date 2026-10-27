@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
+import { noOverflow } from './helpers.js';
 
-const noOverflow = async (page) => expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)).toBeLessThanOrEqual(0);
 
 test('Domain 1 page: lesson, worked scenario, practise and cards for an objective', async ({ page }) => {
   await page.goto('/#/study/1');
@@ -67,6 +67,26 @@ test('Domain 2 page has a lesson for every objective; labs list in day order', a
   await expect(page.locator('.objective .lesson-block')).toHaveCount(6);
   await page.goto('/#/labs');
   const titles = await page.locator('[data-lab] h3').allTextContents();
-  expect(titles.map((t) => Number(t.match(/^Day (\d+)/)[1]))).toEqual([1, 2, 3, 4]);
+  const days = titles.map((t) => Number(t.match(/^Day (\d+)/)[1]));
+  expect(days).toEqual([...days].sort((x, y) => x - y));
+  expect(days.length).toBeGreaterThanOrEqual(6);
   await noOverflow(page);
+});
+
+test('lab commands render as code and scroll inside their block, not the page', async ({ page }) => {
+  await page.goto('/#/labs/lab-d3-test-pki');
+  await expect(page.locator('.lab-steps code.cmd').first()).toContainText('openssl req -x509');
+  await noOverflow(page);
+});
+
+test('the overflow check catches content clipped by the page', async ({ page }) => {
+  await page.goto('/#/study');
+  await page.locator('.domain-link').first().waitFor();
+  await page.evaluate(() => {
+    const wide = document.createElement('div');
+    wide.style.width = '900px';
+    wide.textContent = 'too wide';
+    document.querySelector('main').append(wide);
+  });
+  await expect(noOverflow(page)).rejects.toThrow(/elements wider than the viewport/);
 });

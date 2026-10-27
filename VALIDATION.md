@@ -2,6 +2,26 @@
 
 Each phase adds a section. Commands are run from the repo root with Node 24.22.1 and Playwright 1.64.1 (Chromium), using a Pixel 7 profile at 360 × 780, time zone Africa/Harare.
 
+## Phase 8, batch 3: Domain 3 content (28 October 2026)
+
+Crypto standards re-checked (recorded in `data/SOURCES.md`): FIPS 203/204/205 final and tested as current; FIPS 206 (FN-DSA), HQC and NIST IR 8547's 2030/2035 timeline are still drafts and appear only in practical notes, labelled as drafts.
+
+**Content added:** 30 Domain 3 questions (32 in total, about 13% of a 240-question bank) and a fourth case study (cloud, plant OT and server room at a mining company); lessons for all 10 objectives; 10 cards (every Domain 3 objective has one); 3 drills (symmetric vs asymmetric vs hashing, security models, IaaS/PaaS/SaaS responsibility); 2 labs (day 5: two-tier test PKI with OpenSSL; day 6: hashes vs signatures).
+
+`npm run validate`: **no errors.** The give-away lint first rejected 7 questions: absolutes in two options (d3-007, d3-008, d3-012), length tells among short term options (d3-009, d3-010, d3-025) and a stem echo on the key (d3-013); all rewritten, and six keys trimmed. Lab text now marks commands with backticks; the linter checks they are balanced.
+
+**Bank after batch 3:** 109 questions; 30 multi-select (28%); single-answer keys 18/20/21/20; correct option the single longest in 21 of 79 (27%).
+
+`npm test`: **87 passed, 0 failed** (Domain 3 added to the per-domain coverage test).
+
+`npx playwright test`: **36 passed, 0 failed** (3 consecutive runs before the final helper change, 1 after).
+
+**Found and fixed: the "no horizontal scroll" checks were blind.** They compared the page's scroll width with `window.innerWidth`, but body clips overflow, and in mobile emulation the layout viewport widens to fit oversized content, so the check could never fail. A screenshot showed a lab step stretched to about 2,000 px and clipped. Fixes: lab commands render as code blocks that scroll inside themselves, grid items may shrink, and a shared helper (`tests/e2e/helpers.js`) now compares every element's right edge with the emulated 360 px screen. A new test plants a 900 px element and confirms the helper fails; all 17 real-screen checks pass.
+
+### Not validated
+- The OpenSSL lab commands were not run in this session.
+- No question has been checked against ISC2's real exam; difficulty is judged.
+
 ## Phase 8, batch 2: Domain 2 content (28 October 2026)
 
 Framework check before writing (recorded in `data/SOURCES.md`): **NIST SP 800-88 Revision 2 (September 2025)** supersedes Rev. 1 and defers techniques to **IEEE 2883-2022** (Clear, Purge, Destruct). The existing sanitisation card and question d2-002 were updated so they no longer imply Rev. 1 is current.

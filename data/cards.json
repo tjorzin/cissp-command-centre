@@ -392,6 +392,131 @@
       ]
     },
     {
+      "id": "c3-004",
+      "domain": 3,
+      "objective": "3.1",
+      "term": "Zero trust",
+      "meaning": "No implicit trust from network location. Every request is authenticated and authorised using identity, device health and context, with policy decision and enforcement points in front of resources (NIST SP 800-207).",
+      "trap": "Equating zero trust with MFA or a better VPN.",
+      "hook": "Never trust the network; verify every request.",
+      "tags": [
+        "design-principles"
+      ]
+    },
+    {
+      "id": "c3-005",
+      "domain": 3,
+      "objective": "3.9",
+      "term": "Fail-safe vs fail-secure",
+      "meaning": "Fail-safe unlocks or opens on failure, protecting people. Fail-secure stays locked or closed, protecting assets. Systems that decide access fail secure (deny); exit doors fail safe.",
+      "trap": "Making emergency exits fail-secure to protect equipment.",
+      "hook": "Doors that people escape through fail safe; data fails closed.",
+      "tags": [
+        "comparison",
+        "life-safety"
+      ]
+    },
+    {
+      "id": "c3-006",
+      "domain": 3,
+      "objective": "3.2",
+      "term": "Clark-Wilson and Brewer-Nash",
+      "meaning": "Clark-Wilson protects integrity: users change data only through certified programs, with separation of duties and audit. Brewer-Nash prevents conflicts of interest: what you have accessed decides what you may access next.",
+      "trap": "Thinking every model uses fixed clearance levels.",
+      "hook": "Clark-Wilson: go through the program. Brewer-Nash: mind the wall.",
+      "tags": [
+        "models"
+      ]
+    },
+    {
+      "id": "c3-007",
+      "domain": 3,
+      "objective": "3.3",
+      "term": "Common Criteria EAL",
+      "meaning": "Evaluation Assurance Levels 1 to 7 show how thoroughly a product's security claims were evaluated, against a security target often based on a protection profile. EAL is depth of evaluation, not strength.",
+      "trap": "Reading a higher EAL as a more secure product.",
+      "hook": "EAL measures the checking, not the lock.",
+      "tags": [
+        "assurance"
+      ]
+    },
+    {
+      "id": "c3-008",
+      "domain": 3,
+      "objective": "3.4",
+      "term": "TPM vs HSM",
+      "meaning": "A TPM is a chip in one device: it seals that device's keys to its boot state and supports attestation. An HSM is a tamper-resistant appliance for generating, storing and using high-value keys at scale.",
+      "trap": "Using a server's TPM to protect a root CA key.",
+      "hook": "TPM guards one machine; HSM guards the crown jewels.",
+      "tags": [
+        "comparison"
+      ]
+    },
+    {
+      "id": "c3-009",
+      "domain": 3,
+      "objective": "3.5",
+      "term": "Shared responsibility: IaaS, PaaS, SaaS",
+      "meaning": "The provider always secures the physical layer. In IaaS the customer secures the OS and up; in PaaS the application and data; in SaaS the data, identities and configuration. Never zero.",
+      "trap": "Thinking SaaS leaves the customer no security duties.",
+      "hook": "The higher the service, the less you patch, but you always own your data and access.",
+      "tags": [
+        "comparison",
+        "cloud"
+      ]
+    },
+    {
+      "id": "c3-010",
+      "domain": 3,
+      "objective": "3.7",
+      "term": "Cryptanalytic attack types",
+      "meaning": "Ciphertext only: just ciphertext. Known plaintext: some plaintext and its ciphertext. Chosen plaintext: attacker picks plaintexts to encrypt. Chosen ciphertext: attacker picks ciphertexts to decrypt.",
+      "trap": "Confusing known plaintext (you happen to know it) with chosen plaintext (you pick it).",
+      "hook": "Have it, know it, choose what goes in, choose what comes out.",
+      "tags": [
+        "comparison",
+        "cryptanalysis"
+      ]
+    },
+    {
+      "id": "c3-011",
+      "domain": 3,
+      "objective": "3.8",
+      "term": "CPTED",
+      "meaning": "Crime prevention through environmental design: natural surveillance (people can see), natural access control (layout guides entry), territorial reinforcement (clear boundaries signal ownership).",
+      "trap": "Calling a fence natural surveillance. It is access control.",
+      "hook": "See it, steer it, own it.",
+      "tags": [
+        "physical"
+      ]
+    },
+    {
+      "id": "c3-012",
+      "domain": 3,
+      "objective": "3.9",
+      "term": "Data centre fire suppression",
+      "meaning": "Wet pipe: always charged, risk of accidental discharge. Dry pipe: for cold areas. Pre-action: needs detection plus a head opening; preferred for data halls. Clean agents: no residue, safe for people at design levels. CO2: unoccupied spaces only.",
+      "trap": "Choosing CO2 for a staffed room, or installing new Halon.",
+      "hook": "People first, then the kit.",
+      "tags": [
+        "physical",
+        "fire"
+      ]
+    },
+    {
+      "id": "c3-013",
+      "domain": 3,
+      "objective": "3.10",
+      "term": "Verification vs validation",
+      "meaning": "Verification checks the system was built to its specification (built right). Validation checks it meets the users' real needs (built the right thing). Both happen before go-live.",
+      "trap": "Swapping the two.",
+      "hook": "Verify the spec; validate the need.",
+      "tags": [
+        "comparison",
+        "lifecycle"
+      ]
+    },
+    {
       "id": "c4-001",
       "domain": 4,
       "objective": "4.1",

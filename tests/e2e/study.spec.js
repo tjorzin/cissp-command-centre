@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { noOverflow } from './helpers.js';
 
 test('Study lists all eight domains with 2024 weights by default', async ({ page }) => {
   await page.goto('/#/study');
@@ -21,8 +22,7 @@ test('a domain page shows its objectives, topics and the 2027 changes', async ({
   await expect(crypto.locator('.chg.add')).toContainText(['Post-quantum cryptography']);
   await expect(crypto.locator('.chg.drop')).toContainText(['Quantum cryptography', 'Quantum key distribution']);
 
-  const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
-  expect(overflow).toBeLessThanOrEqual(0);
+  await noOverflow(page);
 
   await page.getByRole('link', { name: '‹ All domains' }).click();
   await expect(page.locator('.domain-link')).toHaveCount(8);

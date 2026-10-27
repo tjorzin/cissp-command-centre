@@ -149,6 +149,80 @@
         "Screenshots of the PhotoRec results before and after the wipe.",
         "Your counts and the two-sentence SSD note."
       ]
+    },
+    {
+      "id": "lab-d3-hash-sign",
+      "day": 6,
+      "domain": 3,
+      "objective": "3.6",
+      "minutes": 30,
+      "title": "Hashes vs signatures: tamper with a file and watch them fail",
+      "environment": "LAB / TEST ENVIRONMENT: a lab folder with dummy files you create. Do not sign real documents with lab keys.",
+      "goal": "Show that a hash detects change but proves nothing about who made the file, while a signature shows both integrity and origin.",
+      "prerequisites": [
+        "OpenSSL 3.x",
+        "Drill: symmetric vs asymmetric vs hashing",
+        "An empty folder called LAB-sign"
+      ],
+      "steps": [
+        "Create a dummy file: `echo \"Pay supplier 100\" > order.txt`",
+        "Hash it: `openssl dgst -sha256 order.txt` and keep the digest.",
+        "Create a signing key pair: `openssl genpkey -algorithm ed25519 -out sign.key`, then `openssl pkey -in sign.key -pubout -out sign.pub`",
+        "Sign the file: `openssl pkeyutl -sign -inkey sign.key -rawin -in order.txt -out order.sig`",
+        "Verify it: `openssl pkeyutl -verify -pubin -inkey sign.pub -rawin -in order.txt -sigfile order.sig` (expect success).",
+        "Change 100 to 900 in order.txt, then repeat the hash and the verify; note what changed.",
+        "Write down why an attacker who changes the file can also publish a new matching hash, but cannot produce a valid signature without sign.key."
+      ],
+      "validation": [
+        "The hash changes after editing the file.",
+        "Signature verification succeeds before the edit and fails after it.",
+        "Your note explains that a hash alone gives integrity but not origin."
+      ],
+      "rollback": [
+        "Delete the LAB-sign folder, including sign.key."
+      ],
+      "evidence": [
+        "The two digests and the two verify results.",
+        "Your one-paragraph explanation."
+      ]
+    },
+    {
+      "id": "lab-d3-test-pki",
+      "day": 5,
+      "domain": 3,
+      "objective": "3.6",
+      "minutes": 45,
+      "title": "Build a two-tier test PKI and inspect certificates",
+      "environment": "LAB / TEST ENVIRONMENT: a test VM or a lab folder on a personal machine, using names ending in .test. Never use these certificates or keys on real services, and never install the lab root in a production trust store.",
+      "goal": "See how a certificate chain is built and verified, and what changes when the wrong CA or an expired certificate is used.",
+      "prerequisites": [
+        "OpenSSL 3.x (check with `openssl version`)",
+        "Lesson 3.6; card: TPM vs HSM",
+        "An empty folder called LAB-pki"
+      ],
+      "steps": [
+        "Create a lab root CA: `openssl req -x509 -newkey rsa:3072 -nodes -keyout root.key -out root.crt -days 30 -subj \"/CN=LAB Root CA\"`",
+        "Create a key and request for a server: `openssl req -newkey rsa:2048 -nodes -keyout server.key -out server.csr -subj \"/CN=portal.lab.test\"`",
+        "Sign the request with the root: `openssl x509 -req -in server.csr -CA root.crt -CAkey root.key -CAcreateserial -out server.crt -days 7`",
+        "Verify the chain: `openssl verify -CAfile root.crt server.crt` (expect OK).",
+        "Inspect the certificate: `openssl x509 -in server.crt -noout -subject -issuer -dates` and note who issued it and when it expires.",
+        "Create a second, unrelated root (repeat step 1 with root2.key, root2.crt and CN=Other Root) and verify server.crt against root2.crt; note the error.",
+        "Write two sentences: what the root key's compromise would mean for every certificate it signed, and why real root keys live in HSMs."
+      ],
+      "validation": [
+        "Verification succeeds against the lab root and fails against the unrelated root.",
+        "You can name the subject, issuer and validity dates of server.crt.",
+        "Your note mentions revoking and replacing everything the compromised root signed."
+      ],
+      "rollback": [
+        "Delete the LAB-pki folder, including every .key file.",
+        "Nothing was installed into any trust store."
+      ],
+      "evidence": [
+        "The output of both verify commands.",
+        "The subject, issuer and dates of server.crt.",
+        "Your two-sentence note."
+      ]
     }
   ]
 }

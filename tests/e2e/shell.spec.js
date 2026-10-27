@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { noOverflow } from './helpers.js';
 import { readFileSync } from 'node:fs';
 
 test('home loads at 360 px with no horizontal scroll and the outline warning', async ({ page }) => {
@@ -6,8 +7,7 @@ test('home loads at 360 px with no horizontal scroll and the outline warning', a
   await expect(page.getByRole('heading', { name: 'Today' })).toBeVisible();
   await expect(page.locator('[data-notice="near"]')).toContainText('14 April 2027');
   await expect(page.locator('#offline-pill')).toBeHidden();
-  const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
-  expect(overflow).toBeLessThanOrEqual(0);
+  await noOverflow(page);
 });
 
 test('no element spills outside its card at 360 px on Settings', async ({ page }) => {

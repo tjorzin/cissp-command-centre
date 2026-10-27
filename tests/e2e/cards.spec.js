@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test';
+import { noOverflow } from './helpers.js';
 import { readFileSync } from 'node:fs';
 
 const bank = JSON.parse(readFileSync(new URL('../../data/questions.json', import.meta.url)));
 const stored = (page) => page.evaluate(() => JSON.parse(localStorage.getItem('cissp-cc')));
-const noOverflow = async (page) => expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)).toBeLessThanOrEqual(0);
 
 test('a new user gets 10 new cards due; reviewing them schedules each and updates the counts', async ({ page }) => {
   await page.goto('/');
@@ -39,27 +39,24 @@ test('a new user gets 10 new cards due; reviewing them schedules each and update
 });
 
 test('filters: from my errors and newly covered follow what you have answered', async ({ page }) => {
-  // Miss one Domain 3 crypto question in practice.
-  const q = bank.questions.find((x) => x.id === 'd3-002');
-  await page.goto('/#/questions');
-  await page.locator('#practice-domain').selectOption('3');
-  await page.getByRole('button', { name: 'Start practice' }).click();
-  for (let i = 0; i < 2; i++) {
-    const stem = await page.locator('#stem').textContent();
-    const shown = bank.questions.find((x) => x.stem === stem);
-    const pick = shown.id === q.id ? shown.options.findIndex((_, j) => !shown.correct.includes(j)) : shown.correct[0];
-    await page.locator('label.choice', { hasText: shown.options[pick] }).click();
-    await page.locator('[data-confidence="sure"]').click();
-    await page.locator('#submit-btn').click();
-    await page.locator('#next-btn').click();
-  }
+  // Miss one question on objective 3.6 (cryptography), practised from the domain page.
+  const deck = JSON.parse(readFileSync(new URL('../../data/cards.json', import.meta.url))).cards;
+  const cryptoCards = deck.filter((c) => c.objective === '3.6').length;
+  await page.goto('/#/study/3');
+  await page.locator('[data-practise="3.6"]').click();
+  const stem = await page.locator('#stem').textContent();
+  const shown = bank.questions.find((x) => x.stem === stem);
+  const wrong = shown.options.map((_, j) => j).filter((j) => !shown.correct.includes(j)).slice(0, shown.correct.length);
+  for (const j of wrong) await page.locator('label.choice', { hasText: shown.options[j] }).click();
+  await page.locator('[data-confidence="sure"]').click();
+  await page.locator('#submit-btn').click();
 
   await page.goto('/#/cards');
   await page.locator('[data-filter="errors"]').click();
-  await expect(page.locator('[data-card-row]')).toHaveCount(2); // the two 3.6 cards
+  await expect(page.locator('[data-card-row]')).toHaveCount(cryptoCards); // every 3.6 card
   await expect(page.locator('[data-card-row="c3-002"]')).toBeVisible();
   await page.locator('[data-filter="newly"]').click();
-  await expect(page.locator('[data-card-row]')).toHaveCount(3); // 3.2 and 3.6 cards, none reviewed yet
+  await expect(page.locator('[data-card-row]')).toHaveCount(cryptoCards); // 3.6 answered today, none reviewed yet
   await page.locator('#card-domain').selectOption('8');
   await expect(page.locator('[data-card-row]')).toHaveCount(0);
   await noOverflow(page);
