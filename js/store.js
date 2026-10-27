@@ -30,7 +30,8 @@ export function defaultState(now = new Date()) {
     srsDay: null,
     plan: null,
     drills: {},
-    labs: {}
+    labs: {},
+    car: { track: null, line: 0, voice: '', rate: 1, autoNext: true }
   };
 }
 

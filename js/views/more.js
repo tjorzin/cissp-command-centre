@@ -11,7 +11,7 @@ const notifyText = (state) => ({
   unsupported: 'This browser does not support notifications. The in-app "due now" banner still works.'
 }[state]);
 
-function download(filename, text, type = 'application/json') {
+export function download(filename, text, type = 'application/json') {
   const url = URL.createObjectURL(new Blob([text], { type }));
   const a = h('a', { href: url, download: filename });
   document.body.append(a);

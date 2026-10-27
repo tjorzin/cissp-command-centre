@@ -271,6 +271,36 @@ export function lintLabs(labsData, domainsData) {
   return { errors, stats: { labs: (labsData.labs || []).length } };
 }
 
+// Car-mode tracks: one per domain plus a mixed recap, 4 to 6 minutes each and 45 to 60
+// minutes in all at 150 words a minute; lines short enough to hear in one breath.
+export const TRACK_LIMITS = { minSec: 240, maxSec: 360, minTotalSec: 2700, maxTotalSec: 3600, lineWords: 60 };
+export function lintTracks(tracksData) {
+  const errors = [];
+  const tracks = tracksData.tracks || [];
+  const ids = new Set();
+  const secs = (t) => t.lines.reduce((a, l) => a + (l.t.trim().split(/\s+/).length / 150) * 60 + (l.p ?? tracksData.defaultPause) / 1000, 0);
+  let total = 0;
+  for (const t of tracks) {
+    const e = (m) => errors.push(`${t.id}: ${m}`);
+    if (ids.has(t.id)) e('duplicate id');
+    ids.add(t.id);
+    if (!t.title || !Array.isArray(t.lines) || !t.lines.length) { e('missing title or lines'); continue; }
+    const sec = secs(t);
+    total += sec;
+    if (sec < TRACK_LIMITS.minSec || sec > TRACK_LIMITS.maxSec) e(`runs ${(sec / 60).toFixed(1)} min; must be 4 to 6`);
+    t.lines.forEach((l, i) => {
+      if (typeof l.t !== 'string' || !l.t.trim()) e(`line ${i + 1} is empty`);
+      else if (l.t.trim().split(/\s+/).length > TRACK_LIMITS.lineWords) e(`line ${i + 1} is over ${TRACK_LIMITS.lineWords} words`);
+      if (l.p != null && (!Number.isInteger(l.p) || l.p < 300 || l.p > 8000)) e(`line ${i + 1} pause must be 300 to 8000 ms`);
+      if (/\?(\s*Think\.)?$/.test(l.t.trim()) && (l.p ?? tracksData.defaultPause) < 3000) e(`line ${i + 1} asks a question without a thinking pause`);
+    });
+  }
+  for (let n = 1; n <= 8; n++) if (!tracks.some((t) => t.domain === n)) errors.push(`tracks: no track for domain ${n}`);
+  if (!tracks.some((t) => t.domain == null)) errors.push('tracks: no mixed recap');
+  if (total < TRACK_LIMITS.minTotalSec || total > TRACK_LIMITS.maxTotalSec) errors.push(`tracks: ${(total / 60).toFixed(1)} min in all; must be 45 to 60`);
+  return { errors, stats: { tracks: tracks.length, minutes: Math.round(total / 60) } };
+}
+
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   const read = (p) => JSON.parse(readFileSync(new URL(`../${p}`, import.meta.url)));
   const result = lintBank(read('data/questions.json'), read('data/domains.json'));
@@ -282,6 +312,9 @@ if (import.meta.url === pathToFileURL(process.argv[1]).href) {
     result.errors.push(...r.errors);
     console.log(`${name}: ${Object.values(r.stats)[0]}`);
   }
+  const tr = lintTracks(read('data/tracks.json'));
+  result.errors.push(...tr.errors);
+  console.log(`Car tracks: ${tr.stats.tracks}, about ${tr.stats.minutes} min`);
   for (const m of result.errors) console.log(`ERROR   ${m}`);
   for (const m of result.warnings) console.log(`warning ${m}`);
   if (result.stats) console.log(JSON.stringify(result.stats, null, 2));

@@ -1,0 +1,998 @@
+{
+  "version": 1,
+  "notice": "Car-mode scripts: one per domain plus a mixed recap, written to be heard, not read. Each line is spoken, then followed by its pause in milliseconds (default 900). Original content.",
+  "defaultPause": 900,
+  "tracks": [
+    {
+      "id": "car-d1",
+      "domain": 1,
+      "title": "Domain 1: Security and Risk Management",
+      "lines": [
+        {
+          "t": "Domain one. Security and risk management. This is the heaviest domain in the 2024 outline, at sixteen per cent. Let's go.",
+          "p": 1500
+        },
+        {
+          "t": "Start with the mindset. On this exam you are not the engineer fixing the server. You are the security manager advising the business."
+        },
+        {
+          "t": "So the right answer usually serves business objectives, is based on risk, and causes the least disruption."
+        },
+        {
+          "t": "Ethics first. The ISC2 code has four canons, in order. Protect society. Act honourably, honestly, justly, responsibly and legally. Serve your principals diligently. Advance and protect the profession."
+        },
+        {
+          "t": "When they conflict, the higher one wins. Public safety beats loyalty to your employer. But you still use proper channels: escalate in writing, then go to the authority.",
+          "p": 1500
+        },
+        {
+          "t": "Governance. The board and senior management are ultimately accountable for security. The CISO is responsible for running the programme. Responsibility can be delegated. Accountability cannot."
+        },
+        {
+          "t": "Due diligence is finding out. Due care is acting on what you found, as a reasonable organisation would. Diligence is the homework. Care is doing the job."
+        },
+        {
+          "t": "Quick question. A policy names the firewall model the company uses. Is that good practice? Think about it.",
+          "p": 4000
+        },
+        {
+          "t": "No. Policy states management's intent and stays technology-neutral. Product names and settings belong in standards. Procedures give the steps. Guidelines are optional advice.",
+          "p": 1500
+        },
+        {
+          "t": "Frameworks. ISO 27001 gives a certifiable management system. NIST CSF 2.0 has six functions: govern, identify, protect, detect, respond and recover. Govern was added in 2024. COBIT is IT governance. PCI DSS covers card data only."
+        },
+        {
+          "t": "Legal. Copyright protects expression, like code. Patents protect registered inventions. Trademarks protect brands. Trade secrets are protected by keeping them secret."
+        },
+        {
+          "t": "Investigations. Criminal cases need proof beyond reasonable doubt. Civil cases are decided on the balance of probabilities. Administrative cases are internal. Regulatory ones are run by a regulator. If an internal case turns criminal, stop, preserve the evidence and escalate."
+        },
+        {
+          "t": "Business continuity starts with the business impact analysis. It finds critical processes, their dependencies, and the maximum tolerable downtime. From that come the recovery time and recovery point objectives."
+        },
+        {
+          "t": "Remember: recovery time plus work recovery time must not exceed the maximum tolerable downtime.",
+          "p": 1500
+        },
+        {
+          "t": "Quick question. The maximum tolerable downtime is eight hours, and checking data after a restore takes three hours. What is the longest recovery time objective? Think.",
+          "p": 4000
+        },
+        {
+          "t": "Five hours. Eight minus three.",
+          "p": 1500
+        },
+        {
+          "t": "Personnel security covers the whole lifecycle. Screen in proportion to the role. Remove a mover's old access. Disable a leaver's access when they are told. Use separation of duties and mandatory vacation against insider fraud."
+        },
+        {
+          "t": "Risk. Risk is likelihood times impact. The treatments are avoid, mitigate, transfer and accept. Insurance transfers cost, never accountability. The risk owner decides. Security advises."
+        },
+        {
+          "t": "Quantitative analysis puts money on risk. Single loss expectancy is asset value times exposure factor. Annualised loss expectancy is single loss expectancy times the annual rate of occurrence. Use it to answer how much to spend."
+        },
+        {
+          "t": "Control types. Preventive stops. Detective finds. Corrective fixes. Deterrent discourages. Compensating substitutes when the preferred control is not possible. A visible camera deters. Reviewing its footage detects."
+        },
+        {
+          "t": "Threat modelling belongs at design time, when fixes are cheap. STRIDE stands for spoofing, tampering, repudiation, information disclosure, denial of service and elevation of privilege."
+        },
+        {
+          "t": "Supply chain risk. Ask for independent, current, in-scope evidence, such as a SOC 2 Type two report. Put minimum controls and audit rights in the contract. Ask for a software bill of materials."
+        },
+        {
+          "t": "Awareness. Measure behaviour, such as phishing report rates, not course completion. Update content for new threats like deepfake voice calls, and pair it with call-back verification for payments."
+        },
+        {
+          "t": "Quick question. Laptop theft has an annualised loss expectancy of forty thousand dollars. A tracking and encryption control costs fifteen thousand a year and cuts the expected loss to ten thousand. Is it worth it? Think.",
+          "p": 4000
+        },
+        {
+          "t": "Yes. It removes thirty thousand of expected loss for fifteen thousand. The control is worth fifteen thousand a year.",
+          "p": 1500
+        },
+        {
+          "t": "Privacy principles: a lawful basis, purpose limitation, minimisation, accuracy, storage limitation and security. In Zimbabwe, the Cyber and Data Protection Act applies, with POTRAZ as the data protection authority."
+        },
+        {
+          "t": "Transborder data flow means checking the protection in the destination country before personal data leaves."
+        },
+        {
+          "t": "That's domain one. First step or best step? Business or technology? Ask those two questions on every answer.",
+          "p": 2000
+        }
+      ]
+    },
+    {
+      "id": "car-d2",
+      "domain": 2,
+      "title": "Domain 2: Asset Security",
+      "lines": [
+        {
+          "t": "Domain two. Asset security. Ten per cent of the exam. It is all about knowing what you have, who owns it, and how to protect it from creation to destruction.",
+          "p": 1500
+        },
+        {
+          "t": "First, the inventory. You cannot protect what you do not know you have. Inventories include tangible assets, like laptops, and intangible ones, like data, software licences and domain names."
+        },
+        {
+          "t": "Every asset needs an owner. When you discover shadow IT, the first step is to record it and assign an owner. Then assess it. Then decide."
+        },
+        {
+          "t": "Classification. Classify by the harm caused if the data were disclosed, changed or lost. The data owner decides the classification. Custodians apply the protection. Users follow the rules."
+        },
+        {
+          "t": "Over-classifying is a real problem. It wastes money, and when everything is secret, staff stop taking the label seriously.",
+          "p": 1500
+        },
+        {
+          "t": "Quick question. Who decides the classification of the salary database: the database administrator, the CISO, or the HR director? Think.",
+          "p": 4000
+        },
+        {
+          "t": "The HR director, as the data owner. The DBA is a custodian. The CISO runs the scheme.",
+          "p": 1500
+        },
+        {
+          "t": "Data roles under privacy law. The controller decides why and how personal data is processed, and stays accountable to the data subject. The processor acts on the controller's instructions."
+        },
+        {
+          "t": "Marking is for people: headers, footers, stamps. Labelling is for machines: metadata that DLP and rights management can read. Marking travels with every copy."
+        },
+        {
+          "t": "Handling requirements say how each class is stored, sent, shared and destroyed. For tapes in transit, encryption is what protects the data when a tape is lost."
+        },
+        {
+          "t": "The data lifecycle. Collect only what the purpose needs. That is data minimisation. Keep it only as long as the retention schedule says. Legal holds override the schedule."
+        },
+        {
+          "t": "Pseudonymisation replaces identifiers with codes, and someone holds the key to re-link them. Anonymisation removes the link for good. Choose pseudonymisation if you may need to contact people later."
+        },
+        {
+          "t": "Data remanence. Deleting and quick formatting leave data behind. Sanitisation has three levels. Clear, which is a logical overwrite. Purge, which defeats laboratory recovery. And destroy."
+        },
+        {
+          "t": "For solid-state drives, use the drive's sanitise command or cryptographic erase. Degaussing does nothing to flash memory, and overwriting misses spare blocks."
+        },
+        {
+          "t": "Current guidance: NIST SP 800-88 revision 2 was published in September 2025, and it points to the IEEE 2883 standard, which calls the top level 'destruct'.",
+          "p": 1500
+        },
+        {
+          "t": "In the cloud, you cannot touch the disks. So encrypt with keys you control, and destroy the keys when you leave. And get the provider's sanitisation commitments in the contract."
+        },
+        {
+          "t": "End of life and end of support are different. End of life means the product is no longer sold. End of support means security updates stop. Plan replacement before support ends. If a system must run unsupported, isolate it and get the owner to accept a dated plan."
+        },
+        {
+          "t": "Data states. At rest: protect with storage encryption. In transit: protect with TLS or a VPN. In use: the hardest, protected by access control, secure enclaves, or tokenisation."
+        },
+        {
+          "t": "Quick question. A merchant wants most of its systems out of PCI scope but must still process refunds. Encryption, hashing, masking or tokenisation? Think.",
+          "p": 4000
+        },
+        {
+          "t": "Tokenisation. Systems keep tokens. Card numbers sit in a separate vault. Hashing cannot be reversed for refunds, and masking still stores the number.",
+          "p": 1500
+        },
+        {
+          "t": "Scoping removes baseline controls that do not apply. Tailoring adjusts the ones that remain."
+        },
+        {
+          "t": "And the tools: DLP stops data leaving, a CASB governs cloud use, and DRM keeps control of a file after it has left."
+        },
+        {
+          "t": "Data owners and system owners differ. The data owner is accountable for the information. The system owner is accountable for the system that processes it. One business manager may be both."
+        },
+        {
+          "t": "Quick question. A retired file server is going to a recycler, and its disks held confidential data. What must you get back from the recycler? Think.",
+          "p": 4000
+        },
+        {
+          "t": "A certificate of sanitisation or destruction for each disk, tied to its serial number. Verify. Do not assume.",
+          "p": 1500
+        },
+        {
+          "t": "Keeping data too long is a liability, not just a storage cost. It enlarges what a breach exposes and what you must produce in litigation."
+        },
+        {
+          "t": "That's domain two. Know it, own it, classify it, protect it in every state, and dispose of it properly.",
+          "p": 2000
+        }
+      ]
+    },
+    {
+      "id": "car-d3",
+      "domain": 3,
+      "title": "Domain 3: Security Architecture and Engineering",
+      "lines": [
+        {
+          "t": "Domain three. Security architecture and engineering. Thirteen per cent. Design principles, models, cryptography and physical security.",
+          "p": 1500
+        },
+        {
+          "t": "Design principles. Least privilege. Defence in depth. Secure defaults. Fail securely. Separation of duties. Keep it simple. Privacy by design. And zero trust: never trust by network location, verify every request."
+        },
+        {
+          "t": "Fail securely means a security control that cannot decide should deny. But exit doors fail safe and unlock in a fire, because life safety always comes first.",
+          "p": 1500
+        },
+        {
+          "t": "Security models. Bell-LaPadula protects confidentiality: no read up, no write down. Biba protects integrity: no read down, no write up. Both have a star property about writing, so be careful."
+        },
+        {
+          "t": "Clark-Wilson protects integrity through well-formed transactions and separation of duties. Brewer-Nash, the Chinese Wall, blocks access based on what you have already seen, to prevent conflicts of interest."
+        },
+        {
+          "t": "Quick question. A secret-level process cannot write to an unclassified file, but can append to a top-secret log. Which rule? Think.",
+          "p": 4000
+        },
+        {
+          "t": "Bell-LaPadula's star property. No write down.",
+          "p": 1500
+        },
+        {
+          "t": "Common Criteria evaluation assurance levels measure how thoroughly a product was evaluated, not how strong it is."
+        },
+        {
+          "t": "A TPM is a chip in one device. It seals that device's keys to its boot state. An HSM is a tamper-resistant appliance for high-value keys, such as a root certificate authority."
+        },
+        {
+          "t": "Cloud shared responsibility. The provider always secures the physical layer. In infrastructure as a service, you secure the operating system and up. In SaaS, you still own your data, identities and settings."
+        },
+        {
+          "t": "Containers share the host kernel, so a kernel flaw can break isolation. Industrial control systems put safety and availability first, so isolate them and monitor passively."
+        },
+        {
+          "t": "Cryptography. Symmetric is fast, for bulk data. Asymmetric solves key exchange and signatures. Hybrids use both. Hashes show integrity. Signatures add origin and non-repudiation."
+        },
+        {
+          "t": "Key management is where cryptography fails. Never store a key next to the data it protects. If a private key is stolen, revoke the certificate and re-key."
+        },
+        {
+          "t": "Post-quantum. Shor's algorithm would break RSA and elliptic curve. Grover's only halves symmetric strength. The threat now is harvest now, decrypt later. The final NIST standards are ML-KEM in FIPS 203, and ML-DSA and SLH-DSA for signatures.",
+          "p": 1500
+        },
+        {
+          "t": "Cryptanalysis. Known plaintext means you have some plaintext and its ciphertext. Chosen plaintext means you pick what gets encrypted. Side-channel attacks read timing or power use. Pass the hash uses a stolen hash without cracking it."
+        },
+        {
+          "t": "Quick question. Why does TLS use asymmetric cryptography to agree a key, then a symmetric cipher for the data? Think.",
+          "p": 4000
+        },
+        {
+          "t": "Asymmetric solves key exchange without a shared secret, but it is slow. Symmetric ciphers are fast for bulk data.",
+          "p": 1500
+        },
+        {
+          "t": "Physical security. Choose sites away from floods, with diverse power and telecom routes. CPTED means natural surveillance, natural access control and territorial reinforcement."
+        },
+        {
+          "t": "Fire. For staffed rooms, use clean agents or pre-action sprinklers. Never carbon dioxide where people work. Low humidity causes static. High humidity causes condensation and corrosion."
+        },
+        {
+          "t": "Lifecycle. Define security requirements early. Verification checks it was built to specification. Validation checks it meets the real need. A big change in operation means a new impact analysis and fresh risk acceptance."
+        },
+        {
+          "t": "The trusted computing base is the hardware, firmware and software that enforce security. The reference monitor is the concept: every access is checked, it cannot be tampered with, and it is small enough to verify. The security kernel implements it."
+        },
+        {
+          "t": "Address space layout randomisation and data execution prevention make exploits harder. They do not fix the bug."
+        },
+        {
+          "t": "Covert channels move information in ways the design never intended. Storage channels use shared resources. Timing channels use how long things take."
+        },
+        {
+          "t": "Quick question. You must prove a contract came from the supplier and was not altered. Hash, message authentication code, or digital signature? Think.",
+          "p": 4000
+        },
+        {
+          "t": "A digital signature. A message authentication code proves integrity, but both sides share the key, so it cannot prove which side signed.",
+          "p": 1500
+        },
+        {
+          "t": "A certificate authority binds a public key to an identity. Check revocation with OCSP or a revocation list. Certificate transparency logs help spot certificates issued by mistake."
+        },
+        {
+          "t": "Emanations. Shielding and control zones stop signals leaking from equipment."
+        },
+        {
+          "t": "That's domain three. Design it right, pick the right model, manage your keys, and keep people safe.",
+          "p": 2000
+        }
+      ]
+    },
+    {
+      "id": "car-d4",
+      "domain": 4,
+      "title": "Domain 4: Communication and Network Security",
+      "lines": [
+        {
+          "t": "Domain four. Communication and network security. Thirteen per cent. Layers, protocols, segmentation, wireless and remote access.",
+          "p": 1500
+        },
+        {
+          "t": "The OSI model, bottom to top. Physical, data link, network, transport, session, presentation, application. Please do not throw sausage pizza away."
+        },
+        {
+          "t": "Map attacks to layers. Cable taps and jamming: layer one. ARP spoofing, MAC flooding and VLAN hopping: layer two. IP spoofing and routing attacks: layer three. SYN floods: layer four. Injection: layer seven.",
+          "p": 1500
+        },
+        {
+          "t": "Quick question. An attacker sends forged ARP replies to redirect gateway traffic. Which layer? Think.",
+          "p": 4000
+        },
+        {
+          "t": "Layer two, data link. ARP maps IP addresses to MAC addresses on the local segment.",
+          "p": 1500
+        },
+        {
+          "t": "Secure protocols. SSH replaces Telnet. TLS one point three gives forward secrecy on every connection and drops legacy ciphers. IPsec protects site links."
+        },
+        {
+          "t": "IPsec has two protocols. AH gives integrity and authentication but no secrecy. ESP gives confidentiality. Site-to-site VPNs use ESP in tunnel mode, which hides the internal addresses."
+        },
+        {
+          "t": "Segmentation. North-south traffic crosses the perimeter. East-west traffic moves between servers inside. Micro-segmentation controls east-west traffic and limits lateral movement. A bigger perimeter firewall does not."
+        },
+        {
+          "t": "Stop VLAN hopping by disabling automatic trunk negotiation on user ports, and moving the native VLAN to an unused VLAN."
+        },
+        {
+          "t": "Converged protocols such as iSCSI and voice over IP need their own segments and encryption. Put phones on a voice VLAN, and use TLS for signalling and SRTP for the audio."
+        },
+        {
+          "t": "Wireless. WEP is broken. For staff, use WPA3-Enterprise or WPA2-Enterprise with 802.1X and individual credentials. Clients must validate the server certificate, or an evil twin can collect their passwords."
+        },
+        {
+          "t": "Hidden network names and MAC filtering are not security.",
+          "p": 1500
+        },
+        {
+          "t": "Network access control checks who and what connects before granting access: 802.1X authentication and device posture. Unknown devices go to a guest network."
+        },
+        {
+          "t": "Firewalls. Packet filters look at addresses and ports. Stateful firewalls track connections. Proxies inspect one protocol in depth. Next-generation firewalls know the application and the user."
+        },
+        {
+          "t": "Quick question. You need to block one file-sharing app on port 443 but allow normal web browsing. Which firewall capability? Think.",
+          "p": 4000
+        },
+        {
+          "t": "Application awareness in a next-generation firewall. A port rule would block all web browsing.",
+          "p": 1500
+        },
+        {
+          "t": "Software-defined networking centralises control, so the controller is the crown jewel. SD-WAN over the internet needs encrypted, authenticated tunnels. A CDN only protects an origin that cannot be reached around it."
+        },
+        {
+          "t": "Remote access. Use a VPN or zero trust network access, with MFA and device checks. Split tunnelling saves bandwidth, but internet traffic then skips corporate inspection."
+        },
+        {
+          "t": "Third parties get narrow, time-limited, monitored access through a jump host, with security terms in the contract. Never give a vendor a permanent open tunnel."
+        },
+        {
+          "t": "And protect the management plane: an isolated management network, a hardened jump host with MFA, and no admin services exposed to the internet."
+        },
+        {
+          "t": "TCP sets up connections with the three-way handshake: SYN, SYN-ACK, ACK. UDP has no handshake, so the source is easy to spoof. That is why UDP powers reflection and amplification attacks."
+        },
+        {
+          "t": "DNSSEC signs records so resolvers can prove they are genuine. It does not encrypt. DNS over HTTPS and DNS over TLS encrypt queries, but they can also bypass corporate DNS filtering."
+        },
+        {
+          "t": "Email. SPF lists the servers allowed to send for a domain. DKIM signs messages. DMARC tells receivers what to do when those checks fail, and sends reports back to you."
+        },
+        {
+          "t": "Quick question. Staff receive payment requests that appear to come from your own domain. Which control tells other mail servers to reject such messages? Think.",
+          "p": 4000
+        },
+        {
+          "t": "DMARC with a reject policy, built on SPF and DKIM.",
+          "p": 1500
+        },
+        {
+          "t": "Fibre resists electromagnetic interference and is hard to tap without being noticed. Copper is cheaper, but leaks emanations and suffers crosstalk."
+        },
+        {
+          "t": "Volumetric denial of service is absorbed upstream, by your provider or a scrubbing service. Your own firewall cannot help once your link is full."
+        },
+        {
+          "t": "That's domain four. Know your layers, segment east-west, authenticate every connection, and give third parties only what they need.",
+          "p": 2000
+        }
+      ]
+    },
+    {
+      "id": "car-d5",
+      "domain": 5,
+      "title": "Domain 5: Identity and Access Management",
+      "lines": [
+        {
+          "t": "Domain five. Identity and access management. Thirteen per cent. Who you are, how you prove it, what you may do, and how that changes over time.",
+          "p": 1500
+        },
+        {
+          "t": "Four steps. Identification claims an identity, such as a username. Authentication proves it. Authorisation decides what you may do. Accountability ties actions back to you through logs."
+        },
+        {
+          "t": "Authentication factors are something you know, something you have, and something you are. Two things you know is still single-factor.",
+          "p": 1500
+        },
+        {
+          "t": "Quick question. A password plus a security question. How many factors? Think.",
+          "p": 4000
+        },
+        {
+          "t": "One. Both are something you know.",
+          "p": 1500
+        },
+        {
+          "t": "Phishing resistance. One-time codes, SMS and push approvals can all be relayed by a real-time phishing proxy. FIDO2 security keys and passkeys are bound to the real site's origin, so they resist phishing."
+        },
+        {
+          "t": "NIST SP 800-63 revision 4, published July 2025, allows synced passkeys at assurance level two. The highest level still needs hardware-bound keys that cannot be exported."
+        },
+        {
+          "t": "Password rules today: favour length, check new passwords against breached lists, and drop forced rotation and complexity rules."
+        },
+        {
+          "t": "Biometrics. The false acceptance rate is impostors let in. The false rejection rate is genuine users kept out. Compare systems by the crossover error rate, where the two are equal. Lower is better."
+        },
+        {
+          "t": "Access control models. Discretionary: the owner decides. Mandatory: the system enforces labels. Role-based: access follows the job. Attribute-based: policies weigh user, resource and context. Rule-based: global rules, such as office hours only."
+        },
+        {
+          "t": "Risk-based access adapts in real time. Impossible travel triggers a block or step-up authentication.",
+          "p": 1500
+        },
+        {
+          "t": "Clearance is not enough. You also need a need to know for each item."
+        },
+        {
+          "t": "Federation. The identity provider authenticates the user and issues a signed assertion. The service provider trusts the assertion and makes its own authorisation decision."
+        },
+        {
+          "t": "SAML is enterprise web single sign-on. OAuth 2.0 delegates authorisation with access tokens. OpenID Connect adds authentication and an ID token that says who the user is."
+        },
+        {
+          "t": "Quick question. A mobile app needs to sign users in and learn who they are. OAuth alone, or OpenID Connect? Think.",
+          "p": 4000
+        },
+        {
+          "t": "OpenID Connect. An OAuth access token is not proof of who the user is.",
+          "p": 1500
+        },
+        {
+          "t": "The lifecycle. Joiners, movers and leavers are driven from HR. Movers lose old access. Leavers lose everything, and any shared credentials they knew are rotated."
+        },
+        {
+          "t": "Access reviews are certified by managers and data owners, not by IT alone. Disable dormant accounts first, then review them."
+        },
+        {
+          "t": "Privileged access should be just in time: approved, recorded and removed afterwards. Service accounts need owners, managed passwords and no interactive logon."
+        },
+        {
+          "t": "Kerberos. The authentication service issues a ticket-granting ticket. The ticket-granting service issues service tickets. Clocks must agree within five minutes."
+        },
+        {
+          "t": "For device administration, TACACS plus encrypts everything and allows per-command authorisation. RADIUS is common for Wi-Fi and VPN users, and encrypts only the password."
+        },
+        {
+          "t": "Identity proofing comes before enrolment. It confirms that a person is who they claim to be, to the level the service needs."
+        },
+        {
+          "t": "Store passwords as salted hashes, using a slow algorithm designed for passwords. Password managers help people keep long, unique passwords."
+        },
+        {
+          "t": "Sessions need care too. Time out idle sessions, and invalidate tokens on logout and on password change."
+        },
+        {
+          "t": "Quick question. A partner company's staff need your portal. Create accounts for them, or federate with their identity provider? Think.",
+          "p": 4000
+        },
+        {
+          "t": "Federate. Their organisation runs joiners and leavers, so when someone leaves there, their access to you ends too. The contract should require it.",
+          "p": 1500
+        },
+        {
+          "t": "SCIM automates provisioning and deprovisioning between your identity provider and cloud applications."
+        },
+        {
+          "t": "Privilege creep happens when people change jobs and keep their old rights. Role-based provisioning and regular reviews stop it."
+        },
+        {
+          "t": "That's domain five. Prove identity strongly, grant the least access, review it, and take it away on time.",
+          "p": 2000
+        }
+      ]
+    },
+    {
+      "id": "car-d6",
+      "domain": 6,
+      "title": "Domain 6: Security Assessment and Testing",
+      "lines": [
+        {
+          "t": "Domain six. Security assessment and testing. Twelve per cent. How you know your controls actually work.",
+          "p": 1500
+        },
+        {
+          "t": "Assessment strategy follows risk. Internet-facing systems with sensitive data get the deepest, most frequent testing."
+        },
+        {
+          "t": "Internal audit is the organisation's own independent function. It should report to the audit committee, not to the person who owns what it audits. External audit is an outside firm. Third-party assessment checks your suppliers."
+        },
+        {
+          "t": "Auditors must never audit their own work. Auditors report. Management decides and fixes. Audit follows up.",
+          "p": 1500
+        },
+        {
+          "t": "A vulnerability scan finds known weaknesses broadly. A penetration test tries to exploit and chain them, to prove impact. Penetration tests need signed rules of engagement: scope, timing, contacts and stop conditions."
+        },
+        {
+          "t": "Quick question. The board asks whether someone on guest Wi-Fi could really reach payroll data. Scan, audit or penetration test? Think.",
+          "p": 4000
+        },
+        {
+          "t": "A penetration test, starting from the guest network. Only a test that follows the attacker's path answers that question.",
+          "p": 1500
+        },
+        {
+          "t": "Authenticated scans see far more than unauthenticated ones. And close findings on evidence, not on someone's word."
+        },
+        {
+          "t": "Knowledge levels. Black box: the tester knows nothing. Grey box: some knowledge, such as an ordinary account. White box: everything, including the code."
+        },
+        {
+          "t": "Red teams attack. Blue teams defend. Purple teams work together, so every technique becomes a better detection straight away."
+        },
+        {
+          "t": "Other techniques. Synthetic transactions test a service around the clock. Real user monitoring watches actual users. Misuse case tests check what the system must refuse. Coverage analysis shows how much code the tests really run."
+        },
+        {
+          "t": "Breach and attack simulation runs safe attacks continuously, so you notice when a control quietly stops working."
+        },
+        {
+          "t": "Evidence. Show that controls operate, not just that they exist. Trace a sample of real changes back to their approvals. Show restore test results, not successful backup jobs.",
+          "p": 1500
+        },
+        {
+          "t": "Metrics. A key performance indicator measures how well a process runs. A key risk indicator warns that exposure is rising. Prefer outcomes, such as critical vulnerabilities fixed on time, over activity counts."
+        },
+        {
+          "t": "Prioritising fixes. The CVSS score is technical severity. Version four point zero is the latest. Add evidence of exploitation, such as the CISA known exploited list, and how exposed and valuable the asset is."
+        },
+        {
+          "t": "Quick question. A critical flaw on an isolated test server, or a medium flaw being actively exploited on the internet-facing payment server. Which first? Think.",
+          "p": 4000
+        },
+        {
+          "t": "The exploited flaw on the payment server. Risk, not score.",
+          "p": 1500
+        },
+        {
+          "t": "Responsible disclosure. Thank the researcher, fix the flaw, then coordinate publication. Publish a vulnerability disclosure policy."
+        },
+        {
+          "t": "SOC reports. SOC 1 covers controls relevant to financial reporting. SOC 2 covers security and other trust criteria, shared under NDA. SOC 3 is the public summary. Type one is design at a point in time. Type two is operating effectiveness over a period. Bridge letters cover the gap since the report."
+        },
+        {
+          "t": "Log review is an assessment too. Logs need synchronised time, protection from tampering, and someone who actually acts on the alerts."
+        },
+        {
+          "t": "Peer code review catches design flaws that tools miss. Fuzzing throws malformed input at an interface to find crashes. Regression testing checks that a fix did not break something else."
+        },
+        {
+          "t": "Match the report to the audience. Executives need risk in business terms. Engineers need the technical detail to fix it."
+        },
+        {
+          "t": "Quick question. A penetration tester finds evidence that someone else broke in months ago. Carry on testing, or stop? Think.",
+          "p": 4000
+        },
+        {
+          "t": "Stop, preserve what was found, and report through the emergency contact in the rules of engagement. It is now an incident.",
+          "p": 1500
+        },
+        {
+          "t": "When a finding cannot be fixed, record an exception with an owner, compensating controls and an expiry date. Exceptions are not permanent."
+        },
+        {
+          "t": "SOC reports are issued under the American standard SSAE 18. ISAE 3402 is the international equivalent for service organisation controls."
+        },
+        {
+          "t": "That's domain six. Test by risk, keep auditors independent, measure outcomes, and fix what attackers are actually using.",
+          "p": 2000
+        }
+      ]
+    },
+    {
+      "id": "car-d7",
+      "domain": 7,
+      "title": "Domain 7: Security Operations",
+      "lines": [
+        {
+          "t": "Domain seven. Security operations. Thirteen per cent, and the widest domain, with fifteen objectives. Investigations, monitoring, incidents, recovery and physical safety.",
+          "p": 1500
+        },
+        {
+          "t": "Investigations. Collect evidence in order of volatility: memory and running processes first, then disk, then logs and backups. Work on hashed forensic copies, not originals. Keep a chain of custody for every handover."
+        },
+        {
+          "t": "Quick question. A compromised laptop is running, and police may be involved. Pull the plug, or isolate it and capture memory? Think.",
+          "p": 4000
+        },
+        {
+          "t": "Isolate it from the network and capture memory. Pulling the plug destroys volatile evidence.",
+          "p": 1500
+        },
+        {
+          "t": "Monitoring. A SIEM correlates logs. SOAR automates enrichment and response. User and entity behaviour analytics spots unusual behaviour, such as an accountant downloading ten times her usual volume at two in the morning."
+        },
+        {
+          "t": "Alert fatigue is fixed by tuning noisy rules and prioritising by risk, not by buying another console."
+        },
+        {
+          "t": "Configuration management keeps systems at their hardened baseline. Build from templates or golden images, and detect drift."
+        },
+        {
+          "t": "Operations principles. Need to know, least privilege, separation of duties, job rotation and privileged account management. You can outsource operations, but never accountability.",
+          "p": 1500
+        },
+        {
+          "t": "Incident management, in the outline's words. Detection, response, mitigation, reporting, recovery, remediation and lessons learned. Contain before you recover."
+        },
+        {
+          "t": "NIST's incident response guide, SP 800-61, reached revision three in April 2025 and is now organised around the CSF 2.0 functions."
+        },
+        {
+          "t": "Lessons learned only count when someone owns the fix and it is tracked to completion."
+        },
+        {
+          "t": "Detection and prevention. An IDS alerts. An IPS blocks inline, so run it in detection mode and tune it first. Sandboxes detonate suspicious files. Honeypots may entice, but must never entrap."
+        },
+        {
+          "t": "Patching. Test on a pilot group, roll out in stages, keep rollback ready, and verify. Emergency patches use the emergency change path, never a bypass. An unexplained change is investigated as a possible incident."
+        },
+        {
+          "t": "Recovery sites. Hot sites are ready in hours. Warm sites in days. Cold sites in weeks. The recovery time objective picks the site. Cheapest means cheapest that still meets it.",
+          "p": 1500
+        },
+        {
+          "t": "Quick question. A four-hour recovery time objective. Which site? Think.",
+          "p": 4000
+        },
+        {
+          "t": "A hot site, or an equivalent cloud failover.",
+          "p": 1500
+        },
+        {
+          "t": "Disaster recovery. Restore in business priority order from the impact analysis. One designated voice talks to the media."
+        },
+        {
+          "t": "Testing, from least to most disruptive. Read-through, walkthrough or tabletop, simulation, parallel, and full interruption. A parallel test proves the site works without stopping production."
+        },
+        {
+          "t": "Business continuity exercises need business process owners, not just IT. Review the plan every year and after any major change."
+        },
+        {
+          "t": "Physical security. Mantraps and turnstiles stop tailgating. Visitors are logged, badged and escorted."
+        },
+        {
+          "t": "People first. Use duress codes. For high-risk travel, use clean loaner devices with minimal data."
+        },
+        {
+          "t": "Evidence must be relevant, reliable and lawfully obtained. The original is the best evidence. Logs carry more weight when they are kept routinely, in the normal course of business."
+        },
+        {
+          "t": "Change management. Request, impact assessment, approval by a change board, testing, scheduled implementation and review. Emergency changes are still recorded and reviewed afterwards."
+        },
+        {
+          "t": "Quick question. An administrator made an unapproved firewall change overnight, and payroll broke. What failed? Think.",
+          "p": 4000
+        },
+        {
+          "t": "Change management. Fix the process, and check whether the change was malicious.",
+          "p": 1500
+        },
+        {
+          "t": "Backups. Three copies, on two kinds of media, one off-site, and keep one copy immutable or offline against ransomware. Only a restore test proves a backup."
+        },
+        {
+          "t": "RAID protects against disk failure, not deletion or encryption by ransomware. High availability is not a backup."
+        },
+        {
+          "t": "Threat hunters assume a breach and go looking for it, guided by intelligence on adversary techniques, such as the MITRE ATT&CK framework."
+        },
+        {
+          "t": "That's domain seven. Preserve the evidence, contain first, recover by business priority, and keep people safe.",
+          "p": 2000
+        }
+      ]
+    },
+    {
+      "id": "car-d8",
+      "domain": 8,
+      "title": "Domain 8: Software Development Security",
+      "lines": [
+        {
+          "t": "Domain eight. Software development security. Ten per cent. Building security into how software is designed, built, bought and run.",
+          "p": 1500
+        },
+        {
+          "t": "Security requirements belong at the start, in the requirements phase. Every later phase makes changes more expensive."
+        },
+        {
+          "t": "Methodologies. Waterfall runs in sequence. Agile works in short iterations. DevOps joins development and operations with automated delivery. DevSecOps builds security into that automation and makes it everyone's job."
+        },
+        {
+          "t": "Shift left: put automated security tests in the pipeline, with gates for serious findings, so security keeps pace with delivery.",
+          "p": 1500
+        },
+        {
+          "t": "Maturity. OWASP SAMM measures and improves software security practice. The capability maturity model rates general process maturity."
+        },
+        {
+          "t": "Testing tools. Static analysis reads your source code. Dynamic analysis attacks the running app. Interactive analysis watches from inside during tests. Software composition analysis lists third-party components, their known flaws and their licences."
+        },
+        {
+          "t": "Quick question. Your pipeline runs static analysis on your own code, but most of the app is open-source packages. What is missing? Think.",
+          "p": 4000
+        },
+        {
+          "t": "Software composition analysis for the dependencies, and dynamic testing of the running app.",
+          "p": 1500
+        },
+        {
+          "t": "Protect the pipeline. Use protected branches with reviews, least-privilege build runners, signed artefacts, and package sources you control."
+        },
+        {
+          "t": "Dependency confusion is when a build pulls a public package with an internal package's name. Resolve internal names only from your private registry."
+        },
+        {
+          "t": "Secrets in code are already compromised. Rotate them first, then clean up, then add secret scanning."
+        },
+        {
+          "t": "Memory-safe languages remove whole classes of flaws, such as buffer overflows.",
+          "p": 1500
+        },
+        {
+          "t": "Measure effectiveness by outcomes: fewer vulnerabilities escaping to production, and faster fixes. Keep auditable change history, with signed commits and recorded reviews."
+        },
+        {
+          "t": "Acquired software. When you cannot see the code, rely on independent test reports, a software bill of materials and contract terms. Open source carries licence obligations too. Copyleft can require you to release your source."
+        },
+        {
+          "t": "A valid vendor signature does not prove an update is safe. Limit what third-party software can reach, stage updates, and watch its behaviour."
+        },
+        {
+          "t": "Attack and fix pairs. SQL injection: parameterised queries. Cross-site scripting: output encoding. Cross-site request forgery: anti-CSRF tokens and SameSite cookies. Broken object access: check ownership on the server. Race conditions: atomic transactions.",
+          "p": 1500
+        },
+        {
+          "t": "Quick question. Developers fixed SQL injection by blocking single quotes in one field. Good enough? Think.",
+          "p": 4000
+        },
+        {
+          "t": "No. Blocklists are bypassed. Use parameterised queries everywhere.",
+          "p": 1500
+        },
+        {
+          "t": "Validate input on the server with allow-lists. Show generic errors and log the details internally."
+        },
+        {
+          "t": "And the OWASP Top 10 for 2025: broken access control is still first, and software supply chain failures is now a category."
+        },
+        {
+          "t": "Keep development, test and production separate. Developers do not deploy to production on their own."
+        },
+        {
+          "t": "Databases. Aggregation is when harmless facts combine into something sensitive. Inference is when users deduce what they may not see. Polyinstantiation answers with different rows at different classification levels."
+        },
+        {
+          "t": "Quick question. A team wants to test with a copy of production customer data. What do you require? Think.",
+          "p": 4000
+        },
+        {
+          "t": "Masked or synthetic data. If real data is truly needed, the same protection as production and the data owner's approval.",
+          "p": 1500
+        },
+        {
+          "t": "APIs need authentication on every call, rate limits, and object-level authorisation checks. Never rely on the client to hide what a user should not see."
+        },
+        {
+          "t": "Code from AI assistants and low-code platforms still needs the same review and scanning. Generated code can contain flaws, and even package names that do not exist."
+        },
+        {
+          "t": "Infrastructure as code is code. Keep templates in version control and scan them for misconfiguration before they deploy."
+        },
+        {
+          "t": "That's domain eight. Start secure, automate checks, know your components, and fix whole classes of flaws.",
+          "p": 2000
+        }
+      ]
+    },
+    {
+      "id": "car-mix",
+      "domain": null,
+      "title": "Mixed recap: thinking like a manager",
+      "lines": [
+        {
+          "t": "Mixed recap. Twenty rapid questions across all eight domains. Answer each out loud before you hear mine.",
+          "p": 1500
+        },
+        {
+          "t": "One. A risk is above appetite and the facilities manager wants to accept it himself. Allowed?",
+          "p": 4000
+        },
+        {
+          "t": "No. Risk above appetite needs acceptance by someone with that authority, after further treatment has been considered.",
+          "p": 1500
+        },
+        {
+          "t": "Two. Is cyber insurance mitigation or transfer?",
+          "p": 3500
+        },
+        {
+          "t": "Transfer. And the accountability stays with you.",
+          "p": 1500
+        },
+        {
+          "t": "Three. Who is accountable to an employee when a payroll processor misuses her data?",
+          "p": 3500
+        },
+        {
+          "t": "The employer, as data controller.",
+          "p": 1500
+        },
+        {
+          "t": "Four. Self-encrypting SSDs are leaving the company. Degauss them, or use cryptographic erase?",
+          "p": 3500
+        },
+        {
+          "t": "Cryptographic erase, or the drive's sanitise command. Degaussing does not work on flash.",
+          "p": 1500
+        },
+        {
+          "t": "Five. An API checks a central authorisation service, which is down. Allow the request, or deny it?",
+          "p": 3500
+        },
+        {
+          "t": "Deny it. Fail securely. People's escape routes are the exception: they fail safe.",
+          "p": 1500
+        },
+        {
+          "t": "Six. Which model blocks a consultant from a rival client's files after seeing one client's files?",
+          "p": 3500
+        },
+        {
+          "t": "Brewer-Nash, the Chinese Wall.",
+          "p": 1500
+        },
+        {
+          "t": "Seven. Data that must stay secret for twenty-five years crosses the internet today. What is the biggest long-term threat?",
+          "p": 4000
+        },
+        {
+          "t": "Harvest now, decrypt later, by future quantum computers. Prioritise post-quantum key exchange, ML-KEM.",
+          "p": 1500
+        },
+        {
+          "t": "Eight. An attacker moved from a web server to the payment servers on a flat network. A bigger perimeter firewall, or micro-segmentation?",
+          "p": 4000
+        },
+        {
+          "t": "Micro-segmentation. The problem was east-west traffic.",
+          "p": 1500
+        },
+        {
+          "t": "Nine. A login asks for a password and a security question. Multi-factor?",
+          "p": 3500
+        },
+        {
+          "t": "No. Both are something you know.",
+          "p": 1500
+        },
+        {
+          "t": "Ten. Fifteen administrators have permanent domain admin rights. What fixes it without slowing urgent work?",
+          "p": 4000
+        },
+        {
+          "t": "Just-in-time privileged access: approved, recorded, then removed.",
+          "p": 1500
+        },
+        {
+          "t": "Eleven. Internal audit reports to the CFO, who owns IT. What is the problem?",
+          "p": 3500
+        },
+        {
+          "t": "Independence. Audit should report to the audit committee.",
+          "p": 1500
+        },
+        {
+          "t": "Twelve. Clients want assurance that controls worked all year. Which report?",
+          "p": 3500
+        },
+        {
+          "t": "SOC 2 Type two, with a bridge letter for the gap.",
+          "p": 1500
+        },
+        {
+          "t": "Thirteen. Ransomware is still spreading. Restore from backup, or contain first?",
+          "p": 3500
+        },
+        {
+          "t": "Contain first. Isolate the affected segments and disable the compromised accounts.",
+          "p": 1500
+        },
+        {
+          "t": "Fourteen. A recovery time objective of four hours, on the cheapest compliant option. Which site?",
+          "p": 3500
+        },
+        {
+          "t": "A hot site. Cheapest that still meets the objective.",
+          "p": 1500
+        },
+        {
+          "t": "Fifteen. Changing the account ID in a request returns another customer's data. What is the flaw, and the fix?",
+          "p": 4000
+        },
+        {
+          "t": "Broken object-level authorisation. Check ownership of every object on the server.",
+          "p": 1500
+        },
+        {
+          "t": "Sixteen. A vendor wants a permanent VPN to support its appliance. What do you offer instead?",
+          "p": 4000
+        },
+        {
+          "t": "Time-limited access through a monitored jump host, approved for each session.",
+          "p": 1500
+        },
+        {
+          "t": "Seventeen. Biometric system A has a crossover error rate of two per cent. System B, five per cent. Which is more accurate?",
+          "p": 3500
+        },
+        {
+          "t": "System A. A lower crossover error rate is better.",
+          "p": 1500
+        },
+        {
+          "t": "Eighteen. A visible camera over the car park. What type of control?",
+          "p": 3500
+        },
+        {
+          "t": "Deterrent. Reviewing its footage afterwards is detective.",
+          "p": 1500
+        },
+        {
+          "t": "Nineteen. A developer pushed an API key to a public repository and deleted it a minute later. What first?",
+          "p": 4000
+        },
+        {
+          "t": "Revoke and rotate the key. Deleting the commit does not undo the exposure.",
+          "p": 1500
+        },
+        {
+          "t": "Twenty. Who approves accepting the residual risk on the payroll system?",
+          "p": 3500
+        },
+        {
+          "t": "The business owner of payroll, within their authority. Security advises.",
+          "p": 1500
+        },
+        {
+          "t": "The pattern behind all twenty: protect people first, let the business own risk decisions, fix causes not symptoms, and choose the least disruptive answer that actually works."
+        },
+        {
+          "t": "On every question, check three things. First step or best step. Governance or technical. Cost-justified against the risk, or not.",
+          "p": 1500
+        },
+        {
+          "t": "That's the recap. Drive safely, and well done for using the time.",
+          "p": 2000
+        }
+      ]
+    }
+  ]
+}

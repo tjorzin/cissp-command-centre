@@ -2,6 +2,18 @@
 
 Each phase adds a section. Commands are run from the repo root with Node 24.22.1 and Playwright 1.64.1 (Chromium), using a Pixel 7 profile at 360 × 780, time zone Africa/Harare.
 
+## Phase 9: car mode (28 October 2026)
+
+**Built:** `data/tracks.json` (9 original scripts, 268 spoken lines); `js/engine/car.js` (timing, resume, text export, voice order); `js/views/car.js` at `#/car`, linked from Study. Lines are spoken one at a time with `SpeechSynthesisUtterance`; each is followed by its own pause (900 ms default, 1.5 s after section ends and answers, 3.5 to 4 s after every question). Voice, speed (0.8× to 1.5×), "continue to the next track" and the position are saved in progress (`state.car`), so they export and import with everything else. Leaving the screen cancels speech.
+
+**Track lint (`npm run validate`, new `lintTracks`):** every track 4 to 6 minutes and all tracks 45 to 60 minutes at 150 words a minute plus pauses; one track per domain plus a recap; no line over 60 words; every question followed by a pause of at least 3 s. Result: **no errors**; tracks run 4.5 / 5.2 / 5.2 / 5.0 / 4.7 / 4.9 / 4.7 / 4.5 / 5.6 min, about 45 min in all. The first draft ran 35 minutes and was extended with further worked points and quick questions, not filler; the lint also caught one rhetorical question without a pause, rewritten as a statement.
+
+**Currency:** the scripts repeat only facts already checked in `data/SOURCES.md` for phase 8 (CSF 2.0 Govern, SP 800-88 Rev 2 and IEEE 2883, FIPS 203/204/205, SP 800-63-4, SP 800-61 Rev 3, CVSS 4.0, OWASP Top 10:2025, Zimbabwe's Cyber and Data Protection Act with POTRAZ as the authority).
+
+**Tests:** `npm test` 99 passed (6 new in `tests/unit/car.test.js`: lint on the real tracks, lint failure cases, duration maths, stale resume positions, the text export holds every line and marks every answer pause, voice order). `npm run test:e2e` 39 passed (3 new in `tests/e2e/car.spec.js`, with a stand-in speechSynthesis because headless Chromium has no voices: lines spoken in order with the chosen voice and speed, the pause is real, position, voice and speed survive a reload, back/skip/track change, leaving the screen stops speech, and the .txt download contains every track). No horizontal overflow at 360 px.
+
+**Not validated:** how real voices sound or pace on Trust's phone (headless Chromium has none, so actual minutes depend on the voice; durations are estimates at 150 wpm); playback with the screen locked or the app in the background (Android Chrome may pause speech when the page is hidden; the brief's offline download covers that case); car Bluetooth media buttons (speech synthesis does not appear as media, so they do nothing); Edge Read Aloud on the downloaded file.
+
 ## Phase 8, batch 8: Domain 8 content, phase 8 complete (28 October 2026)
 
 Framework check (`data/SOURCES.md`): the **OWASP Top 10:2025** (November 2025) keeps Broken Access Control first and adds Software Supply Chain Failures; only those stable points are tested.

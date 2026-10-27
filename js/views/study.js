@@ -26,6 +26,7 @@ function renderList(ctx, domains, outline) {
     navCard('cards-link', '#/cards', 'Flashcards', 'Key terms, exam traps and memory hooks, spaced for recall.', `${cardsQueue(ctx).queue.cards.length} due`),
     navCard('drills-link', '#/drills', 'Comparison drills', 'The pairs and sets CISSP likes to blur. Pick the term that fits each scenario.', data.drills ? `${data.drills.drills.length}` : null),
     navCard('labs-link', '#/labs', 'Labs', 'Hands-on exercises, day by day. Test environments only.', data.labs ? `${data.labs.labs.length}` : null),
+    navCard('car-link', '#/car', 'Car mode', 'Audio tracks for the commute: one per domain and a mixed recap, read aloud by your phone.', data.tracks ? `${data.tracks.tracks.length}` : null),
     h('p', { class: 'small muted' }, `Showing the ${outline.id} outline, which applies to your target date. Weights are ISC2's average exam weights.`),
     ...domains.map((d) => h('a', { class: 'card domain-link', href: `#/study/${d.n}`, 'data-domain': d.n },
       h('div', { class: 'row' },

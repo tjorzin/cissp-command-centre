@@ -334,3 +334,9 @@ code.cmd {
   padding: 12px var(--gutter); border-radius: var(--radius);
   background: var(--text); color: var(--bg); text-align: center;
 }
+
+/* Car mode: big targets and a large current line, readable at a glance while parked. */
+.car-player { text-align: center; }
+.car-line { font-size: 1.25rem; line-height: 1.45; min-height: 6.5em; margin: 12px 0; overflow-wrap: anywhere; }
+.car-controls { justify-content: center; flex-wrap: nowrap; }
+.car-btn { min-height: 56px; flex: 1 1 0; min-width: 0; font-size: 1.05rem; }

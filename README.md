@@ -2,7 +2,7 @@
 
 A personal CISSP study app: an offline, installable PWA that tells you what to study next. Built in vanilla HTML, CSS and JavaScript, with no build step, no backend and no accounts. Progress stays on the device; use **More → Export progress** to back it up or move it to another device.
 
-> Status: phase 8 of 10 complete: all eight domains (248 questions, 62 lessons, 99 cards, 21 drills, 16 labs). Next: car mode (phase 9). See `VALIDATION.md`.
+> Status: phase 9 of 10 complete: all eight domains (248 questions, 62 lessons, 99 cards, 21 drills, 16 labs) and car mode (9 audio tracks, about 45 min). Next: GitHub Pages deployment (phase 10). See `VALIDATION.md`.
 
 Content is added one domain at a time: write a batch file, merge it with `node tools/merge-batch.js <file>`, then `npm run validate` (schema, give-away lint, lessons, drills and labs) before committing.
 
@@ -47,6 +47,10 @@ Every miss, and every right answer marked as a guess, is recorded with why your 
 ## Question modes
 
 Practice set, Scenario set, Mini exam (25 × 90 s), Adaptive mock (100 to 150 questions, 3 hours; a staircase simulation, not ISC2's algorithm), Weakness drill and Hard mode (levels 5 to 6). Confidence (guess / unsure / sure) is captured before every answer is revealed.
+
+## Car mode
+
+Study → Car mode plays nine original audio tracks (one per domain and a mixed recap, 4.5 to 5.6 minutes each, about 45 minutes in all) through the browser's Speech Synthesis API, so nothing is downloaded and it works offline once the app is cached. Pick a voice (British English voices are listed first) and a speed; quick questions leave a real pause to answer out loud, and the pause does not shrink when speech is sped up. The position is saved after every line, so the next trip resumes where the last stopped. **Download all scripts (.txt)** saves every script as one text file for a reader such as Edge Read Aloud. Set it up while parked.
 
 ## Exam facts
 
@@ -101,7 +105,8 @@ Questions follow `docs/QUESTION-STANDARD.md`: tough, realistic, original and fre
 index.html  manifest.webmanifest  sw.js  icons/   PWA shell
 css/app.css                                     theme tokens, 360 px-first layout
 js/app.js  js/store.js  js/outline.js  js/ui.js  js/views/
-data/      outlines.json (dates, weights), domains.json (62 objectives, topics tagged by outline), SOURCES.md, schema/
+data/      outlines.json (dates, weights), domains.json (62 objectives, topics tagged by outline), questions, cards, lessons,
+           drills, labs, tracks.json (car-mode scripts), SOURCES.md, schema/
 docs/QUESTION-STANDARD.md
 tests/unit  tests/e2e  tools/
 ```

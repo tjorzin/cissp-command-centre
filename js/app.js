@@ -15,6 +15,7 @@ import { renderCards } from './views/cards.js';
 import { renderPerformance } from './views/performance.js';
 import { renderDrills } from './views/drills.js';
 import { renderLabs } from './views/labs.js';
+import { renderCar } from './views/car.js';
 
 // A null backend makes every storage call throw, which the store catches: it then
 // runs in memory and isPersistent() reports false so the app can warn.
@@ -42,6 +43,7 @@ const routes = {
   performance: renderPerformance,
   drills: renderDrills,
   labs: renderLabs,
+  car: renderCar,
   more: renderMore
 };
 
@@ -90,7 +92,7 @@ function route() {
   const name = routes[first] ? first : 'home';
   const view = routes[name];
   currentRoute = name;
-  const tab = { session: 'questions', results: 'questions', reteach: 'ledger', cards: 'study', drills: 'study', labs: 'study', performance: 'home' }[name] || name;
+  const tab = { session: 'questions', results: 'questions', reteach: 'ledger', cards: 'study', drills: 'study', labs: 'study', car: 'study', performance: 'home' }[name] || name;
   document.querySelectorAll('.tabbar a').forEach((a) => {
     if (a.dataset.tab === tab) a.setAttribute('aria-current', 'page');
     else a.removeAttribute('aria-current');
@@ -113,7 +115,7 @@ async function start() {
   applyTheme();
   watchOnline();
   const files = { outlines: 'data/outlines.json', domains: 'data/domains.json', questions: 'data/questions.json', cards: 'data/cards.json',
-    lessons: 'data/lessons.json', drills: 'data/drills.json', labs: 'data/labs.json' };
+    lessons: 'data/lessons.json', drills: 'data/drills.json', labs: 'data/labs.json', tracks: 'data/tracks.json' };
   const loaded = await Promise.allSettled(Object.values(files).map(loadJSON));
   Object.keys(files).forEach((k, i) => {
     if (loaded[i].status === 'fulfilled') ctx.data[k] = loaded[i].value;
