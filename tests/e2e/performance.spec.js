@@ -19,6 +19,7 @@ test('a new user sees honest empty states and four unmet gates with evidence', a
 
 test('with history: figures, trend line, calibration warning and a met gate', async ({ page }) => {
   await page.goto('/');
+  await expect(page.locator('#do-next')).toBeVisible(); // let the app finish its first write before seeding
   await page.evaluate(() => {
     const s = JSON.parse(localStorage.getItem('cissp-cc'));
     const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Africa/Harare' }).format(new Date());
@@ -51,10 +52,11 @@ test('with history: figures, trend line, calibration warning and a met gate', as
 
 test('gate thresholds are configurable in Settings', async ({ page }) => {
   await page.goto('/#/more');
-  await page.locator('#gate-mockMetric').selectOption('band');
+  await expect(page.locator('#gate-mockMetric')).toHaveValue('band'); // default
+  await page.locator('#gate-mockMetric').selectOption('accuracy');
   await page.locator('#gate-domainMin').fill('80');
   await page.locator('#gate-domainMin').dispatchEvent('change');
   await page.goto('/#/performance');
-  await expect(page.locator('[data-gate="mocks"] h3')).toHaveText('Last two adaptive mocks both in the "above" band');
+  await expect(page.locator('[data-gate="mocks"] h3')).toHaveText('75% or more across the last two adaptive mocks');
   await expect(page.locator('[data-gate="domains"] h3')).toHaveText('No domain below 80%');
 });

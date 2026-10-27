@@ -8,7 +8,9 @@ export const TREND_SESSIONS = 5;
 export const CONFIDENCES = ['guess', 'unsure', 'sure'];
 
 export const DEFAULT_GATES = {
-  mockMetric: 'accuracy', // 'accuracy' (brief default) or 'band' (both last two mocks "above")
+  // 'band' (both last two mocks "above"; chosen 27 Oct 2026 because adaptive mocks hold
+  // accuracy near 50-60%) or 'accuracy' (the brief's original 75% rule).
+  mockMetric: 'band',
   mockAccuracy: 75,
   domainMin: 70,
   domainWindow: 50,       // most recent answers per domain that count

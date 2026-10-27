@@ -68,20 +68,23 @@ test('a new user meets no gate, and every gate explains why', () => {
   assert.match(g[1].evidence.join(), /not enough data \(0\/20/);
 });
 
-test('mock gate: accuracy (default) and band options', () => {
+test('mock gate: band "above" in both (default) and the accuracy option', () => {
   const st = defaultState();
   const mock = (correct, band) => ({ mode: 'mock', endedAt: '2027-02-10T10:00:00.000Z', correct, presented: 100, mockReport: { band } });
-  st.sessions = [mock(90, 'below'), mock(70, 'above'), mock(80, 'above')];
+  st.sessions = [mock(90, 'below'), mock(55, 'above'), mock(58, 'above')];
   let g = gates(st, TODAY).find((x) => x.id === 'mocks');
-  assert.equal(g.met, true); // last two: 150/200 = 75%
-  st.sessions.push(mock(60, 'above'));
-  g = gates(st, TODAY).find((x) => x.id === 'mocks');
-  assert.equal(g.met, false); // 140/200 = 70%
-  assert.ok(g.note);
-  st.settings.gates = { mockMetric: 'band' };
-  assert.equal(gates(st, TODAY).find((x) => x.id === 'mocks').met, true);
+  assert.match(g.title, /"above" band/);
+  assert.equal(g.met, true);
   st.sessions.push(mock(99, 'borderline'));
   assert.equal(gates(st, TODAY).find((x) => x.id === 'mocks').met, false);
+
+  st.settings.gates = { mockMetric: 'accuracy' };
+  st.sessions = [mock(90, 'below'), mock(70, 'above'), mock(80, 'above')];
+  g = gates(st, TODAY).find((x) => x.id === 'mocks');
+  assert.equal(g.met, true); // last two: 150/200 = 75%
+  assert.ok(g.note);
+  st.sessions.push(mock(60, 'above'));
+  assert.equal(gates(st, TODAY).find((x) => x.id === 'mocks').met, false); // 140/200 = 70%
 });
 
 test('domain gate needs enough data everywhere and uses recent answers', () => {
