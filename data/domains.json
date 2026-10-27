@@ -1,0 +1,513 @@
+{
+  "version": 1,
+  "source": "ISC2 CISSP outlines effective 15 April 2024 and 15 April 2027, compared 27 October 2026. See data/SOURCES.md.",
+  "notes": "Labels and topic names are short paraphrases for navigation. outline: both | 2024 (dropped from the 2027 outline) | 2027 (new in the 2027 outline). Weights and domain names live in outlines.json. summary, keyTerms and scenario are filled in content batches (phase 8).",
+  "domains": [
+    {
+      "n": 1,
+      "objectives": [
+        { "id": "1.1", "label": "Professional ethics", "topics": [
+          { "name": "ISC2 Code of Ethics (preamble and four canons)", "outline": "both" },
+          { "name": "Organisational code of ethics", "outline": "both" },
+          { "name": "Ethics in artificial intelligence", "outline": "2027" }
+        ]},
+        { "id": "1.2", "label": "Core security concepts", "topics": [
+          { "name": "Confidentiality, integrity, availability, authenticity, non-repudiation", "outline": "both" }
+        ]},
+        { "id": "1.3", "label": "Security governance", "label2027": "Security governance: apply and sustain", "topics": [
+          { "name": "Aligning security with business strategy, mission and objectives", "outline": "both" },
+          { "name": "Organisational processes: acquisitions, divestitures, governance committees", "outline": "both" },
+          { "name": "Organisational roles and responsibilities", "outline": "both" },
+          { "name": "Control frameworks: ISO, NIST, COBIT, SABSA, PCI DSS, FedRAMP", "outline": "both" },
+          { "name": "Due care and due diligence", "outline": "both" }
+        ]},
+        { "id": "1.4", "label": "Legal, regulatory and compliance issues", "topics": [
+          { "name": "Cybercrime and data breaches", "outline": "both" },
+          { "name": "Licensing and intellectual property", "outline": "both" },
+          { "name": "Import and export controls", "outline": "both" },
+          { "name": "Transborder data flow", "outline": "both" },
+          { "name": "Privacy law: GDPR, CCPA, China PIPL, South Africa POPIA", "outline": "both" },
+          { "name": "Privacy law: HIPAA", "outline": "2027" },
+          { "name": "Contractual, legal, industry and regulatory requirements", "outline": "both" }
+        ]},
+        { "id": "1.5", "label": "Investigation types", "topics": [
+          { "name": "Administrative, criminal, civil and regulatory investigations", "outline": "both" },
+          { "name": "Industry-standards investigations", "outline": "2024" }
+        ]},
+        { "id": "1.6", "label": "Policies, standards, procedures and guidelines", "topics": [] },
+        { "id": "1.7", "label": "Business continuity requirements", "topics": [
+          { "name": "Business impact analysis (BIA)", "outline": "both" },
+          { "name": "External dependencies", "outline": "both" }
+        ]},
+        { "id": "1.8", "label": "Personnel security", "topics": [
+          { "name": "Candidate screening and hiring", "outline": "both" },
+          { "name": "Onboarding, transfers and termination", "outline": "both" },
+          { "name": "Employment agreements and policy-driven requirements", "outline": "both" },
+          { "name": "Vendor, consultant and contractor agreements and controls", "outline": "both" },
+          { "name": "Service-level agreements in third-party contracts", "outline": "2027" }
+        ]},
+        { "id": "1.9", "label": "Risk management", "topics": [
+          { "name": "Threat and vulnerability identification", "outline": "both" },
+          { "name": "Risk analysis, assessment and scope", "outline": "both" },
+          { "name": "Risk response and treatment, including cyber insurance", "outline": "both" },
+          { "name": "Risk mitigation strategies", "outline": "2027" },
+          { "name": "Types of control: preventive, detective, corrective", "outline": "both" },
+          { "name": "Control assessments (security and privacy)", "outline": "both" },
+          { "name": "Continuous improvement and maturity modelling", "outline": "both" },
+          { "name": "Risk frameworks: ISO, NIST, COBIT, SABSA, PCI", "outline": "both" },
+          { "name": "HIPAA as a risk framework", "outline": "2027" },
+          { "name": "Continuous monitoring and measurement", "outline": "both" },
+          { "name": "Risk reporting (internal and external)", "outline": "both" }
+        ]},
+        { "id": "1.10", "label": "Threat modelling", "topics": [] },
+        { "id": "1.11", "label": "Supply chain risk management", "topics": [
+          { "name": "Supplier risks: tampering, counterfeits, implants", "outline": "both" },
+          { "name": "Supplier reputational risk", "outline": "2027" },
+          { "name": "Mitigations: third-party assessment and monitoring, minimum requirements, service levels", "outline": "both" },
+          { "name": "Hardware assurance: silicon root of trust, physically unclonable functions", "outline": "both" },
+          { "name": "Software bill of materials (SBOM)", "outline": "both" }
+        ]},
+        { "id": "1.12", "label": "Awareness, education and training", "label2027": "Awareness, education and training: including measurement", "topics": [
+          { "name": "Awareness methods: security champions, gamification", "outline": "both" },
+          { "name": "Social engineering and phishing exercises", "outline": "2024" },
+          { "name": "Content reviews for emerging tech: AI, blockchain, cryptocurrency", "outline": "both" },
+          { "name": "Programme effectiveness evaluation", "outline": "both" },
+          { "name": "Stakeholder engagement", "outline": "2027" }
+        ]}
+      ]
+    },
+    {
+      "n": 2,
+      "objectives": [
+        { "id": "2.1", "label": "Classifying information and assets", "topics": [
+          { "name": "Data classification", "outline": "both" },
+          { "name": "Asset classification", "outline": "both" }
+        ]},
+        { "id": "2.2", "label": "Handling requirements", "topics": [
+          { "name": "Physical handling", "outline": "2027" },
+          { "name": "Digital and electronic handling", "outline": "2027" },
+          { "name": "Secure media destruction", "outline": "2027" },
+          { "name": "Encryption at rest and in transit", "outline": "2027" }
+        ]},
+        { "id": "2.3", "label": "Secure provisioning of assets", "topics": [
+          { "name": "Information and asset ownership", "outline": "both" },
+          { "name": "Asset inventory (tangible and intangible)", "outline": "both" },
+          { "name": "Asset management", "outline": "both" }
+        ]},
+        { "id": "2.4", "label": "Data lifecycle", "topics": [
+          { "name": "Data management policy", "outline": "2027" },
+          { "name": "Data roles: owner, controller, custodian, processor, user, subject", "outline": "both" },
+          { "name": "Data collection", "outline": "both" },
+          { "name": "Data location", "outline": "both" },
+          { "name": "Data maintenance", "outline": "both" },
+          { "name": "Data retention", "outline": "both" },
+          { "name": "Data remanence", "outline": "both" },
+          { "name": "Data destruction", "outline": "both" }
+        ]},
+        { "id": "2.5", "label": "Asset retention (end of life, end of support)", "label2027": "Asset management (end of life, end of support)", "topics": [
+          { "name": "End of life and end of support", "outline": "both" },
+          { "name": "Asset management policy", "outline": "2027" },
+          { "name": "Asset retention", "outline": "2027" },
+          { "name": "Asset retirement", "outline": "2027" }
+        ]},
+        { "id": "2.6", "label": "Data security controls and compliance", "topics": [
+          { "name": "Data states: in use, in transit, at rest", "outline": "both" },
+          { "name": "Scoping and tailoring", "outline": "both" },
+          { "name": "Standards and controls selection", "outline": "both" },
+          { "name": "Data protection: DRM, DLP, CASB", "outline": "both" },
+          { "name": "Cloud-native application protection platform (CNAPP)", "outline": "2027" }
+        ]}
+      ]
+    },
+    {
+      "n": 3,
+      "objectives": [
+        { "id": "3.1", "label": "Secure design principles", "topics": [
+          { "name": "Threat modelling", "outline": "both" },
+          { "name": "Least privilege", "outline": "both" },
+          { "name": "Defence in depth", "outline": "both" },
+          { "name": "Secure defaults", "outline": "both" },
+          { "name": "Fail securely", "outline": "both" },
+          { "name": "Separation (segregation) of duties", "outline": "both" },
+          { "name": "Keep it simple and small", "outline": "both" },
+          { "name": "Zero trust", "outline": "both" },
+          { "name": "Trust but verify", "outline": "2024" },
+          { "name": "Privacy by design", "outline": "both" },
+          { "name": "Privacy-enhancing technologies", "outline": "2027" },
+          { "name": "Shared responsibility", "outline": "both" },
+          { "name": "Secure access service edge (SASE)", "outline": "both" },
+          { "name": "Well-architected frameworks", "outline": "2027" },
+          { "name": "Rotation of duties", "outline": "2027" },
+          { "name": "Two-person integrity", "outline": "2027" }
+        ]},
+        { "id": "3.2", "label": "Security models (Bell-LaPadula, Biba, Star and others)", "topics": [] },
+        { "id": "3.3", "label": "Selecting controls from system requirements", "topics": [] },
+        { "id": "3.4", "label": "Security capabilities of information systems", "topics": [
+          { "name": "Memory protection", "outline": "both" },
+          { "name": "Trusted Platform Module (TPM)", "outline": "both" },
+          { "name": "Hardware security module (HSM)", "outline": "2027" },
+          { "name": "Encryption and decryption", "outline": "both" }
+        ]},
+        { "id": "3.5", "label": "Vulnerabilities of architectures and solutions", "topics": [
+          { "name": "Client-based systems", "outline": "both" },
+          { "name": "Server-based systems", "outline": "both" },
+          { "name": "Database systems", "outline": "both" },
+          { "name": "Cryptographic systems", "outline": "both" },
+          { "name": "Industrial control systems (ICS)", "outline": "both" },
+          { "name": "Operational technology (OT)", "outline": "2027" },
+          { "name": "Cloud: SaaS, IaaS, PaaS", "outline": "both" },
+          { "name": "Serverless", "outline": "both" },
+          { "name": "Function as a service (FaaS)", "outline": "2027" },
+          { "name": "Distributed systems", "outline": "both" },
+          { "name": "Internet of Things (IoT)", "outline": "both" },
+          { "name": "Microservices and APIs", "outline": "both" },
+          { "name": "Containerisation", "outline": "both" },
+          { "name": "Embedded systems", "outline": "both" },
+          { "name": "High-performance computing", "outline": "both" },
+          { "name": "Edge computing", "outline": "both" },
+          { "name": "Virtualised systems", "outline": "both" },
+          { "name": "Supply chain risk in architectures", "outline": "2027" },
+          { "name": "Autonomous systems", "outline": "2027" },
+          { "name": "Quantum computing", "outline": "2027" }
+        ]},
+        { "id": "3.6", "label": "Cryptographic solutions", "topics": [
+          { "name": "Cryptographic lifecycle: keys, algorithm selection", "outline": "both" },
+          { "name": "Symmetric, asymmetric and elliptic curve cryptography", "outline": "both" },
+          { "name": "Quantum cryptography", "outline": "2024" },
+          { "name": "Post-quantum cryptography", "outline": "2027" },
+          { "name": "Public key infrastructure (PKI)", "outline": "both" },
+          { "name": "Quantum key distribution", "outline": "2024" },
+          { "name": "Key distribution", "outline": "2027" },
+          { "name": "Key management, including rotation", "outline": "both" },
+          { "name": "Key access management", "outline": "2027" },
+          { "name": "Digital signatures and certificates", "outline": "both" }
+        ]},
+        { "id": "3.7", "label": "Cryptanalytic and related attacks", "topics": [
+          { "name": "Brute force", "outline": "both" },
+          { "name": "Ciphertext-only", "outline": "both" },
+          { "name": "Known plaintext", "outline": "both" },
+          { "name": "Frequency analysis", "outline": "both" },
+          { "name": "Chosen ciphertext", "outline": "both" },
+          { "name": "Implementation attacks", "outline": "both" },
+          { "name": "Side-channel", "outline": "both" },
+          { "name": "Fault injection", "outline": "both" },
+          { "name": "Timing", "outline": "both" },
+          { "name": "Man-in-the-middle (adversary-in-the-middle in 2027)", "outline": "both" },
+          { "name": "Pass the hash", "outline": "both" },
+          { "name": "Kerberos exploitation", "outline": "both" },
+          { "name": "Ransomware", "outline": "both" },
+          { "name": "Zero-day attacks", "outline": "2027" },
+          { "name": "AI threats: adversarial AI, model poisoning, deepfakes", "outline": "2027" }
+        ]},
+        { "id": "3.8", "label": "Site and facility design principles", "topics": [] },
+        { "id": "3.9", "label": "Site and facility controls", "topics": [
+          { "name": "Wiring closets and intermediate distribution frames", "outline": "both" },
+          { "name": "Server rooms and data centres", "outline": "both" },
+          { "name": "Media storage facilities", "outline": "both" },
+          { "name": "Evidence storage", "outline": "both" },
+          { "name": "Restricted and work area security", "outline": "both" },
+          { "name": "Utilities and HVAC", "outline": "both" },
+          { "name": "Environmental issues: natural and man-made", "outline": "both" },
+          { "name": "Fire prevention, detection and suppression", "outline": "both" },
+          { "name": "Power: redundant and backup", "outline": "both" }
+        ]},
+        { "id": "3.10", "label": "Information system lifecycle", "topics": [
+          { "name": "Stakeholder needs and requirements", "outline": "both" },
+          { "name": "Requirements analysis", "outline": "both" },
+          { "name": "(Secure) architectural design", "outline": "both" },
+          { "name": "Development and implementation", "outline": "both" },
+          { "name": "Integration", "outline": "both" },
+          { "name": "Verification and validation", "outline": "both" },
+          { "name": "Continuous security review", "outline": "2027" },
+          { "name": "Transition and deployment", "outline": "both" },
+          { "name": "Operations, maintenance and sustainment", "outline": "both" },
+          { "name": "Retirement and (secure) disposal", "outline": "both" }
+        ]}
+      ]
+    },
+    {
+      "n": 4,
+      "objectives": [
+        { "id": "4.1", "label": "Secure network architecture", "topics": [
+          { "name": "OSI and TCP/IP models", "outline": "both" },
+          { "name": "IPv4 and IPv6: unicast, broadcast, multicast, anycast", "outline": "both" },
+          { "name": "Secure protocols: IPsec, SSH, TLS", "outline": "both" },
+          { "name": "Implications of multilayer protocols", "outline": "both" },
+          { "name": "Converged protocols: iSCSI, VoIP, InfiniBand over Ethernet, CXL", "outline": "both" },
+          { "name": "Transport architecture: topology, data/control/management planes, switching modes", "outline": "both" },
+          { "name": "Performance metrics: bandwidth, latency, jitter, throughput, SNR", "outline": "both" },
+          { "name": "Traffic flows: north-south, east-west", "outline": "both" },
+          { "name": "Physical segmentation: in-band, out-of-band, air gap", "outline": "both" },
+          { "name": "Logical segmentation: VLAN, VPN, VRF, virtual domains", "outline": "both" },
+          { "name": "Micro-segmentation and zero trust networking", "outline": "both" },
+          { "name": "Edge networks: ingress, egress, peering", "outline": "both" },
+          { "name": "Wireless: Bluetooth, Wi-Fi, Zigbee, satellite", "outline": "both" },
+          { "name": "Cellular: 4G, 5G", "outline": "both" },
+          { "name": "Content delivery networks (CDN)", "outline": "both" },
+          { "name": "Software-defined networking: APIs, SD-WAN, NFV", "outline": "both" },
+          { "name": "Virtual private cloud (VPC)", "outline": "both" },
+          { "name": "Network monitoring and management: observability, shaping, capacity, faults", "outline": "both" },
+          { "name": "Software-defined security", "outline": "2027" }
+        ]},
+        { "id": "4.2", "label": "Securing network components", "topics": [
+          { "name": "Operating infrastructure: redundant power, warranty, support", "outline": "both" },
+          { "name": "Transmission media: physical security, signal quality", "outline": "both" },
+          { "name": "Network access control (NAC), physical and virtual", "outline": "both" },
+          { "name": "Host-based endpoint security", "outline": "both" }
+        ]},
+        { "id": "4.3", "label": "Secure communication channels", "topics": [
+          { "name": "Voice, video and collaboration", "outline": "both" },
+          { "name": "Remote access for network administration", "outline": "both" },
+          { "name": "Remote working", "outline": "2027" },
+          { "name": "Data communications: backhaul, satellite", "outline": "both" },
+          { "name": "Third-party connectivity: telecom providers, hardware support", "outline": "both" }
+        ]}
+      ]
+    },
+    {
+      "n": 5,
+      "objectives": [
+        { "id": "5.1", "label": "Controlling access to assets", "label2027": "Managing access to assets: provision, control, review, revoke", "topics": [
+          { "name": "Information", "outline": "both" },
+          { "name": "Systems", "outline": "both" },
+          { "name": "Devices", "outline": "both" },
+          { "name": "Facilities", "outline": "both" },
+          { "name": "Applications", "outline": "both" },
+          { "name": "Services", "outline": "both" },
+          { "name": "Identities", "outline": "2027" }
+        ]},
+        { "id": "5.2", "label": "Identification and authentication strategy", "topics": [
+          { "name": "Groups and roles", "outline": "both" },
+          { "name": "Authentication, authorisation and accounting (AAA), including MFA", "outline": "both" },
+          { "name": "Session management", "outline": "both" },
+          { "name": "Registration, proofing and establishment of identity", "outline": "both" },
+          { "name": "Federated identity management (FIM)", "outline": "both" },
+          { "name": "Credential management systems (password vaults)", "outline": "both" },
+          { "name": "Single sign-on (SSO)", "outline": "both" },
+          { "name": "Just-in-time access", "outline": "both" },
+          { "name": "Passwordless authentication", "outline": "both" },
+          { "name": "FIDO, WebAuthn, passkeys and biometrics", "outline": "2027" }
+        ]},
+        { "id": "5.3", "label": "Federation with third-party services", "topics": [
+          { "name": "On-premises", "outline": "both" },
+          { "name": "Cloud", "outline": "both" },
+          { "name": "Hybrid", "outline": "both" }
+        ]},
+        { "id": "5.4", "label": "Authorisation mechanisms", "topics": [
+          { "name": "Role-based access control (RBAC)", "outline": "both" },
+          { "name": "Rule-based access control", "outline": "both" },
+          { "name": "Mandatory access control (MAC)", "outline": "both" },
+          { "name": "Discretionary access control (DAC)", "outline": "both" },
+          { "name": "Attribute-based access control (ABAC)", "outline": "both" },
+          { "name": "Risk-based (risk-adaptive) access control", "outline": "both" },
+          { "name": "Policy decision and enforcement points (PDP, PEP)", "outline": "both" }
+        ]},
+        { "id": "5.5", "label": "Identity and access provisioning lifecycle", "topics": [
+          { "name": "Account access reviews: user, system, service", "outline": "both" },
+          { "name": "Provisioning and deprovisioning: joiners, movers, leavers", "outline": "both" },
+          { "name": "Role definition and transition", "outline": "both" },
+          { "name": "Privilege escalation: sudo, auditing its use", "outline": "both" },
+          { "name": "Administrator groups and least privilege for elevation", "outline": "2027" },
+          { "name": "Service account management", "outline": "both" }
+        ]},
+        { "id": "5.6", "label": "Authentication systems", "label2027": "Authentication and authorisation systems", "topics": [] }
+      ]
+    },
+    {
+      "n": 6,
+      "objectives": [
+        { "id": "6.1", "label": "Assessment, test and audit strategies", "topics": [
+          { "name": "Internal", "outline": "both" },
+          { "name": "External", "outline": "both" },
+          { "name": "Third-party", "outline": "both" },
+          { "name": "Location: on-premises, cloud, hybrid", "outline": "both" }
+        ]},
+        { "id": "6.2", "label": "Security control testing", "topics": [
+          { "name": "Vulnerability assessment", "outline": "both" },
+          { "name": "Penetration testing", "outline": "both" },
+          { "name": "Red, blue and purple team exercises", "outline": "2024" },
+          { "name": "Log reviews", "outline": "both" },
+          { "name": "Synthetic transactions and benchmarks", "outline": "both" },
+          { "name": "Code review and testing", "outline": "both" },
+          { "name": "Misuse case testing", "outline": "both" },
+          { "name": "Coverage analysis", "outline": "both" },
+          { "name": "Interface testing: user, network, API", "outline": "both" },
+          { "name": "Breach and attack simulation", "outline": "both" },
+          { "name": "Compliance checks", "outline": "both" }
+        ]},
+        { "id": "6.3", "label": "Collecting security process data", "topics": [
+          { "name": "Account management", "outline": "both" },
+          { "name": "Management review and approval", "outline": "both" },
+          { "name": "Key performance and risk indicators", "outline": "both" },
+          { "name": "Backup verification data", "outline": "both" },
+          { "name": "Training and awareness", "outline": "both" },
+          { "name": "Disaster recovery and business continuity", "outline": "both" }
+        ]},
+        { "id": "6.4", "label": "Analysing results and reporting", "label2027": "Analysing test and audit results and reporting", "topics": [
+          { "name": "Remediation", "outline": "both" },
+          { "name": "Exception handling", "outline": "both" },
+          { "name": "Ethical (responsible) disclosure", "outline": "both" }
+        ]},
+        { "id": "6.5", "label": "Security audits", "topics": [
+          { "name": "Internal", "outline": "both" },
+          { "name": "External", "outline": "both" },
+          { "name": "Third-party", "outline": "both" },
+          { "name": "Location: on-premises, cloud, hybrid", "outline": "both" }
+        ]}
+      ]
+    },
+    {
+      "n": 7,
+      "objectives": [
+        { "id": "7.1", "label": "Investigations", "topics": [
+          { "name": "Evidence collection and handling", "outline": "both" },
+          { "name": "Reporting and documentation", "outline": "both" },
+          { "name": "Investigative techniques", "outline": "both" },
+          { "name": "Digital forensics tools, tactics and procedures", "outline": "both" },
+          { "name": "Artefacts: data, computer, network, mobile", "outline": "both" }
+        ]},
+        { "id": "7.2", "label": "Logging and monitoring", "topics": [
+          { "name": "Intrusion detection and prevention (IDPS)", "outline": "both" },
+          { "name": "SIEM", "outline": "both" },
+          { "name": "SOAR", "outline": "2027" },
+          { "name": "Continuous monitoring and tuning", "outline": "both" },
+          { "name": "Egress monitoring", "outline": "both" },
+          { "name": "DLP for egress monitoring", "outline": "2027" },
+          { "name": "Log management", "outline": "both" },
+          { "name": "Threat intelligence: feeds, hunting", "outline": "both" },
+          { "name": "User and entity behaviour analytics (UEBA)", "outline": "both" }
+        ]},
+        { "id": "7.3", "label": "Configuration management", "topics": [
+          { "name": "Provisioning", "outline": "both" },
+          { "name": "Baselining", "outline": "both" },
+          { "name": "Automation", "outline": "both" }
+        ]},
+        { "id": "7.4", "label": "Foundational security operations concepts", "topics": [
+          { "name": "Need-to-know and least privilege", "outline": "both" },
+          { "name": "Separation of duties and responsibilities", "outline": "both" },
+          { "name": "Privileged account management", "outline": "both" },
+          { "name": "Job rotation", "outline": "both" },
+          { "name": "Service-level agreements", "outline": "2024" },
+          { "name": "Defence in depth", "outline": "2027" }
+        ]},
+        { "id": "7.5", "label": "Resource protection", "topics": [
+          { "name": "Media management", "outline": "both" },
+          { "name": "Media protection: archiving, encryption, disposal and reuse", "outline": "both" },
+          { "name": "Data at rest and in transit", "outline": "2024" }
+        ]},
+        { "id": "7.6", "label": "Incident management", "topics": [
+          { "name": "Detection", "outline": "both" },
+          { "name": "Response", "outline": "both" },
+          { "name": "Mitigation", "outline": "both" },
+          { "name": "Reporting", "outline": "both" },
+          { "name": "Data states during incidents", "outline": "2027" },
+          { "name": "Recovery", "outline": "both" },
+          { "name": "Remediation", "outline": "both" },
+          { "name": "Lessons learned", "outline": "both" }
+        ]},
+        { "id": "7.7", "label": "Detective and preventive measures", "topics": [
+          { "name": "Firewalls: next-generation, web application, network", "outline": "both" },
+          { "name": "IDS and IPS", "outline": "both" },
+          { "name": "Allow lists and deny lists", "outline": "both" },
+          { "name": "Third-party security services", "outline": "both" },
+          { "name": "DDoS scrubbing and managed security service providers", "outline": "2027" },
+          { "name": "Sandboxing", "outline": "both" },
+          { "name": "Honeypots and honeynets", "outline": "both" },
+          { "name": "Anti-malware", "outline": "both" },
+          { "name": "EDR and XDR", "outline": "2027" },
+          { "name": "Machine learning and AI-based tools", "outline": "both" }
+        ]},
+        { "id": "7.8", "label": "Patch and vulnerability management", "topics": [] },
+        { "id": "7.9", "label": "Change management", "topics": [] },
+        { "id": "7.10", "label": "Recovery strategies", "topics": [
+          { "name": "Backup storage: cloud, onsite, offsite", "outline": "both" },
+          { "name": "Immutable and encrypted backups", "outline": "2027" },
+          { "name": "Recovery sites: cold, hot, resource capacity agreements", "outline": "both" },
+          { "name": "Warm sites", "outline": "2027" },
+          { "name": "Multiple processing sites", "outline": "2027" },
+          { "name": "Resilience, high availability, QoS and fault tolerance", "outline": "2027" }
+        ]},
+        { "id": "7.11", "label": "Disaster recovery processes", "topics": [
+          { "name": "Response", "outline": "both" },
+          { "name": "Personnel", "outline": "both" },
+          { "name": "Communications methods", "outline": "both" },
+          { "name": "Communications prioritisation", "outline": "2027" },
+          { "name": "Assessment", "outline": "both" },
+          { "name": "Multiple processing sites", "outline": "2024" },
+          { "name": "Resilience, high availability, QoS and fault tolerance", "outline": "2024" },
+          { "name": "Restoration", "outline": "both" },
+          { "name": "Training and awareness", "outline": "both" },
+          { "name": "Lessons learned", "outline": "both" },
+          { "name": "Metrics: baseline, MTTR, MTBF", "outline": "2027" }
+        ]},
+        { "id": "7.12", "label": "Testing disaster recovery plans", "topics": [
+          { "name": "Read-through and tabletop", "outline": "both" },
+          { "name": "Walkthrough", "outline": "both" },
+          { "name": "Simulation", "outline": "both" },
+          { "name": "Parallel", "outline": "both" },
+          { "name": "Full interruption", "outline": "both" },
+          { "name": "Communications during tests", "outline": "both" }
+        ]},
+        { "id": "7.13", "label": "Business continuity planning and exercises", "topics": [] },
+        { "id": "7.14", "label": "Physical security", "topics": [
+          { "name": "Perimeter (external) controls", "outline": "both" },
+          { "name": "Internal controls", "outline": "both" }
+        ]},
+        { "id": "7.15", "label": "Personnel safety and security", "topics": [
+          { "name": "Travel", "outline": "both" },
+          { "name": "Emergency management", "outline": "both" },
+          { "name": "Duress", "outline": "both" },
+          { "name": "Security training and awareness", "outline": "both" },
+          { "name": "Insider threat, social media and MFA fatigue", "outline": "2024" }
+        ]}
+      ]
+    },
+    {
+      "n": 8,
+      "objectives": [
+        { "id": "8.1", "label": "Security in the SDLC", "topics": [
+          { "name": "Methodologies: Agile, Waterfall, DevOps, DevSecOps, SAFe", "outline": "both" },
+          { "name": "Maturity models: CMM, SAMM", "outline": "both" },
+          { "name": "Operation and maintenance", "outline": "both" },
+          { "name": "Change management", "outline": "both" },
+          { "name": "Integrated product team", "outline": "both" },
+          { "name": "Secure Software Development Framework (SSDF) and SBOM requirements", "outline": "2027" },
+          { "name": "Shift left", "outline": "2027" }
+        ]},
+        { "id": "8.2", "label": "Controls in development ecosystems", "topics": [
+          { "name": "Programming languages", "outline": "both" },
+          { "name": "Memory-safe languages", "outline": "2027" },
+          { "name": "Libraries", "outline": "both" },
+          { "name": "Tool sets", "outline": "both" },
+          { "name": "Integrated development environments", "outline": "both" },
+          { "name": "Runtime", "outline": "both" },
+          { "name": "CI/CD pipelines", "outline": "both" },
+          { "name": "Software configuration management", "outline": "both" },
+          { "name": "Code repositories", "outline": "both" },
+          { "name": "SAST and DAST", "outline": "both" },
+          { "name": "Software composition analysis (SCA)", "outline": "2024" },
+          { "name": "Interactive application security testing (IAST)", "outline": "2024" }
+        ]},
+        { "id": "8.3", "label": "Effectiveness of software security", "topics": [
+          { "name": "Auditing and logging of changes", "outline": "both" },
+          { "name": "Risk analysis and mitigation", "outline": "both" }
+        ]},
+        { "id": "8.4", "label": "Security impact of acquired software", "topics": [
+          { "name": "Commercial off-the-shelf (COTS)", "outline": "both" },
+          { "name": "Open source", "outline": "both" },
+          { "name": "Software composition analysis for open source", "outline": "2027" },
+          { "name": "Third-party software", "outline": "both" },
+          { "name": "Managed services", "outline": "both" },
+          { "name": "Cloud services: SaaS, IaaS, PaaS", "outline": "both" },
+          { "name": "Function as a service (FaaS)", "outline": "2027" }
+        ]},
+        { "id": "8.5", "label": "Secure coding guidelines and standards", "topics": [
+          { "name": "Source-code weaknesses and vulnerabilities", "outline": "both" },
+          { "name": "API security", "outline": "both" },
+          { "name": "Secure coding practices", "outline": "both" },
+          { "name": "Software-defined security", "outline": "2024" }
+        ]}
+      ]
+    }
+  ]
+}

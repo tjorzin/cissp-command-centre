@@ -159,6 +159,28 @@ input[type="checkbox"] { width: 24px; min-height: 24px; }
 .tabbar a .ico { font-size: 1.25rem; line-height: 1.2; }
 .tabbar a[aria-current="page"] { color: var(--accent); font-weight: 700; }
 
+.domain-link { display: block; color: inherit; text-decoration: none; }
+.domain-link h3 { margin: 0; }
+.domain-link p { margin: 2px 0 0; }
+.row { display: flex; align-items: center; gap: 12px; }
+.grow { flex: 1; min-width: 0; }
+.dnum {
+  flex: none; width: 36px; height: 36px; border-radius: 50%;
+  display: grid; place-items: center; font-weight: 700;
+  background: var(--surface-2); color: var(--accent);
+}
+.weight { flex: none; font-weight: 700; font-size: 1.1rem; }
+.back { display: inline-block; min-height: var(--tap); line-height: var(--tap); text-decoration: none; }
+.oid { color: var(--accent); }
+.topics { margin: 6px 0 0; padding-left: 20px; }
+.topics li { margin: 2px 0; overflow-wrap: anywhere; }
+.changes { margin-top: 8px; }
+.changes summary { min-height: 36px; line-height: 36px; cursor: pointer; color: var(--muted); }
+.change-head { margin: 8px 0 0; font-weight: 600; }
+.chg { list-style: none; margin-left: -18px; }
+.chg.add span { color: var(--ok); font-weight: 700; }
+.chg.drop span { color: var(--danger); font-weight: 700; }
+
 .toast {
   position: fixed; left: var(--gutter); right: var(--gutter); bottom: 84px; z-index: 20;
   padding: 12px var(--gutter); border-radius: var(--radius);

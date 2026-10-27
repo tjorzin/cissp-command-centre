@@ -5,6 +5,7 @@ import { banner } from './ui.js';
 import { renderHome } from './views/home.js';
 import { renderPlaceholder } from './views/placeholder.js';
 import { renderMore } from './views/more.js';
+import { renderStudy } from './views/study.js';
 
 // A null backend makes every storage call throw, which the store catches: it then
 // runs in memory and isPersistent() reports false so the app can warn.
@@ -22,7 +23,7 @@ const ctx = { store, data: {} };
 
 const routes = {
   home: renderHome,
-  study: (c) => renderPlaceholder(c, 'Study', 'Domain pages, comparison drills and labs arrive in phases 2 and 8. Cards arrive in phase 5.'),
+  study: renderStudy,
   questions: (c) => renderPlaceholder(c, 'Questions', 'Practice sets, scenario sets, mini exams, adaptive mocks, weakness mode and hard mode arrive in phase 3.'),
   ledger: (c) => renderPlaceholder(c, 'Error Ledger', 'Every miss and every lucky guess is recorded here from phase 4, with the Patterns panel.'),
   more: renderMore
@@ -51,15 +52,17 @@ function renderBanners() {
 }
 
 function route() {
-  const name = (location.hash.replace(/^#\/?/, '').split('/')[0]) || 'home';
-  const view = routes[name] || routes.home;
+  const [first, ...params] = location.hash.replace(/^#\/?/, '').split('/');
+  const name = routes[first] ? first : 'home';
+  const view = routes[name];
   document.querySelectorAll('.tabbar a').forEach((a) => {
     if (a.dataset.tab === name) a.setAttribute('aria-current', 'page');
     else a.removeAttribute('aria-current');
   });
   const main = document.getElementById('main');
-  main.replaceChildren(view(ctx));
+  main.replaceChildren(view(ctx, params));
   renderBanners();
+  scrollTo(0, 0);
 }
 
 function watchOnline() {
@@ -73,11 +76,9 @@ function watchOnline() {
 async function start() {
   applyTheme();
   watchOnline();
-  try {
-    ctx.data.outlines = await loadJSON('data/outlines.json');
-  } catch (err) {
-    console.error(err);
-  }
+  const [outlines, domains] = await Promise.allSettled([loadJSON('data/outlines.json'), loadJSON('data/domains.json')]);
+  if (outlines.status === 'fulfilled') ctx.data.outlines = outlines.value; else console.error(outlines.reason);
+  if (domains.status === 'fulfilled') ctx.data.domains = domains.value; else console.error(domains.reason);
   store.subscribe(() => { applyTheme(); renderBanners(); });
   addEventListener('hashchange', route);
   route();

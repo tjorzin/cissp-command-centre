@@ -2,7 +2,7 @@
 
 A personal CISSP study app: an offline, installable PWA that tells you what to study next. Built in vanilla HTML, CSS and JavaScript, with no build step, no backend and no accounts. Progress stays on the device; use **More → Export progress** to back it up or move it to another device.
 
-> Status: phase 1 of 10 (shell, storage, theme, navigation). See `VALIDATION.md`.
+> Status: phase 2 of 10 (domain data model for the 2024 and 2027 outlines). See `VALIDATION.md`.
 
 ## Exam facts
 
@@ -45,7 +45,7 @@ Questions follow `docs/QUESTION-STANDARD.md`: tough, realistic, original and fre
 index.html  manifest.webmanifest  sw.js  icons/   PWA shell
 css/app.css                                     theme tokens, 360 px-first layout
 js/app.js  js/store.js  js/outline.js  js/ui.js  js/views/
-data/      outlines.json, SOURCES.md, schema/   (domains, questions, cards, labs and tracks come in later phases)
+data/      outlines.json (dates, weights), domains.json (62 objectives, topics tagged by outline), SOURCES.md, schema/
 docs/QUESTION-STANDARD.md
 tests/unit  tests/e2e  tools/
 ```

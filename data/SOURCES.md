@@ -51,7 +51,15 @@ Both outlines keep the same numbered objectives (12 / 6 / 10 / 3 / 6 / 5 / 15 / 
 - 6.2 lists coverage analysis; 6.4 becomes "test/audit output"; 6.5 explicitly includes third-party audits.
 - 7.4 names Defence in Depth; 7.8 becomes "patch and vulnerability **based** management".
 
-Sub-bullet detail will be compared line by line when domain content is written (phase 8), and any 2027-only topics tagged `outline2027`.
+### Topic-level comparison (phase 2, 27 October 2026)
+
+Every sub-topic in both outlines was compared objective by objective. The result is in `data/domains.json`, where each topic is tagged `both`, `2024` (dropped) or `2027` (new). The Study screen shows the topics for the outline your target date falls under, and lists the differences under each objective.
+
+**New in the 2027 outline (main items):** ethics in AI (1.1); HIPAA (1.4, 1.9); SLAs in third-party contracts (1.8); reputational supplier risk (1.11); handling requirements spelt out: physical, digital, secure media destruction, encryption (2.2); data management policy (2.4); asset management policy, retention and retirement (2.5); CNAPP (2.6); well-architected frameworks, rotation of duties, two-person integrity, privacy-enhancing technologies (3.1); HSM (3.4); OT, FaaS, supply chain risk, autonomous systems, quantum computing (3.5); post-quantum cryptography and key access management (3.6); zero-day attacks and AI threats such as adversarial AI, model poisoning and deepfakes (3.7); continuous security review (3.10); software-defined security moves to 4.1; remote working (4.3); identities as an asset type (5.1); FIDO, WebAuthn and passkeys (5.2); SOAR and DLP for egress (7.2); defence in depth (7.4); data states in incidents (7.6); EDR/XDR, DDoS scrubbing and MSSPs (7.7); immutable and encrypted backups and warm sites (7.10); DR metrics such as MTTR and MTBF (7.11); SSDF, SBOM requirements and shift left (8.1); memory-safe languages (8.2); SCA moves to open source and FaaS is added (8.4).
+
+**Dropped or moved in the 2027 outline:** industry-standards investigations (1.5); social engineering and phishing as awareness examples (1.12); "trust but verify" (3.1); quantum cryptography and quantum key distribution (3.6); red, blue and purple team examples (6.2); SLAs leave 7.4 (moved to 1.8); data at rest and in transit leave 7.5; multiple processing sites and resilience move from 7.11 to 7.10; insider threat, social media and MFA fatigue examples (7.15); SCA and IAST leave 8.2; software-defined security leaves 8.5.
+
+What this means for a sitting before 15 April 2027: study the 2024 topics. The 2027-only topics are useful background, and current practice in several areas (post-quantum cryptography, passkeys, EDR/XDR, immutable backups), but they are not on the 2024 syllabus.
 
 ## Experience and the Associate route (verified)
 

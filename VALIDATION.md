@@ -2,6 +2,31 @@
 
 Each phase adds a section. Commands are run from the repo root with Node 24.22.1 and Playwright 1.64.1 (Chromium), using a Pixel 7 profile at 360 × 780, time zone Africa/Harare.
 
+## Phase 2: domain data model for both outlines (27 October 2026)
+
+`npm test`: **25 passed, 0 failed** (10 new)
+- `domains.json` has 8 domains with 12/6/10/3/6/5/15/5 objectives (62), contiguous ids matching their domain, a valid outline tag on every topic, and no duplicate topics within an objective.
+- `outlines.json` and `domains.json` describe the same eight domains.
+- The 2024 view hides 2027-only topics, and the 2027 view hides 2024-only ones (spot checks: 3.6 quantum key distribution vs post-quantum cryptography; 8.2 IAST).
+- 2027 objective wording (for example 5.6 "authentication and authorisation systems") applies only under the 2027 outline.
+- Names and weights join correctly for each outline (D1: 16% "Security and Risk Management" vs 13.6% "Security Governance and Risk Management"). Every domain has at least one topic change.
+- Every file listed in the service worker's offline cache exists.
+
+`npx playwright test`: **11 passed, 0 failed** (4 new)
+- Study lists eight domains with 2024 weights by default.
+- Domain 3 shows 10 objectives; 3.6 lists its 2024 topics and, when expanded, shows post-quantum cryptography as added and quantum cryptography and QKD as dropped. No horizontal scroll at 360 px.
+- With a target date of 1 May 2027, Study switches to 2027 names, weights and topics.
+- An unknown domain number falls back to the list.
+
+Manual review: screenshots of the Study list and Domain 3 at 360 px in the dark theme.
+
+### Validated
+- The comparison was made from text extracted from both ISC2 PDFs (`pdftotext`) and checked objective by objective.
+
+### Not validated
+- Topic names are paraphrases. A wrong tag (for example an item marked "2027" that ISC2 merely reworded) is possible; the extraction was read by eye, not diffed by a second person.
+- Lessons, key terms and worked scenarios per objective are not written yet (phase 8).
+
 ## Phase 1: shell, storage, theme, navigation (27 October 2026)
 
 `npm test`: **15 passed, 0 failed**
