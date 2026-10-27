@@ -1,6 +1,7 @@
 // More: settings, export/import progress and reset.
 import { h, toast } from '../ui.js';
 import { todayIn } from '../outline.js';
+import { DEFAULT_GATES } from '../engine/perf.js';
 
 function download(filename, text) {
   const url = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
@@ -61,7 +62,25 @@ export function renderMore({ store }) {
     }
   });
 
+  const g = { ...DEFAULT_GATES, ...(s.gates || {}) };
+  const setGate = (key, value) => set((x) => { x.gates = { ...(x.gates || {}), [key]: value }; });
+  const gateNum = (key, label, min, max) => h('label', { class: 'field' }, h('span', {}, label),
+    h('input', {
+      type: 'number', id: `gate-${key}`, min, max, value: g[key], inputmode: 'numeric',
+      onchange: (e) => {
+        const n = Math.min(max, Math.max(min, Number(e.target.value) || DEFAULT_GATES[key]));
+        e.target.value = n;
+        setGate(key, n);
+      }
+    }));
+  const metric = h('select', { id: 'gate-mockMetric', onchange: (e) => setGate('mockMetric', e.target.value) },
+    h('option', { value: 'accuracy', selected: g.mockMetric === 'accuracy' }, 'Accuracy across the last two mocks'),
+    h('option', { value: 'band', selected: g.mockMetric === 'band' }, 'Band "above" in both of the last two mocks'));
+
   return h('section', {},
+    h('a', { class: 'card nav-card', href: '#/performance' },
+      h('h3', {}, 'Performance and readiness'),
+      h('p', { class: 'small muted' }, 'Accuracy by domain, difficulty and confidence, and the four readiness gates.')),
     h('h2', {}, 'Settings'),
     h('div', { class: 'card' },
       h('label', { class: 'field' }, h('span', {}, 'Target exam date'), target),
@@ -74,6 +93,15 @@ export function renderMore({ store }) {
     h('div', { class: 'card' },
       h('label', { class: 'field' }, h('span', {}, 'Daily review cap'), cap),
       h('label', { class: 'field' }, h('span', {}, 'Theme'), theme)),
+    h('div', { class: 'card', id: 'gate-settings' },
+      h('h3', {}, 'Readiness gates'),
+      h('label', { class: 'field' }, h('span', {}, 'Mock gate measures'), metric),
+      h('p', { class: 'small muted' }, 'Adaptive mocks hold accuracy near 50 to 60% by design, so the accuracy gate is hard to meet. The band option measures where the difficulty settled instead.'),
+      gateNum('mockAccuracy', 'Mock accuracy needed (%)', 50, 100),
+      gateNum('domainMin', 'Lowest domain accuracy allowed (%)', 50, 100),
+      gateNum('conceptMaxMisses', 'Most misses allowed per concept', 0, 10),
+      gateNum('weeks', 'Consecutive weeks needed', 1, 8),
+      gateNum('daysPerWeek', 'Study days per week', 1, 7)),
     h('div', { class: 'card' },
       h('h3', {}, 'Your progress'),
       h('p', { class: 'small muted' }, 'Everything stays on this device. Export a file to move to another phone or to recover after clearing browser data.'),

@@ -2,7 +2,11 @@
 
 A personal CISSP study app: an offline, installable PWA that tells you what to study next. Built in vanilla HTML, CSS and JavaScript, with no build step, no backend and no accounts. Progress stays on the device; use **More → Export progress** to back it up or move it to another device.
 
-> Status: phase 5 of 10 (spaced repetition and cards). See `VALIDATION.md`.
+> Status: phase 6 of 10 (performance screens and readiness gates). See `VALIDATION.md`.
+
+## Readiness
+
+Performance (from Today or More) shows each domain's accuracy, accuracy when sure, time per question, last revised and trend; accuracy by difficulty; and calibration (how often "sure" is really right). Below 20 answers a figure says "not enough data". Four readiness gates are shown as met or not met with their evidence, never as a single percentage or pass prediction. Thresholds are in Settings. Note: adaptive mocks keep accuracy near 50 to 60% by design, so the mock gate also offers a "band above in both mocks" option.
 
 ## Spaced repetition: why Leitner, not SM-2
 

@@ -260,6 +260,28 @@ textarea {
 .rate.wrong { color: var(--danger); }
 .rate.right { color: var(--ok); }
 
+.gate { border-left: 4px solid var(--border); }
+.gate.met { border-left-color: var(--ok); }
+.gate.unmet { border-left-color: var(--danger); }
+.gate h3 { margin: 0; }
+.gate-icon { flex: none; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; background: var(--surface-2); }
+.gate.met .gate-icon, .gate.met .gate-state { color: var(--ok); }
+.gate.unmet .gate-icon, .gate.unmet .gate-state { color: var(--danger); }
+.gate-state { margin: 2px 0 0; }
+.evidence { margin: 8px 0 0; padding-left: 20px; }
+.perf-grid { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 12px; margin: 0; }
+.perf-grid dt { color: var(--muted); }
+.perf-grid dd { margin: 0; }
+.perf-bar { grid-template-columns: 5.5em minmax(0, 1fr) max-content; }
+.perf-bar .bar { height: 12px; border-radius: 0 4px 4px 0; }
+.perf-bar .fill { border-radius: 0 4px 4px 0; }
+.spark-wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 8px; }
+.spark-label { white-space: nowrap; }
+.spark { flex: none; overflow: visible; }
+.spark-base { stroke: var(--border); stroke-width: 1; }
+.spark-line { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; }
+.spark-dot { fill: var(--accent); stroke: var(--surface); stroke-width: 2; }
+
 .toast {
   position: fixed; left: var(--gutter); right: var(--gutter); bottom: 84px; z-index: 20;
   padding: 12px var(--gutter); border-radius: var(--radius);

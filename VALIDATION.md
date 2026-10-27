@@ -2,6 +2,32 @@
 
 Each phase adds a section. Commands are run from the repo root with Node 24.22.1 and Playwright 1.64.1 (Chromium), using a Pixel 7 profile at 360 × 780, time zone Africa/Harare.
 
+## Phase 6: performance screens and readiness gates (27 October 2026)
+
+`npm test`: **71 passed, 0 failed** (9 new)
+- Honest empty state: 19 answers in a domain report "not enough data"; 20 report a figure.
+- Domain figures: accuracy, accuracy when sure, average seconds, last revised and a five-session trend computed from session summaries.
+- Difficulty and calibration group every answer exactly once.
+- Weeks run Monday to Sunday in Harare days; the streak counts back from today, or from yesterday if today is not done yet.
+- Gates: a new user meets none, each with evidence. Mock gate: 75% combined over the last two mocks (met at 150/200, not at 140/200) or, as a setting, band "above" in both. Domain gate: needs 20 answers in every domain and uses the last 50 per domain. Concept gate: misses since the last reteach. Consistency gate: three Monday-to-Sunday weeks of five days, counting the current week once it qualifies.
+
+`npx playwright test`: **25 passed, 0 failed** (3 new; 3 consecutive runs)
+- New user: Today shows Readiness 0/4; Performance shows four unmet gates with evidence, "Not enough data (0/20)" for each domain and difficulty level, no trend lines, and no pass probability or score out of 1000.
+- With seeded history: "50% of 40", 80 s per question, a four-point trend reading 60% → 80%, calibration 50% when sure with the overconfidence note, and the concept gate shown as met.
+- Settings change the mock metric and domain threshold, and the gate titles follow.
+
+**Finding on the brief's mock gate.** On 300 simulated mocks per skill level (synthetic bank), mean mock accuracy was 49% (skill 3), 51% (4), 53% (4.5), 55% (5), 58% (5.5) and 69% (6.5, above the hardest level). An adaptive test raises difficulty until you miss about half, so "75% across the last two mocks" is close to unreachable for any realistic candidate. The gate is built as specified (default 75%), with a "band above in both" option in Settings and the explanation on the gate itself.
+
+Manual review: Performance screen at 360 px in dark theme; a domain card and a gate card checked close up. The trend label wrapped beside the line and was fixed; evidence dates now read "Week of 26 October 2026".
+
+### Validated
+- Every figure in brief §8, the four gates with evidence, configurable thresholds and empty states, in Chromium.
+
+### Not validated
+- The 85% "sure" calibration threshold for the overconfidence note is a judgement, not a standard.
+- The mock gate cannot be exercised by a real user until the bank holds 150 questions (phase 8).
+- Charts carry native hover tooltips and a table view for calibration; there is no custom crosshair tooltip.
+
 ## Phase 5: spaced repetition and cards (27 October 2026)
 
 `npm run validate`: questions **no errors**; cards **25 across 8 domains, no errors** (every field present; term ≤ 70, meaning ≤ 320, trap ≤ 200, hook ≤ 90 characters).

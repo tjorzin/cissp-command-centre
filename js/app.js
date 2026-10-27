@@ -10,6 +10,7 @@ import { renderSession } from './views/session.js';
 import { renderResults } from './views/results.js';
 import { renderLedger, renderReteach } from './views/ledger.js';
 import { renderCards } from './views/cards.js';
+import { renderPerformance } from './views/performance.js';
 
 // A null backend makes every storage call throw, which the store catches: it then
 // runs in memory and isPersistent() reports false so the app can warn.
@@ -34,6 +35,7 @@ const routes = {
   ledger: renderLedger,
   reteach: renderReteach,
   cards: renderCards,
+  performance: renderPerformance,
   more: renderMore
 };
 
@@ -63,7 +65,7 @@ function route() {
   const [first, ...params] = location.hash.replace(/^#\/?/, '').split('/');
   const name = routes[first] ? first : 'home';
   const view = routes[name];
-  const tab = { session: 'questions', results: 'questions', reteach: 'ledger', cards: 'study' }[name] || name;
+  const tab = { session: 'questions', results: 'questions', reteach: 'ledger', cards: 'study', performance: 'home' }[name] || name;
   document.querySelectorAll('.tabbar a').forEach((a) => {
     if (a.dataset.tab === tab) a.setAttribute('aria-current', 'page');
     else a.removeAttribute('aria-current');

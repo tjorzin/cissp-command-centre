@@ -16,7 +16,8 @@ export function defaultState(now = new Date()) {
       timeZone: 'Africa/Harare',
       notifications: false,
       dailyReviewCap: 30,
-      theme: 'system'
+      theme: 'system',
+      gates: {}
     },
     answers: [],
     ledger: [],
