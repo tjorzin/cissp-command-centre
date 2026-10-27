@@ -897,6 +897,102 @@
         "ask": "What should happen before the change?",
         "answer": "A security impact analysis of the new exposure, updated controls (for example MFA, WAF, logging), and fresh acceptance of the residual risk by the system's authorising official or owner."
       }
+    },
+    "4.1": {
+      "summary": [
+        "Map attacks and controls to OSI layers: ARP spoofing is layer 2, IP spoofing layer 3, SYN floods layer 4.",
+        "Secure protocols replace cleartext ones: SSH for Telnet, TLS 1.3 for HTTP and old TLS, IPsec for site links.",
+        "Segment networks physically, logically (VLANs, VRFs) and with micro-segmentation; control east-west as well as north-south.",
+        "Wireless: WPA3, or WPA2/3-Enterprise with 802.1X and server certificate validation; avoid shared passphrases for staff.",
+        "Modern designs: SDN and SD-WAN centralise control, so protect the controller; VPCs and CDNs move the edge into the cloud."
+      ],
+      "keyTerms": [
+        {
+          "term": "Forward secrecy",
+          "meaning": "Ephemeral key exchange means a stolen long-term key cannot decrypt past sessions."
+        },
+        {
+          "term": "VLAN hopping",
+          "meaning": "Reaching another VLAN through switch spoofing (auto-trunking) or double tagging."
+        },
+        {
+          "term": "Converged protocol",
+          "meaning": "One that carries a specialised service over IP or Ethernet, such as iSCSI or VoIP."
+        },
+        {
+          "term": "Control plane",
+          "meaning": "The part of the network that decides where traffic goes; in SDN it sits in the controller."
+        }
+      ],
+      "scenario": {
+        "situation": "A company replaces MPLS links between branches with SD-WAN over ordinary internet connections.",
+        "ask": "What security must the design include?",
+        "answer": "Encrypted, authenticated tunnels between sites (usually IPsec), strong protection and access control for the SD-WAN controller, and central policy for segmentation and traffic inspection. The internet path is untrusted, unlike the provider's MPLS core."
+      }
+    },
+    "4.2": {
+      "summary": [
+        "Keep infrastructure supportable: redundant power, spares, warranties and vendor support for fixes.",
+        "Choose media by risk: fibre resists interference and tapping; copper radiates and can be tapped.",
+        "Firewall generations: packet filter, stateful, application proxy, next-generation with application awareness.",
+        "Network access control checks who and what connects (802.1X, device posture) before granting access.",
+        "Endpoints need host-based protection too: host firewall, EDR and full-disk encryption travel with the device."
+      ],
+      "keyTerms": [
+        {
+          "term": "802.1X",
+          "meaning": "Port-based network access control: the switch or access point lets traffic through only after authentication."
+        },
+        {
+          "term": "Stateful firewall",
+          "meaning": "Tracks connections and allows return traffic for sessions it has seen start."
+        },
+        {
+          "term": "NGFW",
+          "meaning": "Next-generation firewall: adds application identification, user awareness and intrusion prevention."
+        },
+        {
+          "term": "Posture check",
+          "meaning": "NAC verifying a device's patch level, antivirus or encryption before access."
+        }
+      ],
+      "scenario": {
+        "situation": "Visitors plug laptops into meeting-room network ports and reach internal servers.",
+        "ask": "Which control fits, and how should it work?",
+        "answer": "NAC with 802.1X on the switch ports: unauthenticated devices land in a guest VLAN with internet only, and corporate devices must authenticate and pass posture checks to join the internal network."
+      }
+    },
+    "4.3": {
+      "summary": [
+        "Voice, video and collaboration need separation (voice VLANs), encryption (SRTP, TLS) and meeting controls.",
+        "Remote access: VPN or zero trust network access, with MFA and device checks; avoid exposing management services.",
+        "Split tunnelling saves bandwidth but sends internet traffic around corporate controls; decide it by risk.",
+        "Third parties (telecoms, vendors) get narrow, time-limited, monitored access under contract.",
+        "Backhaul and satellite links cross other people's networks: encrypt end to end."
+      ],
+      "keyTerms": [
+        {
+          "term": "Split tunnelling",
+          "meaning": "Only corporate traffic uses the VPN; other traffic goes straight to the internet."
+        },
+        {
+          "term": "ZTNA",
+          "meaning": "Zero trust network access: per-application access brokered after identity and device checks."
+        },
+        {
+          "term": "SRTP",
+          "meaning": "Secure Real-time Transport Protocol: encrypts and authenticates voice and video streams."
+        },
+        {
+          "term": "Jump host",
+          "meaning": "A hardened, monitored server through which administrative access must pass."
+        }
+      ],
+      "scenario": {
+        "situation": "A router vendor asks for a permanent VPN into the company network so its engineers can maintain the core routers.",
+        "ask": "What should the company agree to?",
+        "answer": "Access only when requested and approved, through a jump host with MFA and session recording, limited to the routers concerned, with contract terms covering security and notification. A permanent, broad tunnel is an open door."
+      }
     }
   }
 }

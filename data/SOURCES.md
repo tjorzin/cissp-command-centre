@@ -90,6 +90,10 @@ Content follows Rev. 2 and IEEE 2883 and still accepts "destroy" as the common n
 
 Sources: vendor and trade summaries of NIST announcements; confirm on csrc.nist.gov before relying on dates.
 
+## Framework currency check: Domain 4 batch (28 October 2026)
+
+Domain 4 content relies on long-stable standards: TLS 1.3 (RFC 8446, 2018), IPsec (RFC 4301 family), IEEE 802.1X, WPA3 (Wi-Fi Alliance, 2018) and 5G's concealed subscriber identifier (SUCI, 3GPP Release 15). No change affecting tested facts was identified; content avoids version-sensitive vendor claims.
+
 ## Experience and the Associate route (verified)
 
 - Five years cumulative, full-time, paid experience in **two or more** of the eight domains.

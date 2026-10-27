@@ -36,7 +36,7 @@ test('first run: Today leads with the baseline diagnostic, which then becomes th
 
   const st = await stored(page);
   expect(st.baseline.presented).toBe(size);
-  expect(st.baseline.byDomain['4']).toEqual({ asked: 2, correct: 0 });
+  expect(st.baseline.byDomain['4']).toEqual({ asked: Math.min(6, bank.questions.filter((q) => q.domain === 4).length), correct: 0 });
 
   await page.goto('/#/home');
   await expect(page.locator('[data-task="baseline"]')).toHaveCount(0);

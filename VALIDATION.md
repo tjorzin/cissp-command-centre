@@ -2,6 +2,21 @@
 
 Each phase adds a section. Commands are run from the repo root with Node 24.22.1 and Playwright 1.64.1 (Chromium), using a Pixel 7 profile at 360 × 780, time zone Africa/Harare.
 
+## Phase 8, batch 4: Domain 4 content (28 October 2026)
+
+Framework check: Domain 4 relies on stable standards (TLS 1.3, IPsec, 802.1X, WPA3, 5G SUCI); no change affecting tested facts (`data/SOURCES.md`).
+
+**Content added:** 29 Domain 4 questions (31 in total, about 13% of a 240-question bank) and a fifth case study (network redesign at a regional ISP: SD-WAN, VoIP, NAC); lessons for all 3 objectives; 7 cards (every Domain 4 objective has one); 2 drills (OSI layers, firewall types); 2 labs (day 7: cleartext vs TLS in Wireshark on your own traffic; day 8: scan a test VM with Nmap and reduce exposure with a host firewall).
+
+`npm run validate`: **no errors.** The give-away lint first rejected 4 questions for tells (absolutes in two options in d4-005, d4-009 and d4-029; a length tell in d4-022; the key alone echoing "laptop" in d4-024) plus thin rationales and a short sub-topic; all fixed, and six keys trimmed so the correct option is the single longest in 28 of 101 single-answer questions (28%).
+
+**Bank after batch 4:** 138 questions; 37 multi-select (27%); single-answer keys 24/25/26/26.
+
+`npm test`: **88 passed, 0 failed** (Domain 4 added to the coverage test). `npx playwright test`: **36 passed, 0 failed** (3 consecutive runs); the first-run test had hard-coded 2 Domain 4 baseline questions and now derives the count.
+
+### Not validated
+- The Wireshark and Nmap lab steps were not run in this session.
+
 ## Phase 8, batch 3: Domain 3 content (28 October 2026)
 
 Crypto standards re-checked (recorded in `data/SOURCES.md`): FIPS 203/204/205 final and tested as current; FIPS 206 (FN-DSA), HQC and NIST IR 8547's 2030/2035 timeline are still drafts and appear only in practical notes, labelled as drafts.

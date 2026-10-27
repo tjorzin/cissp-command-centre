@@ -223,6 +223,78 @@
         "The subject, issuer and dates of server.crt.",
         "Your two-sentence note."
       ]
+    },
+    {
+      "id": "lab-d4-port-scan",
+      "day": 8,
+      "domain": 4,
+      "objective": "4.2",
+      "minutes": 40,
+      "title": "Scan a test VM and close what should not be open",
+      "environment": "LAB / TEST ENVIRONMENT: scan only a virtual machine you own on an isolated or host-only network. Scanning systems you do not own or manage without written permission may be illegal.",
+      "goal": "Practise finding exposed services and reducing them with a host firewall, then prove the change.",
+      "prerequisites": [
+        "A test VM (for example a Linux server) on a host-only network, and its IP address",
+        "Nmap installed from its official site on the host machine",
+        "Card: firewall types"
+      ],
+      "steps": [
+        "On the test VM, list listening services (on Linux: `ss -tulpn`).",
+        "From the host, scan the VM's common ports: `nmap -sT <vm-ip>` and note every open port.",
+        "Decide which services the VM needs; for a web test server that might be SSH and HTTP only.",
+        "Enable a host firewall on the VM that allows only those ports (on Ubuntu: `sudo ufw default deny incoming`, `sudo ufw allow 22/tcp`, `sudo ufw allow 80/tcp`, `sudo ufw enable`).",
+        "Scan again with the same command and compare the results.",
+        "Stop and disable one service the VM does not need, and confirm it no longer listens.",
+        "Write two sentences on why reducing listening services beats relying on the firewall alone."
+      ],
+      "validation": [
+        "The second scan shows only the ports you chose as open.",
+        "The unneeded service no longer appears in the listening list.",
+        "Your note mentions defence in depth: the firewall and the service reduction each cover the other's failure."
+      ],
+      "rollback": [
+        "On the VM, run `sudo ufw disable` and re-enable any service you stopped, or revert the VM to a snapshot."
+      ],
+      "evidence": [
+        "Both scan outputs and the listening-services list before and after.",
+        "Your two-sentence note."
+      ]
+    },
+    {
+      "id": "lab-d4-wireshark",
+      "day": 7,
+      "domain": 4,
+      "objective": "4.1",
+      "minutes": 40,
+      "title": "See cleartext vs encrypted traffic with Wireshark",
+      "environment": "LAB / TEST ENVIRONMENT: capture only your own traffic on your own machine or a test VM. Never capture on a work network or other people's traffic without written authorisation.",
+      "goal": "See what a network observer can read in cleartext protocols and what TLS hides, and connect it to OSI layers.",
+      "prerequisites": [
+        "Wireshark installed from its official site",
+        "A browser on the same machine",
+        "Drill: which OSI layer?"
+      ],
+      "steps": [
+        "Start a capture on your active interface with the display filter `dns`.",
+        "Visit an ordinary website and find the DNS query for its name; note that the name is readable.",
+        "Change the filter to `tls.handshake.type == 1` and find the Client Hello for the same site; read the server name (SNI) field.",
+        "Change the filter to `http` and visit `http://neverssl.com`; open a packet and read the request in clear text.",
+        "Compare with an HTTPS page: follow the TLS stream and confirm the content is unreadable.",
+        "For one packet, expand each layer in the details pane and label it with its OSI layer (Ethernet, IP, TCP, TLS or HTTP).",
+        "Write three sentences on what an observer on hotel Wi-Fi could still learn about you even when every site uses HTTPS."
+      ],
+      "validation": [
+        "You found a readable DNS name, a readable SNI and a readable HTTP request.",
+        "The HTTPS content is unreadable in the capture.",
+        "Your note mentions DNS names, SNI and traffic timing or volume as metadata that leaks."
+      ],
+      "rollback": [
+        "Stop the capture and delete the capture file, which may contain your own browsing data."
+      ],
+      "evidence": [
+        "Screenshots of the DNS query, the SNI field and the cleartext HTTP request.",
+        "Your three-sentence note."
+      ]
     }
   ]
 }

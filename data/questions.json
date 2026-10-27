@@ -41,6 +41,16 @@
         "d3-005"
       ],
       "text": "Gwayi Minerals runs a coal processing plant near Hwange and a head office in Bulawayo. It is moving its ERP system to an IaaS provider: the provider runs the data centres and hypervisors, and Gwayi builds and manages its own virtual machines. At the plant, PLCs and a SCADA historian control conveyors and crushers. The PLCs run firmware that the manufacturer no longer updates, and engineers want to reach the historian from head office to monitor production. Gwayi is also fitting out a small server room at head office for systems that stay on-premises. Two network engineers work in that room for most of the day."
+    },
+    {
+      "id": "sc-05",
+      "title": "Network redesign at a regional ISP",
+      "questionIds": [
+        "d4-003",
+        "d4-004",
+        "d4-005"
+      ],
+      "text": "Mosi Fibre is a regional internet service provider with 400 staff across a head office in Harare and eight branches. Branches connect over leased MPLS circuits, which the board wants to replace with SD-WAN running over ordinary business internet links to cut costs. In the offices, staff PCs, printers and IP desk phones share one flat network, and calls are unencrypted. Any device plugged into a wall port, including visitors' laptops, receives an internal address. The company is also about to start selling managed Wi-Fi to hotels."
     }
   ],
   "questions": [
@@ -3628,6 +3638,1042 @@
       "tags": [
         "management-plane",
         "remote-access"
+      ]
+    },
+    {
+      "id": "d4-003",
+      "domain": 4,
+      "objective": "4.1",
+      "subtopic": "SD-WAN security",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": "sc-05",
+      "stem": "Mosi's board approves replacing the branch MPLS circuits with SD-WAN over ordinary internet links. Which design requirement matters MOST for security?",
+      "options": [
+        "Buy the highest-bandwidth internet links available at each branch site",
+        "Encrypt and authenticate the tunnels; lock down the controller",
+        "Keep one MPLS circuit at head office as a backup path for branch traffic",
+        "Give each branch its own internet breakout so that cloud apps are faster"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "Bandwidth affects performance, not the security of traffic crossing the internet.",
+        "Correct. The internet path is untrusted, so tunnels must be encrypted and authenticated (usually IPsec), and the controller, which pushes policy to every site, must be tightly protected.",
+        "A backup path helps availability but does nothing for the confidentiality of traffic on the new links.",
+        "Local breakout can improve performance but spreads inspection points; it is not the main security requirement."
+      ],
+      "concept": "SD-WAN moves traffic onto untrusted networks; encryption and controller security become essential.",
+      "trap": "Treating the change as a performance project.",
+      "managerLens": "Cost savings that change the trust model need security requirements written into the design.",
+      "practicalNote": "SD-WAN controllers and orchestrators are high-value targets; protect them like domain controllers.",
+      "gap": "Recognising how moving off a private WAN changes risk.",
+      "followUpId": "d4-004",
+      "tags": [
+        "sd-wan",
+        "ipsec"
+      ]
+    },
+    {
+      "id": "d4-004",
+      "domain": 4,
+      "objective": "4.3",
+      "subtopic": "Voice over IP",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": "sc-05",
+      "stem": "Mosi's IP desk phones share the flat office network with PCs, and calls travel unencrypted. Which TWO changes BEST protect voice traffic? (Select TWO.)",
+      "options": [
+        "Put the phones on a separate voice VLAN with limited flows to the call server",
+        "Encrypt call signalling with TLS and the media streams with SRTP",
+        "Give the phones public IP addresses so remote staff can reach them",
+        "Turn off quality of service so that voice and data are treated alike",
+        "Allow the phones to reach the internet directly for firmware updates"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. A voice VLAN separates phones from PCs, limiting eavesdropping and attacks from compromised computers.",
+        "Correct. TLS protects call set-up and SRTP protects the audio itself from interception.",
+        "Public addresses expose phones to the internet, inviting attacks and toll fraud.",
+        "Removing QoS harms call quality and adds nothing to security.",
+        "Direct internet access widens exposure; updates should come from a managed internal source."
+      ],
+      "concept": "VoIP security: separate voice traffic and encrypt signalling and media.",
+      "trap": "Choosing changes that improve reach or simplicity at the expense of exposure.",
+      "managerLens": "Voice is data: give it the same segmentation and encryption thinking.",
+      "practicalNote": "Many IP phones support a voice VLAN assigned automatically by the switch, plus SRTP when the call server enables it.",
+      "gap": "Securing converged voice networks.",
+      "followUpId": "d4-005",
+      "tags": [
+        "voip",
+        "segmentation"
+      ]
+    },
+    {
+      "id": "d4-005",
+      "domain": 4,
+      "objective": "4.2",
+      "subtopic": "Network access control",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": "sc-05",
+      "stem": "Any device plugged into a Mosi wall port, including a visitor's laptop, gets an internal address and can reach internal servers. Which control BEST fixes this?",
+      "options": [
+        "Disable unused wall ports and enable them on request",
+        "Keep a list of approved MAC addresses on each access switch",
+        "Use 802.1X so only authenticated, compliant devices join",
+        "Ask visitors to sign a register before they plug in their laptops"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "Disabling unused ports helps, but any active port, such as a desk or meeting-room port, still admits any device.",
+        "MAC addresses are trivially spoofed and allow-lists are hard to maintain at scale.",
+        "Correct. 802.1X-based NAC authenticates the device or user before granting access, and can place unknown devices in a guest VLAN and check device posture.",
+        "A register records visitors but does not stop their devices reaching servers."
+      ],
+      "concept": "NAC with 802.1X controls who and what connects to the network.",
+      "trap": "Choosing a partial or easily bypassed control.",
+      "managerLens": "Treat physical ports as network entry points and control them centrally.",
+      "practicalNote": "Devices that cannot do 802.1X, such as printers, are usually handled with MAC authentication bypass plus profiling and restricted VLANs.",
+      "gap": "Knowing how NAC works and why it beats MAC filtering.",
+      "followUpId": null,
+      "tags": [
+        "nac",
+        "802.1x"
+      ]
+    },
+    {
+      "id": "d4-006",
+      "domain": 4,
+      "objective": "4.1",
+      "subtopic": "OSI layers and attacks",
+      "difficulty": 2,
+      "type": "single",
+      "scenario": null,
+      "stem": "An attacker on an office LAN sends forged ARP replies so that traffic meant for the default gateway is sent to the attacker's laptop instead. At which OSI layer does this attack operate?",
+      "options": [
+        "Layer 2, data link",
+        "Layer 3, network",
+        "Layer 4, transport",
+        "Layer 7, application"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. ARP maps IP addresses to MAC addresses on the local segment, a data link layer function, and poisoning it redirects frames.",
+        "IP routing is layer 3, but ARP spoofing manipulates the layer 2 address mapping.",
+        "Layer 4 deals with ports and sessions such as TCP and UDP.",
+        "Application-layer attacks target services such as HTTP or DNS content."
+      ],
+      "concept": "ARP spoofing is a layer 2 attack.",
+      "trap": "Choosing layer 3 because IP addresses are involved.",
+      "managerLens": "Map threats to layers so controls are placed where they work.",
+      "practicalNote": "Dynamic ARP inspection and DHCP snooping on managed switches stop ARP spoofing.",
+      "gap": "Placing attacks on the OSI model.",
+      "followUpId": null,
+      "tags": [
+        "osi",
+        "arp"
+      ]
+    },
+    {
+      "id": "d4-007",
+      "domain": 4,
+      "objective": "4.1",
+      "subtopic": "TCP and SYN floods",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A web server stops accepting new connections. Monitoring shows thousands of half-open TCP connections from spoofed addresses that never complete. Which mechanism is the attack abusing?",
+      "options": [
+        "The DNS lookup the client makes before it connects",
+        "The TLS handshake that negotiates the session keys",
+        "The HTTP keep-alive setting on the web server",
+        "The TCP three-way handshake used to open connections"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "DNS resolution happens before connecting and is not involved in half-open TCP connections.",
+        "TLS begins only after the TCP connection is established, which never happens here.",
+        "Keep-alive affects established connections, not half-open ones.",
+        "Correct. A SYN flood sends SYNs and never completes the handshake, filling the server's table of half-open connections."
+      ],
+      "concept": "SYN floods exhaust the server's half-open connection queue.",
+      "trap": "Choosing a higher-layer protocol that never starts.",
+      "managerLens": "Plan DDoS resilience with the provider; on-premises fixes have limits.",
+      "practicalNote": "SYN cookies, upstream scrubbing and CDN fronting are standard defences.",
+      "gap": "Understanding TCP-level denial of service.",
+      "followUpId": null,
+      "tags": [
+        "tcp",
+        "dos"
+      ]
+    },
+    {
+      "id": "d4-008",
+      "domain": 4,
+      "objective": "4.1",
+      "subtopic": "IPsec modes",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "Two offices connect their networks through firewalls over the internet. The traffic between them must be confidential, and internal IP addresses should not be visible to anyone watching the internet link. Which IPsec configuration fits?",
+      "options": [
+        "AH in transport mode between the two firewalls",
+        "ESP in tunnel mode between the two firewalls",
+        "ESP in transport mode between each pair of hosts",
+        "AH in tunnel mode between the two firewalls"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "AH gives integrity and authentication but no confidentiality, and transport mode leaves the original IP header exposed.",
+        "Correct. ESP encrypts, and tunnel mode wraps the whole original packet, hiding internal addresses. It is the standard site-to-site choice.",
+        "Host-to-host transport mode does not suit gateway-to-gateway links and exposes the original addresses.",
+        "AH provides no encryption, so the traffic would not be confidential."
+      ],
+      "concept": "Site-to-site VPNs use ESP in tunnel mode.",
+      "trap": "Choosing AH, which never encrypts.",
+      "managerLens": "Standardise VPN configurations so gateways are not left on weak settings.",
+      "practicalNote": "IKEv2 with AES-GCM is a common modern configuration for site-to-site IPsec.",
+      "gap": "Choosing IPsec protocols and modes.",
+      "followUpId": null,
+      "tags": [
+        "ipsec",
+        "vpn"
+      ]
+    },
+    {
+      "id": "d4-009",
+      "domain": 4,
+      "objective": "4.1",
+      "subtopic": "TLS 1.3 improvements",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A bank is deciding whether to disable TLS 1.2 on its customer portal and allow TLS 1.3 only. Which TWO are genuine security benefits of TLS 1.3? (Select TWO.)",
+      "options": [
+        "Every handshake uses ephemeral key exchange, giving forward secrecy",
+        "Legacy options such as static RSA key exchange and CBC ciphers are removed",
+        "Each client must present its own certificate to the server",
+        "DNS lookups for the portal are encrypted automatically",
+        "Message integrity is provided by the AH protocol"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. TLS 1.3 removed static key exchange, so a stolen server key cannot decrypt recorded past sessions.",
+        "Correct. Weak and legacy algorithms were removed, shrinking the attack surface for downgrade and padding attacks.",
+        "Client certificates remain optional in TLS 1.3.",
+        "TLS protects the connection to the portal; DNS privacy needs DNS over HTTPS or TLS.",
+        "AH is part of IPsec, not TLS; TLS 1.3 uses AEAD ciphers for integrity."
+      ],
+      "concept": "TLS 1.3 mandates forward secrecy and removes legacy cryptography.",
+      "trap": "Crediting TLS with protections it does not provide.",
+      "managerLens": "Weigh the benefit against older clients that may be cut off.",
+      "practicalNote": "Most banks keep TLS 1.2 with strong cipher suites alongside TLS 1.3 while older clients remain.",
+      "gap": "Knowing what TLS 1.3 changed.",
+      "followUpId": null,
+      "tags": [
+        "tls",
+        "forward-secrecy"
+      ]
+    },
+    {
+      "id": "d4-010",
+      "domain": 4,
+      "objective": "4.1",
+      "subtopic": "Converged protocols",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A hospital's virtual servers use iSCSI to reach a storage array. The iSCSI traffic currently shares the same VLAN as user PCs. What is the BEST improvement?",
+      "options": [
+        "Move iSCSI to a dedicated storage network and require CHAP authentication",
+        "Raise the MTU on the user VLAN so storage traffic runs more efficiently",
+        "Put the storage array's management page behind the internet firewall",
+        "Replace iSCSI with SMB file shares, which are more widely understood"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. iSCSI carries raw disk blocks; isolating it on its own network and authenticating initiators keeps users from reading or tampering with storage traffic.",
+        "MTU tuning is performance work and leaves storage exposed to users.",
+        "The management interface matters, but the exposure here is the storage traffic itself on the user network.",
+        "Changing protocol does not remove the need to separate and protect storage traffic."
+      ],
+      "concept": "Converged protocols such as iSCSI need isolation and authentication.",
+      "trap": "Treating storage traffic as just another flow on the user network.",
+      "managerLens": "Classify storage networks as high-value infrastructure.",
+      "practicalNote": "Storage networks are typically separate VLANs or physical fabrics, sometimes with IPsec for iSCSI.",
+      "gap": "Securing converged protocols.",
+      "followUpId": null,
+      "tags": [
+        "iscsi",
+        "converged"
+      ]
+    },
+    {
+      "id": "d4-011",
+      "domain": 4,
+      "objective": "4.1",
+      "subtopic": "VLAN hopping",
+      "difficulty": 5,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A penetration tester reached the finance VLAN from a user access port by negotiating a trunk with the switch. Which TWO switch changes BEST prevent VLAN hopping? (Select TWO.)",
+      "options": [
+        "Disable automatic trunk negotiation and set user ports to access mode",
+        "Set the native VLAN on trunks to an unused VLAN that carries no traffic",
+        "Enable DHCP snooping on every user-facing access port",
+        "Increase the MTU on trunk links between the core switches",
+        "Turn on PortFast on the uplinks between the switches"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Switch spoofing works by negotiating a trunk; forcing access mode and disabling negotiation stops it.",
+        "Correct. Double-tagging attacks rely on the native VLAN; moving it to an unused VLAN defeats them.",
+        "DHCP snooping stops rogue DHCP servers, not VLAN hopping.",
+        "MTU size affects frame size and performance; it has no effect on separation between VLANs.",
+        "PortFast speeds up edge ports and is unsafe on switch uplinks; it does not address hopping."
+      ],
+      "concept": "VLAN hopping is stopped by disabling trunk negotiation and isolating the native VLAN.",
+      "trap": "Picking a valid switch security feature that addresses a different attack.",
+      "managerLens": "Harden switch configurations with a baseline, not port by port.",
+      "practicalNote": "Configuration compliance tools can check every switch against the hardening baseline.",
+      "gap": "Knowing layer 2 hardening.",
+      "followUpId": null,
+      "tags": [
+        "vlan",
+        "layer2"
+      ]
+    },
+    {
+      "id": "d4-012",
+      "domain": 4,
+      "objective": "4.1",
+      "subtopic": "Wireless security",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A law firm's staff Wi-Fi uses WPA2 with one shared passphrase that has not changed since 2019. Several former employees still know it. What is the BEST replacement for staff access?",
+      "options": [
+        "WPA2 with a new shared passphrase changed every quarter",
+        "Hiding the network name so it does not appear in scans",
+        "WPA3-Enterprise with 802.1X and individual credentials",
+        "MAC address filtering on the firm's wireless access points"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "Rotating a shared secret still lets every user, and anyone they tell, in; leavers keep access until the next change.",
+        "Hidden networks are still easy to discover and add no authentication.",
+        "Correct. Enterprise mode gives each person their own credentials, so access can be revoked individually and activity attributed.",
+        "MAC addresses are easily spoofed and offer no real authentication."
+      ],
+      "concept": "Enterprise Wi-Fi with 802.1X replaces shared secrets with individual credentials.",
+      "trap": "Improving a shared secret instead of replacing it.",
+      "managerLens": "Tie network access to identity so leavers lose it automatically.",
+      "practicalNote": "WPA3-Personal (SAE) is the better choice where enterprise authentication is not possible, such as small sites.",
+      "gap": "Choosing Wi-Fi security modes.",
+      "followUpId": "d4-013",
+      "tags": [
+        "wireless",
+        "802.1x"
+      ]
+    },
+    {
+      "id": "d4-013",
+      "domain": 4,
+      "objective": "4.1",
+      "subtopic": "Evil twin attacks",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": null,
+      "stem": "Staff at an airport lounge connect to an access point broadcasting the company's network name. It is an attacker's evil twin, and several laptops send their credentials to it. The company uses 802.1X with PEAP. What MOST likely made this possible?",
+      "options": [
+        "The company's access points broadcast their network name openly",
+        "The laptops were not set to require patches before connecting",
+        "Users had weak passwords that the attacker could guess offline",
+        "The laptops did not validate the authentication server's certificate"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "Hiding the name would not help; an attacker can copy any network name.",
+        "Patch status does not stop a laptop authenticating to a fake access point.",
+        "Password strength affects cracking afterwards; it does not explain why laptops trusted the fake network.",
+        "Correct. If clients do not check that the RADIUS server's certificate is the company's, they will run PEAP with any server, handing credentials to the evil twin."
+      ],
+      "concept": "802.1X clients must validate the server certificate to defeat evil twins.",
+      "trap": "Assuming enterprise Wi-Fi is safe however clients are configured.",
+      "managerLens": "Push wireless profiles centrally, with certificate validation enforced.",
+      "practicalNote": "EAP-TLS with device certificates avoids sending passwords at all.",
+      "gap": "Understanding how enterprise Wi-Fi is attacked.",
+      "followUpId": null,
+      "tags": [
+        "wireless",
+        "evil-twin"
+      ]
+    },
+    {
+      "id": "d4-014",
+      "domain": 4,
+      "objective": "4.1",
+      "subtopic": "Bluetooth attacks",
+      "difficulty": 2,
+      "type": "single",
+      "scenario": null,
+      "stem": "An attacker in a café copies contacts and calendar entries from a nearby phone over Bluetooth, without the owner noticing. What is this attack called?",
+      "options": [
+        "Bluejacking",
+        "Bluebugging",
+        "War driving",
+        "Bluesnarfing"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "Bluejacking sends unsolicited messages; it does not take data.",
+        "Bluebugging takes control of the device, for example to make calls, rather than simply copying data.",
+        "War driving searches for Wi-Fi networks.",
+        "Correct. Bluesnarfing is unauthorised access to data on a device over Bluetooth."
+      ],
+      "concept": "Bluesnarfing steals data; bluejacking sends messages; bluebugging takes control.",
+      "trap": "Mixing up the Bluetooth attack names.",
+      "managerLens": "Set mobile device policy to keep Bluetooth non-discoverable and patched.",
+      "practicalNote": "Modern phones resist the classic attacks, but unpatched devices and IoT gadgets remain exposed.",
+      "gap": "Recalling Bluetooth attack types.",
+      "followUpId": null,
+      "tags": [
+        "bluetooth",
+        "wireless"
+      ]
+    },
+    {
+      "id": "d4-015",
+      "domain": 4,
+      "objective": "4.1",
+      "subtopic": "Cellular network security",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": null,
+      "stem": "A security manager is briefing executives who travel to regions where fake mobile base stations ('IMSI catchers') are used to track people. Which statement about 5G compared with 4G is correct?",
+      "options": [
+        "5G encrypts the subscriber's permanent ID before it goes over the air",
+        "5G encrypts every call end to end so the operator cannot listen to it",
+        "5G phones refuse to connect to any 4G network while abroad",
+        "5G removes the need for a SIM card or any subscriber authentication"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. 5G conceals the permanent identifier (SUPI) as a SUCI using the home network's public key, which defeats simple IMSI catching on 5G.",
+        "Radio-link encryption ends at the operator; 5G does not make calls end-to-end encrypted.",
+        "Phones fall back to older networks, which is how downgrade attacks expose identifiers.",
+        "5G still uses SIM or eSIM credentials and mutual authentication."
+      ],
+      "concept": "5G conceals subscriber identity over the air; downgrades to older networks remain a risk.",
+      "trap": "Assuming 5G gives end-to-end call encryption.",
+      "managerLens": "For high-risk travel, add end-to-end encrypted apps and consider disabling 2G fallback.",
+      "practicalNote": "Some phones let users turn off 2G, which blocks the easiest downgrade attacks.",
+      "gap": "Knowing what cellular security does and does not protect.",
+      "followUpId": null,
+      "tags": [
+        "cellular",
+        "5g"
+      ]
+    },
+    {
+      "id": "d4-016",
+      "domain": 4,
+      "objective": "4.1",
+      "subtopic": "Content delivery networks",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": null,
+      "stem": "An online retailer puts its website behind a CDN with DDoS protection. A week later, attackers flood the origin server directly and take the site down. Which TWO measures would have made the CDN protection effective? (Select TWO.)",
+      "options": [
+        "Allow traffic to the origin from the CDN's address ranges and block the rest",
+        "Move the origin to an address that is not published in DNS or elsewhere",
+        "Shorten the CDN cache lifetime so content is always fresh",
+        "Turn off the CDN's web application firewall to reduce latency",
+        "Add more DNS records pointing customers at the origin directly"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. If the origin accepts only CDN traffic, attackers cannot bypass the CDN.",
+        "Correct. Once the origin's address leaked, it had to change; keeping it unpublished stops direct targeting.",
+        "Shorter caching sends more requests to the origin and weakens protection.",
+        "Removing the WAF lowers protection and does nothing about direct attacks.",
+        "Publishing the origin invites exactly this bypass."
+      ],
+      "concept": "A CDN only protects an origin that cannot be reached around it.",
+      "trap": "Assuming a CDN protects whatever is behind it.",
+      "managerLens": "Validate protections by testing the bypass paths, not just the front door.",
+      "practicalNote": "Old DNS records, mail headers and certificate transparency logs often leak origin addresses.",
+      "gap": "Designing CDN-based DDoS protection.",
+      "followUpId": null,
+      "tags": [
+        "cdn",
+        "ddos"
+      ]
+    },
+    {
+      "id": "d4-017",
+      "domain": 4,
+      "objective": "4.1",
+      "subtopic": "Software-defined networking",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A data centre moves to software-defined networking, with a central controller programming all switches through APIs. Which component becomes the MOST critical to protect?",
+      "options": [
+        "The individual top-of-rack switches in each row",
+        "The patch cables between the servers and switches",
+        "The SDN controller and its northbound APIs",
+        "The out-of-hours console ports on each switch"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "Individual switches follow the controller; compromising one affects less than compromising the controller.",
+        "Cabling matters physically but is not where SDN concentrates risk.",
+        "Correct. The controller decides how traffic flows everywhere; whoever controls it controls the network.",
+        "Console ports need protection, but the controller is the single point of control."
+      ],
+      "concept": "SDN centralises the control plane; the controller is the crown jewel.",
+      "trap": "Thinking of network security device by device.",
+      "managerLens": "Protect central control points with the strongest access control and monitoring.",
+      "practicalNote": "Controller APIs need strong authentication, role-based access and change logging.",
+      "gap": "Seeing how SDN shifts risk.",
+      "followUpId": null,
+      "tags": [
+        "sdn"
+      ]
+    },
+    {
+      "id": "d4-018",
+      "domain": 4,
+      "objective": "4.1",
+      "subtopic": "Virtual private cloud",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "In its cloud VPC, a team allows inbound HTTPS to web servers through a security group, and is surprised that responses reach clients without an outbound rule. A network ACL on the subnet needed explicit rules both ways. Why the difference?",
+      "options": [
+        "Network ACLs are applied to individual instances",
+        "Security groups are stateful; network ACLs are stateless",
+        "Security groups apply only to outbound traffic",
+        "Network ACLs inspect application-layer content"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "It is security groups that attach to instances; network ACLs apply to subnets.",
+        "Correct. A stateful security group allows return traffic for permitted connections automatically; a stateless ACL needs rules in both directions.",
+        "Security groups control inbound and outbound traffic.",
+        "Network ACLs filter on addresses, protocols and ports, not application content."
+      ],
+      "concept": "Stateful filters allow return traffic; stateless filters need rules both ways.",
+      "trap": "Mixing up which cloud filter is stateful.",
+      "managerLens": "Standardise cloud network rules in templates so teams do not learn by trial and error.",
+      "practicalNote": "Infrastructure-as-code reviews catch overly broad security group rules before deployment.",
+      "gap": "Understanding stateful and stateless filtering.",
+      "followUpId": null,
+      "tags": [
+        "cloud",
+        "vpc",
+        "firewall"
+      ]
+    },
+    {
+      "id": "d4-019",
+      "domain": 4,
+      "objective": "4.1",
+      "subtopic": "Monitoring east-west traffic",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": null,
+      "stem": "After a breach that moved between servers unnoticed, a company wants visibility of east-west traffic inside its data centre. Which TWO sources give that visibility? (Select TWO.)",
+      "options": [
+        "Flow records (NetFlow or IPFIX) exported from the internal switches",
+        "A network tap or SPAN feed from the core into a detection sensor",
+        "An IDS placed on the internet link outside the perimeter firewall",
+        "A web application firewall in front of the public website",
+        "Syslog from the internet edge router's interface counters"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Flow records from internal switches show who talks to whom inside the data centre.",
+        "Correct. Copying core traffic to a sensor allows deep inspection of internal flows.",
+        "An internet-facing IDS sees north-south traffic only.",
+        "A WAF sees traffic to the public website, not server-to-server movement.",
+        "Edge router counters describe internet traffic volume, not internal flows."
+      ],
+      "concept": "East-west visibility needs internal telemetry: flows and packet capture from inside.",
+      "trap": "Choosing perimeter tools for internal problems.",
+      "managerLens": "Place sensors where the attack path runs.",
+      "practicalNote": "Network detection and response tools combine flow data and packet capture to spot lateral movement.",
+      "gap": "Instrumenting internal networks.",
+      "followUpId": null,
+      "tags": [
+        "monitoring",
+        "east-west"
+      ]
+    },
+    {
+      "id": "d4-020",
+      "domain": 4,
+      "objective": "4.1",
+      "subtopic": "Air-gapped networks",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A power utility keeps its grid control network physically air-gapped from all other networks. Investigators later find malware on it. What was the MOST likely way in?",
+      "options": [
+        "A wireless signal picked up from the office network",
+        "A routing error that briefly connected it to the internet",
+        "A brute-force attack on its firewall from outside",
+        "Removable media or a laptop connected by an engineer"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "A true air gap has no wireless link to bridge.",
+        "There is no routing path to make an error on if the gap is real.",
+        "An air-gapped network has no external firewall to attack.",
+        "Correct. Air gaps are usually crossed by people: USB drives, maintenance laptops and update media."
+      ],
+      "concept": "Air gaps are bridged by removable media and visiting devices.",
+      "trap": "Thinking an air gap needs no further controls.",
+      "managerLens": "Control media and maintenance devices as strictly as network connections.",
+      "practicalNote": "Media scanning kiosks and dedicated, clean maintenance laptops are common controls.",
+      "gap": "Understanding air gap limits.",
+      "followUpId": null,
+      "tags": [
+        "segmentation",
+        "ot",
+        "air-gap"
+      ]
+    },
+    {
+      "id": "d4-021",
+      "domain": 4,
+      "objective": "4.1",
+      "subtopic": "Network performance metrics",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "Users complain that VoIP calls sound choppy, with words arriving garbled, even though there is plenty of spare bandwidth. Which metric is MOST likely the problem?",
+      "options": [
+        "Jitter",
+        "Throughput",
+        "Bandwidth",
+        "Packet size"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. Jitter is variation in packet delay; voice needs packets to arrive at a steady pace.",
+        "Throughput is fine; the link has spare capacity.",
+        "The link has spare bandwidth, so lack of capacity cannot explain the choppy audio.",
+        "Voice packets are small and fixed in size; size is not the issue."
+      ],
+      "concept": "Jitter is variation in delay; real-time media is sensitive to it.",
+      "trap": "Blaming bandwidth for every quality problem.",
+      "managerLens": "Availability includes quality: real-time services need QoS.",
+      "practicalNote": "QoS marking and jitter buffers in phones address jitter.",
+      "gap": "Knowing network performance metrics.",
+      "followUpId": null,
+      "tags": [
+        "performance",
+        "voip"
+      ]
+    },
+    {
+      "id": "d4-022",
+      "domain": 4,
+      "objective": "4.2",
+      "subtopic": "Transmission media",
+      "difficulty": 2,
+      "type": "single",
+      "scenario": null,
+      "stem": "A defence contractor is cabling a new secure facility next to an electrical substation. Which cabling BEST resists both electromagnetic interference and tapping?",
+      "options": [
+        "Unshielded copper (UTP)",
+        "Shielded copper (STP)",
+        "Fibre optic cable",
+        "Coaxial copper cable"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "UTP is the most vulnerable to interference and emanations.",
+        "Shielding helps with interference, but copper still radiates and can be tapped.",
+        "Correct. Light in glass is immune to electromagnetic interference and very hard to tap without detection.",
+        "Coax resists some interference but is copper and can be tapped."
+      ],
+      "concept": "Fibre resists EMI and tapping; copper does not.",
+      "trap": "Choosing shielded copper as good enough.",
+      "managerLens": "Match media to the threat and the environment.",
+      "practicalNote": "Fibre also supports longer runs, useful between buildings.",
+      "gap": "Comparing transmission media.",
+      "followUpId": null,
+      "tags": [
+        "media",
+        "physical"
+      ]
+    },
+    {
+      "id": "d4-023",
+      "domain": 4,
+      "objective": "4.2",
+      "subtopic": "NAC capabilities",
+      "difficulty": 3,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A university is deploying network access control for its staff network. Which TWO checks can NAC enforce before a device joins? (Select TWO.)",
+      "options": [
+        "That the user or device has authenticated through 802.1X",
+        "That the device meets posture rules such as current patches",
+        "That web applications validate their input fields properly",
+        "That outgoing email passes SPF and DKIM checks",
+        "That documents on the device carry classification labels"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. NAC authenticates users or devices before granting network access.",
+        "Correct. Posture checks verify patch level, antivirus or encryption status.",
+        "Input validation is an application concern, not a network admission check.",
+        "Email authentication is handled by mail systems, not NAC.",
+        "Document labelling is a data protection matter, not a condition for network access."
+      ],
+      "concept": "NAC checks identity and device health at connection time.",
+      "trap": "Expecting NAC to enforce unrelated controls.",
+      "managerLens": "Use NAC to keep unknown and unhealthy devices off sensitive networks.",
+      "practicalNote": "Non-compliant devices are usually sent to a remediation VLAN rather than refused outright.",
+      "gap": "Knowing what NAC does.",
+      "followUpId": null,
+      "tags": [
+        "nac"
+      ]
+    },
+    {
+      "id": "d4-024",
+      "domain": 4,
+      "objective": "4.2",
+      "subtopic": "Endpoint security",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "Sales staff often connect their laptops to hotel and café Wi-Fi without using the VPN. Which control MOST directly protects the laptops from other devices on those networks?",
+      "options": [
+        "The intrusion detection system at head office",
+        "A host-based firewall enforced on each device",
+        "The perimeter firewall at the main data centre",
+        "A web application firewall for the company portal"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "Head office IDS never sees traffic on a hotel network.",
+        "Correct. A host firewall travels with the device and blocks unsolicited connections wherever it is.",
+        "The perimeter firewall protects the corporate network, not laptops outside it.",
+        "A WAF protects the portal, not the laptops."
+      ],
+      "concept": "Controls must travel with mobile endpoints.",
+      "trap": "Relying on network controls the device is not behind.",
+      "managerLens": "Assume laptops live on hostile networks; protect them on the device.",
+      "practicalNote": "Always-on VPN or ZTNA clients plus host firewalls and EDR are the usual endpoint baseline.",
+      "gap": "Protecting endpoints off the corporate network.",
+      "followUpId": null,
+      "tags": [
+        "endpoint",
+        "firewall"
+      ]
+    },
+    {
+      "id": "d4-025",
+      "domain": 4,
+      "objective": "4.2",
+      "subtopic": "Operating infrastructure",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "Finance wants to stop paying for vendor support on the core switches to save money, arguing that the hardware rarely fails. What is the MOST important security reason to keep support?",
+      "options": [
+        "Support contracts include free training for network engineers",
+        "Vendors provide new features only to customers under contract",
+        "Support lets engineers raise tickets about performance tuning",
+        "Firmware fixes for vulnerabilities and fast replacement parts"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "Training is a benefit but not the security reason.",
+        "New features are not the security concern.",
+        "Performance help is useful but secondary.",
+        "Correct. Without support, firmware security fixes and replacement hardware may not be available, leaving known vulnerabilities and long outages."
+      ],
+      "concept": "Supportability is a security property of infrastructure.",
+      "trap": "Thinking of support only as hardware repair.",
+      "managerLens": "Present the risk of losing fixes to the business owner who decides on the saving.",
+      "practicalNote": "Some vendors release security fixes only to customers with active support.",
+      "gap": "Valuing vendor support in security terms.",
+      "followUpId": null,
+      "tags": [
+        "infrastructure",
+        "support"
+      ]
+    },
+    {
+      "id": "d4-026",
+      "domain": 4,
+      "objective": "4.2",
+      "subtopic": "Firewall types",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A company wants to block an unapproved file-sharing application that runs over TCP port 443, while allowing ordinary HTTPS browsing on the same port. Which firewall capability is needed?",
+      "options": [
+        "Application awareness in a next-generation firewall",
+        "A stateful firewall rule that blocks TCP port 443",
+        "A packet filter rule that blocks the app's server address",
+        "Network address translation on the internet firewall"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. NGFWs identify applications by behaviour and signatures, so they can block one application on port 443 and allow others.",
+        "Blocking port 443 would stop all HTTPS browsing.",
+        "Such services use many changing addresses, so address rules are easy to evade.",
+        "NAT translates addresses; it does not identify applications."
+      ],
+      "concept": "Port-based rules cannot tell applications apart on shared ports; NGFWs can.",
+      "trap": "Thinking in ports when the requirement is about applications.",
+      "managerLens": "Write policy in terms of applications and users, not ports.",
+      "practicalNote": "Application identification often needs TLS inspection, which brings privacy and certificate trust decisions.",
+      "gap": "Matching firewall types to requirements.",
+      "followUpId": null,
+      "tags": [
+        "firewall",
+        "ngfw"
+      ]
+    },
+    {
+      "id": "d4-027",
+      "domain": 4,
+      "objective": "4.3",
+      "subtopic": "Split tunnelling",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "Remote staff use a VPN with split tunnelling: corporate traffic goes through the tunnel, while everything else goes straight to the internet from their homes. What is the MAIN security risk of this design?",
+      "options": [
+        "The VPN concentrator must handle every user's internet traffic",
+        "Internet traffic bypasses the company's web filtering and inspection",
+        "Corporate traffic inside the tunnel is no longer encrypted",
+        "Users cannot reach cloud applications while they are connected"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "That describes full tunnelling, which split tunnelling avoids.",
+        "Correct. With split tunnelling, browsing and downloads skip corporate controls, and a compromised laptop can act as a bridge between the internet and the corporate network.",
+        "Traffic in the tunnel is still encrypted.",
+        "Users reach cloud applications directly; that is a reason split tunnelling is used."
+      ],
+      "concept": "Split tunnelling trades control for performance.",
+      "trap": "Confusing split and full tunnelling.",
+      "managerLens": "Decide by risk; compensate with endpoint controls or cloud-delivered security if split tunnelling is kept.",
+      "practicalNote": "Secure web gateways delivered from the cloud can inspect traffic that does not go through the VPN.",
+      "gap": "Understanding VPN tunnelling choices.",
+      "followUpId": null,
+      "tags": [
+        "vpn",
+        "remote-access"
+      ]
+    },
+    {
+      "id": "d4-028",
+      "domain": 4,
+      "objective": "4.3",
+      "subtopic": "Third-party remote access",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A payroll software vendor needs to support its application on a company server a few times a year. The vendor asks for a standing VPN account. What is the BEST way to provide access?",
+      "options": [
+        "Give the vendor a standing VPN account with access to the server subnet",
+        "Share a company administrator's account with the vendor when it calls",
+        "Approve access per request through a jump host with MFA and session recording",
+        "Install a remote-control tool on the server that the vendor can use at any time"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "A standing account with subnet access is a permanent, broad entry point used a few times a year.",
+        "Shared accounts destroy accountability and reveal internal credentials.",
+        "Correct. Access that is approved when needed, narrowly scoped, authenticated with MFA and recorded gives the vendor what it needs and nothing more.",
+        "Always-available remote control tools are a favourite entry point for attackers."
+      ],
+      "concept": "Third-party access is just-in-time, least-privilege and monitored.",
+      "trap": "Granting convenient standing access.",
+      "managerLens": "Put access terms in the contract and enforce them technically.",
+      "practicalNote": "Privileged access management tools broker and record vendor sessions without revealing passwords.",
+      "gap": "Designing third-party remote access.",
+      "followUpId": null,
+      "tags": [
+        "remote-access",
+        "third-party"
+      ]
+    },
+    {
+      "id": "d4-029",
+      "domain": 4,
+      "objective": "4.3",
+      "subtopic": "Video conferencing",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "An outsider joined a company's board video meeting using a meeting link that had been forwarded by email. Which control BEST prevents this happening again?",
+      "options": [
+        "A waiting room where the host admits expected attendees",
+        "Telling attendees to keep their cameras switched off",
+        "Recording meetings automatically for later review",
+        "Using the same meeting link for each board meeting"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. A lobby or waiting room means a forwarded link alone is not enough; the host decides who joins.",
+        "Cameras off does nothing to stop an outsider listening.",
+        "Recording helps investigation but does not stop the intrusion.",
+        "Reusing one link for every meeting makes it more likely to leak and be used by outsiders."
+      ],
+      "concept": "Meeting controls: unique links, passcodes and host-controlled admission.",
+      "trap": "Choosing a detective control for a preventive need.",
+      "managerLens": "Set secure defaults for sensitive meetings so hosts do not have to remember.",
+      "practicalNote": "Authenticated-only meetings, which require attendees to sign in, are common for board sessions.",
+      "gap": "Securing collaboration tools.",
+      "followUpId": null,
+      "tags": [
+        "collaboration"
+      ]
+    },
+    {
+      "id": "d4-030",
+      "domain": 4,
+      "objective": "4.3",
+      "subtopic": "Remote working",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A company is making remote working permanent for 600 staff who use company laptops at home. Which TWO controls BEST protect access to corporate applications? (Select TWO.)",
+      "options": [
+        "Always-on VPN or zero trust network access with device posture checks",
+        "Multi-factor authentication for access to corporate applications",
+        "Asking staff to hide their home Wi-Fi network names",
+        "Requiring staff to use WEP encryption on their home routers",
+        "Letting staff use personal laptops if the company laptop is slow"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Brokered, encrypted access that checks the device keeps corporate applications off the open internet and away from unhealthy devices.",
+        "Correct. MFA protects against stolen passwords, the most common way in.",
+        "Hidden network names are easily discovered and add no real protection.",
+        "WEP encryption is broken and can be cracked in minutes; it should never be used.",
+        "Unmanaged personal laptops undo device controls."
+      ],
+      "concept": "Remote access security rests on brokered access, device health and strong authentication.",
+      "trap": "Trying to secure home networks the company does not control.",
+      "managerLens": "Secure what you control: identity, device and access path.",
+      "practicalNote": "Conditional access can require a compliant device and MFA before any corporate application opens.",
+      "gap": "Designing remote working security.",
+      "followUpId": null,
+      "tags": [
+        "remote-access",
+        "zero-trust",
+        "mfa"
+      ]
+    },
+    {
+      "id": "d4-031",
+      "domain": 4,
+      "objective": "4.3",
+      "subtopic": "Third-party connectivity",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": null,
+      "stem": "A telecom provider manages a bank's branch routers and insists on a permanent management connection into the bank's network. The bank cannot change provider before the contract ends in two years. What should the bank do?",
+      "options": [
+        "Refuse the connection and manage the branch routers internally instead",
+        "Accept the connection as requested, since the provider is under contract",
+        "Allow it only after the provider passes a one-off penetration test",
+        "Limit it to the routers and protocols needed, monitor it, and set terms"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "The provider manages the routers under contract; refusing may breach the contract and break the service.",
+        "Accepting broad access because of a contract ignores the bank's own duty to control risk.",
+        "A one-off test says little about ongoing access and does not limit what the connection can reach.",
+        "Correct. Limit the connection to what the service needs, monitor it, and use contract terms on security and notification. That manages the risk within the constraint."
+      ],
+      "concept": "Third-party connections are scoped, monitored and governed by contract.",
+      "trap": "Choosing an extreme: refuse outright or accept as is.",
+      "managerLens": "When you cannot remove a risk, constrain and watch it.",
+      "practicalNote": "Provider connections usually land in a dedicated firewall zone with rules limited to device management protocols.",
+      "gap": "Managing third-party network connectivity.",
+      "followUpId": null,
+      "tags": [
+        "third-party",
+        "connectivity"
       ]
     },
     {

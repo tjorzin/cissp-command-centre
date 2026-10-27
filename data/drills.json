@@ -332,6 +332,127 @@
       ]
     },
     {
+      "id": "dr-firewall-types",
+      "domain": 4,
+      "objective": "4.2",
+      "title": "Firewall types",
+      "items": [
+        {
+          "name": "Packet filter",
+          "meaning": "Allows or blocks by address, protocol and port; no session state."
+        },
+        {
+          "name": "Stateful",
+          "meaning": "Tracks connections and allows return traffic for established sessions."
+        },
+        {
+          "name": "Application proxy",
+          "meaning": "Terminates connections and inspects one protocol in depth."
+        },
+        {
+          "name": "NGFW",
+          "meaning": "Adds application identification, user awareness and intrusion prevention."
+        }
+      ],
+      "prompts": [
+        {
+          "text": "A router ACL drops all traffic to TCP port 23.",
+          "answer": "Packet filter",
+          "why": "A simple address and port rule without state."
+        },
+        {
+          "text": "Replies to outbound web requests are let in without a separate inbound rule.",
+          "answer": "Stateful",
+          "why": "Return traffic is matched to tracked sessions."
+        },
+        {
+          "text": "Clients connect to a relay that fetches web pages for them and checks every HTTP request.",
+          "answer": "Application proxy",
+          "why": "It terminates and inspects the protocol itself."
+        },
+        {
+          "text": "A rule blocks a file-sharing app on port 443 but allows normal HTTPS.",
+          "answer": "NGFW",
+          "why": "Telling applications apart on the same port needs application identification."
+        },
+        {
+          "text": "A rule allows the finance group, and only that group, to use the treasury app.",
+          "answer": "NGFW",
+          "why": "User-aware rules are an NGFW feature."
+        },
+        {
+          "text": "A cloud network ACL needs matching inbound and outbound rules.",
+          "answer": "Packet filter",
+          "why": "Stateless filtering needs rules in both directions."
+        }
+      ]
+    },
+    {
+      "id": "dr-osi-layers",
+      "domain": 4,
+      "objective": "4.1",
+      "title": "Which OSI layer?",
+      "items": [
+        {
+          "name": "Physical",
+          "meaning": "Layer 1: cables, signals, radio."
+        },
+        {
+          "name": "Data link",
+          "meaning": "Layer 2: frames, MAC addresses, switches, ARP."
+        },
+        {
+          "name": "Network",
+          "meaning": "Layer 3: IP addressing and routing."
+        },
+        {
+          "name": "Transport",
+          "meaning": "Layer 4: TCP and UDP, ports, sessions between hosts."
+        },
+        {
+          "name": "Application",
+          "meaning": "Layer 7: protocols users' applications speak, such as HTTP and DNS."
+        }
+      ],
+      "prompts": [
+        {
+          "text": "An attacker floods a switch with fake MAC addresses so it broadcasts all traffic.",
+          "answer": "Data link",
+          "why": "MAC tables and switching are layer 2."
+        },
+        {
+          "text": "Thousands of half-open TCP connections exhaust a server.",
+          "answer": "Transport",
+          "why": "The TCP handshake is a layer 4 mechanism."
+        },
+        {
+          "text": "A router is tricked into accepting false routes.",
+          "answer": "Network",
+          "why": "Routing between networks happens at layer 3."
+        },
+        {
+          "text": "Someone splices a tap into a copper cable in a ceiling void.",
+          "answer": "Physical",
+          "why": "Tapping the medium is layer 1."
+        },
+        {
+          "text": "SQL injection through a login form.",
+          "answer": "Application",
+          "why": "The attack targets the application's logic at layer 7."
+        },
+        {
+          "text": "A jammer blocks the warehouse Wi-Fi radio signal.",
+          "answer": "Physical",
+          "why": "Interfering with the radio medium is layer 1."
+        },
+        {
+          "text": "Forged IP source addresses are used to hide where packets come from.",
+          "answer": "Network",
+          "why": "IP addressing is layer 3."
+        }
+      ]
+    },
+    {
       "id": "dr-recovery-metrics",
       "domain": 1,
       "objective": "1.7",

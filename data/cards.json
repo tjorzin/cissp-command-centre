@@ -552,6 +552,94 @@
       "tags": []
     },
     {
+      "id": "c4-004",
+      "domain": 4,
+      "objective": "4.1",
+      "term": "OSI layers and their attacks",
+      "meaning": "L1 physical: cable taps, jamming. L2 data link: ARP spoofing, MAC flooding, VLAN hopping. L3 network: IP spoofing, routing attacks. L4 transport: SYN floods. L7 application: injection, DNS and HTTP attacks.",
+      "trap": "Putting ARP spoofing at layer 3 because IP addresses are involved.",
+      "hook": "Please Do Not Throw Sausage Pizza Away: physical to application.",
+      "tags": [
+        "osi"
+      ]
+    },
+    {
+      "id": "c4-005",
+      "domain": 4,
+      "objective": "4.1",
+      "term": "TLS 1.3",
+      "meaning": "Every handshake uses ephemeral key exchange (forward secrecy), legacy algorithms such as static RSA key exchange and CBC suites are gone, and more of the handshake is encrypted.",
+      "trap": "Thinking TLS also encrypts DNS lookups or requires client certificates.",
+      "hook": "Fewer options, always forward secret.",
+      "tags": [
+        "tls"
+      ]
+    },
+    {
+      "id": "c4-006",
+      "domain": 4,
+      "objective": "4.1",
+      "term": "Wi-Fi security modes",
+      "meaning": "WEP: broken. WPA2-Personal: shared passphrase. WPA3-Personal: SAE resists offline guessing. WPA2/3-Enterprise: 802.1X with individual credentials and a RADIUS server, which clients must validate.",
+      "trap": "Relying on hidden SSIDs or MAC filtering for security.",
+      "hook": "Personal shares a secret; enterprise knows who you are.",
+      "tags": [
+        "comparison",
+        "wireless"
+      ]
+    },
+    {
+      "id": "c4-007",
+      "domain": 4,
+      "objective": "4.2",
+      "term": "Firewall types",
+      "meaning": "Packet filter: addresses and ports, no state. Stateful: tracks connections. Application proxy: terminates and inspects one protocol. NGFW: adds application identity, users and IPS.",
+      "trap": "Trying to block one application on a shared port with a port rule.",
+      "hook": "Packets, sessions, protocols, applications.",
+      "tags": [
+        "comparison",
+        "firewall"
+      ]
+    },
+    {
+      "id": "c4-008",
+      "domain": 4,
+      "objective": "4.2",
+      "term": "Network access control",
+      "meaning": "Checks who and what connects before granting access: 802.1X authentication, device posture (patches, antivirus, encryption), and placement into the right VLAN or a remediation network.",
+      "trap": "Treating MAC filtering as NAC; MAC addresses are easy to spoof.",
+      "hook": "No identity, no health, no network.",
+      "tags": [
+        "nac"
+      ]
+    },
+    {
+      "id": "c4-009",
+      "domain": 4,
+      "objective": "4.3",
+      "term": "Split vs full tunnel VPN",
+      "meaning": "Full tunnel: all traffic goes through the corporate VPN and its controls. Split tunnel: only corporate traffic does; the rest goes straight to the internet, faster but outside corporate inspection.",
+      "trap": "Assuming split tunnelling stops encrypting corporate traffic. It does not.",
+      "hook": "Split saves bandwidth, spends visibility.",
+      "tags": [
+        "comparison",
+        "vpn"
+      ]
+    },
+    {
+      "id": "c4-010",
+      "domain": 4,
+      "objective": "4.3",
+      "term": "VPN vs ZTNA",
+      "meaning": "A VPN puts the device on the network, often with broad reach. Zero trust network access brokers access to individual applications after checking identity, device and context each time.",
+      "trap": "Thinking a VPN with MFA is zero trust.",
+      "hook": "VPN opens the network; ZTNA opens the app.",
+      "tags": [
+        "comparison",
+        "zero-trust"
+      ]
+    },
+    {
       "id": "c5-001",
       "domain": 5,
       "objective": "5.4",
