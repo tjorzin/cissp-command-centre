@@ -3,12 +3,12 @@ import { createStore } from './store.js';
 import { outlineNotices } from './outline.js';
 import { banner } from './ui.js';
 import { renderHome } from './views/home.js';
-import { renderPlaceholder } from './views/placeholder.js';
 import { renderMore } from './views/more.js';
 import { renderStudy } from './views/study.js';
 import { renderQuestions } from './views/questions.js';
 import { renderSession } from './views/session.js';
 import { renderResults } from './views/results.js';
+import { renderLedger, renderReteach } from './views/ledger.js';
 
 // A null backend makes every storage call throw, which the store catches: it then
 // runs in memory and isPersistent() reports false so the app can warn.
@@ -30,7 +30,8 @@ const routes = {
   questions: renderQuestions,
   session: renderSession,
   results: renderResults,
-  ledger: (c) => renderPlaceholder(c, 'Error Ledger', 'Every miss and every lucky guess is recorded here from phase 4, with the Patterns panel.'),
+  ledger: renderLedger,
+  reteach: renderReteach,
   more: renderMore
 };
 
@@ -60,7 +61,7 @@ function route() {
   const [first, ...params] = location.hash.replace(/^#\/?/, '').split('/');
   const name = routes[first] ? first : 'home';
   const view = routes[name];
-  const tab = name === 'session' || name === 'results' ? 'questions' : name;
+  const tab = { session: 'questions', results: 'questions', reteach: 'ledger' }[name] || name;
   document.querySelectorAll('.tabbar a').forEach((a) => {
     if (a.dataset.tab === tab) a.setAttribute('aria-current', 'page');
     else a.removeAttribute('aria-current');

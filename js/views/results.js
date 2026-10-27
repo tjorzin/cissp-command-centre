@@ -3,6 +3,8 @@ import { h } from '../ui.js';
 import { renderReview } from './review.js';
 import { MOCK } from '../engine/mock.js';
 import { activeOutline } from '../domains.js';
+import { entryId } from '../engine/ledger.js';
+import { errorClassPicker } from './ledger.js';
 
 const BAND_TEXT = {
   above: 'Above the band: you sustained the hardest levels in the final stretch.',
@@ -55,7 +57,8 @@ export function renderResults({ store, data }, params = []) {
         h('summary', {}, h('span', { class: `mark ${r?.correct ? 'ok' : 'bad'}` }, mark), ` Q${i + 1} · ${q.subtopic}`,
           r ? h('span', { class: 'small muted' }, ` · ${r.confidence}`) : null),
         h('p', { class: 'stem' }, q.stem),
-        renderReview(q, item, r ? r.selected : []));
+        renderReview(q, item, r ? r.selected : []),
+        r ? errorClassPicker(store, entryId(s.id, q.id)) : null);
     }),
     h('div', { class: 'btn-row' }, h('a', { class: 'btn primary', href: '#/questions' }, 'Back to questions')));
 }

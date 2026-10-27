@@ -2,7 +2,11 @@
 
 A personal CISSP study app: an offline, installable PWA that tells you what to study next. Built in vanilla HTML, CSS and JavaScript, with no build step, no backend and no accounts. Progress stays on the device; use **More → Export progress** to back it up or move it to another device.
 
-> Status: phase 3 of 10 (question engine with all modes and a 20-question seed bank). See `VALIDATION.md`.
+> Status: phase 4 of 10 (Error Ledger and Patterns panel). See `VALIDATION.md`.
+
+## Error Ledger
+
+Every miss, and every right answer marked as a guess, is recorded with why your choice was wrong and the correct reasoning. The Patterns panel lists sure-but-wrong misconceptions first, ranks objectives missed more than once, and counts your one-tap error classes (first step vs best step, technical vs management, scope or terminology, pure recall). Three misses on one objective trigger a reteach: a short lesson and a written teach-back before study questions on it resume.
 
 ## Question modes
 

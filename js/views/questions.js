@@ -14,7 +14,7 @@ export function bankFor({ store, data }) {
   return { outline, questions: eligible(data.questions.questions, outline.id), scenarios: data.questions.scenarios };
 }
 
-function launch(store, opts) {
+export function launch(store, opts) {
   const active = store.get().activeSession;
   if (active && !confirm(`You have an unfinished ${active.title}. Abandon it and start a new one?`)) return;
   if (opts.mode !== 'mock' && !opts.items.length) {

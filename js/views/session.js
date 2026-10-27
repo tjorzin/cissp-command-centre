@@ -4,6 +4,8 @@ import { h } from '../ui.js';
 import { LETTERS, renderReview } from './review.js';
 import { bankFor } from './questions.js';
 import { ensureCurrent, answerCurrent, advance, isFinished, finishSession, timeLeft } from '../engine/session.js';
+import { entryId, reteachDue } from '../engine/ledger.js';
+import { errorClassPicker, renderReteachCard } from './ledger.js';
 
 const CONFIDENCE = [['guess', 'Guess'], ['unsure', 'Unsure'], ['sure', 'Sure']];
 const COUNT_WORDS = { 2: 'two', 3: 'three', 4: 'four' };
@@ -67,11 +69,19 @@ export function renderSession(ctx) {
       const last = s.mode === 'mock' ? false : s.index + 1 >= s.items.length;
       fill(root, head, scenarioBox, stem,
         renderReview(q, item, r.selected),
+        errorClassPicker(store, entryId(s.id, q.id)),
         h('div', { class: 'btn-row sticky-actions' },
           h('button', {
             class: 'btn primary', type: 'button', id: 'next-btn',
             onclick: () => { store.update((st) => advance(st.activeSession)); paint(); }
           }, last ? 'See results' : 'Next question')));
+      return;
+    }
+
+    // Study modes pause on an objective that is due a reteach; exam modes keep exam conditions.
+    const st = store.get();
+    if (s.feedback && reteachDue(st.ledger, st.reteach).some((r) => r.objective === q.objective)) {
+      fill(root, head, renderReteachCard(ctx, q.objective, () => { paint(); scrollTo(0, 0); }));
       return;
     }
 

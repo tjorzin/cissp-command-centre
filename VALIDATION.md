@@ -2,6 +2,30 @@
 
 Each phase adds a section. Commands are run from the repo root with Node 24.22.1 and Playwright 1.64.1 (Chromium), using a Pixel 7 profile at 360 × 780, time zone Africa/Harare.
 
+## Phase 4: Error Ledger and Patterns panel (27 October 2026)
+
+`npm test`: **53 passed, 0 failed** (4 new)
+- Only wrong answers and correct answers marked "guess" create entries; sure or unsure correct answers do not.
+- Each entry holds every field the brief lists: date, mode, domain, sub-topic, difficulty, question id, answer given, correct answer, confidence, why each chosen option was wrong, the correct mental model, concept, trap, gap and follow-up id. For a partly right multi-select it also lists the keys you missed. The text is snapshotted so entries survive later question edits.
+- Patterns: sure-but-wrong entries come first (newest first); objectives missed more than once are ranked by misses, then sure misses, then recency; error-class counts and untagged count are correct; tapping the same class twice clears it.
+- Reteach rule: due after 3 misses on an objective (guesses do not count as misses), cleared by completing a reteach, due again after 3 further misses; teach-back history kept.
+
+`npx playwright test`: **19 passed, 0 failed** (3 new; 3 consecutive runs)
+- Domain 5 practice with a sure miss, a lucky guess and an unsure miss: Ledger shows 3 entries, 1 misconception listed first, the one-tap class from the review screen counted; an expanded entry shows "Why your choice was wrong" and the concept; the Lucky guesses and Untagged filters return 1 and 2; a class tagged in the Ledger survives reload; "Drill these in Weakness mode" opens on a missed Domain 5 question.
+- Three misses on objective 2.4 across two sessions: the next 2.4 question is replaced by the reteach card; "continue" stays disabled until the teach-back reaches 80 characters; after it, the question is served and the teach-back is stored; the Ledger no longer shows reteach due.
+- A reteach-due entry links to its reteach page. A mini exam is not interrupted by a reteach (exam conditions).
+
+Manual review: Ledger and reteach screenshots at 360 px, dark theme.
+
+### Validated
+- Ledger capture across all modes (it is recorded in the shared answer path), the Patterns panel, tagging and the reteach gate in Chromium.
+
+### Not validated
+- **Reteach lessons are assembled from the missed questions' own reasoning and the outline topics**, not from written lessons; the per-objective lessons arrive in phase 8.
+- The teach-back is checked for length only. Nothing judges whether the explanation is right.
+- Reteach gating applies to study modes (practice, scenario, weakness, hard). Mini exams and mocks keep exam conditions and do not pause; this is a design choice.
+- "Concept" for counting repeat misses is the outline objective, because free-text concepts differ per question.
+
 ## Phase 3: question engine, all modes, seed bank (27 October 2026)
 
 `node tests/validate-content.js`: **no errors**, 1 warning (d3-001 stem is 38 words at difficulty 4).

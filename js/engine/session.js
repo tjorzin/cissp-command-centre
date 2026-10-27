@@ -3,6 +3,7 @@
 import { grade, present } from './bank.js';
 import { mulberry32 } from './rng.js';
 import { todayIn } from '../outline.js';
+import { ledgerEntry } from './ledger.js';
 import { createMock, nextQuestion, recordMock, mockDone, mockReport } from './mock.js';
 
 export const MODES = {
@@ -58,11 +59,14 @@ export function answerCurrent(state, q, selected, confidence, now = Date.now()) 
   const secs = Math.round((now - s.shownAt) / 1000);
   s.responses.push({ id: q.id, selected, correct, confidence, secs });
   if (s.mock) recordMock(s.mock, q, correct);
+  const at = new Date(now).toISOString();
   state.answers.push({
-    at: new Date(now).toISOString(), sessionId: s.id, mode: s.mode, qid: q.id,
+    at, sessionId: s.id, mode: s.mode, qid: q.id,
     domain: q.domain, objective: q.objective, subtopic: q.subtopic, difficulty: q.difficulty,
     selected, correctAnswer: q.correct, correct, confidence, secs
   });
+  const entry = ledgerEntry(q, { sessionId: s.id, mode: s.mode, selected, correct, confidence, at });
+  if (entry) state.ledger.push(entry);
   return correct;
 }
 

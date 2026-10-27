@@ -229,6 +229,30 @@ input[type="checkbox"] { width: 24px; min-height: 24px; }
 .domain-table th, .domain-table td { text-align: left; padding: 6px 4px; border-bottom: 1px solid var(--border); }
 .domain-table td:nth-child(n+2), .domain-table th:nth-child(n+2) { text-align: right; white-space: nowrap; }
 
+h4 { font-size: .95rem; margin: 14px 0 4px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 12px; }
+.chip {
+  min-height: 40px; padding: 0 14px; border-radius: 999px;
+  border: 1px solid var(--border); background: var(--surface-2); color: var(--text);
+  font: inherit; font-size: .875rem; cursor: pointer;
+}
+.chip[aria-pressed="true"] { background: var(--accent); color: var(--accent-text); border-color: transparent; }
+.class-picker { margin-top: 12px; }
+.tag.bad { color: var(--danger); font-weight: 700; }
+.entry summary { cursor: pointer; line-height: 1.6; }
+.entry.misconception { border-left: 4px solid var(--danger); }
+.due { border-left: 4px solid var(--accent); }
+.bars { display: grid; gap: 6px; }
+.bar-row { display: grid; grid-template-columns: minmax(0, 1fr) 30% 2em; gap: 8px; align-items: center; }
+.bar { height: 10px; border-radius: 5px; background: var(--surface-2); overflow: hidden; }
+.bar .fill { display: block; height: 100%; background: var(--accent); }
+.bar-n { text-align: right; font-variant-numeric: tabular-nums; }
+textarea {
+  width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border);
+  background: var(--surface); color: var(--text); font: inherit; resize: vertical;
+}
+.lesson h3 { color: var(--accent); }
+
 .toast {
   position: fixed; left: var(--gutter); right: var(--gutter); bottom: 84px; z-index: 20;
   padding: 12px var(--gutter); border-radius: var(--radius);

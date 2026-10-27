@@ -24,7 +24,8 @@ export function defaultState(now = new Date()) {
     sessions: [],
     studyDays: [],
     baseline: null,
-    activeSession: null
+    activeSession: null,
+    reteach: {}
   };
 }
 
