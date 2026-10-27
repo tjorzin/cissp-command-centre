@@ -8,7 +8,8 @@ const noOverflow = async (page) => expect(await page.evaluate(() => document.doc
 test('a new user gets 10 new cards due; reviewing them schedules each and updates the counts', async ({ page }) => {
   await page.goto('/');
   await expect(page.locator('#due-today')).toHaveText('10');
-  await page.getByRole('link', { name: 'Review cards' }).click();
+  await expect(page.locator('[data-task="cards"]')).toContainText('Flashcards: 10 due');
+  await page.locator('[data-task="cards"] button').click();
   await expect(page.locator('#cards-due')).toHaveText('10');
   await page.locator('#review-due').click();
 

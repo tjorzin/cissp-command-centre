@@ -111,6 +111,9 @@ export function finishSession(state, questions, now = Date.now()) {
   };
   state.sessions.push(summary);
   state.activeSession = null;
+  if (s.mode === 'diagnostic' && summary.answered) {
+    state.baseline = { at: summary.endedAt, sessionId: s.id, presented: summary.presented, correct: summary.correct, byDomain };
+  }
   const day = todayIn(state.settings.timeZone, new Date(now));
   if (summary.answered && !state.studyDays.includes(day)) state.studyDays.push(day);
   return summary;

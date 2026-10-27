@@ -2,11 +2,27 @@
 
 A personal CISSP study app: an offline, installable PWA that tells you what to study next. Built in vanilla HTML, CSS and JavaScript, with no build step, no backend and no accounts. Progress stays on the device; use **More → Export progress** to back it up or move it to another device.
 
-> Status: phase 6 of 10 (performance screens and readiness gates). See `VALIDATION.md`.
+> Status: phase 7 of 10 (Next Study Plan, baseline diagnostic and reminders). See `VALIDATION.md`.
+
+## Today: the Next Study Plan
+
+Today always leads with **Do this next**. On first run that is the baseline diagnostic (six questions per domain at mixed difficulty, up to 48; no feedback until the end), which becomes your starting point. After that the plan has three blocks at your reminder times, each 20 to 45 minutes:
+
+| Block | What goes in it |
+|---|---|
+| Morning (recall) | Any reteach that is due, then due flashcards and due topics |
+| Afternoon (focus) | Learn: practise the weakest domain. Drill and Simulate: a weakness drill on your misses |
+| Evening (deep) | Learn: the next-weakest domain. Drill: hard mode. Simulate: a timed mini exam |
+
+Weakest means lowest recent accuracy (or baseline, until a domain has 10 recent answers) multiplied by the domain's exam weight; a domain with no evidence yet is nudged up so all eight get covered. Phases run from the target date: **Learn** until 10 weeks out, **Drill** until 4 weeks out, then **Simulate**, with a weekly adaptive mock once the bank allows it and a **go / move checkpoint** 3 weeks before the exam. The plan is rebuilt from your current state every time: a missed day re-plans, nothing piles up, and the streak is shown but never held against you. Today's domain picks are fixed once made, so the plan does not reshuffle while you work.
+
+## Reminders
+
+At 05:45, 13:00 and 20:30 Africa/Harare by default (Settings). While the app is open or recently used, it shows a notification at each block time if you allow it, and every screen shows a **due now** banner when a block's time has passed and it is not done. A web app cannot wake itself when closed, so **Settings → Add reminders to my calendar** downloads a calendar file with the three daily alarms up to the day before the exam; your phone's calendar then rings reliably. Background push needs a server or the optional Android wrapper (phase 10).
 
 ## Readiness
 
-Performance (from Today or More) shows each domain's accuracy, accuracy when sure, time per question, last revised and trend; accuracy by difficulty; and calibration (how often "sure" is really right). Below 20 answers a figure says "not enough data". Four readiness gates are shown as met or not met with their evidence, never as a single percentage or pass prediction. Thresholds are in Settings. Note: adaptive mocks keep accuracy near 50 to 60% by design, so the mock gate also offers a "band above in both mocks" option.
+Performance (from Today or More) shows each domain's accuracy, accuracy when sure, time per question, last revised and trend; accuracy by difficulty; and calibration (how often "sure" is really right). Below 20 answers a figure says "not enough data". Four readiness gates are shown as met or not met with their evidence, never as a single percentage or pass prediction. Thresholds are in Settings. Note: adaptive mocks keep accuracy near 50 to 60% by design, so the mock gate defaults to "band above in both of the last two mocks"; the brief's 75% accuracy rule is still available in Settings.
 
 ## Spaced repetition: why Leitner, not SM-2
 

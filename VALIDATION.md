@@ -2,6 +2,38 @@
 
 Each phase adds a section. Commands are run from the repo root with Node 24.22.1 and Playwright 1.64.1 (Chromium), using a Pixel 7 profile at 360 × 780, time zone Africa/Harare.
 
+## Phase 7: Next Study Plan, baseline diagnostic and reminders (28 October 2026)
+
+Also in this phase: the mock gate default changed to "band above in both of the last two mocks" (your decision, 27 October 2026); its tests were updated to match.
+
+`npm test`: **82 passed, 0 failed** (11 new plan and reminder tests)
+- Phases from the target date: Learn to 20 January 2027, Drill to 3 March, Simulate to the exam; go / move checkpoint 10 March; "after" once the date has passed.
+- Block lengths stay within 20 to 45 minutes and rise as the exam nears. When the small bank leaves a block short, an optional "top up with flashcards" task fills it, so listed minutes always add up to the stated length.
+- Domain priority: lowest recent accuracy (10+ answers) or baseline, multiplied by exam weight; with equal accuracy the heavier domain leads; an untested domain outranks a same-weight domain known to be at 50%.
+- First run: "Do this next" is the baseline diagnostic. The diagnostic takes six per domain at four or more difficulty levels (48 from a full synthetic bank; all 20 from the seed bank) and is saved as the baseline, which then drives priorities.
+- Today's picks hold while you work, are redone once if the baseline arrives that day, and are fresh the next day; a missed day leaves no backlog.
+- Next-day plan after forced misses on Domain 7: reteach first, topic review due, Domain 7 as the focus; in the Drill phase the same history drives a weakness drill.
+- Finished work ticks off tasks and blocks. "Due now" picks the latest open block whose time has passed.
+- Reminder timing in Harare time (12:59:30 → 30 s to the 13:00 block); the calendar file has three daily alarms with a Harare time zone until 30 March 2027.
+
+`npx playwright test`: **30 passed, 0 failed** (5 new; 3 consecutive runs)
+- First run (clock fixed at 06:30 Harare): Today leads with the baseline diagnostic; it runs with no feedback until the end; the baseline is stored; Today then drops it and focuses on Domain 4, which scored 0 on the baseline.
+- At 14:05 the "due now" banner names the afternoon block on other screens and links to Today; Today does not repeat it; at 05:00 there is no banner.
+- Settings: the calendar file downloads with three VEVENTs; notification status is shown.
+- With permission granted, the 13:00 reminder fires at the block time (fake clock), through the service worker, as "Afternoon block: about 20 min".
+- **The brief's functional test:** three Domain 7 practice rounds with every answer wrong and "sure"; then the Ledger shows 9 entries, 9 misconceptions, 3 repeat topics and 3 reteaches due; the first entry has its domain, confidence and why-wrong reasons; the Weakness drill opens on a Domain 7 reteach; moving the clock to the next morning, Today leads with "Reteach 7.x", lists "Topic review: 3 due", and shows a streak of 1 (no penalty for not having studied yet that day).
+
+Manual review: Today at 360 px (dark), first run and after a baseline. The blocks claimed 20 minutes while their tasks added up to 3 to 5; fixed with the top-up task above.
+
+### Validated
+- Plan generation from all four inputs the brief names, the phases and checkpoint, re-planning after missed days, the baseline diagnostic and the reminder fallbacks, in Chromium.
+
+### Not validated
+- **Notifications on a real phone.** Headless Chromium reports notification permission as denied whatever is granted, so the test reports "granted" itself; it proves the app's logic, not Android's behaviour.
+- **Reminders while the app is closed.** A static web app cannot wake itself; the calendar file is the reliable alarm. Background push needs a server or the optional Android wrapper (phase 10).
+- Phase lengths (10 and 4 weeks) and block lengths are reasoned defaults, not tuned to your pace.
+- The baseline uses all 20 seed questions until the bank grows; a 48-question baseline needs the phase 8 content.
+
 ## Phase 6: performance screens and readiness gates (27 October 2026)
 
 `npm test`: **71 passed, 0 failed** (9 new)
@@ -16,7 +48,7 @@ Each phase adds a section. Commands are run from the repo root with Node 24.22.1
 - With seeded history: "50% of 40", 80 s per question, a four-point trend reading 60% → 80%, calibration 50% when sure with the overconfidence note, and the concept gate shown as met.
 - Settings change the mock metric and domain threshold, and the gate titles follow.
 
-**Finding on the brief's mock gate.** On 300 simulated mocks per skill level (synthetic bank), mean mock accuracy was 49% (skill 3), 51% (4), 53% (4.5), 55% (5), 58% (5.5) and 69% (6.5, above the hardest level). An adaptive test raises difficulty until you miss about half, so "75% across the last two mocks" is close to unreachable for any realistic candidate. The gate is built as specified (default 75%), with a "band above in both" option in Settings and the explanation on the gate itself.
+**Finding on the brief's mock gate.** On 300 simulated mocks per skill level (synthetic bank), mean mock accuracy was 49% (skill 3), 51% (4), 53% (4.5), 55% (5), 58% (5.5) and 69% (6.5, above the hardest level). An adaptive test raises difficulty until you miss about half, so "75% across the last two mocks" is close to unreachable for any realistic candidate. The gate was built as specified (75% accuracy), with a "band above in both" option. **On 27 October 2026 the band rule became the default at your request;** the 75% accuracy rule stays available in Settings.
 
 Manual review: Performance screen at 360 px in dark theme; a domain card and a gate card checked close up. The trend label wrapped beside the line and was fixed; evidence dates now read "Week of 26 October 2026".
 

@@ -1,6 +1,6 @@
 // Service worker: app shell is cache-first (versioned); /data JSON is network-first
 // so new content arrives when online, with the cached copy used offline.
-const VERSION = 'v0.6.0';
+const VERSION = 'v0.7.0';
 const SHELL_CACHE = `cc-shell-${VERSION}`;
 const DATA_CACHE = 'cc-data';
 
@@ -25,6 +25,8 @@ const SHELL = [
   'js/engine/ledger.js',
   'js/engine/srs.js',
   'js/engine/perf.js',
+  'js/engine/plan.js',
+  'js/reminders.js',
   'js/views/performance.js',
   'js/views/cards.js',
   'data/cards.json',
@@ -53,6 +55,16 @@ self.addEventListener('activate', (event) => {
         .map((k) => caches.delete(k))))
       .then(() => self.clients.claim())
   );
+});
+
+// Tapping a reminder opens (or focuses) the app on today's plan.
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  event.waitUntil(self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((list) => {
+    const open = list.find((c) => c.url.includes(self.registration.scope));
+    if (open) return open.focus().then((c) => c.navigate ? c.navigate('./#/home') : c);
+    return self.clients.openWindow('./#/home');
+  }));
 });
 
 self.addEventListener('fetch', (event) => {

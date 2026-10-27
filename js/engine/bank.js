@@ -56,6 +56,30 @@ export function buildMini(questions, weights, rng, size = MINI_SIZE) {
   return shuffle(chosen, rng).map((q) => present(q, rng));
 }
 
+// Topic review: one question per due objective, the one answered least recently.
+export function buildTopicReview(questions, objectives, answers, rng) {
+  const lastAnswered = new Map(answers.map((a) => [a.qid, a.at]));
+  return objectives
+    .map((obj) => questions.filter((q) => q.objective === obj)
+      .sort((a, b) => (lastAnswered.get(a.id) || '').localeCompare(lastAnswered.get(b.id) || ''))[0])
+    .filter(Boolean)
+    .map((q) => present(q, rng));
+}
+
+// Baseline diagnostic: up to six per domain, spread across difficulty levels.
+export const DIAGNOSTIC_PER_DOMAIN = 6;
+
+export function buildDiagnostic(questions, weights, rng, perDomain = DIAGNOSTIC_PER_DOMAIN) {
+  const chosen = [];
+  for (const w of weights) {
+    const pool = shuffle(questions.filter((q) => q.domain === w.n), rng).sort((a, b) => a.difficulty - b.difficulty);
+    if (pool.length <= perDomain) { chosen.push(...pool); continue; }
+    // Evenly spaced picks through the difficulty-sorted pool give a mixed set.
+    for (let i = 0; i < perDomain; i++) chosen.push(pool[Math.floor((i * pool.length) / perDomain)]);
+  }
+  return shuffle(chosen, rng).map((q) => present(q, rng));
+}
+
 export function buildScenario(questions, scenario, rng) {
   return scenario.questionIds
     .map((id) => questions.find((q) => q.id === id))

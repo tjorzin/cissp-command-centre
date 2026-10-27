@@ -2,9 +2,17 @@
 import { h, toast } from '../ui.js';
 import { todayIn } from '../outline.js';
 import { DEFAULT_GATES } from '../engine/perf.js';
+import { notificationState, enableNotifications, reminderCalendar } from '../reminders.js';
 
-function download(filename, text) {
-  const url = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
+const notifyText = (state) => ({
+  granted: 'Notifications are on.',
+  denied: 'Notifications are blocked in this browser\'s site settings. The in-app "due now" banner still works.',
+  default: 'Notifications are off. The in-app "due now" banner shows when a block is due.',
+  unsupported: 'This browser does not support notifications. The in-app "due now" banner still works.'
+}[state]);
+
+function download(filename, text, type = 'application/json') {
+  const url = URL.createObjectURL(new Blob([text], { type }));
   const a = h('a', { href: url, download: filename });
   document.body.append(a);
   a.click();
@@ -89,7 +97,21 @@ export function renderMore({ store }) {
     h('div', { class: 'card' },
       h('h3', {}, 'Reminders (Africa/Harare)'),
       h('div', { class: 'times' }, ...times),
-      h('p', { class: 'small muted' }, 'Phone notifications are set up in phase 7. Until then, the app shows what is due when you open it.')),
+      h('p', { class: 'small', id: 'notify-state' }, notifyText(notificationState())),
+      h('div', { class: 'btn-row' },
+        notificationState() === 'default' ? h('button', {
+          class: 'btn', type: 'button', id: 'notify-btn',
+          onclick: async (e) => {
+            const r = await enableNotifications();
+            document.getElementById('notify-state').textContent = notifyText(r);
+            if (r !== 'default') e.target.remove();
+          }
+        }, 'Turn on notifications') : null,
+        h('button', {
+          class: 'btn', type: 'button', id: 'calendar-btn',
+          onclick: () => download('cissp-reminders.ics', reminderCalendar(store.get().settings, todayIn(s.timeZone)), 'text/calendar')
+        }, 'Add reminders to my calendar')),
+      h('p', { class: 'small muted' }, 'Notifications ring only while the app is open or recently used: a web app cannot wake itself. For a reliable daily alarm, add the calendar file; your phone\'s calendar then rings at each block time until the exam. If you change the times, add it again.')),
     h('div', { class: 'card' },
       h('label', { class: 'field' }, h('span', {}, 'Daily review cap'), cap),
       h('label', { class: 'field' }, h('span', {}, 'Theme'), theme)),

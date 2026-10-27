@@ -1,8 +1,10 @@
 // App entry: loads data, wires the store, theme, router and service worker.
 import { createStore } from './store.js';
 import { outlineNotices } from './outline.js';
-import { banner } from './ui.js';
-import { renderHome } from './views/home.js';
+import { banner, h } from './ui.js';
+import { renderHome, currentPlan } from './views/home.js';
+import { dueNowBlock } from './engine/plan.js';
+import { nowHHMM, scheduleReminders } from './reminders.js';
 import { renderMore } from './views/more.js';
 import { renderStudy } from './views/study.js';
 import { renderQuestions } from './views/questions.js';
@@ -45,9 +47,27 @@ function applyTheme() {
   else delete document.documentElement.dataset.theme;
 }
 
+let currentRoute = 'home';
+
+// Fallback for reminders: whenever a block's time has passed and it is not done, say so
+// on every screen except Today (which already leads with it) and a running session.
+function dueNowBanner() {
+  if (currentRoute === 'home' || currentRoute === 'session') return null;
+  const plan = currentPlan(ctx);
+  if (!plan) return null;
+  const block = dueNowBlock(plan, nowHHMM(store.get().settings.timeZone));
+  if (!block) return null;
+  const el = banner(`${block.label} block due now (${block.time})`,
+    h('span', {}, `About ${block.minutes} min. `, h('a', { href: '#/home' }, 'Open today\'s plan')), 'info');
+  el.dataset.notice = 'due-now';
+  return el;
+}
+
 function renderBanners() {
   const host = document.getElementById('banners');
   host.replaceChildren();
+  const due = dueNowBanner();
+  if (due) host.append(due);
   if (!store.isPersistent()) {
     host.append(banner('Progress is not being saved',
       'This browser is blocking storage (private window or cleared site data). Export your progress from More before closing.'));
@@ -65,6 +85,7 @@ function route() {
   const [first, ...params] = location.hash.replace(/^#\/?/, '').split('/');
   const name = routes[first] ? first : 'home';
   const view = routes[name];
+  currentRoute = name;
   const tab = { session: 'questions', results: 'questions', reteach: 'ledger', cards: 'study', performance: 'home' }[name] || name;
   document.querySelectorAll('.tabbar a').forEach((a) => {
     if (a.dataset.tab === tab) a.setAttribute('aria-current', 'page');
@@ -93,9 +114,23 @@ async function start() {
     if (loaded[i].status === 'fulfilled') ctx.data[k] = loaded[i].value;
     else console.error(loaded[i].reason);
   });
-  store.subscribe(() => { applyTheme(); renderBanners(); });
+  // Reminder timers follow the reminder times; re-set them when the times change or the app returns.
+  const reminderContext = () => {
+    const plan = currentPlan(ctx);
+    return plan && { plan, state: store.get(), cards: ctx.data.cards.cards };
+  };
+  const reschedule = () => scheduleReminders(reminderContext, renderBanners);
+  let lastTimes = JSON.stringify(store.get().settings.reminders);
+  store.subscribe((st) => {
+    applyTheme();
+    renderBanners();
+    const times = JSON.stringify(st.settings.reminders);
+    if (times !== lastTimes) { lastTimes = times; reschedule(); }
+  });
+  addEventListener('visibilitychange', () => { if (!document.hidden) { renderBanners(); reschedule(); } });
   addEventListener('hashchange', route);
   route();
+  reschedule();
 
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js').catch((err) => console.warn('Service worker not registered', err));

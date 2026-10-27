@@ -4,7 +4,7 @@ import { activeOutline } from '../domains.js';
 import { mulberry32, newSeed } from '../engine/rng.js';
 import {
   eligible, filterBank, buildPractice, buildHard, buildMini, buildScenario, buildWeakness,
-  weakObjectives, present, MINI_SIZE, MINI_SECONDS_EACH
+  weakObjectives, buildTopicReview, MINI_SIZE, MINI_SECONDS_EACH
 } from '../engine/bank.js';
 import { cardsQueue } from './cards.js';
 import { MOCK, mockReadiness } from '../engine/mock.js';
@@ -59,11 +59,7 @@ export function renderQuestions(ctx) {
 
   // Due topics: one question per objective, the one answered least recently.
   const { queue } = cardsQueue(ctx);
-  const lastAnswered = new Map(st.answers.map((a) => [a.qid, a.at]));
-  const topicItems = queue.topics.map((obj) => questions
-    .filter((q) => q.objective === obj)
-    .sort((a, b) => (lastAnswered.get(a.id) || '').localeCompare(lastAnswered.get(b.id) || ''))[0])
-    .filter(Boolean).map((q) => present(q, rng));
+  const topicItems = buildTopicReview(questions, queue.topics, st.answers, rng);
 
   const miniSize = Math.min(MINI_SIZE, questions.length);
   const readiness = mockReadiness(questions, weights);

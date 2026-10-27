@@ -104,6 +104,7 @@ test('three misses on one objective trigger a reteach card before more questions
 
 test('the Ledger lists reteach due and links to it; exam modes are not interrupted', async ({ page }) => {
   await page.goto('/');
+  await expect(page.locator('#do-next')).toBeVisible(); // let the app finish its first write before seeding
   await page.evaluate(() => {
     const s = JSON.parse(localStorage.getItem('cissp-cc'));
     const base = { domain: 2, objective: '2.4', subtopic: 'Data roles', difficulty: 4, kind: 'wrong', confidence: 'sure', mode: 'practice',
