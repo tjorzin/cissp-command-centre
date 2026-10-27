@@ -4,6 +4,7 @@ import { grade, present } from './bank.js';
 import { mulberry32 } from './rng.js';
 import { todayIn } from '../outline.js';
 import { ledgerEntry } from './ledger.js';
+import { review, topicKey, outcomeOf } from './srs.js';
 import { createMock, nextQuestion, recordMock, mockDone, mockReport } from './mock.js';
 
 export const MODES = {
@@ -11,6 +12,7 @@ export const MODES = {
   scenario: { title: 'Scenario set', feedback: true },
   weakness: { title: 'Weakness drill', feedback: true },
   hard: { title: 'Hard mode', feedback: true },
+  review: { title: 'Topic review', feedback: true },
   mini: { title: 'Mini exam', feedback: false },
   mock: { title: 'Adaptive mock (simulation)', feedback: false },
   diagnostic: { title: 'Baseline diagnostic', feedback: false }
@@ -67,6 +69,8 @@ export function answerCurrent(state, q, selected, confidence, now = Date.now()) 
   });
   const entry = ledgerEntry(q, { sessionId: s.id, mode: s.mode, selected, correct, confidence, at });
   if (entry) state.ledger.push(entry);
+  review(state, topicKey(q.objective), outcomeOf(correct, confidence), todayIn(state.settings.timeZone, new Date(now)),
+    { counts: s.mode === 'review' });
   return correct;
 }
 

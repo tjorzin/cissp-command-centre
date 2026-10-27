@@ -1,6 +1,6 @@
 // Service worker: app shell is cache-first (versioned); /data JSON is network-first
 // so new content arrives when online, with the cached copy used offline.
-const VERSION = 'v0.4.0';
+const VERSION = 'v0.5.0';
 const SHELL_CACHE = `cc-shell-${VERSION}`;
 const DATA_CACHE = 'cc-data';
 
@@ -23,6 +23,9 @@ const SHELL = [
   'js/views/review.js',
   'js/views/ledger.js',
   'js/engine/ledger.js',
+  'js/engine/srs.js',
+  'js/views/cards.js',
+  'data/cards.json',
   'js/engine/rng.js',
   'js/engine/bank.js',
   'js/engine/mock.js',

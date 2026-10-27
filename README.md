@@ -2,7 +2,21 @@
 
 A personal CISSP study app: an offline, installable PWA that tells you what to study next. Built in vanilla HTML, CSS and JavaScript, with no build step, no backend and no accounts. Progress stays on the device; use **More → Export progress** to back it up or move it to another device.
 
-> Status: phase 4 of 10 (Error Ledger and Patterns panel). See `VALIDATION.md`.
+> Status: phase 5 of 10 (spaced repetition and cards). See `VALIDATION.md`.
+
+## Spaced repetition: why Leitner, not SM-2
+
+The scheduler is a Leitner box system (`js/engine/srs.js`), applied to every flashcard and to every outline objective (sub-topic). Answering any question on an objective reschedules it; Topic review serves one question per due objective.
+
+| Box | 0 | 1 | 2 | 3 | 4 | 5 | 6 |
+|---|---|---|---|---|---|---|---|
+| Next review in (days) | 1 | 1 | 3 | 7 | 14 | 30 | 60 |
+
+- **Right** moves an item up one box; **wrong** sends it back to box 0 (tomorrow); a **correct guess** moves it up half a box, so two guesses equal one confident answer.
+- **Daily cap** (default 30, in Settings) limits deliberate reviews per day; anything over it is held back, oldest first, so a backlog never becomes a wall. Up to 10 new cards a day join the queue, newly covered objectives first.
+- **Exam guard:** no interval runs past two days before the target date, so everything comes back once more before the exam.
+
+Why Leitner: the inputs here are coarse (wrong, guess, right), not SM-2's six-point quality grades, and SM-2's per-item ease factor needs many reviews to settle, which a 22-week plan with a growing bank will not give it. With fixed boxes, the brief's rules are exact rather than approximated: a miss resets the interval, a guess earns precisely half credit, and the next due date is predictable and testable. If the bank and history grow large, the box intervals can be tuned from real recall data without changing the model.
 
 ## Error Ledger
 

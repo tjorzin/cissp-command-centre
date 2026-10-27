@@ -2,6 +2,33 @@
 
 Each phase adds a section. Commands are run from the repo root with Node 24.22.1 and Playwright 1.64.1 (Chromium), using a Pixel 7 profile at 360 × 780, time zone Africa/Harare.
 
+## Phase 5: spaced repetition and cards (27 October 2026)
+
+`npm run validate`: questions **no errors**; cards **25 across 8 domains, no errors** (every field present; term ≤ 70, meaning ≤ 320, trap ≤ 200, hook ≤ 90 characters).
+
+`npm test`: **62 passed, 0 failed** (9 new scheduler tests)
+- **Interval growth:** consecutive right answers give gaps of 1, 3, 7, 14, 30, 60, 60, 60 days.
+- **Reset on miss:** an item in box 4 goes to box 0, due tomorrow, with a lapse counted.
+- **Half credit on guess:** two guesses reach the same box as one right answer; a half step does not lengthen the interval until it completes.
+- **Daily cap:** with 40 topics due and a cap of 30, 30 are queued oldest first and 10 held back; reviews done today reduce the queue; the counter resets the next day. New cards: 10 a day, inside the cap, newly covered objectives first.
+- **Exam guard:** intervals stop two days before the target date.
+- Practice answers reschedule their objective without using the cap; Topic review answers use it.
+
+`npx playwright test`: **22 passed, 0 failed** (3 new; 3 consecutive runs)
+- New user: Today shows 10 due; reviewing all 10 (answer hidden until flipped) stores 10 scheduled cards with the expected boxes (two at 0, two at 0.5, six at 1), and the due counts on Cards and Today drop to 0 with 10/30 reviews used.
+- Filters: after missing a Domain 3 crypto question, "From my errors" shows the two 3.6 cards and "Newly covered" the three unreviewed 3.2 and 3.6 cards; the domain filter narrows them.
+- A due objective appears as Topic review, serves a question on that objective, promotes it and uses one review from the cap.
+
+Manual review: Cards home and a flipped card at 360 px, light theme.
+
+### Validated
+- Scheduler rules exactly as specified in the brief, at card and objective level; due counts on Today, Study and Cards.
+
+### Not validated
+- **Interval lengths are a reasoned default, not fitted to your recall data.** There is not enough history yet to tune them.
+- The deck is a 25-card seed; comparison drills and the full deck arrive with the content batches (phase 8).
+- "Due today" in a notification arrives with reminders (phase 7).
+
 ## Phase 4: Error Ledger and Patterns panel (27 October 2026)
 
 `npm test`: **53 passed, 0 failed** (4 new)

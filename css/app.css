@@ -159,9 +159,9 @@ input[type="checkbox"] { width: 24px; min-height: 24px; }
 .tabbar a .ico { font-size: 1.25rem; line-height: 1.2; }
 .tabbar a[aria-current="page"] { color: var(--accent); font-weight: 700; }
 
-.domain-link { display: block; color: inherit; text-decoration: none; }
-.domain-link h3 { margin: 0; }
-.domain-link p { margin: 2px 0 0; }
+.domain-link, .nav-card { display: block; color: inherit; text-decoration: none; }
+.domain-link h3, .nav-card h3 { margin: 0; }
+.domain-link p, .nav-card p { margin: 2px 0 0; }
 .row { display: flex; align-items: center; gap: 12px; }
 .grow { flex: 1; min-width: 0; }
 .dnum {
@@ -252,6 +252,13 @@ textarea {
   background: var(--surface); color: var(--text); font: inherit; resize: vertical;
 }
 .lesson h3 { color: var(--accent); }
+
+.flash { min-height: 220px; }
+.flash .term { font-size: 1.4rem; margin: 8px 0 12px; }
+.card-back p { margin: 8px 0; }
+.hook { color: var(--accent); }
+.rate.wrong { color: var(--danger); }
+.rate.right { color: var(--ok); }
 
 .toast {
   position: fixed; left: var(--gutter); right: var(--gutter); bottom: 84px; z-index: 20;

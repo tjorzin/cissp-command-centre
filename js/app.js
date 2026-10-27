@@ -9,6 +9,7 @@ import { renderQuestions } from './views/questions.js';
 import { renderSession } from './views/session.js';
 import { renderResults } from './views/results.js';
 import { renderLedger, renderReteach } from './views/ledger.js';
+import { renderCards } from './views/cards.js';
 
 // A null backend makes every storage call throw, which the store catches: it then
 // runs in memory and isPersistent() reports false so the app can warn.
@@ -32,6 +33,7 @@ const routes = {
   results: renderResults,
   ledger: renderLedger,
   reteach: renderReteach,
+  cards: renderCards,
   more: renderMore
 };
 
@@ -61,7 +63,7 @@ function route() {
   const [first, ...params] = location.hash.replace(/^#\/?/, '').split('/');
   const name = routes[first] ? first : 'home';
   const view = routes[name];
-  const tab = { session: 'questions', results: 'questions', reteach: 'ledger' }[name] || name;
+  const tab = { session: 'questions', results: 'questions', reteach: 'ledger', cards: 'study' }[name] || name;
   document.querySelectorAll('.tabbar a').forEach((a) => {
     if (a.dataset.tab === tab) a.setAttribute('aria-current', 'page');
     else a.removeAttribute('aria-current');
@@ -83,7 +85,7 @@ function watchOnline() {
 async function start() {
   applyTheme();
   watchOnline();
-  const files = { outlines: 'data/outlines.json', domains: 'data/domains.json', questions: 'data/questions.json' };
+  const files = { outlines: 'data/outlines.json', domains: 'data/domains.json', questions: 'data/questions.json', cards: 'data/cards.json' };
   const loaded = await Promise.allSettled(Object.values(files).map(loadJSON));
   Object.keys(files).forEach((k, i) => {
     if (loaded[i].status === 'fulfilled') ctx.data[k] = loaded[i].value;

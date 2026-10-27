@@ -2,6 +2,7 @@
 // each domain's objectives and topics, with what the 2027 outline changes.
 import { h } from '../ui.js';
 import { activeOutline, domainsFor, formatWeight } from '../domains.js';
+import { cardsQueue } from './cards.js';
 
 function changeList(title, items, sign) {
   if (!items.length) return null;
@@ -9,9 +10,13 @@ function changeList(title, items, sign) {
     h('ul', { class: 'topics small' }, ...items.map((t) => h('li', { class: `chg ${sign === '+' ? 'add' : 'drop'}` }, h('span', { 'aria-hidden': 'true' }, sign), ' ', t))));
 }
 
-function renderList(domains, outline) {
+function renderList(domains, outline, cardsDue) {
   return h('section', {},
     h('h2', {}, 'Study'),
+    h('a', { class: 'card nav-card', href: '#/cards', id: 'cards-link' },
+      h('div', { class: 'row' },
+        h('div', { class: 'grow' }, h('h3', {}, 'Flashcards'), h('p', { class: 'small muted' }, 'Key terms, exam traps and memory hooks, spaced for recall.')),
+        h('span', { class: 'weight' }, `${cardsDue} due`))),
     h('p', { class: 'small muted' }, `Showing the ${outline.id} outline, which applies to your target date. Weights are ISC2's average exam weights.`),
     ...domains.map((d) => h('a', { class: 'card domain-link', href: `#/study/${d.n}`, 'data-domain': d.n },
       h('div', { class: 'row' },
@@ -58,5 +63,5 @@ export function renderStudy({ store, data }, params = []) {
   const domains = domainsFor(data.domains, data.outlines, outline.id);
   const n = Number(params[0]);
   const d = domains.find((x) => x.n === n);
-  return d ? renderDomain(d, outline) : renderList(domains, outline);
+  return d ? renderDomain(d, outline) : renderList(domains, outline, cardsQueue({ store, data }).queue.cards.length);
 }

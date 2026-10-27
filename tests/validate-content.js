@@ -186,9 +186,37 @@ export function lintBank(bank, domainsData) {
   };
 }
 
+// Cards are cram material: every field present, short enough to read on a phone in one glance.
+export const CARD_LIMITS = { term: 70, meaning: 320, trap: 200, hook: 90 };
+
+export function lintCards(deck, domainsData) {
+  const errors = [];
+  const cards = deck.cards || [];
+  const objectives = new Set(domainsData.domains.flatMap((d) => d.objectives.map((o) => o.id)));
+  const ids = new Set();
+  for (const c of cards) {
+    const e = (m) => errors.push(`${c.id || '?'}: ${m}`);
+    if (!/^c[1-8]-\d{3}$/.test(c.id || '')) e('id must look like c1-001');
+    if (ids.has(c.id)) e('duplicate id');
+    ids.add(c.id);
+    if (Number(c.id?.[1]) !== c.domain) e('id prefix does not match domain');
+    if (!objectives.has(c.objective) || Number(c.objective[0]) !== c.domain) e(`objective ${c.objective} invalid for domain ${c.domain}`);
+    for (const [k, max] of Object.entries(CARD_LIMITS)) {
+      if (typeof c[k] !== 'string' || c[k].trim().length < 5) e(`"${k}" missing`);
+      else if (c[k].length > max) e(`"${k}" is ${c[k].length} characters (max ${max} for a cram card)`);
+    }
+    if (!Array.isArray(c.tags)) e('tags must be a list');
+  }
+  const domains = new Set(cards.map((c) => c.domain));
+  return { errors, stats: { cards: cards.length, domainsCovered: domains.size } };
+}
+
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   const read = (p) => JSON.parse(readFileSync(new URL(`../${p}`, import.meta.url)));
   const result = lintBank(read('data/questions.json'), read('data/domains.json'));
+  const cards = lintCards(read('data/cards.json'), read('data/domains.json'));
+  result.errors.push(...cards.errors);
+  console.log(`Cards: ${cards.stats.cards} across ${cards.stats.domainsCovered} domains`);
   for (const m of result.errors) console.log(`ERROR   ${m}`);
   for (const m of result.warnings) console.log(`warning ${m}`);
   if (result.stats) console.log(JSON.stringify(result.stats, null, 2));

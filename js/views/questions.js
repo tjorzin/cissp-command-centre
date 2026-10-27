@@ -4,8 +4,9 @@ import { activeOutline } from '../domains.js';
 import { mulberry32, newSeed } from '../engine/rng.js';
 import {
   eligible, filterBank, buildPractice, buildHard, buildMini, buildScenario, buildWeakness,
-  weakObjectives, MINI_SIZE, MINI_SECONDS_EACH
+  weakObjectives, present, MINI_SIZE, MINI_SECONDS_EACH
 } from '../engine/bank.js';
+import { cardsQueue } from './cards.js';
 import { MOCK, mockReadiness } from '../engine/mock.js';
 import { startSession } from '../engine/session.js';
 
@@ -56,6 +57,14 @@ export function renderQuestions(ctx) {
     launch(store, { mode: 'practice', seed, items: buildPractice(questions, filters, Number(sizeSel.value), rng) });
   };
 
+  // Due topics: one question per objective, the one answered least recently.
+  const { queue } = cardsQueue(ctx);
+  const lastAnswered = new Map(st.answers.map((a) => [a.qid, a.at]));
+  const topicItems = queue.topics.map((obj) => questions
+    .filter((q) => q.objective === obj)
+    .sort((a, b) => (lastAnswered.get(a.id) || '').localeCompare(lastAnswered.get(b.id) || ''))[0])
+    .filter(Boolean).map((q) => present(q, rng));
+
   const miniSize = Math.min(MINI_SIZE, questions.length);
   const readiness = mockReadiness(questions, weights);
   const weakCount = weakObjectives(st.answers).size;
@@ -74,6 +83,14 @@ export function renderQuestions(ctx) {
           class: 'btn', type: 'button',
           onclick: () => { if (confirm('Abandon this session? Answers already given stay in your history.')) store.update((s) => { s.activeSession = null; }); location.reload(); }
         }, 'Abandon'))) : null,
+
+    modeCard('review', 'Topic review', 'Spaced repetition by outline objective: one question for each objective due today.',
+      topicItems.length
+        ? h('div', { class: 'btn-row' }, h('button', {
+          class: 'btn primary', type: 'button',
+          onclick: () => launch(store, { mode: 'review', seed, items: topicItems })
+        }, `Review ${topicItems.length} due topic${topicItems.length === 1 ? '' : 's'}`))
+        : h('p', { class: 'small muted' }, 'No topics due today. Every question you answer schedules its objective for review.')),
 
     modeCard('practice', 'Practice set', 'Immediate feedback after each answer, with the reasoning for every option.',
       h('div', { class: 'filters' }, domainSel, diffSel, sizeSel),
