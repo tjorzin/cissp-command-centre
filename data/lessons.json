@@ -1185,6 +1185,166 @@
         "ask": "Why, and what is the fix?",
         "answer": "Kerberos rejects tickets outside the allowed clock skew (5 minutes by default). Fix time synchronisation so the server follows the domain's time source."
       }
+    },
+    "6.1": {
+      "summary": [
+        "Design assessment by risk: critical systems get deeper, more frequent testing.",
+        "Internal assessments are run by the organisation; external ones by an outside body; third-party ones assess suppliers.",
+        "Independence matters: assessors must not review their own work, and internal audit reports to the board or audit committee.",
+        "Location shapes the strategy: on-premises, cloud and hybrid need different permissions and scope.",
+        "Validate the strategy itself: does it give management the assurance it needs?"
+      ],
+      "keyTerms": [
+        {
+          "term": "Internal audit",
+          "meaning": "The organisation's own independent assurance function, reporting to the audit committee."
+        },
+        {
+          "term": "External audit",
+          "meaning": "An independent outside party assessing the organisation, often for regulators or investors."
+        },
+        {
+          "term": "Third-party assessment",
+          "meaning": "Assessing a supplier or partner outside your direct control."
+        },
+        {
+          "term": "Rules of engagement",
+          "meaning": "Written, signed terms for a test: scope, timing, contacts, methods and stop conditions."
+        }
+      ],
+      "scenario": {
+        "situation": "A company wants to penetration-test its workloads in a public cloud.",
+        "ask": "What must be settled first?",
+        "answer": "The provider's testing policy and any permissions it requires, and a scope limited to the company's own tenant resources, written into the rules of engagement and signed by someone with authority."
+      }
+    },
+    "6.2": {
+      "summary": [
+        "Vulnerability assessment finds known weaknesses broadly; penetration testing proves exploitability under rules of engagement.",
+        "Authenticated scans see far more than unauthenticated ones; verify findings to weed out false positives.",
+        "Test knowledge levels: black box (none), grey box (some), white box (full).",
+        "Other techniques: log review, synthetic transactions, code review, misuse cases, API testing, coverage analysis, attack simulation.",
+        "Red teams attack, blue teams defend, purple teams work together to improve detection."
+      ],
+      "keyTerms": [
+        {
+          "term": "Grey box test",
+          "meaning": "The tester has partial knowledge or access, such as an ordinary user account."
+        },
+        {
+          "term": "Misuse case",
+          "meaning": "A test written from the attacker's view: what should the system refuse to do?"
+        },
+        {
+          "term": "Code coverage",
+          "meaning": "How much of the code the tests actually exercise."
+        },
+        {
+          "term": "Breach and attack simulation",
+          "meaning": "Automated, continuous safe simulation of attacks to check controls still work."
+        }
+      ],
+      "scenario": {
+        "situation": "A scan says a server is missing a critical patch; the administrators insist it was installed last week.",
+        "ask": "What should happen?",
+        "answer": "Verify before closing: check the installed version directly or rescan with credentials. Scanners can report false positives, but findings are closed on evidence, not assertion."
+      }
+    },
+    "6.3": {
+      "summary": [
+        "Collect process data that shows controls work: account management, management review, backups, training, DR and BC.",
+        "KPIs measure how well a process performs; KRIs warn that risk exposure is rising.",
+        "Prefer outcome measures (critical vulnerabilities fixed within SLA) over activity counts (patches installed).",
+        "Evidence must be reliable: sampled records traced to approvals beat statements that a process exists.",
+        "Backup data means restore results, not just successful backup jobs."
+      ],
+      "keyTerms": [
+        {
+          "term": "KPI",
+          "meaning": "Key performance indicator: how well a process meets its objectives."
+        },
+        {
+          "term": "KRI",
+          "meaning": "Key risk indicator: an early signal that risk exposure is changing."
+        },
+        {
+          "term": "Management review",
+          "meaning": "Periodic, documented review by management of how controls and the programme perform."
+        },
+        {
+          "term": "Evidence sampling",
+          "meaning": "Testing a representative set of records to judge whether a control operates."
+        }
+      ],
+      "scenario": {
+        "situation": "The security dashboard shows '1,200 patches applied this month' in green.",
+        "ask": "What is wrong with the metric?",
+        "answer": "It counts activity, not outcome. A better measure is the share of critical vulnerabilities on important systems fixed within the agreed time, with trend and exceptions."
+      }
+    },
+    "6.4": {
+      "summary": [
+        "Reports should tell decision-makers the business risk, not just list scanner output.",
+        "Prioritise remediation by exploitation evidence and asset criticality as well as severity scores.",
+        "Findings that cannot be fixed in time need formal, time-limited exceptions with compensating controls.",
+        "Responsible disclosure: acknowledge researchers, fix, and coordinate publication; publish a disclosure policy.",
+        "Track every finding to closure, with an owner and a date."
+      ],
+      "keyTerms": [
+        {
+          "term": "CVSS",
+          "meaning": "Common Vulnerability Scoring System: a technical severity score (v4.0 is the latest version)."
+        },
+        {
+          "term": "KEV",
+          "meaning": "CISA's catalogue of vulnerabilities known to be exploited in the wild."
+        },
+        {
+          "term": "VDP",
+          "meaning": "Vulnerability disclosure policy: how outsiders can safely report vulnerabilities to you."
+        },
+        {
+          "term": "Remediation SLA",
+          "meaning": "The agreed time to fix findings of each priority."
+        }
+      ],
+      "scenario": {
+        "situation": "A scan produces 300 findings. The team plans to fix them strictly by CVSS score, highest first.",
+        "ask": "What is missing?",
+        "answer": "Context. A medium-severity flaw that is actively exploited on an internet-facing payment server outranks a critical one on an isolated test box. Add exploitation evidence (such as KEV) and asset criticality."
+      }
+    },
+    "6.5": {
+      "summary": [
+        "Audits can be internal, external or of third parties; each needs independence from what is audited.",
+        "Auditors assess and report; management decides and acts on findings.",
+        "SOC 1 covers controls relevant to financial reporting; SOC 2 covers security and related trust criteria; SOC 3 is a public summary.",
+        "Type I tests design at a point in time; Type II tests operating effectiveness over a period.",
+        "For suppliers outside your control, use right-to-audit clauses and independent reports."
+      ],
+      "keyTerms": [
+        {
+          "term": "SOC 2",
+          "meaning": "Report on a service organisation's controls against trust services criteria: security, availability and others."
+        },
+        {
+          "term": "SOC 3",
+          "meaning": "A general-use summary of a SOC 2 examination, suitable for public release."
+        },
+        {
+          "term": "Bridge letter",
+          "meaning": "A service organisation's statement covering the gap between its report period and now."
+        },
+        {
+          "term": "Audit independence",
+          "meaning": "Auditors must not audit work they designed or performed."
+        }
+      ],
+      "scenario": {
+        "situation": "The internal auditor who designed a new access review process is asked to audit it.",
+        "ask": "What is the problem?",
+        "answer": "Independence: auditing your own work undermines the result. Another auditor, or an external party, should perform the audit."
+      }
     }
   }
 }

@@ -61,6 +61,16 @@
         "d5-006"
       ],
       "text": "Chengetedzo Insurance has 1,100 staff and uses Active Directory synchronised to a cloud identity provider for email and 30 SaaS applications. Fifteen IT staff hold permanent Domain Admin rights 'for convenience'. A partner brokerage with 200 staff needs access to the claims portal, and today each broker has a local account whose password the insurer resets on request. Building access badges are issued by facilities from a spreadsheet, and an audit found 60 badges still active for people whose network accounts were disabled months ago."
+    },
+    {
+      "id": "sc-07",
+      "title": "Assurance at a payments processor",
+      "questionIds": [
+        "d6-003",
+        "d6-004",
+        "d6-005"
+      ],
+      "text": "Zambezi Pay processes card and mobile money payments for 300 merchants in Zimbabwe and Zambia. Its internal audit team of three reports to the CFO, who also owns IT. The same penetration testing firm has tested the company every year for five years. Large merchant clients now ask for independent assurance that Zambezi Pay's security controls work across the whole year. The security dashboard presented to the board shows 'patches applied this month' and 'awareness course completion', both green."
     }
   ],
   "questions": [
@@ -5843,7 +5853,7 @@
       "scenario": null,
       "stem": "A penetration test finds a critical SQL injection flaw in the customer portal. The product owner wants to defer the code fix to the next release in five months, saying the web application firewall already blocks the test payloads. Security operations confirms the WAF rule is in blocking mode. What should the security manager do?",
       "options": [
-        "Route a time-limited exception to the accountable executive, with the WAF rule tested for bypasses.",
+        "Route a time-limited exception to the accountable executive; test the WAF rule.",
         "Require the portal to go offline until developers deploy and verify the code fix for the flaw.",
         "Downgrade the finding's severity in the report, because a compensating control is now in place.",
         "Accept the product owner's plan and ask the testers to confirm the fix after the next release."
@@ -5867,6 +5877,973 @@
         "exception-handling",
         "remediation",
         "compensating-control"
+      ]
+    },
+    {
+      "id": "d6-003",
+      "domain": 6,
+      "objective": "6.1",
+      "subtopic": "Audit independence and reporting lines",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": "sc-07",
+      "stem": "The board of Zambezi Pay wants confidence that internal audit's findings on IT controls are objective. What change matters MOST?",
+      "options": [
+        "Double the size of the internal audit team so it covers more systems",
+        "Have the penetration testing firm review internal audit's reports",
+        "Have internal audit report to the board's audit committee instead",
+        "Ask the CFO to sign off each audit report before it reaches the board"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "More auditors increase coverage but not independence; they still report to the person who owns IT.",
+        "A test firm reviewing audit reports does not fix the reporting line and is outside its role.",
+        "Correct. Auditors reporting to the CFO, who owns IT, are auditing their own boss's area. A direct line to the audit committee protects their objectivity.",
+        "CFO sign-off would deepen the conflict, letting the owner of IT filter findings about IT."
+      ],
+      "concept": "Internal audit independence depends on reporting to the board or audit committee.",
+      "trap": "Fixing capacity when the problem is independence.",
+      "managerLens": "Assurance is only as good as the independence of whoever gives it.",
+      "practicalNote": "The audit committee usually approves the internal audit charter and plan, and meets the head of audit privately.",
+      "gap": "Recognising threats to audit independence.",
+      "followUpId": "d6-004",
+      "tags": [
+        "audit",
+        "independence",
+        "governance"
+      ]
+    },
+    {
+      "id": "d6-004",
+      "domain": 6,
+      "objective": "6.5",
+      "subtopic": "SOC reports for clients",
+      "difficulty": 5,
+      "type": "multi",
+      "scenario": "sc-07",
+      "stem": "Zambezi Pay's merchant clients want independent assurance that its security controls operated effectively across the year. Which TWO should Zambezi Pay provide? (Select TWO.)",
+      "options": [
+        "A SOC 2 Type II report from an independent auditor covering twelve months",
+        "A bridge letter covering the gap between the report period and the request",
+        "A SOC 1 report on controls relevant to the merchants' financial reporting",
+        "Internal audit's own assessment, signed by the head of internal audit",
+        "The executive summary of the latest annual penetration test"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. A SOC 2 Type II report tests whether security controls operated effectively over a period, by an independent auditor.",
+        "Correct. A bridge letter states that nothing material has changed since the report period ended, covering the gap until the next report.",
+        "SOC 1 addresses controls over financial reporting, not the security assurance the clients asked for.",
+        "Internal audit is not independent of the company the clients are assessing.",
+        "A penetration test is a point-in-time technical exercise, not assurance over a year of control operation."
+      ],
+      "concept": "Year-long, independent assurance over security controls is a SOC 2 Type II report, with a bridge letter for the gap.",
+      "trap": "Choosing SOC 1 or a point-in-time test.",
+      "managerLens": "Give clients the assurance artefact that answers their question, not the one you happen to have.",
+      "practicalNote": "Clients usually ask for the report, the bridge letter and the complementary user entity controls they must run themselves.",
+      "gap": "Knowing which assurance report fits.",
+      "followUpId": "d6-005",
+      "tags": [
+        "soc2",
+        "assurance",
+        "third-party"
+      ]
+    },
+    {
+      "id": "d6-005",
+      "domain": 6,
+      "objective": "6.3",
+      "subtopic": "Security metrics",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": "sc-07",
+      "stem": "Zambezi Pay's board dashboard shows 'patches applied this month' in green. Which measure would tell the board MORE about vulnerability risk?",
+      "options": [
+        "The total number of vulnerability scans run during the month",
+        "The share of critical vulnerabilities fixed within the agreed time",
+        "The number of patch tickets closed by each system administrator",
+        "The number of systems registered in the patching tool"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "Counting scans measures activity, not whether risk went down.",
+        "Correct. Remediation of critical vulnerabilities within an agreed time is an outcome measure linked to risk.",
+        "Tickets per administrator measures workload, not exposure.",
+        "Tool coverage is useful context but says nothing about whether critical issues are fixed."
+      ],
+      "concept": "Prefer outcome metrics tied to risk over activity counts.",
+      "trap": "Accepting a green activity metric as evidence of security.",
+      "managerLens": "Report what the board can act on: exposure, trend and exceptions.",
+      "practicalNote": "Pair the metric with the number of overdue critical items on important systems, named by owner.",
+      "gap": "Choosing meaningful security metrics.",
+      "followUpId": null,
+      "tags": [
+        "metrics",
+        "kpi"
+      ]
+    },
+    {
+      "id": "d6-006",
+      "domain": 6,
+      "objective": "6.1",
+      "subtopic": "Choosing internal, external or third-party assessment",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A banking regulator requires a bank to obtain an independent opinion on its information security controls each year, to be submitted directly to the regulator. Which kind of assessment meets this requirement?",
+      "options": [
+        "An internal audit by the bank's own audit function",
+        "A self-assessment completed by the security team",
+        "A third-party assessment of the bank's suppliers",
+        "An external audit by an independent outside firm"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "Internal audit is independent of management but not of the bank itself, which the regulator asked for.",
+        "A self-assessment by the team that runs the controls is not independent at all.",
+        "Third-party assessments look at suppliers, not the bank's own controls.",
+        "Correct. An external audit by an outside firm gives the independent opinion the regulator requires."
+      ],
+      "concept": "Internal, external and third-party assessments serve different purposes.",
+      "trap": "Treating internal audit as independent enough for an external requirement.",
+      "managerLens": "Choose the assessment type that the recipient of the assurance will accept.",
+      "practicalNote": "Regulators often specify the qualifications or accreditation of external assessors.",
+      "gap": "Matching assessment types to requirements.",
+      "followUpId": null,
+      "tags": [
+        "audit",
+        "assessment-strategy"
+      ]
+    },
+    {
+      "id": "d6-007",
+      "domain": 6,
+      "objective": "6.1",
+      "subtopic": "Testing in the cloud",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A company plans a penetration test of its applications running on a public cloud platform. Which TWO conditions must the test plan meet? (Select TWO.)",
+      "options": [
+        "Follow the cloud provider's published testing policy and permission rules",
+        "Limit the scope to the company's own tenant resources and applications",
+        "Include attempts to break out of the cloud provider's hypervisor isolation",
+        "Include a full-scale denial-of-service test of the cloud provider's network",
+        "Avoid telling anyone at the company so the test stays realistic"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Providers set rules on what customers may test and sometimes require notice; ignoring them can breach the contract.",
+        "Correct. Customers may test what they own; shared provider infrastructure is out of scope.",
+        "Attacking the provider's hypervisor tests infrastructure the company does not own and is not permitted.",
+        "Denial-of-service testing against shared infrastructure is usually forbidden and harms other tenants.",
+        "Rules of engagement need named contacts who know about the test, so real incidents are not confused with it."
+      ],
+      "concept": "Cloud testing is bounded by the provider's policy and the customer's own resources.",
+      "trap": "Testing as if the customer owned the whole platform.",
+      "managerLens": "Get legal and provider terms into the rules of engagement before any test.",
+      "practicalNote": "Major cloud providers publish penetration testing policies listing permitted and prohibited activities.",
+      "gap": "Scoping assessments in shared environments.",
+      "followUpId": null,
+      "tags": [
+        "pentest",
+        "cloud",
+        "scope"
+      ]
+    },
+    {
+      "id": "d6-008",
+      "domain": 6,
+      "objective": "6.1",
+      "subtopic": "Risk-based assessment strategy",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A company has budget for deep testing of only some of its 60 applications this year. What should MOST decide which applications get the deepest testing?",
+      "options": [
+        "The order in which the applications were first put into service",
+        "Which application teams volunteer for testing first",
+        "The risk each carries: its exposure and the data it handles",
+        "Spreading the budget evenly so every application gets the same depth"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "How long an application has been running says little about how much risk it carries.",
+        "Volunteers are not necessarily the riskiest applications.",
+        "Correct. Exposure (such as internet-facing) and data sensitivity determine where testing reduces the most risk.",
+        "Even spreading wastes depth on low-risk applications and starves high-risk ones."
+      ],
+      "concept": "Assessment depth and frequency follow risk.",
+      "trap": "Choosing a fair-looking but risk-blind allocation.",
+      "managerLens": "Defend the testing plan in terms of risk reduced per pound or dollar spent.",
+      "practicalNote": "A simple tiering (tier 1 internet-facing with sensitive data, tier 2 internal sensitive, tier 3 the rest) is common.",
+      "gap": "Prioritising assessments by risk.",
+      "followUpId": null,
+      "tags": [
+        "assessment-strategy",
+        "risk"
+      ]
+    },
+    {
+      "id": "d6-009",
+      "domain": 6,
+      "objective": "6.1",
+      "subtopic": "Rules of engagement",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A retailer is agreeing rules of engagement with an external penetration testing firm. Which TWO items MUST the document contain? (Select TWO.)",
+      "options": [
+        "The targets in scope and those explicitly out of scope",
+        "Named contacts, stop conditions and sign-off by someone with authority",
+        "The exploit code the testers intend to use, attached in full",
+        "A guarantee from the testers that systems will suffer no impact",
+        "The testers' home addresses and personal phone numbers"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Clear scope protects both parties and stops testing of systems the retailer cannot authorise.",
+        "Correct. Contacts and stop conditions let incidents be handled safely; authorised sign-off makes the test lawful.",
+        "Methods are described at a suitable level; attaching exploit code is not required.",
+        "No tester can guarantee zero impact; the document manages the risk instead.",
+        "Personal details are not needed; business contacts are."
+      ],
+      "concept": "Rules of engagement: scope, timing, contacts, stop conditions and authorised sign-off.",
+      "trap": "Expecting impossible guarantees instead of managing risk.",
+      "managerLens": "Never start a test without signed authority; it is what makes the test legal.",
+      "practicalNote": "Most rules of engagement also set testing windows and how critical findings are reported during the test.",
+      "gap": "Knowing what rules of engagement contain.",
+      "followUpId": null,
+      "tags": [
+        "pentest",
+        "rules-of-engagement"
+      ]
+    },
+    {
+      "id": "d6-010",
+      "domain": 6,
+      "objective": "6.2",
+      "subtopic": "Authenticated scanning",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A company's monthly vulnerability scans run without credentials and report few issues on its Windows servers. A consultant suggests giving the scanner a read-only account. What is the MAIN benefit?",
+      "options": [
+        "It sees installed software and patches, so it finds far more",
+        "The scans finish faster because fewer network probes are needed",
+        "The scanner can fix vulnerabilities automatically once it finds them",
+        "The servers no longer need their host-based firewalls during scans"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. Authenticated scans inspect the system from inside: installed versions, missing patches and configuration, which unauthenticated scans largely miss.",
+        "Speed may change, but it is not the main benefit.",
+        "Scanners report; fixing is done by the system owners through change management.",
+        "Host firewalls stay on; the scanner account needs only the access the scan requires."
+      ],
+      "concept": "Authenticated scans give a much fuller picture than unauthenticated ones.",
+      "trap": "Taking a quiet unauthenticated scan as evidence of good patching.",
+      "managerLens": "Ask whether scan results come from authenticated scans before trusting them.",
+      "practicalNote": "Protect scanner credentials: a dedicated, least-privilege account, vaulted and monitored.",
+      "gap": "Understanding scan depth.",
+      "followUpId": null,
+      "tags": [
+        "vulnerability-scan"
+      ]
+    },
+    {
+      "id": "d6-011",
+      "domain": 6,
+      "objective": "6.2",
+      "subtopic": "False positives",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A scan reports a critical vulnerability on a payment server. The administrators say they installed the patch last week and ask for the finding to be closed. What should the security analyst do?",
+      "options": [
+        "Close the finding, since the administrators know their own servers",
+        "Ignore it until the next monthly scan shows whether it is still there",
+        "Escalate to the CISO as an urgent incident before checking anything",
+        "Verify the installed version or rescan, and close it only on evidence"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "Closing on assurance alone risks leaving a real critical flaw open on a payment server.",
+        "Waiting a month leaves a possible critical exposure unresolved.",
+        "Escalating as an incident is premature; there is no sign of exploitation yet.",
+        "Correct. Findings are closed on evidence: check the version or run a targeted rescan. It may be a false positive, or the patch may not have applied."
+      ],
+      "concept": "Validate findings before closing them; false positives exist, but so do failed patches.",
+      "trap": "Taking either the scanner or the administrators on trust.",
+      "managerLens": "Require evidence for closure on critical findings.",
+      "practicalNote": "Patches sometimes install but need a reboot to take effect, which scanners correctly flag.",
+      "gap": "Handling disputed findings.",
+      "followUpId": null,
+      "tags": [
+        "vulnerability-scan",
+        "false-positive"
+      ]
+    },
+    {
+      "id": "d6-012",
+      "domain": 6,
+      "objective": "6.2",
+      "subtopic": "Test knowledge levels",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A company wants to know how much damage a malicious employee could do with an ordinary staff account and basic knowledge of the network. What kind of penetration test fits?",
+      "options": [
+        "A black box test with no information or account given",
+        "A grey box test starting from a standard user account",
+        "A white box test with full source code and diagrams",
+        "A vulnerability scan of the internet-facing servers"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "Black box simulates an outsider with no knowledge, not an insider.",
+        "Correct. Grey box gives the testers partial knowledge and access, like an ordinary employee.",
+        "White box gives far more knowledge than a typical employee has.",
+        "A scan of internet-facing servers does not simulate an insider at all."
+      ],
+      "concept": "Black, grey and white box tests differ in how much the tester knows.",
+      "trap": "Defaulting to black box as the most realistic option.",
+      "managerLens": "Match the test's starting point to the threat you are worried about.",
+      "practicalNote": "Assumed-breach tests start from a compromised workstation to save time on initial access.",
+      "gap": "Choosing test knowledge levels.",
+      "followUpId": null,
+      "tags": [
+        "pentest"
+      ]
+    },
+    {
+      "id": "d6-013",
+      "domain": 6,
+      "objective": "6.2",
+      "subtopic": "Red, blue and purple teams",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "After several red team exercises, the SOC still misses the same attack techniques because findings arrive weeks later in a report. Which approach would MOST improve detection?",
+      "options": [
+        "Run red team exercises twice as often as before",
+        "Replace the SOC's monitoring platform with a new product",
+        "Run purple team exercises with attackers and defenders together",
+        "Keep exercises secret from the SOC so its response is more realistic"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "More of the same exercise repeats the slow feedback loop.",
+        "A new platform does not fix the missing detections or the feedback gap.",
+        "Correct. Purple teaming lets defenders see each technique as it runs and tune detections immediately.",
+        "Secrecy measures response realistically, but does nothing to close the detection gap."
+      ],
+      "concept": "Purple teams turn attack simulations into immediate detection improvements.",
+      "trap": "Doing more red teaming when the gap is feedback.",
+      "managerLens": "Measure exercises by improvements made, not reports produced.",
+      "practicalNote": "Purple team sessions often walk through techniques from the MITRE ATT&CK framework one at a time.",
+      "gap": "Understanding team-based testing.",
+      "followUpId": null,
+      "tags": [
+        "red-team",
+        "purple-team"
+      ]
+    },
+    {
+      "id": "d6-014",
+      "domain": 6,
+      "objective": "6.2",
+      "subtopic": "Synthetic transactions",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A bank wants to know within minutes if its online payment journey breaks at night, when real customer traffic is low. Which technique fits BEST?",
+      "options": [
+        "Synthetic transactions run on a schedule against the payment journey",
+        "Real user monitoring of customers' sessions in the payment pages",
+        "A monthly penetration test of the payment application",
+        "A quarterly review of the payment application's server logs"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. Scripted transactions run around the clock and detect failures even when no customers are using the service.",
+        "Real user monitoring needs real users; at night there may be none to show the failure.",
+        "Penetration tests look for security weaknesses periodically, not functional failures within minutes.",
+        "A quarterly log review would find a failure weeks after customers were affected."
+      ],
+      "concept": "Synthetic transactions test functionality proactively; real user monitoring observes actual use.",
+      "trap": "Choosing passive monitoring when traffic is low.",
+      "managerLens": "Availability is security too: detect failures before customers do.",
+      "practicalNote": "Synthetic checks should use test accounts and be excluded from business reporting.",
+      "gap": "Choosing monitoring techniques.",
+      "followUpId": null,
+      "tags": [
+        "synthetic-transactions",
+        "availability"
+      ]
+    },
+    {
+      "id": "d6-015",
+      "domain": 6,
+      "objective": "6.2",
+      "subtopic": "Misuse case testing",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "The test plan for a new expenses application checks that staff can submit and managers can approve claims. A security reviewer asks for tests showing a user cannot approve their own claim. What kind of testing is this?",
+      "options": [
+        "Load testing under peak usage",
+        "Regression testing after changes",
+        "User acceptance testing by staff",
+        "Misuse case testing"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "Load testing checks performance under volume.",
+        "Regression testing checks that changes have not broken existing features.",
+        "Acceptance testing confirms the system does what users need, not what it must refuse.",
+        "Correct. Misuse cases describe what a malicious or careless user might try, and test that the system refuses it."
+      ],
+      "concept": "Misuse case testing checks what the system must refuse to do.",
+      "trap": "Testing only intended functionality.",
+      "managerLens": "Make misuse cases part of acceptance criteria for sensitive functions.",
+      "practicalNote": "Self-approval, privilege escalation through URL changes and bypassing limits are classic misuse cases.",
+      "gap": "Recognising negative testing.",
+      "followUpId": null,
+      "tags": [
+        "misuse-case",
+        "testing"
+      ]
+    },
+    {
+      "id": "d6-016",
+      "domain": 6,
+      "objective": "6.2",
+      "subtopic": "API and interface testing",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A fintech is testing a new REST API that partners will use to initiate payments. Which TWO tests are MOST important for its security? (Select TWO.)",
+      "options": [
+        "Check authorisation on every endpoint, including access to other partners' data",
+        "Send malformed, oversized and unexpected input to each parameter",
+        "Measure response times under normal partner traffic levels",
+        "Check that the API documentation uses consistent formatting",
+        "Confirm the API returns data in both JSON and XML formats"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Broken object-level authorisation, where one partner reaches another's data, is a leading API flaw.",
+        "Correct. Fuzzing parameters finds input-handling flaws such as injection and crashes.",
+        "Performance testing matters operationally but is not security testing.",
+        "Documentation formatting is not a security property.",
+        "Supporting extra formats adds attack surface rather than testing it."
+      ],
+      "concept": "Interface testing covers authorisation per object and robust input handling.",
+      "trap": "Mistaking functional or performance checks for security testing.",
+      "managerLens": "APIs exposed to partners need security testing before go-live and after each change.",
+      "practicalNote": "The OWASP API Security Top 10 is a common checklist for API testing.",
+      "gap": "Knowing what to test in interfaces.",
+      "followUpId": null,
+      "tags": [
+        "api",
+        "interface-testing"
+      ]
+    },
+    {
+      "id": "d6-017",
+      "domain": 6,
+      "objective": "6.2",
+      "subtopic": "Coverage analysis",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A development team reports that all of its automated security tests pass. A reviewer finds that the tests run only 40% of the code's paths. Which activity revealed this?",
+      "options": [
+        "Load and stress testing",
+        "Code coverage analysis",
+        "Input fuzz testing",
+        "Regression testing"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "Load testing measures performance under volume.",
+        "Correct. Coverage analysis measures how much of the code the tests actually exercise; passing tests mean little if most code is never run.",
+        "Fuzzing feeds unexpected input to find crashes; it does not measure coverage itself.",
+        "Regression testing checks for reintroduced defects."
+      ],
+      "concept": "Coverage analysis shows how much of the system testing actually exercises.",
+      "trap": "Equating passing tests with tested code.",
+      "managerLens": "Ask for coverage figures alongside test results.",
+      "practicalNote": "Coverage tools report line, branch and path coverage in CI pipelines.",
+      "gap": "Interpreting test results.",
+      "followUpId": null,
+      "tags": [
+        "coverage",
+        "testing"
+      ]
+    },
+    {
+      "id": "d6-018",
+      "domain": 6,
+      "objective": "6.2",
+      "subtopic": "Breach and attack simulation",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "A company's annual penetration test finds its controls working, but over the following months configuration changes quietly weaken several of them. What would BEST catch such drift between tests?",
+      "options": [
+        "A second annual penetration test six months after the first",
+        "A larger, more detailed annual penetration test report",
+        "Continuous breach and attack simulation against the key controls",
+        "A policy telling administrators not to weaken security settings"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "Twice-yearly tests still leave months of undetected drift.",
+        "A bigger report on one point in time does not help between tests.",
+        "Correct. Breach and attack simulation runs safe attack scenarios continuously and alerts when a control stops blocking or detecting them.",
+        "Policy helps but does not detect accidental or unauthorised change."
+      ],
+      "concept": "Continuous control validation catches drift that point-in-time tests miss.",
+      "trap": "Treating annual tests as continuous assurance.",
+      "managerLens": "Ask how you would know if a control failed tomorrow.",
+      "practicalNote": "BAS tools typically test email filtering, endpoint protection, segmentation and data exfiltration paths.",
+      "gap": "Understanding continuous validation.",
+      "followUpId": null,
+      "tags": [
+        "bas",
+        "control-validation"
+      ]
+    },
+    {
+      "id": "d6-019",
+      "domain": 6,
+      "objective": "6.3",
+      "subtopic": "Backup verification data",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "An auditor asks for evidence that a company can recover its ERP data. The IT team offers a report showing that every nightly backup job succeeded for a year. What evidence should the auditor ask for instead?",
+      "options": [
+        "Screenshots of the backup software's dashboard showing green status",
+        "The backup schedule and the retention settings for the ERP system",
+        "A signed statement from the IT manager that recovery would work",
+        "Recent restore test results, with time taken and data checked"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "Dashboards show job status, the same thing the report shows.",
+        "Configuration shows intent, not recoverability.",
+        "A signed statement is an assertion by an interested party, not evidence of recovery.",
+        "Correct. Only a test restore, with its duration and a check of the restored data, shows that recovery works."
+      ],
+      "concept": "Backup evidence means restore results, not job success.",
+      "trap": "Accepting backup activity as proof of recoverability.",
+      "managerLens": "Ask for evidence that answers the actual question.",
+      "practicalNote": "Restore tests should include application-level checks, not just files reappearing.",
+      "gap": "Choosing reliable evidence.",
+      "followUpId": null,
+      "tags": [
+        "backup",
+        "evidence"
+      ]
+    },
+    {
+      "id": "d6-020",
+      "domain": 6,
+      "objective": "6.3",
+      "subtopic": "Management review evidence",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "An auditor wants to know whether a company's change approval process actually works, not just whether it exists on paper. Which evidence is BEST?",
+      "options": [
+        "A sample of changes traced to their approved change records",
+        "The change management policy, approved by the board last year",
+        "The minutes of the change advisory board's last meeting",
+        "The number of change requests raised during the year"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. Tracing a sample of actual changes back to approvals tests whether the control operates.",
+        "An approved policy shows the control was designed, not that changes actually follow it.",
+        "One set of minutes shows the board met, not that every change went through it.",
+        "A count says nothing about whether changes were approved."
+      ],
+      "concept": "Test operating effectiveness by sampling real transactions.",
+      "trap": "Accepting design evidence as proof of operation.",
+      "managerLens": "Design evidence is necessary; operating evidence is what shows the control works.",
+      "practicalNote": "Auditors often start from the systems' own change logs, so unrecorded changes are found too.",
+      "gap": "Distinguishing design from operating evidence.",
+      "followUpId": null,
+      "tags": [
+        "evidence",
+        "change-management"
+      ]
+    },
+    {
+      "id": "d6-021",
+      "domain": 6,
+      "objective": "6.3",
+      "subtopic": "KPIs and KRIs",
+      "difficulty": 5,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A CISO is choosing key risk indicators to warn the board early when exposure rises. Which TWO are key risk indicators rather than performance measures? (Select TWO.)",
+      "options": [
+        "Internet-facing systems with critical vulnerabilities older than 30 days",
+        "The share of privileged accounts that are not protected by MFA",
+        "The number of tickets the service desk closed per analyst",
+        "The share of staff who completed this year's awareness course",
+        "The average time taken to answer calls to the service desk"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Old critical vulnerabilities on exposed systems signal rising likelihood of compromise.",
+        "Correct. Privileged accounts without MFA are a direct measure of exposure to credential attacks.",
+        "Tickets per analyst measures productivity, not risk.",
+        "Course completion measures activity in a process.",
+        "Call answer time measures service performance."
+      ],
+      "concept": "KRIs signal exposure; KPIs measure process performance.",
+      "trap": "Using activity or service metrics as risk indicators.",
+      "managerLens": "Give KRIs thresholds that trigger action when crossed.",
+      "practicalNote": "Good KRIs have an owner, a threshold and a defined response when they go red.",
+      "gap": "Telling KRIs from KPIs.",
+      "followUpId": null,
+      "tags": [
+        "metrics",
+        "kri"
+      ]
+    },
+    {
+      "id": "d6-022",
+      "domain": 6,
+      "objective": "6.3",
+      "subtopic": "DR and BC evidence",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "The board asks for evidence that the company could recover its core banking system within the agreed recovery time. Which evidence is MOST convincing?",
+      "options": [
+        "The disaster recovery plan, reviewed and approved this year",
+        "The contract with the provider of the recovery site",
+        "Results of the last failover test, with the recovery time achieved",
+        "The IT director's assurance that the team is well prepared"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "An approved plan shows intent, not capability.",
+        "A contract shows a site exists, not that recovery works.",
+        "Correct. A test that measured the actual recovery time against the target is direct evidence.",
+        "The IT director's assurance is an opinion, not evidence of recovery capability."
+      ],
+      "concept": "Recovery capability is shown by tests that measure results.",
+      "trap": "Accepting documents as proof of capability.",
+      "managerLens": "Ask for measured outcomes, not plans.",
+      "practicalNote": "Record the actual time to recover and any issues found, and track their fixes.",
+      "gap": "Choosing evidence for continuity capability.",
+      "followUpId": null,
+      "tags": [
+        "evidence",
+        "disaster-recovery"
+      ]
+    },
+    {
+      "id": "d6-023",
+      "domain": 6,
+      "objective": "6.4",
+      "subtopic": "Prioritising remediation",
+      "difficulty": 5,
+      "type": "single",
+      "scenario": null,
+      "stem": "A scan of a company's estate produces 300 findings. One medium-severity flaw on an internet-facing payment server is listed in CISA's Known Exploited Vulnerabilities catalogue. A critical-severity flaw sits on an isolated test server. Which should be fixed FIRST?",
+      "options": [
+        "The critical flaw on the test server, because its CVSS score is higher",
+        "The exploited flaw on the payment server, given its exposure and value",
+        "Both together, since every finding must be fixed within 30 days",
+        "Neither until the full list has been sorted by CVSS score"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "CVSS measures technical severity, not the risk in this environment; the isolated test server has little exposure.",
+        "Correct. Known exploitation on an exposed, high-value system means the likelihood and impact are both high, so it outranks a higher score on an isolated box.",
+        "Uniform deadlines ignore risk and spread effort thinly.",
+        "Waiting to sort by severity alone delays fixing the real risk."
+      ],
+      "concept": "Prioritise by risk: exploitation evidence and asset criticality, not severity alone.",
+      "trap": "Treating CVSS scores as risk rankings.",
+      "managerLens": "Fix what attackers are actually using on systems that matter first.",
+      "practicalNote": "Many teams combine CVSS, KEV status, exploit-likelihood scores and asset tiers in their SLAs.",
+      "gap": "Prioritising remediation by risk.",
+      "followUpId": null,
+      "tags": [
+        "remediation",
+        "cvss",
+        "kev"
+      ]
+    },
+    {
+      "id": "d6-024",
+      "domain": 6,
+      "objective": "6.4",
+      "subtopic": "Responsible disclosure",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "An independent researcher emails a company's general inbox to report a vulnerability in its customer portal and asks how to share details safely. The company has no disclosure policy. What should the company do?",
+      "options": [
+        "Ignore the email, since the researcher was not authorised to test",
+        "Threaten legal action so the researcher does not publish anything",
+        "Pay the researcher at once to keep the flaw confidential",
+        "Acknowledge it, triage and fix it, and publish a disclosure policy"
+      ],
+      "correct": [
+        3
+      ],
+      "rationales": [
+        "Ignoring the report leaves the flaw open and may push the researcher to publish.",
+        "Threats discourage future reports and invite public disclosure.",
+        "Paying for silence without fixing the flaw leaves customers exposed.",
+        "Correct. Responsible handling means acknowledging, fixing and coordinating disclosure, and a vulnerability disclosure policy makes future reports safe and routine."
+      ],
+      "concept": "Responsible (coordinated) disclosure and a vulnerability disclosure policy.",
+      "trap": "Treating the reporter as the threat.",
+      "managerLens": "Make it easy and safe for outsiders to tell you about flaws.",
+      "practicalNote": "A security.txt file on the website tells researchers where to report.",
+      "gap": "Handling external vulnerability reports.",
+      "followUpId": null,
+      "tags": [
+        "disclosure",
+        "vdp"
+      ]
+    },
+    {
+      "id": "d6-025",
+      "domain": 6,
+      "objective": "6.4",
+      "subtopic": "Reporting to executives",
+      "difficulty": 3,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A penetration test of a bank's mobile app has finished. The CISO must report the results to the executive committee. Which TWO elements belong in that report? (Select TWO.)",
+      "options": [
+        "A summary of the business risk each serious finding creates",
+        "Prioritised remediation actions, each with an owner and a date",
+        "The raw output of every tool the testers ran during the test",
+        "Working exploit code so executives can see each flaw in action",
+        "A full list of the open-source tools the testers used"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Executives need to understand what each finding means for the business.",
+        "Correct. Owned, dated actions make the report actionable and trackable.",
+        "Raw tool output belongs in a technical appendix for engineers, not an executive report.",
+        "Exploit code is dangerous to circulate and unnecessary for decisions.",
+        "Tool lists are technical detail with no decision value for executives."
+      ],
+      "concept": "Executive reports translate findings into business risk and owned actions.",
+      "trap": "Mistaking technical detail for useful reporting.",
+      "managerLens": "Write for the decision the reader must make.",
+      "practicalNote": "Keep the technical detail in an appendix for the teams who will fix the issues.",
+      "gap": "Reporting results to leadership.",
+      "followUpId": null,
+      "tags": [
+        "reporting"
+      ]
+    },
+    {
+      "id": "d6-026",
+      "domain": 6,
+      "objective": "6.5",
+      "subtopic": "Auditor independence",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "Internal audit helped design a new privileged access review process last year. The head of audit now proposes that the same auditor audit how well the process operates. What is the BEST response?",
+      "options": [
+        "Assign a different auditor, or an external party, to perform the audit",
+        "Allow it, since the auditor understands the process better than anyone",
+        "Allow it, provided the auditor's manager reviews the final report",
+        "Cancel the audit, since the process was designed by audit and is sound"
+      ],
+      "correct": [
+        0
+      ],
+      "rationales": [
+        "Correct. Auditing work you designed is a self-review threat to independence; someone else should do it.",
+        "Deep knowledge does not outweigh the conflict of reviewing your own design.",
+        "A manager's review reduces but does not remove the self-review problem.",
+        "Being designed by audit is no guarantee it works; it still needs independent testing."
+      ],
+      "concept": "Auditors must not audit their own work.",
+      "trap": "Valuing familiarity over independence.",
+      "managerLens": "Independence is what makes audit results credible to the board.",
+      "practicalNote": "Audit standards treat advisory work on a control as a reason to rotate who audits it.",
+      "gap": "Recognising self-review threats.",
+      "followUpId": null,
+      "tags": [
+        "audit",
+        "independence"
+      ]
+    },
+    {
+      "id": "d6-027",
+      "domain": 6,
+      "objective": "6.5",
+      "subtopic": "SOC report types",
+      "difficulty": 3,
+      "type": "single",
+      "scenario": null,
+      "stem": "A cloud payroll provider wants a report on its security controls that it can publish on its website for any prospective customer to read. Which report fits?",
+      "options": [
+        "A SOC 1 Type II report",
+        "A SOC 2 Type II report",
+        "A SOC 3 report",
+        "A SOC 1 Type I report"
+      ],
+      "correct": [
+        2
+      ],
+      "rationales": [
+        "SOC 1 covers controls relevant to customers' financial reporting and is restricted to specific users.",
+        "SOC 2 reports are detailed and normally shared under NDA with customers, not published openly.",
+        "Correct. A SOC 3 report is a general-use summary of a SOC 2 examination, designed for public distribution.",
+        "SOC 1 Type I is restricted use and covers financial reporting controls at a point in time."
+      ],
+      "concept": "SOC 1: financial reporting; SOC 2: detailed security, restricted; SOC 3: public summary.",
+      "trap": "Choosing SOC 2 because it covers security, missing the public-use requirement.",
+      "managerLens": "Use SOC 3 for marketing, SOC 2 for customers' due diligence.",
+      "practicalNote": "Customers doing real due diligence will still ask for the SOC 2 report itself.",
+      "gap": "Knowing SOC report types and their audiences.",
+      "followUpId": null,
+      "tags": [
+        "soc",
+        "assurance"
+      ]
+    },
+    {
+      "id": "d6-028",
+      "domain": 6,
+      "objective": "6.5",
+      "subtopic": "Auditing third parties",
+      "difficulty": 4,
+      "type": "multi",
+      "scenario": null,
+      "stem": "A hospital outsources its patient-records hosting to a provider outside its control. Which TWO give the hospital the BEST basis for auditing the provider's security? (Select TWO.)",
+      "options": [
+        "A right-to-audit clause in the hosting contract",
+        "The provider's independent SOC 2 Type II report",
+        "An unannounced penetration test of the provider by the hospital",
+        "A security questionnaire filled in by the provider's sales team",
+        "Informal conversations with the provider's engineers at conferences"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "rationales": [
+        "Correct. Contractual audit rights let the hospital verify controls itself or through an agent.",
+        "Correct. An independent report on operating effectiveness gives assurance without a site visit.",
+        "Testing a provider's systems without permission may be illegal and breaches the contract.",
+        "Sales-completed questionnaires are self-attestation by an interested party.",
+        "Informal conversations are not audit evidence."
+      ],
+      "concept": "Third-party audit rests on contractual rights and independent reports.",
+      "trap": "Choosing informal or unauthorised methods.",
+      "managerLens": "Write audit rights into contracts before you need them.",
+      "practicalNote": "Large providers often satisfy audit clauses through shared reports rather than individual visits.",
+      "gap": "Auditing suppliers outside your control.",
+      "followUpId": null,
+      "tags": [
+        "third-party",
+        "audit"
+      ]
+    },
+    {
+      "id": "d6-029",
+      "domain": 6,
+      "objective": "6.5",
+      "subtopic": "Responding to audit findings",
+      "difficulty": 4,
+      "type": "single",
+      "scenario": null,
+      "stem": "An internal audit finds that quarterly access reviews for the HR system were skipped twice this year. Who should decide how the finding is addressed?",
+      "options": [
+        "The internal auditor, who should then fix the review process directly",
+        "Management responsible for the HR system, with audit tracking the action",
+        "The external auditor, at the next annual statutory audit",
+        "The security team, which should take over HR access reviews"
+      ],
+      "correct": [
+        1
+      ],
+      "rationales": [
+        "Auditors who fix what they audit lose their independence.",
+        "Correct. Management owns the control and decides the response; audit follows up to confirm the action is completed.",
+        "Waiting for the external auditor delays a response management can make now.",
+        "Moving the control to security may not be the right fix and is a management decision."
+      ],
+      "concept": "Auditors report; management owns and remediates; audit follows up.",
+      "trap": "Letting the auditor act as the fixer.",
+      "managerLens": "Every finding needs a management owner, an action and a date.",
+      "practicalNote": "Audit committees usually review overdue audit actions at each meeting.",
+      "gap": "Knowing roles after an audit.",
+      "followUpId": null,
+      "tags": [
+        "audit",
+        "remediation"
       ]
     },
     {

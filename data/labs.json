@@ -366,6 +366,75 @@
         "Screenshots of the two groups' members and the folder permissions.",
         "A note of what changed for amai when she moved roles."
       ]
+    },
+    {
+      "id": "lab-d6-roe",
+      "day": 11,
+      "domain": 6,
+      "objective": "6.1",
+      "minutes": 40,
+      "title": "Write rules of engagement for your test lab",
+      "environment": "LAB / TEST ENVIRONMENT: a paper exercise about your own lab VMs only. Do not use it to authorise testing of any system you do not own.",
+      "goal": "Practise the scoping and authorisation that make a test lawful and safe, using the lab from days 8 to 10.",
+      "prerequisites": [
+        "The test VMs from earlier labs (or a list of imaginary ones)",
+        "Lesson 6.1; card: internal, external, third-party"
+      ],
+      "steps": [
+        "List the in-scope targets by name and IP address, and write an explicit out-of-scope list (for example your home router and work laptop).",
+        "Write the test window: dates and hours.",
+        "Name the authoriser (you, as owner of the lab), the tester, and an emergency contact.",
+        "Define stop conditions: for example, stop if a system becomes unstable or real personal data is found.",
+        "List permitted techniques (scanning, password guessing against lab accounts) and forbidden ones (denial of service, social engineering of real people).",
+        "Define how critical findings are reported during the test and how results are stored and destroyed afterwards.",
+        "Sign and date it as the authoriser."
+      ],
+      "validation": [
+        "Every target is named, and out-of-scope items are explicit.",
+        "Stop conditions and an emergency contact are present.",
+        "The document is signed by someone with authority over every target (here, you)."
+      ],
+      "rollback": [
+        "Nothing to roll back: this is a document."
+      ],
+      "evidence": [
+        "The signed one-page rules of engagement."
+      ]
+    },
+    {
+      "id": "lab-d6-triage",
+      "day": 12,
+      "domain": 6,
+      "objective": "6.4",
+      "minutes": 35,
+      "title": "Triage a vulnerability report by risk",
+      "environment": "LAB / TEST ENVIRONMENT: a paper exercise with fictional findings. Do not paste real scan results into public tools.",
+      "goal": "Practise prioritising remediation by exploitation evidence and asset criticality as well as severity.",
+      "prerequisites": [
+        "A spreadsheet",
+        "Card: prioritising vulnerabilities"
+      ],
+      "steps": [
+        "Create ten fictional findings with columns: ID, system, internet-facing (yes/no), data handled, CVSS score, known exploited (yes/no).",
+        "Include at least: a critical flaw on an isolated test server, a medium flaw that is known exploited on an internet-facing payment server, and a high flaw on an internal HR system.",
+        "Give each system a tier: 1 (internet-facing with sensitive data), 2 (internal sensitive), 3 (other).",
+        "Write a priority rule, for example: known exploited plus tier 1 = fix in 48 hours; CVSS 9+ on tier 1 or 2 = 7 days; everything else by severity within 30 to 90 days.",
+        "Apply the rule and sort the list into a fix order.",
+        "Compare your order with a pure CVSS sort and note the three biggest differences.",
+        "Write the one-paragraph summary you would send to the CIO."
+      ],
+      "validation": [
+        "The known-exploited flaw on the payment server is first.",
+        "The critical flaw on the isolated test server is not first.",
+        "The summary states business risk and dates, not just scores."
+      ],
+      "rollback": [
+        "Nothing to roll back: fictional data only."
+      ],
+      "evidence": [
+        "Your sorted list and priority rule.",
+        "The comparison with a pure CVSS sort and your CIO summary."
+      ]
     }
   ]
 }

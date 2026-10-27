@@ -2,6 +2,18 @@
 
 Each phase adds a section. Commands are run from the repo root with Node 24.22.1 and Playwright 1.64.1 (Chromium), using a Pixel 7 profile at 360 × 780, time zone Africa/Harare.
 
+## Phase 8, batch 6: Domain 6 content (28 October 2026)
+
+Framework check (`data/SOURCES.md`): CVSS v4.0 (November 2023) is the latest version, with v3.1 still widely used; CISA KEV is a separate exploitation signal; EPSS version not confirmed. Content tests prioritisation principles, not version-specific scores.
+
+**Content added:** 27 Domain 6 questions (29 in total, about 12% of a 240-question bank) and a seventh case study (assurance at a payments processor: audit reporting line, SOC 2 for clients, board metrics); lessons for all 5 objectives; 7 cards (every Domain 6 objective has one); 2 drills (scan, pen test, audit or simulation; which SOC report); 2 paper labs (day 11: rules of engagement for your test lab; day 12: triage a fictional vulnerability report by risk).
+
+`npm run validate`: **no errors.** The give-away lint first rejected 5 questions for tells (the key alone echoing stem words in d6-007 and d6-012; absolutes in two options in d6-016; length tells in d6-017 and d6-028), plus five thin rationales and an over-long lesson line; all fixed, and seven keys trimmed so the correct option is the single longest in 40 of 143 single-answer questions (28%).
+
+**Bank after batch 6:** 193 questions.
+
+`npm test`: **90 passed, 0 failed.** `npx playwright test`: **36 passed, 0 failed** (3 consecutive runs).
+
 ## Phase 8, batch 5: Domain 5 content (28 October 2026)
 
 Framework check (`data/SOURCES.md`): **NIST SP 800-63-4 is final (July 2025)** and adds syncable authenticators (synced passkeys). Content tests the principles (hardware-bound keys give the highest assurance; modern password rules), not Rev. 4's exact thresholds.

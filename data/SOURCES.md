@@ -103,6 +103,16 @@ Domain 4 content relies on long-stable standards: TLS 1.3 (RFC 8446, 2018), IPse
 
 Content tests the principles (device-bound keys give the highest assurance; modern password rules), not Rev. 4's exact numeric thresholds.
 
+## Framework currency check: Domain 6 batch (28 October 2026)
+
+| Item | Finding | Source quality |
+|---|---|---|
+| CVSS | v4.0 released by FIRST on 1 November 2023 is the latest; v3.1 remains widely used. v4.0 replaces the Temporal group with a Threat group (Exploit Maturity) | Secondary |
+| CISA KEV | Known Exploited Vulnerabilities catalogue: a separate signal of confirmed exploitation, not part of CVSS | Secondary |
+| EPSS | Current version not confirmed in this check | Not verified |
+
+Content tests prioritisation principles (severity alone is not risk; add exploitation evidence and asset criticality), not version-specific scores.
+
 ## Experience and the Associate route (verified)
 
 - Five years cumulative, full-time, paid experience in **two or more** of the eight domains.

@@ -813,6 +813,94 @@
       ]
     },
     {
+      "id": "c6-004",
+      "domain": 6,
+      "objective": "6.1",
+      "term": "Internal, external, third-party",
+      "meaning": "Internal: your own audit function, reporting to the audit committee. External: an independent outside firm assessing you. Third-party: you (or someone for you) assessing a supplier or partner.",
+      "trap": "Treating internal audit as independent enough when a regulator wants an outside opinion.",
+      "hook": "Us on us, them on us, us on them.",
+      "tags": [
+        "comparison",
+        "audit"
+      ]
+    },
+    {
+      "id": "c6-005",
+      "domain": 6,
+      "objective": "6.2",
+      "term": "Black, grey and white box",
+      "meaning": "Black box: no prior knowledge, like an outsider. Grey box: partial knowledge or a normal account, like an insider. White box: full knowledge, including code and diagrams, for depth.",
+      "trap": "Assuming black box is always most realistic. Insiders know more.",
+      "hook": "Know nothing, know some, know everything.",
+      "tags": [
+        "comparison",
+        "pentest"
+      ]
+    },
+    {
+      "id": "c6-006",
+      "domain": 6,
+      "objective": "6.2",
+      "term": "Red, blue, purple teams",
+      "meaning": "Red team: emulates attackers. Blue team: defends and detects. Purple team: red and blue working together so each technique becomes an improved detection straight away.",
+      "trap": "Running more red team exercises when the gap is turning findings into detections.",
+      "hook": "Red attacks, blue defends, purple learns.",
+      "tags": [
+        "comparison"
+      ]
+    },
+    {
+      "id": "c6-007",
+      "domain": 6,
+      "objective": "6.3",
+      "term": "KPI vs KRI",
+      "meaning": "A KPI measures how well a process performs, such as patches applied within SLA. A KRI warns that risk is rising, such as old critical vulnerabilities on internet-facing systems.",
+      "trap": "Reporting activity counts as evidence of security.",
+      "hook": "KPI: are we doing it well? KRI: is danger growing?",
+      "tags": [
+        "comparison",
+        "metrics"
+      ]
+    },
+    {
+      "id": "c6-008",
+      "domain": 6,
+      "objective": "6.4",
+      "term": "Prioritising vulnerabilities",
+      "meaning": "CVSS gives technical severity (v4.0 is the latest). Add exploitation evidence such as CISA's KEV catalogue, and how critical and exposed the asset is, to decide what to fix first.",
+      "trap": "Fixing strictly by CVSS score.",
+      "hook": "Severity, plus exploited, plus exposed.",
+      "tags": [
+        "remediation"
+      ]
+    },
+    {
+      "id": "c6-009",
+      "domain": 6,
+      "objective": "6.4",
+      "term": "Responsible disclosure",
+      "meaning": "A researcher reports privately, the vendor acknowledges, fixes and coordinates publication. A vulnerability disclosure policy tells outsiders how to report safely.",
+      "trap": "Threatening reporters, which pushes them to publish without warning.",
+      "hook": "Thank them, fix it, then tell the world.",
+      "tags": [
+        "disclosure"
+      ]
+    },
+    {
+      "id": "c6-010",
+      "domain": 6,
+      "objective": "6.5",
+      "term": "SOC 1, SOC 2, SOC 3",
+      "meaning": "SOC 1: controls relevant to customers' financial reporting. SOC 2: security and other trust criteria, detailed, shared under NDA. SOC 3: a public summary of a SOC 2. Types I and II apply to SOC 1 and 2.",
+      "trap": "Choosing SOC 1 for security assurance.",
+      "hook": "One for the accountants, two for security, three for the website.",
+      "tags": [
+        "comparison",
+        "soc"
+      ]
+    },
+    {
       "id": "c7-001",
       "domain": 7,
       "objective": "7.6",
